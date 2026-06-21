@@ -1,0 +1,159 @@
+---
+// No props – static form, submit handled by client-side JS
+---
+
+<!-- Form Wrapper (hidden on success) -->
+<div id="form-wrapper">
+  <form id="contact-form" class="space-y-5" novalidate>
+
+    <!-- Name -->
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">
+        Name <span class="text-primary" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        autocomplete="name"
+        placeholder="Max Mustermann"
+        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+      />
+    </div>
+
+    <!-- E-Mail -->
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+        E-Mail <span class="text-primary" aria-hidden="true">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder="max@beispiel.de"
+        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+      />
+    </div>
+
+    <!-- Service -->
+    <div>
+      <label for="service" class="block text-sm font-medium text-gray-700 mb-1.5">
+        Ich interessiere mich für <span class="text-primary" aria-hidden="true">*</span>
+      </label>
+      <div class="relative">
+        <select
+          id="service"
+          name="service"
+          required
+          class="w-full appearance-none rounded-xl border border-gray-200 px-4 py-3 pr-10 text-sm text-gray-900 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
+        >
+          <option value="" disabled selected>Service wählen...</option>
+          <option value="Webdesign">Webdesign</option>
+          <option value="IT-Services">IT-Services</option>
+          <option value="Branding & Marketing">Branding &amp; Marketing</option>
+          <option value="Komplettpaket">Komplettpaket</option>
+          <option value="Sonstiges">Sonstiges</option>
+        </select>
+        <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400" aria-hidden="true">
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nachricht -->
+    <div>
+      <label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">
+        Nachricht <span class="text-primary" aria-hidden="true">*</span>
+      </label>
+      <textarea
+        id="message"
+        name="message"
+        required
+        rows="5"
+        placeholder="Erzähl mir kurz von deinem Projekt oder deiner Situation..."
+        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all resize-none"
+      ></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div>
+      <button
+        type="submit"
+        id="submit-btn"
+        class="w-full py-3.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        Anfrage senden
+      </button>
+      <p id="error-message" class="hidden mt-3 text-sm text-red-600 text-center leading-relaxed">
+        Etwas ist schiefgelaufen. Schreib mir direkt an
+        <a href="mailto:mbourkiah@mb-solutions.biz" class="underline font-medium whitespace-nowrap">
+          mbourkiah@mb-solutions.biz
+        </a>
+      </p>
+    </div>
+
+  </form>
+</div>
+
+<!-- Success State (hidden until submission) -->
+<div id="success-message" class="hidden text-center py-10">
+  <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
+    <svg class="w-7 h-7 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  </div>
+  <h3 class="text-lg font-semibold text-gray-900 mb-2">Nachricht erhalten!</h3>
+  <p class="text-gray-500 text-sm leading-relaxed">
+    Ich melde mich innerhalb von 48 Stunden bei dir.
+  </p>
+</div>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const errorMsg = document.getElementById('error-message');
+  const formWrapper = document.getElementById('form-wrapper');
+  const successMsg = document.getElementById('success-message');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !form) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Wird gesendet...';
+    errorMsg?.classList.add('hidden');
+
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
+      email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
+      service: (form.elements.namedItem('service') as HTMLSelectElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        formWrapper?.classList.add('hidden');
+        successMsg?.classList.remove('hidden');
+      } else {
+        throw new Error(result.error ?? 'Unbekannter Fehler');
+      }
+    } catch {
+      errorMsg?.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Anfrage senden';
+    }
+  });
+</script>

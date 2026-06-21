@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+
+const infoItems = [
+  { icon: '📍', label: 'Standort', text: 'Köln & deutschlandweit' },
+  { icon: '⏱', label: 'Reaktionszeit', text: 'Antwort innerhalb von 48 Stunden' },
+  { icon: '💬', label: 'Erstgespräch', text: 'Komplett kostenlos & unverbindlich' },
+];
+---
+
+<BaseLayout
+  title="Kontakt | MB-Solutions"
+  description="Kostenloses Erstgespräch anfragen – MB-Solutions Köln. Webdesign, IT-Services & Branding für KMU."
+>
+  <Navbar />
+
+  <main class="flex-1 py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: Info Column -->
+        <div>
+          <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
+            Kontakt
+          </p>
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+            Lass uns reden.
+          </h1>
+          <p class="text-lg text-gray-500 leading-relaxed mb-10">
+            Kostenloses Erstgespräch – ich schaue mir deine Situation an und
+            zeige dir konkret, was möglich ist.
+          </p>
+
+          <!-- Info Items -->
+          <ul class="space-y-5 mb-10">
+            {infoItems.map((item) => (
+              <li class="flex items-start gap-4">
+                <span class="text-2xl leading-none mt-0.5" aria-hidden="true">{item.icon}</span>
+                <div>
+                  <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-0.5">
+                    {item.label}
+                  </p>
+                  <p class="text-gray-700 font-medium">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <!-- Direct E-Mail -->
+          <div class="pt-6 border-t border-gray-100">
+            <p class="text-sm text-gray-500 mb-1">Oder schreib mir direkt:</p>
+            <a
+              href="mailto:mbourkiah@mb-solutions.biz"
+              class="text-primary font-medium hover:underline text-sm"
+            >
+              mbourkiah@mb-solutions.biz
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Form Card -->
+        <div class="bg-gray-50 rounded-2xl p-8">
+          <ContactForm />
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
