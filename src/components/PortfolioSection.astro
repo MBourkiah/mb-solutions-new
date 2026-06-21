@@ -1,0 +1,73 @@
+---
+const projects = [
+  {
+    colorBlock: 'bg-primary/20',
+    tag: 'Webdesign · Branding',
+    title: 'Café Rösterei Köln',
+    subtitle: 'Komplette Website + Corporate Identity',
+  },
+  {
+    colorBlock: 'bg-teal',
+    tag: 'Webdesign · IT-Setup',
+    title: 'Elektro Müller GmbH',
+    subtitle: 'Website, Logo & lokale IT-Einrichtung',
+  },
+  {
+    colorBlock: 'bg-coral',
+    tag: 'Branding',
+    title: 'Fitnessstudio NordKöln',
+    subtitle: 'Logo, Visitenkarten & Social Media Kit',
+  },
+  {
+    colorBlock: 'bg-primary/10',
+    tag: 'IT-Services',
+    title: 'Steuerberatung Hofmann',
+    subtitle: 'Cloud-Migration & IT-Support Retainer',
+  },
+] as const;
+---
+
+<section class="bg-gray-50 py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="max-w-2xl mx-auto text-center mb-16">
+      <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
+        Portfolio
+      </p>
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        Meine Arbeiten.
+      </h2>
+      <p class="text-lg text-gray-500 leading-relaxed">
+        Jedes Projekt ist ein Vertrauensbeweis – hier siehst du, womit ich
+        anderen Unternehmen geholfen habe.
+      </p>
+    </div>
+
+    <!-- 2×2 Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <div class="group rounded-2xl overflow-hidden bg-white border border-gray-100 hover:shadow-md transition-all duration-200">
+
+          <!-- Color placeholder (später: echtes Bild) -->
+          <div class={`h-48 w-full ${project.colorBlock}`}></div>
+
+          <!-- Card Content -->
+          <div class="p-6">
+            <span class="inline-block text-xs font-medium text-gray-400 uppercase tracking-wide mb-2">
+              {project.tag}
+            </span>
+            <h3 class="text-lg font-semibold text-gray-900 mb-1">
+              {project.title}
+            </h3>
+            <p class="text-sm text-gray-500">
+              {project.subtitle}
+            </p>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

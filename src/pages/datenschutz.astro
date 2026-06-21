@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Datenschutz | MB-Solutions">
+  <Navbar />
+
+  <main class="flex-1 py-24">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-10 pb-6 border-b border-gray-100">
+        Datenschutzerklärung
+      </h1>
+
+      <div class="space-y-10 text-gray-600 leading-relaxed">
+
+        <section>
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">
+            1. Verantwortlicher
+          </h2>
+          <p>
+            [Dein vollständiger Name], MB-Solutions<br />
+            [Straße + Hausnummer], Köln<br />
+            E-Mail:&nbsp;
+            <a
+              href="mailto:mbourkiah@mb-solutions.biz"
+              class="text-primary hover:underline"
+            >
+              mbourkiah@mb-solutions.biz
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">
+            2. Erhobene Daten
+          </h2>
+          <p>
+            Diese Website erhebt keine personenbezogenen Daten durch Tracking
+            oder Cookies. Beim Absenden des Kontaktformulars werden Name und
+            E-Mail-Adresse zur Bearbeitung deiner Anfrage verwendet und nicht
+            an Dritte weitergegeben.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">
+            3. Hosting
+          </h2>
+          <p>
+            Diese Website wird gehostet bei Vercel Inc., 440 N Barranca Ave
+            #4133, Covina, CA 91723, USA. Beim Aufruf der Website werden
+            automatisch Verbindungsdaten (IP-Adresse, Zeitstempel) durch
+            Vercel erfasst. Weitere Informationen:&nbsp;
+            <a
+              href="https://vercel.com/legal/privacy-policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary hover:underline"
+            >
+              vercel.com/legal/privacy-policy
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-lg font-semibold text-gray-900 mb-3">
+            4. Deine Rechte
+          </h2>
+          <p>
+            Du hast das Recht auf Auskunft, Berichtigung und Löschung deiner
+            Daten. Kontakt:&nbsp;
+            <a
+              href="mailto:mbourkiah@mb-solutions.biz"
+              class="text-primary hover:underline"
+            >
+              mbourkiah@mb-solutions.biz
+            </a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

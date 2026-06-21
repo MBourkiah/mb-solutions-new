@@ -1,0 +1,40 @@
+---
+const year = 2025;
+---
+
+<footer class="mt-auto border-t border-gray-100 bg-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+
+      <!-- Logo + Tagline -->
+      <div class="flex flex-col gap-1.5">
+        <a href="/" class="flex items-center gap-2.5">
+          <span class="flex items-center justify-center w-7 h-7 rounded-md bg-primary">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M2 14V4l4.5 5L9 6l2.5 3L16 4v10H2Z" fill="white" stroke="white" stroke-width="0.5" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="font-semibold text-gray-900 text-sm tracking-tight">MB-Solutions</span>
+        </a>
+        <p class="text-xs text-gray-500 pl-9.5">Webdesign & IT-Services in Köln</p>
+      </div>
+
+      <!-- Legal Links -->
+      <nav class="flex items-center gap-5" aria-label="Footer-Navigation">
+        <a href="/impressum" class="text-sm text-gray-500 hover:text-primary transition-colors">
+          Impressum
+        </a>
+        <a href="/datenschutz" class="text-sm text-gray-500 hover:text-primary transition-colors">
+          Datenschutz
+        </a>
+      </nav>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-6 border-t border-gray-100">
+      <p class="text-xs text-gray-400 text-center">
+        &copy; {year} MB-Solutions, Köln. Alle Rechte vorbehalten.
+      </p>
+    </div>
+  </div>
+</footer>
