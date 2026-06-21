@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const skills = [
+  {
+    icon: '🎓',
+    title: 'Wirtschaftsinformatik',
+    description: 'Ich denke in Prozessen und Geschäftsmodellen – nicht nur in Code.',
+  },
+  {
+    icon: '💻',
+    title: 'Technisches Know-how',
+    description:
+      'Astro, React, Next.js, Tailwind, WordPress, Webflow – ich wähle das richtige Werkzeug für dein Projekt.',
+  },
+  {
+    icon: '🤝',
+    title: 'Persönliche Betreuung',
+    description: 'Kein Ticket-System, kein Outsourcing – du erreichst mich direkt, immer.',
+  },
+];
+
+const values = [
+  {
+    number: '01',
+    title: 'Zuhören vor Handeln',
+    description:
+      'Ich verstehe zuerst dein Business, deine Ziele und deine Kunden – bevor ich auch nur eine Zeile Code schreibe.',
+  },
+  {
+    number: '02',
+    title: 'Transparenz immer',
+    description:
+      'Klare Preise, klare Timelines, klare Kommunikation. Keine versteckten Kosten, keine Überraschungen.',
+  },
+  {
+    number: '03',
+    title: 'Qualität über Quantität',
+    description:
+      'Ich nehme bewusst wenige Projekte an, damit jedes die Aufmerksamkeit bekommt, die es verdient.',
+  },
+];
+---
+
+<BaseLayout
+  title="Über mich | MB-Solutions Köln"
+  description="Maurice Bourkiah – Wirtschaftsinformatik-Student und Gründer von MB-Solutions in Köln."
+>
+  <Navbar />
+
+  <main class="flex-1">
+
+    <!-- Hero: Zweispaltig -->
+    <section class="bg-white py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Foto-Platzhalter -->
+          <div class="flex flex-col gap-3">
+            <div
+              class="w-full h-96 rounded-2xl bg-primary/10 flex items-center justify-center"
+              aria-label="Foto-Platzhalter"
+            >
+              <div class="text-center">
+                <p class="text-5xl mb-3" aria-hidden="true">📸</p>
+                <p class="text-primary/40 font-medium text-sm">Dein Foto</p>
+              </div>
+            </div>
+            <p class="text-xs text-gray-400 text-center leading-relaxed">
+              Professionelles Foto empfohlen – wirkt Wunder beim Vertrauen.
+            </p>
+          </div>
+
+          <!-- Text -->
+          <div>
+            <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
+              Über mich
+            </p>
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+              Hallo, ich bin Maurice.
+            </h1>
+            <div class="space-y-4 text-gray-500 leading-relaxed">
+              <p>
+                Ich studiere Wirtschaftsinformatik in Köln und habe MB-Solutions gegründet,
+                weil ich gemerkt habe: Viele kleine Unternehmen brauchen keinen teuren
+                Agenturvertrag – sie brauchen einen verlässlichen Partner, der ihre Sprache
+                spricht.
+              </p>
+              <p>
+                Was mich antreibt ist der Moment, wenn ein Kunde sagt:
+                <em class="not-italic font-medium text-gray-700">
+                  „Endlich sieht mein Auftritt so aus wie mein Business wirklich ist."
+                </em>
+                Genau dafür bin ich hier.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="bg-gray-50 py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-14">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Was ich mitbringe.</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {skills.map((skill) => (
+            <div class="bg-white rounded-2xl p-8 border border-gray-100">
+              <p class="text-4xl mb-5" aria-hidden="true">{skill.icon}</p>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">{skill.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">{skill.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Werte -->
+    <section class="bg-white py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-14 text-center">
+            Wie ich arbeite.
+          </h2>
+          <ol class="space-y-12">
+            {values.map((value) => (
+              <li class="flex gap-8 items-start">
+                <span
+                  class="text-4xl font-bold text-primary/20 leading-none shrink-0 tabular-nums"
+                  aria-hidden="true"
+                >
+                  {value.number}
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-2">{value.title}</h3>
+                  <p class="text-gray-500 leading-relaxed">{value.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-primary py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">
+          Klingt das nach dem richtigen Partner?
+        </h2>
+        <p class="text-white/75 text-lg mb-8">
+          Kostenloses Erstgespräch – unverbindlich und auf Augenhöhe.
+        </p>
+        <a
+          href="/kontakt"
+          class="inline-flex items-center px-7 py-3.5 rounded-xl bg-white text-primary font-semibold hover:bg-gray-50 transition-colors"
+        >
+          Lass uns reden →
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
