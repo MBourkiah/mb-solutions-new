@@ -1,262 +1,310 @@
 ---
-// No props – static hero for MB-Solutions
+// Dark-theme hero – MB-Solutions
 ---
 
-<!-- Keyframes must be global so inline SVG animation references resolve correctly -->
+<!-- Keyframes must be global: CSS animations on SVG <g> elements override
+     the SVG transform attribute, handling both position and float motion. -->
 <style is:global>
   @keyframes float1 {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-8px); }
+    0%, 100% { transform: translate(40px, 40px); }
+    50%       { transform: translate(40px, 30px); }
   }
   @keyframes float2 {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-12px); }
+    0%, 100% { transform: translate(260px, 170px); }
+    50%       { transform: translate(260px, 158px); }
   }
   @keyframes float3 {
-    0%, 100% { transform: translateY(0px); }
-    50%       { transform: translateY(-6px); }
+    0%, 100% { transform: translate(60px, 310px); }
+    50%       { transform: translate(60px, 302px); }
   }
 </style>
 
 <style>
-  /* Responsive headline: mobile → md+ */
-  .hero-h1 {
-    font-size: clamp(2rem, 8vw, 3rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: #0f0f0f;
-    margin-bottom: 1.5rem;
-  }
-  @media (min-width: 768px) {
-    .hero-h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+  .hero-section {
+    min-height: 100vh;
+    background: #0a0a0f;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5% 0 8%;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
   }
 
-  /* CTA buttons */
-  .cta-primary {
+  .hero-h1 {
+    font-size: clamp(2.8rem, 4vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: #ffffff;
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-cta-primary {
     background: #7F77DD;
     color: #ffffff;
     padding: 14px 28px;
     border-radius: 100px;
     font-size: 14px;
     font-weight: 500;
+    border: none;
     text-decoration: none;
-    white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    white-space: nowrap;
     transition: background 200ms ease;
   }
-  .cta-primary:hover { background: #6B63C9; }
+  .hero-cta-primary:hover { background: #6B63C9; }
 
-  .cta-secondary {
-    border: 1.5px solid #e5e7eb;
-    background: #ffffff;
-    color: #374151;
+  .hero-cta-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
     padding: 14px 28px;
     border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     text-decoration: none;
-    white-space: nowrap;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    white-space: nowrap;
     transition: border-color 200ms ease;
   }
-  .cta-secondary:hover { border-color: #9ca3af; }
+  .hero-cta-secondary:hover { border-color: rgba(255, 255, 255, 0.4); }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      grid-template-columns: 1fr;
+      padding: 6rem 6% 3rem;
+      min-height: auto;
+    }
+    .hero-h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+    .hero-illustration { display: none; }
+    .hero-trust { gap: 1.5rem !important; }
+  }
 </style>
 
-<section class="bg-white min-h-[90vh] flex items-center">
-  <div class="w-full px-6 md:px-12 lg:px-20 pt-20 pb-16">
-    <div class="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-6 items-center">
+<section class="hero-section">
 
-      <!-- ═══ LEFT: Text Content ════════════════════════════════════ -->
-      <div class="flex flex-col items-center lg:items-start text-center lg:text-left">
+  <!-- ── Hintergrund-Blobs ─────────────────────────────────────── -->
+  <div aria-hidden="true" style="
+    position: absolute; pointer-events: none; border-radius: 50%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(127,119,221,0.15) 0%, transparent 70%);
+    top: -200px; left: -200px;
+  "></div>
+  <div aria-hidden="true" style="
+    position: absolute; pointer-events: none; border-radius: 50%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
+    bottom: -100px; right: 0;
+  "></div>
 
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-50 border border-violet-200 text-violet-700 text-xs font-medium mb-8">
-          <span class="w-1.5 h-1.5 rounded-full bg-violet-500 shrink-0" aria-hidden="true"></span>
-          Webdesign &amp; IT aus Köln
-        </div>
+  <!-- ══ LINKE SPALTE: Text ══════════════════════════════════════ -->
+  <div style="position: relative; z-index: 1; padding: 6rem 0;">
 
-        <!-- Headline -->
-        <h1 class="hero-h1">
-          Digitale Lösungen,<br />
-          die wirklich <span style="color: #7F77DD;">wirken.</span>
-        </h1>
-
-        <!-- Subtext -->
-        <p
-          class="mb-10 mx-auto lg:mx-0"
-          style="font-size: 1.0625rem; color: #6b7280; max-width: 420px; line-height: 1.75;"
-        >
-          Ich baue Webseiten, die Kunden gewinnen – und Brands, die in Erinnerung
-          bleiben. Für KMU in Köln und deutschlandweit.
-        </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a href="/kontakt" class="cta-primary">Kostenloses Erstgespräch</a>
-          <a href="/portfolio" class="cta-secondary">Portfolio ansehen →</a>
-        </div>
-
-        <!-- Trust Bar -->
-        <div class="mt-12 flex items-center">
-          <div class="pr-5 text-center lg:text-left">
-            <p class="text-sm font-semibold text-gray-900">3-in-1</p>
-            <p class="text-xs text-gray-400 mt-0.5">Leistungen aus einer Hand</p>
-          </div>
-          <div class="w-px h-7 bg-gray-100 shrink-0"></div>
-          <div class="px-5 text-center">
-            <p class="text-sm font-semibold text-gray-900">48h</p>
-            <p class="text-xs text-gray-400 mt-0.5">Antwortzeit garantiert</p>
-          </div>
-          <div class="w-px h-7 bg-gray-100 shrink-0"></div>
-          <div class="pl-5 text-center lg:text-left">
-            <p class="text-sm font-semibold text-gray-900">Köln</p>
-            <p class="text-xs text-gray-400 mt-0.5">Persönlich vor Ort</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ═══ RIGHT: SVG Illustration (hidden < md) ═════════════════ -->
-      <div class="hidden md:flex items-center justify-center">
-        <!--
-          viewBox 0 0 500 500
-          Card 1 (top-left):   x=25  y=70  w=185 h=95
-          Card 2 (mid-right):  x=250 y=185 w=210 h=115
-          Card 3 (bot-left):   x=55  y=335 w=165 h=75
-          Donut: cx=300 cy=242 r=26  C≈163
-            Arc 1 (violet 50%=82px):  dashoffset=0
-            Arc 2 (green  25%=41px):  dashoffset=81   [C-82]
-            Arc 3 (orange 12%=20px):  dashoffset=40   [C-82-41]
-        -->
-        <svg
-          viewBox="0 0 500 500"
-          width="100%"
-          height="auto"
-          style="max-width: 480px;"
-          aria-hidden="true"
-          role="img"
-        >
-          <defs>
-            <!-- Clip-paths keep card headers flush with rounded card corners -->
-            <clipPath id="clip-c1">
-              <rect x="25" y="70" width="185" height="95" rx="12"/>
-            </clipPath>
-            <clipPath id="clip-c3">
-              <rect x="55" y="335" width="165" height="75" rx="12"/>
-            </clipPath>
-          </defs>
-
-          <!-- ── Background circle ──────────────────────────────── -->
-          <circle cx="250" cy="250" r="220" fill="#f5f3ff"/>
-
-          <!-- ── Decorative ring (top-right) ───────────────────── -->
-          <circle cx="440" cy="70" r="60" fill="none" stroke="#7F77DD" stroke-width="1" opacity="0.15"/>
-
-          <!-- ── Connecting dashed lines ────────────────────────── -->
-          <line x1="210" y1="117" x2="252" y2="232" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4 4"/>
-          <line x1="252" y1="248" x2="218" y2="334" stroke="#d1d5db" stroke-width="1" stroke-dasharray="4 4"/>
-
-          <!-- ── Decorative dots ────────────────────────────────── -->
-          <circle cx="216" cy="55"  r="5" fill="#7F77DD" opacity="0.3"/>
-          <circle cx="420" cy="177" r="4" fill="#7F77DD" opacity="0.3"/>
-          <circle cx="44"  cy="294" r="6" fill="#7F77DD" opacity="0.3"/>
-          <circle cx="367" cy="379" r="4" fill="#7F77DD" opacity="0.3"/>
-          <circle cx="463" cy="309" r="5" fill="#7F77DD" opacity="0.3"/>
-
-          <!-- ── Decorative squares ─────────────────────────────── -->
-          <rect x="172" y="296" width="8" height="8" rx="2" fill="#1D9E75" opacity="0.4"/>
-          <rect x="393" y="128" width="8" height="8" rx="2" fill="#1D9E75" opacity="0.4"/>
-
-          <!-- ═══════════════════════════════════════════════════════
-               CARD 1 – top left  float1 4s
-          ═══════════════════════════════════════════════════════ -->
-          <g style="animation: float1 4s ease-in-out infinite;">
-            <!-- Card background (no stroke so header clips clean) -->
-            <rect x="25" y="70" width="185" height="95" rx="12" fill="white"/>
-            <!-- Violet header, clipped to card shape -->
-            <rect x="25" y="70" width="185" height="24" fill="#7F77DD" clip-path="url(#clip-c1)"/>
-            <!-- Card border drawn last to appear on top -->
-            <rect x="25" y="70" width="185" height="95" rx="12" fill="none" stroke="#e5e7eb" stroke-width="1"/>
-            <!-- Text line placeholders -->
-            <rect x="40" y="110" width="108" height="4" rx="2" fill="#e5e7eb"/>
-            <rect x="40" y="119" width="76"  height="4" rx="2" fill="#f3f4f6"/>
-            <rect x="40" y="128" width="92"  height="4" rx="2" fill="#f3f4f6"/>
-            <!-- Live indicator -->
-            <circle cx="40" cy="150" r="3.5" fill="#22c55e"/>
-            <text x="50" y="154" font-size="8.5" fill="#22c55e" font-weight="500"
-                  font-family="system-ui,-apple-system,sans-serif">Live</text>
-          </g>
-
-          <!-- ═══════════════════════════════════════════════════════
-               CARD 2 – middle right  float2 5s 0.5s delay
-          ═══════════════════════════════════════════════════════ -->
-          <g style="animation: float2 5s ease-in-out infinite 0.5s;">
-            <rect x="250" y="185" width="210" height="115" rx="12" fill="white" stroke="#e5e7eb" stroke-width="1"/>
-
-            <!-- Donut chart: cx=300 cy=242 r=26 C≈163  stroke-width=10 -->
-            <g transform="rotate(-90 300 242)">
-              <!-- Arc 1: violet ~50% (82 of 163px) -->
-              <circle cx="300" cy="242" r="26" fill="none"
-                      stroke="#7F77DD" stroke-width="10"
-                      stroke-dasharray="82 81"
-                      stroke-dashoffset="0"
-                      stroke-linecap="butt"/>
-              <!-- Arc 2: green ~25% (41px), starts at 82 → dashoffset = 163-82 = 81 -->
-              <circle cx="300" cy="242" r="26" fill="none"
-                      stroke="#1D9E75" stroke-width="10"
-                      stroke-dasharray="41 122"
-                      stroke-dashoffset="81"
-                      stroke-linecap="butt"/>
-              <!-- Arc 3: orange ~12% (20px), starts at 123 → dashoffset = 163-123 = 40 -->
-              <circle cx="300" cy="242" r="26" fill="none"
-                      stroke="#F97316" stroke-width="10"
-                      stroke-dasharray="20 143"
-                      stroke-dashoffset="40"
-                      stroke-linecap="butt"/>
-            </g>
-
-            <!-- Donut center label -->
-            <text x="300" y="246" text-anchor="middle" font-size="10" font-weight="700"
-                  fill="#111827" font-family="system-ui,-apple-system,sans-serif">82%</text>
-
-            <!-- Text lines right of donut -->
-            <rect x="344" y="207" width="73" height="5" rx="2" fill="#e5e7eb"/>
-            <rect x="344" y="217" width="53" height="5" rx="2" fill="#f3f4f6"/>
-            <rect x="344" y="232" width="79" height="5" rx="2" fill="#e5e7eb"/>
-            <rect x="344" y="242" width="58" height="5" rx="2" fill="#f3f4f6"/>
-            <rect x="344" y="257" width="40" height="5" rx="2" fill="#f9fafb"/>
-          </g>
-
-          <!-- ═══════════════════════════════════════════════════════
-               CARD 3 – bottom left (violet fill)  float3 3.5s 1s delay
-          ═══════════════════════════════════════════════════════ -->
-          <g style="animation: float3 3.5s ease-in-out infinite 1s;">
-            <!-- Violet card background -->
-            <rect x="55" y="335" width="165" height="75" rx="12" fill="#7F77DD"/>
-            <!-- Subtle darker border for depth -->
-            <rect x="55" y="335" width="165" height="75" rx="12" fill="none" stroke="#6B63C9" stroke-width="1"/>
-            <!-- Checkmark circle -->
-            <circle cx="88" cy="372" r="16" fill="rgba(255,255,255,0.18)"/>
-            <!-- Checkmark path -->
-            <path d="M82 372 L86.5 377 L96 364"
-                  stroke="white" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round"
-                  fill="none"/>
-            <!-- Card text -->
-            <text x="113" y="368" font-size="10" font-weight="600"
-                  fill="white" font-family="system-ui,-apple-system,sans-serif">Projekt</text>
-            <text x="113" y="382" font-size="10" font-weight="400"
-                  fill="rgba(255,255,255,0.8)" font-family="system-ui,-apple-system,sans-serif">abgeschlossen</text>
-          </g>
-
-        </svg>
-      </div>
-
+    <!-- Badge -->
+    <div style="
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(127,119,221,0.15);
+      border: 1px solid rgba(127,119,221,0.3);
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 2rem;
+    ">
+      <span style="
+        width: 6px; height: 6px;
+        border-radius: 50%; background: #7F77DD; flex-shrink: 0;
+      "></span>
+      <span style="color: #AFA9EC; font-size: 13px;">Webdesign &amp; IT aus Köln</span>
     </div>
+
+    <!-- Headline -->
+    <h1 class="hero-h1">
+      Digitale Lösungen,<br />
+      die wirklich<br />
+      <span style="color: #7F77DD;">wirken.</span>
+    </h1>
+
+    <!-- Subtext -->
+    <p style="
+      font-size: 1.0625rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.8;
+      max-width: 400px;
+      margin: 0 0 2.5rem;
+    ">
+      Ich baue Webseiten, die Kunden gewinnen – und Brands,
+      die in Erinnerung bleiben. Für KMU in Köln und deutschlandweit.
+    </p>
+
+    <!-- CTAs -->
+    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+      <a href="/kontakt" class="hero-cta-primary">Kostenloses Erstgespräch</a>
+      <a href="/portfolio" class="hero-cta-secondary">Portfolio ansehen →</a>
+    </div>
+
+    <!-- Trust Bar -->
+    <div class="hero-trust" style="
+      margin-top: 3rem;
+      display: flex;
+      gap: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    ">
+      <div>
+        <p style="font-size: 1.5rem; font-weight: 600; color: white; margin: 0;">3-in-1</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px;">Leistungen aus einer Hand</p>
+      </div>
+      <div>
+        <p style="font-size: 1.5rem; font-weight: 600; color: white; margin: 0;">48h</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px;">Antwortzeit garantiert</p>
+      </div>
+      <div>
+        <p style="font-size: 1.5rem; font-weight: 600; color: white; margin: 0;">Köln</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px;">Persönlich vor Ort</p>
+      </div>
+    </div>
+
   </div>
+
+  <!-- ══ RECHTE SPALTE: SVG Illustration ════════════════════════ -->
+  <!--
+    Koordinaten-Notiz (viewBox 0 0 520 480):
+    Card 1 Ruheposition: translate(40,40)   → Rect 0…220 × 0…130
+    Card 2 Ruheposition: translate(260,170) → Rect 0…210 × 0…140
+    Card 3 Ruheposition: translate(60,310)  → Rect 0…190 × 0…80
+    Donut: cx=50 cy=70 r=35  C≈220
+      Arc 1 Violet  (30 %=66px): dashoffset=0
+      Arc 2 Teal    (20 %=44px): dashoffset=154  [220-66]
+      Arc 3 Coral   (20 %=44px): dashoffset=110  [220-110]
+  -->
+  <div class="hero-illustration" style="
+    width: 100%; max-width: 520px;
+    margin-left: auto;
+    position: relative; z-index: 1;
+  ">
+    <svg viewBox="0 0 520 480" width="100%" height="auto" aria-hidden="true" role="img">
+
+      <!-- Background circle + outer ring -->
+      <circle cx="260" cy="240" r="210"
+        fill="rgba(127,119,221,0.06)"
+        stroke="rgba(127,119,221,0.1)" stroke-width="1"/>
+      <circle cx="260" cy="240" r="230"
+        fill="none"
+        stroke="rgba(127,119,221,0.06)" stroke-width="1"
+        stroke-dasharray="4 8"/>
+
+      <!-- Connecting dashed lines (drawn in SVG space at resting positions) -->
+      <!-- Card 1 right-center (260,105) → Card 2 top-left (260,170) -->
+      <line x1="220" y1="100" x2="270" y2="175"
+        stroke="rgba(127,119,221,0.2)" stroke-width="1" stroke-dasharray="3 6"/>
+      <!-- Card 2 bottom-left (260,310) → Card 3 top-center (155,310) -->
+      <line x1="270" y1="305" x2="165" y2="315"
+        stroke="rgba(127,119,221,0.2)" stroke-width="1" stroke-dasharray="3 6"/>
+
+      <!-- Decorative dots -->
+      <circle cx="68"  cy="22"  r="3" fill="#7F77DD" opacity="0.3"/>
+      <circle cx="445" cy="82"  r="4" fill="#7F77DD" opacity="0.3"/>
+      <circle cx="28"  cy="288" r="5" fill="#7F77DD" opacity="0.3"/>
+      <circle cx="372" cy="402" r="3" fill="#7F77DD" opacity="0.3"/>
+      <circle cx="472" cy="272" r="4" fill="#7F77DD" opacity="0.3"/>
+      <circle cx="198" cy="458" r="3" fill="#7F77DD" opacity="0.25"/>
+
+      <!-- ═══════════════════════════════════════════════════════
+           CARD 1 – Website Preview
+           Animation float1 5s: rests at (40,40), floats to (40,30)
+           Local coords: rect 0,0 → 220,130
+      ═══════════════════════════════════════════════════════ -->
+      <g style="animation: float1 5s ease-in-out infinite;">
+        <!-- Card body -->
+        <rect x="0" y="0" width="220" height="130" rx="14"
+          fill="#1a1a2e" stroke="rgba(127,119,221,0.3)" stroke-width="1"/>
+        <!-- Header: flat bottom, rounded top via cubic-bezier path -->
+        <path d="M14,0 L206,0 C214,0 220,6 220,14 L220,32 L0,32 L0,14 C0,6 6,0 14,0 Z"
+          fill="#7F77DD"/>
+        <!-- Traffic-light circles in header -->
+        <circle cx="14" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="26" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="38" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
+        <!-- Content line placeholders -->
+        <rect x="14" y="48" width="132" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+        <rect x="14" y="62" width="88"  height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+        <rect x="14" y="76" width="112" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+        <rect x="14" y="90" width="68"  height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
+        <!-- Live indicator -->
+        <circle cx="14" cy="115" r="4" fill="#1D9E75"/>
+        <text x="24" y="119" font-size="10" fill="rgba(255,255,255,0.4)"
+          font-family="system-ui,-apple-system,sans-serif">Live</text>
+      </g>
+
+      <!-- ═══════════════════════════════════════════════════════
+           CARD 2 – Analytics / Donut
+           Animation float2 6s delay 0.8s: rests at (260,170), floats to (260,158)
+           Local coords: rect 0,0 → 210,140
+      ═══════════════════════════════════════════════════════ -->
+      <g style="animation: float2 6s ease-in-out infinite 0.8s;">
+        <rect x="0" y="0" width="210" height="140" rx="14"
+          fill="#12122a" stroke="rgba(127,119,221,0.2)" stroke-width="1"/>
+
+        <!-- Donut chart: cx=50 cy=70 r=35  C=2π×35≈220
+             All circles rotated -90° so arcs start at top.
+             Positive dashoffset formula: offset = C - start_of_arc -->
+        <g transform="rotate(-90 50 70)">
+          <!-- Violet ~30% (66px of 220) start=0   offset=0 -->
+          <circle cx="50" cy="70" r="35" fill="none"
+            stroke="#7F77DD" stroke-width="8"
+            stroke-dasharray="66 154" stroke-dashoffset="0"
+            stroke-linecap="butt"/>
+          <!-- Teal ~20% (44px) start=66   offset=220-66=154 -->
+          <circle cx="50" cy="70" r="35" fill="none"
+            stroke="#1D9E75" stroke-width="8"
+            stroke-dasharray="44 176" stroke-dashoffset="154"
+            stroke-linecap="butt"/>
+          <!-- Coral ~20% (44px) start=110  offset=220-110=110 -->
+          <circle cx="50" cy="70" r="35" fill="none"
+            stroke="#D85A30" stroke-width="8"
+            stroke-dasharray="44 176" stroke-dashoffset="110"
+            stroke-linecap="butt"/>
+        </g>
+
+        <!-- Donut centre label -->
+        <text x="50" y="74" text-anchor="middle"
+          font-size="11" font-weight="600" fill="white"
+          font-family="system-ui,-apple-system,sans-serif">82%</text>
+
+        <!-- Text lines right of donut -->
+        <rect x="102" y="42" width="60" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+        <rect x="102" y="52" width="40" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+        <rect x="102" y="67" width="60" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+        <rect x="102" y="77" width="42" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+        <rect x="102" y="92" width="52" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+        <rect x="102" y="102" width="34" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+      </g>
+
+      <!-- ═══════════════════════════════════════════════════════
+           CARD 3 – Projekt abgeschlossen (violett)
+           Animation float3 4s delay 0.3s: rests at (60,310), floats to (60,302)
+           Local coords: rect 0,0 → 190,80
+      ═══════════════════════════════════════════════════════ -->
+      <g style="animation: float3 4s ease-in-out infinite 0.3s;">
+        <rect x="0" y="0" width="190" height="80" rx="14" fill="#7F77DD"/>
+        <!-- Checkmark circle -->
+        <circle cx="28" cy="40" r="18" fill="rgba(255,255,255,0.2)"/>
+        <path d="M20,40 L26,46 L36,34"
+          stroke="white" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round"
+          fill="none"/>
+        <!-- Text (two lines to keep widths safe) -->
+        <text x="56" y="33" font-size="11" font-weight="600" fill="white"
+          font-family="system-ui,-apple-system,sans-serif">Projekt</text>
+        <text x="56" y="48" font-size="11" font-weight="600" fill="white"
+          font-family="system-ui,-apple-system,sans-serif">abgeschlossen</text>
+        <text x="56" y="63" font-size="10" fill="rgba(255,255,255,0.6)"
+          font-family="system-ui,-apple-system,sans-serif">mb-solutions.biz</text>
+      </g>
+
+    </svg>
+  </div>
+
 </section>
