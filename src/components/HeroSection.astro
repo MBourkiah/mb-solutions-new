@@ -1,6 +1,5 @@
 ---
-// HeroSection — Editorial dark hero
-// Signature: vertikale violette Akzentlinie + Werkstatt-Preisboard rechts
+// HeroSection — zwei Spalten: Text links, Browser-Mockup rechts (perspektivisch)
 ---
 
 <style>
@@ -9,37 +8,28 @@
     background: #0a0a0f;
     display: flex;
     align-items: center;
-    padding: 7rem 8% 5rem;
+    padding: 7rem 5% 5rem;
     position: relative;
     overflow: hidden;
   }
 
-  /* Hintergrundflächen — dezent */
+  /* Hintergrund-Glow */
   .hero-root::before {
     content: '';
     position: absolute;
-    top: -15%; left: -10%;
-    width: 65%; height: 90%;
-    background: radial-gradient(ellipse at 0% 0%, rgba(127,119,221,0.07) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .hero-root::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 40%; height: 50%;
-    background: radial-gradient(ellipse at 100% 100%, rgba(29,158,117,0.04) 0%, transparent 60%);
+    top: -20%; left: -10%;
+    width: 60%; height: 100%;
+    background: radial-gradient(ellipse at 0% 30%, rgba(127,119,221,0.09) 0%, transparent 60%);
     pointer-events: none;
   }
 
-  /* Grid: Text links, Preisboard rechts */
   .hero-inner {
     position: relative; z-index: 1;
-    width: 100%; max-width: 72rem;
+    width: 100%; max-width: 80rem;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     align-items: center;
   }
 
@@ -48,7 +38,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 2.75rem;
+    margin-bottom: 2.25rem;
     animation: heroFadeIn 500ms var(--ease-out) 60ms both;
   }
   .hero-badge-dot {
@@ -64,18 +54,17 @@
     color: rgba(240,239,255,0.35);
   }
 
-  /* ─── Headline mit vertikaler Akzentlinie ────────── */
+  /* ─── Headline ───────────────────────────────────── */
   .hero-headline-wrap {
     display: flex;
-    gap: 1.75rem;
+    gap: 1.5rem;
     align-items: stretch;
-    margin-bottom: 2rem;
+    margin-bottom: 1.875rem;
     animation: heroFadeIn 650ms var(--ease-out) 140ms both;
   }
-  /* Das Signature-Element: die violette vertikale Linie */
   .hero-vbar {
     width: 2px;
-    background: linear-gradient(to bottom, #7F77DD 60%, rgba(127,119,221,0) 100%);
+    background: linear-gradient(to bottom, #7F77DD 70%, rgba(127,119,221,0) 100%);
     flex-shrink: 0;
     border-radius: 1px;
   }
@@ -85,39 +74,38 @@
   }
   .hero-h1-upper {
     display: block;
-    font-size: clamp(1.875rem, 4vw, 3.5rem);
+    font-size: clamp(1.75rem, 3.5vw, 3rem);
     font-weight: 700;
-    color: rgba(240,239,255,0.55);
+    color: rgba(240,239,255,0.52);
     letter-spacing: -0.02em;
     line-height: 1.1;
     margin-bottom: 0.05em;
   }
   .hero-h1-main {
     display: block;
-    font-size: clamp(3.75rem, 8vw, 7.5rem);
+    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
     font-weight: 800;
     color: #F0EFFF;
     letter-spacing: -0.035em;
-    line-height: 0.92;
+    line-height: 0.93;
   }
-  /* Violetter Punkt als Micro-Signature */
   .hero-h1-main .vdot { color: #7F77DD; }
   .hero-h1-qualifier {
     display: block;
-    font-size: clamp(1rem, 1.8vw, 1.375rem);
+    font-size: clamp(1rem, 1.75vw, 1.3rem);
     font-weight: 400;
-    color: rgba(240,239,255,0.32);
+    color: rgba(240,239,255,0.3);
     letter-spacing: 0.01em;
-    margin-top: 0.85em;
+    margin-top: 0.9em;
   }
 
   /* ─── Fließtext ──────────────────────────────────── */
   .hero-body {
-    font-size: 1rem;
-    color: rgba(240,239,255,0.5);
+    font-size: 0.9375rem;
+    color: rgba(240,239,255,0.48);
     line-height: 1.8;
-    max-width: 460px;
-    margin: 0 0 2.5rem;
+    max-width: 440px;
+    margin: 0 0 2.25rem;
     animation: heroFadeIn 600ms var(--ease-out) 230ms both;
   }
 
@@ -159,111 +147,64 @@
     }
   }
 
-  /* Nur mobile: schmale Service-Zeile unterhalb CTAs */
-  .hero-mobile-services {
-    display: none;
-    margin-top: 2rem;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: rgba(240,239,255,0.22);
-    animation: heroFadeIn 600ms var(--ease-out) 380ms both;
-  }
-
-  /* ─── Werkstatt-Preisboard ───────────────────────── */
-  .hero-panel {
-    background: #0e0e1c;
-    border: 1px solid rgba(127,119,221,0.14);
-    border-radius: 20px;
-    padding: 1.875rem 2rem 1.625rem;
-    animation: heroFadeIn 700ms var(--ease-out) 200ms both;
-  }
-  .hero-panel-label {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(240,239,255,0.22);
-    margin-bottom: 1.375rem;
-  }
-
-  /* Dotted-Leader Preiszeile */
-  .price-row {
+  /* ─── Browser-Mockup ─────────────────────────────── */
+  .mockup-wrap {
+    position: relative;
     display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 0.8125rem 0;
-    border-bottom: 1px solid rgba(127,119,221,0.07);
+    padding: 2rem 0;
+    animation: heroFadeIn 900ms var(--ease-out) 160ms both;
   }
-  .price-row:last-of-type { border-bottom: none; }
-  .price-name {
-    font-size: 13.5px;
-    color: rgba(240,239,255,0.68);
-    font-weight: 500;
-    flex-shrink: 0;
+  /* Glow hinter dem Mockup */
+  .mockup-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.18) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
   }
-  /* Gestrichelte Linie als Verbindung */
-  .price-dots {
-    flex: 1;
-    height: 1px;
-    background-image: repeating-linear-gradient(
-      to right,
-      rgba(127,119,221,0.2) 0px,
-      rgba(127,119,221,0.2) 2px,
-      transparent 2px,
-      transparent 8px
-    );
-    margin: 0 10px;
+  .browser-frame {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(127,119,221,0.22);
+    box-shadow:
+      0 32px 80px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,255,255,0.03);
+    /* Perspektive-Kipp für Product-Screenshot-Feeling */
+    transform: perspective(1100px) rotateY(-6deg) rotateX(3deg);
+    transform-style: preserve-3d;
+    transition: transform 400ms var(--ease-out);
   }
-  .price-value {
-    font-size: 12.5px;
-    color: rgba(240,239,255,0.32);
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .hero-panel-rule {
-    height: 1px;
-    background: rgba(127,119,221,0.09);
-    margin: 1.25rem 0;
-  }
-  .hero-panel-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .panel-loc {
-    font-size: 11px;
-    color: rgba(240,239,255,0.22);
-  }
-  .panel-avail {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    color: rgba(45,212,191,0.65);
-  }
-  .avail-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: #2DD4BF;
-    flex-shrink: 0;
+  @media (hover: hover) and (pointer: fine) {
+    .browser-frame:hover {
+      transform: perspective(1100px) rotateY(-2deg) rotateX(1deg);
+    }
   }
 
   /* ─── Responsive ─────────────────────────────────── */
   @media (max-width: 960px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 0; }
-    .hero-panel { display: none; }
-    .hero-mobile-services { display: block; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+    .browser-frame {
+      transform: none;
+      max-width: 100%;
+    }
     .hero-root { padding: 6rem 6% 4rem; min-height: auto; }
-  }
-  @media (max-width: 480px) {
-    .hero-badge { margin-bottom: 2rem; }
-    .hero-headline-wrap { gap: 1.25rem; }
   }
 </style>
 
 <section class="hero-root">
   <div class="hero-inner">
 
-    <!-- ══ LINKS: Editorial Text ══════════════════════ -->
+    <!-- ══ LINKS: Text ═══════════════════════════════ -->
     <div>
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
@@ -288,47 +229,135 @@
         <a href="/kontakt" class="hero-cta-primary">Kostenloses Erstgespräch</a>
         <a href="/portfolio" class="hero-cta-secondary">Portfolio ansehen →</a>
       </div>
-
-      <p class="hero-mobile-services">
-        Webdesign &nbsp;·&nbsp; IT-Services &nbsp;·&nbsp; Branding
-      </p>
     </div>
 
-    <!-- ══ RECHTS: Werkstatt-Preisboard ══════════════ -->
-    <aside class="hero-panel" aria-label="Leistungen und Preise">
-      <p class="hero-panel-label">Leistungen</p>
+    <!-- ══ RECHTS: Browser-Mockup ════════════════════ -->
+    <div class="mockup-wrap">
+      <div class="browser-frame" role="img" aria-label="Beispiel einer MB-Solutions Website">
+        <svg viewBox="0 0 560 400" width="100%" xmlns="http://www.w3.org/2000/svg">
 
-      <div class="price-row">
-        <span class="price-name">Webdesign</span>
-        <span class="price-dots" aria-hidden="true"></span>
-        <span class="price-value">ab 499 €</span>
-      </div>
-      <div class="price-row">
-        <span class="price-name">IT-Services</span>
-        <span class="price-dots" aria-hidden="true"></span>
-        <span class="price-value">ab 45 €/Std.</span>
-      </div>
-      <div class="price-row">
-        <span class="price-name">Branding</span>
-        <span class="price-dots" aria-hidden="true"></span>
-        <span class="price-value">ab 149 €</span>
-      </div>
-      <div class="price-row">
-        <span class="price-name">Komplettpaket</span>
-        <span class="price-dots" aria-hidden="true"></span>
-        <span class="price-value">auf Anfrage</span>
-      </div>
+          <!-- ── Browser-Hintergrund ── -->
+          <rect width="560" height="400" fill="#111122"/>
 
-      <div class="hero-panel-rule" aria-hidden="true"></div>
+          <!-- ── Chrome-Leiste ── -->
+          <rect width="560" height="40" fill="#0d0d1c"/>
+          <rect y="39" width="560" height="1" fill="rgba(127,119,221,0.18)"/>
 
-      <div class="hero-panel-footer">
-        <span class="panel-loc">📍 Köln</span>
-        <span class="panel-avail">
-          <span class="avail-dot"></span>
-          Verfügbar
-        </span>
+          <!-- Traffic Lights -->
+          <circle cx="20" cy="20" r="6" fill="#FF5F57"/>
+          <circle cx="38" cy="20" r="6" fill="#FFBD2E"/>
+          <circle cx="56" cy="20" r="6" fill="#28CA41"/>
+
+          <!-- URL-Leiste -->
+          <rect x="100" y="10" width="260" height="20" rx="5" fill="#1a1a2e"/>
+          <text x="116" y="24" font-family="system-ui,sans-serif" font-size="10" fill="rgba(240,239,255,0.25)">🔒</text>
+          <text x="132" y="24" font-family="system-ui,sans-serif" font-size="10" fill="rgba(240,239,255,0.35)">cafe-roesterei-koeln.de</text>
+
+          <!-- Tab-Icons rechts -->
+          <rect x="490" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
+          <rect x="510" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
+          <rect x="530" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
+
+          <!-- ── Mini-Navbar der Beispiel-Website ── -->
+          <rect y="40" width="560" height="34" fill="#0c0c1e"/>
+          <!-- Logo-Block -->
+          <rect x="20" y="50" width="16" height="16" rx="4" fill="#7F77DD"/>
+          <text x="40" y="62" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(240,239,255,0.8)">Café Rösterei</text>
+          <!-- Nav-Links -->
+          <text x="300" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Über uns</text>
+          <text x="350" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Produkte</text>
+          <text x="402" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Kontakt</text>
+          <!-- Nav-CTA -->
+          <rect x="450" y="52" width="80" height="17" rx="8" fill="#7F77DD"/>
+          <text x="490" y="64" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="white">Bestellen</text>
+          <rect y="73" width="560" height="1" fill="rgba(127,119,221,0.12)"/>
+
+          <!-- ── Hero-Bereich der Website ── -->
+          <!-- Gradient-Hintergrund -->
+          <defs>
+            <radialGradient id="heroGlow" cx="30%" cy="50%" r="70%">
+              <stop offset="0%" stop-color="#7F77DD" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#0a0a14" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="imgGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.12"/>
+              <stop offset="100%" stop-color="#13131f" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect y="74" width="560" height="200" fill="#0a0a14"/>
+          <rect y="74" width="560" height="200" fill="url(#heroGlow)"/>
+
+          <!-- Headline-Text-Blöcke -->
+          <rect x="24" y="102" width="7" height="52" rx="2" fill="#7F77DD" opacity="0.9"/>
+          <text x="38" y="120" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="rgba(240,239,255,0.45)">Frisch geröstet,</text>
+          <text x="38" y="138" font-family="system-ui,sans-serif" font-size="21" font-weight="800" fill="#F0EFFF" letter-spacing="-0.5">direkt zu dir.</text>
+          <text x="38" y="155" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.28)">Kölner Spezialitätenkaffee</text>
+
+          <!-- Body-Text-Platzhalter -->
+          <rect x="38" y="164" width="140" height="5" rx="2" fill="rgba(240,239,255,0.07)"/>
+          <rect x="38" y="173" width="112" height="5" rx="2" fill="rgba(240,239,255,0.07)"/>
+
+          <!-- CTA-Button -->
+          <rect x="38" y="186" width="88" height="22" rx="11" fill="#7F77DD"/>
+          <text x="82" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="white">Jetzt bestellen</text>
+          <rect x="132" y="186" width="68" height="22" rx="11" fill="rgba(240,239,255,0.06)" stroke="rgba(240,239,255,0.1)" stroke-width="0.5"/>
+          <text x="166" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.4)">Mehr erfahren</text>
+
+          <!-- Bild-Platzhalter rechts im Hero -->
+          <rect x="340" y="82" width="200" height="184" rx="10" fill="#13131f" stroke="rgba(127,119,221,0.15)" stroke-width="0.75"/>
+          <rect x="340" y="82" width="200" height="184" rx="10" fill="url(#imgGlow)"/>
+          <!-- Fake-Kaffee-Bild: Kreise und Form als Illustration -->
+          <ellipse cx="440" cy="150" rx="52" ry="52" fill="rgba(127,119,221,0.07)"/>
+          <ellipse cx="440" cy="150" rx="35" ry="35" fill="rgba(127,119,221,0.1)"/>
+          <ellipse cx="440" cy="150" rx="22" ry="22" fill="rgba(127,119,221,0.18)"/>
+          <ellipse cx="440" cy="150" rx="12" ry="12" fill="#7F77DD" opacity="0.6"/>
+          <!-- Kaffeetasse-Andeutung -->
+          <path d="M428 152 Q440 142 452 152 Q452 168 440 172 Q428 168 428 152Z" fill="rgba(240,239,255,0.1)"/>
+          <rect x="420" y="170" width="40" height="4" rx="2" fill="rgba(240,239,255,0.08)"/>
+          <!-- Preis-Badge auf Bild -->
+          <rect x="363" y="95" width="56" height="18" rx="9" fill="rgba(45,212,191,0.18)" stroke="rgba(45,212,191,0.3)" stroke-width="0.5"/>
+          <text x="391" y="107" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#2DD4BF">Frisch geröstet</text>
+
+          <!-- ── Trenn-Linie ── -->
+          <rect y="273" width="560" height="1" fill="rgba(127,119,221,0.1)"/>
+
+          <!-- ── Produkte-Karten-Zeile ── -->
+          <rect y="274" width="560" height="126" fill="#0c0c1e"/>
+          <text x="24" y="294" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(240,239,255,0.35)" letter-spacing="0.08em">UNSERE SORTEN</text>
+
+          <!-- Karte 1 -->
+          <rect x="20" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(127,119,221,0.12)" stroke-width="0.5"/>
+          <rect x="20" y="302" width="160" height="36" rx="10" fill="rgba(127,119,221,0.14)"/>
+          <rect x="20" y="320" width="160" height="18" fill="rgba(127,119,221,0.14)"/>
+          <rect x="24" y="302" width="160" height="4" fill="rgba(127,119,221,0.14)"/>
+          <text x="100" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Ethiopia Yirgacheffe</text>
+          <rect x="30" y="345" width="55" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <rect x="30" y="353" width="38" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <text x="160" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#AFA9EC">14,90 €</text>
+
+          <!-- Karte 2 -->
+          <rect x="196" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(45,212,191,0.12)" stroke-width="0.5"/>
+          <rect x="196" y="302" width="160" height="36" rx="10" fill="rgba(45,212,191,0.1)"/>
+          <rect x="196" y="320" width="160" height="18" fill="rgba(45,212,191,0.1)"/>
+          <rect x="196" y="302" width="160" height="4" fill="rgba(45,212,191,0.1)"/>
+          <text x="276" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Colombia Huila</text>
+          <rect x="206" y="345" width="55" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <rect x="206" y="353" width="38" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <text x="336" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#2DD4BF">12,50 €</text>
+
+          <!-- Karte 3 -->
+          <rect x="372" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(255,140,107,0.12)" stroke-width="0.5"/>
+          <rect x="372" y="302" width="160" height="36" rx="10" fill="rgba(255,140,107,0.1)"/>
+          <rect x="372" y="320" width="160" height="18" fill="rgba(255,140,107,0.1)"/>
+          <rect x="372" y="302" width="160" height="4" fill="rgba(255,140,107,0.1)"/>
+          <text x="452" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Brazil Santos</text>
+          <rect x="382" y="345" width="55" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <rect x="382" y="353" width="38" height="4" rx="2" fill="rgba(240,239,255,0.06)"/>
+          <text x="512" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#FF8C6B">11,90 €</text>
+
+        </svg>
       </div>
-    </aside>
+    </div>
 
   </div>
 </section>
