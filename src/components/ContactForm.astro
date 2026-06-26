@@ -19,7 +19,7 @@
     font-size: 14px;
     color: #F0EFFF;
     font-family: inherit;
-    transition: border-color 200ms, box-shadow 200ms;
+    transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
     outline: none;
     box-sizing: border-box;
   }
@@ -42,10 +42,13 @@
     font-family: inherit;
     border: none;
     cursor: pointer;
-    transition: background 200ms;
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
-  .cf-btn:hover:not(:disabled) { background: #6B63C9; }
+  .cf-btn:active:not(:disabled) { transform: scale(0.97); }
   .cf-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  @media (hover: hover) and (pointer: fine) {
+    .cf-btn:hover:not(:disabled) { background: #6B63C9; }
+  }
 </style>
 
 <div id="form-wrapper">

@@ -84,9 +84,29 @@ const brandingFeatures = [
     font-weight: 600;
     text-decoration: none;
     color: white;
-    transition: filter 200ms;
+    transition: filter 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
-  .ls-cta-btn:hover { filter: brightness(1.12); }
+  .ls-cta-btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .ls-cta-btn:hover { filter: brightness(1.12); }
+  }
+
+  .ls-page-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: #7F77DD;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .ls-page-cta-btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .ls-page-cta-btn:hover { background: #6B63C9; }
+  }
 
   .ls-grid {
     display: grid;
@@ -227,7 +247,7 @@ const brandingFeatures = [
         <p style="font-size:1rem; color:rgba(240,239,255,0.5); margin:0 auto 2.5rem; max-width:440px; line-height:1.75;">
           Im kostenlosen Erstgespräch finden wir gemeinsam heraus, was für dich Sinn macht.
         </p>
-        <a href="/kontakt" style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:100px; background:#7F77DD; color:white; font-size:15px; font-weight:600; text-decoration:none;">
+        <a href="/kontakt" class="ls-page-cta-btn">
           Kostenloses Erstgespräch
         </a>
       </div>

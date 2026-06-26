@@ -46,9 +46,31 @@ const values = [
     border: 1px solid rgba(127,119,221,0.12);
     border-radius: 20px;
     padding: 2rem;
-    transition: border-color 250ms;
+    transition: border-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
   }
-  .skill-card:hover { border-color: rgba(127,119,221,0.28); }
+  @media (hover: hover) and (pointer: fine) {
+    .skill-card:hover {
+      border-color: rgba(127,119,221,0.28);
+      box-shadow: 0 0 36px rgba(127,119,221,0.06);
+    }
+  }
+
+  .um-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: #7F77DD;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .um-cta-btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .um-cta-btn:hover { background: #6B63C9; }
+  }
 
   .value-row {
     display: flex;
@@ -134,7 +156,7 @@ const values = [
         </div>
         <div class="skills-grid">
           {skills.map((skill) => (
-            <div class="skill-card">
+            <div class="skill-card stagger-reveal">
               <div style={`width:40px; height:40px; border-radius:12px; background:${skill.accentBg}; border:1px solid ${skill.accentColor}30; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;`}>
                 <span style={`font-size:18px; color:${skill.accentColor};`} aria-hidden="true">✦</span>
               </div>
@@ -176,9 +198,7 @@ const values = [
         <p style="font-size:1rem; color:rgba(240,239,255,0.5); margin:0 auto 2.5rem; max-width:380px; line-height:1.75;">
           Kostenloses Erstgespräch – unverbindlich und auf Augenhöhe.
         </p>
-        <a href="/kontakt" style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:100px; background:#7F77DD; color:white; font-size:15px; font-weight:600; text-decoration:none;">
-          Lass uns reden →
-        </a>
+        <a href="/kontakt" class="um-cta-btn">Lass uns reden →</a>
       </div>
     </section>
 

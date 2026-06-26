@@ -40,11 +40,18 @@ const services = [
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
-    transition: border-color 250ms, box-shadow 250ms;
+    /* transition only what's needed — no "all" */
+    transition:
+      border-color 220ms var(--ease-out),
+      box-shadow   220ms var(--ease-out);
   }
-  .svc-card:hover {
-    border-color: rgba(127,119,221,0.32);
-    box-shadow: 0 0 36px rgba(127,119,221,0.06);
+
+  /* Hover: guarded for pointer devices only */
+  @media (hover: hover) and (pointer: fine) {
+    .svc-card:hover {
+      border-color: rgba(127,119,221,0.32);
+      box-shadow: 0 0 36px rgba(127,119,221,0.06);
+    }
   }
 
   .svc-tag {
@@ -90,9 +97,13 @@ const services = [
     font-size: 13px;
     color: #7F77DD;
     text-decoration: none;
-    transition: gap 150ms;
+    transition: gap 150ms var(--ease-out), transform 160ms var(--ease-out);
   }
-  .svc-link:hover { gap: 9px; }
+  .svc-link:active { transform: scale(0.95); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .svc-link:hover { gap: 9px; }
+  }
 
   .svc-grid {
     display: grid;
@@ -121,10 +132,10 @@ const services = [
       </p>
     </div>
 
-    <!-- Cards -->
+    <!-- Cards — stagger-reveal activated by IntersectionObserver -->
     <div class="svc-grid">
       {services.map((s) => (
-        <div class="svc-card">
+        <div class="svc-card stagger-reveal">
           <span class="svc-tag" style={`background:${s.tagBg}; color:${s.tagColor};`}>{s.tag}</span>
           <h3 class="svc-title">{s.title}</h3>
           <p class="svc-desc">{s.description}</p>

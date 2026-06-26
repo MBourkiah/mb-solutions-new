@@ -37,13 +37,20 @@ const projects = [
     border: 1px solid rgba(127,119,221,0.1);
     border-radius: 20px;
     overflow: hidden;
-    transition: border-color 250ms, transform 250ms, box-shadow 250ms;
+    transition:
+      border-color 220ms var(--ease-out),
+      transform    220ms var(--ease-out),
+      box-shadow   220ms var(--ease-out);
   }
-  .pf-card:hover {
-    border-color: rgba(127,119,221,0.28);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+
+  @media (hover: hover) and (pointer: fine) {
+    .pf-card:hover {
+      border-color: rgba(127,119,221,0.28);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+    }
   }
+
   .pf-preview {
     height: 180px;
     position: relative;
@@ -52,20 +59,15 @@ const projects = [
     padding: 1.25rem;
   }
   .pf-dots {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image: radial-gradient(rgba(240,239,255,0.06) 1px, transparent 1px);
     background-size: 22px 22px;
   }
   .pf-tag {
     position: relative;
-    font-size: 11px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 100px;
-    background: rgba(10,10,15,0.55);
-    backdrop-filter: blur(8px);
+    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px;
+    background: rgba(10,10,15,0.55); backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.08);
   }
   .pf-body { padding: 1.5rem; }
@@ -104,10 +106,10 @@ const projects = [
       </p>
     </div>
 
-    <!-- Grid -->
+    <!-- Cards — stagger-reveal -->
     <div class="pf-grid">
       {projects.map((p) => (
-        <div class="pf-card">
+        <div class="pf-card stagger-reveal">
           <div class="pf-preview" style={`background:${p.gradient};`}>
             <div class="pf-dots" aria-hidden="true"></div>
             <span class="pf-tag" style={`color:${p.accentColor};`}>{p.tag}</span>
@@ -120,9 +122,11 @@ const projects = [
       ))}
     </div>
 
-    <!-- Link -->
     <div style="margin-top:3rem; text-align:center;">
-      <a href="/portfolio" style="display:inline-flex; align-items:center; gap:6px; color:#7F77DD; font-size:14px; text-decoration:none; transition:gap 150ms;">
+      <a href="/portfolio" class="press-btn" style="
+        display:inline-flex; align-items:center; gap:6px;
+        color:#7F77DD; font-size:14px; text-decoration:none;
+      ">
         Alle Projekte ansehen <span aria-hidden="true">→</span>
       </a>
     </div>

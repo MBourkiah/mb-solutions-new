@@ -57,12 +57,34 @@ const filters = ['Alle', 'Webdesign', 'Branding', 'IT-Services'];
     border: 1px solid rgba(127,119,221,0.1);
     border-radius: 20px;
     overflow: hidden;
-    transition: border-color 250ms, transform 250ms, box-shadow 250ms;
+    transition:
+      border-color 220ms var(--ease-out),
+      transform    220ms var(--ease-out),
+      box-shadow   220ms var(--ease-out);
   }
-  .pf-card:hover {
-    border-color: rgba(127,119,221,0.28);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  @media (hover: hover) and (pointer: fine) {
+    .pf-card:hover {
+      border-color: rgba(127,119,221,0.28);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+  }
+
+  .pf-page-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    border-radius: 100px;
+    background: #7F77DD;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .pf-page-cta-btn:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .pf-page-cta-btn:hover { background: #6B63C9; }
   }
   .pf-preview {
     height: 200px;
@@ -129,7 +151,7 @@ const filters = ['Alle', 'Webdesign', 'Branding', 'IT-Services'];
 
         <div class="pf-grid">
           {projects.map((p) => (
-            <div class="pf-card">
+            <div class="pf-card stagger-reveal">
               <div class="pf-preview" style={`background:${p.gradient};`}>
                 <div class="pf-dots" aria-hidden="true"></div>
                 {p.tags.map((tag) => (
@@ -153,9 +175,7 @@ const filters = ['Alle', 'Webdesign', 'Branding', 'IT-Services'];
         <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 2rem;">
           Du willst auch so ein Ergebnis?
         </h2>
-        <a href="/kontakt" style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:100px; background:#7F77DD; color:white; font-size:15px; font-weight:600; text-decoration:none;">
-          Projekt anfragen →
-        </a>
+        <a href="/kontakt" class="pf-page-cta-btn">Projekt anfragen →</a>
       </div>
     </section>
 

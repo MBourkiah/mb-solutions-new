@@ -1,5 +1,5 @@
 ---
-// No props – static CTA
+// No props
 ---
 
 <style>
@@ -10,7 +10,6 @@
     position: relative;
     overflow: hidden;
   }
-  /* Violet gradient glow from top */
   .cta-section::before {
     content: '';
     position: absolute;
@@ -54,18 +53,27 @@
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition: background 200ms;
+    /* Specific properties — never "all" */
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
-  .cta-btn:hover { background: #6B63C9; }
+  /* Press feedback: instant and tactile */
+  .cta-btn:active { transform: scale(0.97); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cta-btn:hover { background: #6B63C9; }
+  }
+
   .cta-email {
     display: block;
     margin-top: 1.5rem;
     font-size: 13px;
     color: rgba(240,239,255,0.25);
     text-decoration: none;
-    transition: color 150ms;
+    transition: color 150ms var(--ease-out);
   }
-  .cta-email:hover { color: rgba(240,239,255,0.55); }
+  @media (hover: hover) and (pointer: fine) {
+    .cta-email:hover { color: rgba(240,239,255,0.55); }
+  }
 </style>
 
 <section class="cta-section">

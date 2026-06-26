@@ -15,21 +15,35 @@ const navLinks = [
   .nav-link {
     font-size: 14px;
     text-decoration: none;
-    transition: color 150ms;
+    transition: color 150ms var(--ease-out);
     color: rgba(240,239,255,0.5);
   }
-  .nav-link:hover  { color: #F0EFFF; }
   .nav-link.active { color: #F0EFFF; font-weight: 500; }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-link:hover { color: #F0EFFF; }
+  }
 
   .overlay-link {
     font-size: 1.75rem;
     text-decoration: none;
     padding: 0.75rem 0;
-    transition: color 150ms;
+    transition: color 150ms var(--ease-out);
     color: rgba(240,239,255,0.4);
   }
-  .overlay-link:hover  { color: #F0EFFF; }
   .overlay-link.active { color: #F0EFFF; font-weight: 600; }
+  @media (hover: hover) and (pointer: fine) {
+    .overlay-link:hover { color: #F0EFFF; }
+  }
+
+  .nav-cta {
+    background: #7F77DD;
+    color: white;
+    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .nav-cta:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-cta:hover { background: #6B63C9; }
+  }
 </style>
 
 <header
@@ -67,8 +81,7 @@ const navLinks = [
       <a
         href="/kontakt"
         id="nav-cta"
-        class="hidden md:inline-flex items-center px-5 py-2 rounded-full text-white text-sm font-medium transition-colors duration-150"
-        style="background:#7F77DD;"
+        class="nav-cta hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-medium"
       >
         Projekt anfragen
       </a>

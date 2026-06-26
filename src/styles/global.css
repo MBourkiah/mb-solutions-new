@@ -7,6 +7,18 @@
   --color-coral: #FAECE7;
 }
 
+/* ── Custom easing curves (Emil Kowalski / animations.dev) ── */
+:root {
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ── Hero entrance keyframe (used above the fold) ─────────── */
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
 @layer base {
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -15,5 +27,48 @@
   }
   h1, h2, h3, h4 {
     font-family: 'Syne', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* ── Universal press feedback for any button/link ── */
+  .press-btn {
+    transition: transform 160ms var(--ease-out), background 160ms var(--ease-out);
+  }
+  .press-btn:active { transform: scale(0.97); }
+
+  /* ── Scroll-triggered stagger reveal ─────────────── */
+  /* Activated by IntersectionObserver adding .is-visible */
+  .stagger-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity  440ms var(--ease-out),
+      transform 440ms var(--ease-out);
+  }
+  .stagger-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Sequential stagger delays (30–80ms per item, Emil's rule) */
+  .stagger-reveal:nth-child(2) { transition-delay: 70ms;  }
+  .stagger-reveal:nth-child(3) { transition-delay: 140ms; }
+  .stagger-reveal:nth-child(4) { transition-delay: 210ms; }
+  .stagger-reveal:nth-child(5) { transition-delay: 280ms; }
+  .stagger-reveal:nth-child(6) { transition-delay: 350ms; }
+}
+
+/* ── prefers-reduced-motion: no position animations ─────── */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .stagger-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
