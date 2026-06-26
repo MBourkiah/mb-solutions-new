@@ -1,40 +1,79 @@
 ---
-const year = 2025;
+const year = new Date().getFullYear();
 ---
 
-<footer class="mt-auto border-t border-gray-100 bg-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+<style>
+  .footer { background: #070710; border-top: 1px solid rgba(127,119,221,0.12); }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,239,255,0.22);
+    margin-bottom: 1.25rem;
+  }
+  .footer-link {
+    display: block;
+    font-size: 14px;
+    color: rgba(240,239,255,0.45);
+    text-decoration: none;
+    margin-bottom: 0.75rem;
+    transition: color 150ms;
+  }
+  .footer-link:hover { color: #F0EFFF; }
+
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+</style>
+
+<footer class="footer">
+  <div style="max-width:72rem; margin:0 auto; padding:4rem 2rem 2rem;">
+
+    <div class="footer-grid">
 
       <!-- Logo + Tagline -->
-      <div class="flex flex-col gap-1.5">
-        <a href="/" class="flex items-center gap-2.5">
-          <span class="flex items-center justify-center w-7 h-7 rounded-md bg-primary">
-            <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path d="M2 14V4l4.5 5L9 6l2.5 3L16 4v10H2Z" fill="white" stroke="white" stroke-width="0.5" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <span class="font-semibold text-gray-900 text-sm tracking-tight">MB-Solutions</span>
+      <div>
+        <a href="/" style="display:inline-flex; align-items:center; gap:10px; text-decoration:none; margin-bottom:1rem;">
+          <span style="display:flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:#7F77DD; font-size:10px; font-weight:700; color:white; letter-spacing:-0.02em;">MB</span>
+          <span style="font-weight:600; font-size:15px; color:#F0EFFF;">MB-Solutions</span>
         </a>
-        <p class="text-xs text-gray-500 pl-9.5">Webdesign & IT-Services in Köln</p>
+        <p style="font-size:13px; color:rgba(240,239,255,0.32); line-height:1.7; max-width:180px;">
+          Webdesign, IT-Services & Branding für KMU in Köln.
+        </p>
       </div>
 
-      <!-- Legal Links -->
-      <nav class="flex items-center gap-5" aria-label="Footer-Navigation">
-        <a href="/impressum" class="text-sm text-gray-500 hover:text-primary transition-colors">
-          Impressum
-        </a>
-        <a href="/datenschutz" class="text-sm text-gray-500 hover:text-primary transition-colors">
-          Datenschutz
-        </a>
-      </nav>
+      <!-- Navigation -->
+      <div>
+        <p class="footer-label">Seiten</p>
+        <a href="/leistungen" class="footer-link">Leistungen</a>
+        <a href="/portfolio" class="footer-link">Portfolio</a>
+        <a href="/ueber-mich" class="footer-link">Über mich</a>
+        <a href="/kontakt" class="footer-link">Kontakt</a>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="footer-label">Kontakt</p>
+        <a href="mailto:mbourkiah@k-solutions.biz" class="footer-link">mbourkiah@k-solutions.biz</a>
+        <p style="font-size:14px; color:rgba(240,239,255,0.4);">Köln, Deutschland</p>
+      </div>
+
     </div>
 
-    <!-- Copyright -->
-    <div class="mt-8 pt-6 border-t border-gray-100">
-      <p class="text-xs text-gray-400 text-center">
-        &copy; {year} MB-Solutions, Köln. Alle Rechte vorbehalten.
-      </p>
+    <!-- Bottom bar -->
+    <div style="padding-top:1.75rem; border-top:1px solid rgba(127,119,221,0.07); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="font-size:12px; color:rgba(240,239,255,0.18);">&copy; {year} MB-Solutions, Köln</p>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="/impressum" style="font-size:12px; color:rgba(240,239,255,0.22); text-decoration:none; transition:color 150ms;">Impressum</a>
+        <a href="/datenschutz" style="font-size:12px; color:rgba(240,239,255,0.22); text-decoration:none; transition:color 150ms;">Datenschutz</a>
+      </div>
     </div>
+
   </div>
 </footer>

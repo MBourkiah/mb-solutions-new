@@ -2,96 +2,98 @@
 // No props – static form, submit handled by client-side JS
 ---
 
-<!-- Form Wrapper (hidden on success) -->
+<style>
+  .cf-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(240,239,255,0.65);
+    margin-bottom: 6px;
+  }
+  .cf-input, .cf-select, .cf-textarea {
+    width: 100%;
+    background: #0d0d18;
+    border: 1px solid rgba(127,119,221,0.18);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #F0EFFF;
+    font-family: inherit;
+    transition: border-color 200ms, box-shadow 200ms;
+    outline: none;
+    box-sizing: border-box;
+  }
+  .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(240,239,255,0.22); }
+  .cf-input:focus, .cf-select:focus, .cf-textarea:focus {
+    border-color: rgba(127,119,221,0.5);
+    box-shadow: 0 0 0 3px rgba(127,119,221,0.1);
+  }
+  .cf-select { appearance: none; cursor: pointer; }
+  .cf-select option { background: #13131f; color: #F0EFFF; }
+  .cf-textarea { resize: none; }
+  .cf-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    background: #7F77DD;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
+    transition: background 200ms;
+  }
+  .cf-btn:hover:not(:disabled) { background: #6B63C9; }
+  .cf-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+</style>
+
 <div id="form-wrapper">
-  <form id="contact-form" class="space-y-5" novalidate>
+  <form id="contact-form" style="display:flex; flex-direction:column; gap:1.25rem;" novalidate>
 
-    <!-- Name -->
     <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">
-        Name <span class="text-primary" aria-hidden="true">*</span>
-      </label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        autocomplete="name"
-        placeholder="Max Mustermann"
-        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
-      />
+      <label for="name" class="cf-label">Name <span style="color:#7F77DD" aria-hidden="true">*</span></label>
+      <input type="text" id="name" name="name" required autocomplete="name"
+        placeholder="Max Mustermann" class="cf-input" />
     </div>
 
-    <!-- E-Mail -->
     <div>
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
-        E-Mail <span class="text-primary" aria-hidden="true">*</span>
-      </label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        required
-        autocomplete="email"
-        placeholder="max@beispiel.de"
-        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
-      />
+      <label for="email" class="cf-label">E-Mail <span style="color:#7F77DD" aria-hidden="true">*</span></label>
+      <input type="email" id="email" name="email" required autocomplete="email"
+        placeholder="max@beispiel.de" class="cf-input" />
     </div>
 
-    <!-- Service -->
     <div>
-      <label for="service" class="block text-sm font-medium text-gray-700 mb-1.5">
-        Ich interessiere mich für <span class="text-primary" aria-hidden="true">*</span>
-      </label>
-      <div class="relative">
-        <select
-          id="service"
-          name="service"
-          required
-          class="w-full appearance-none rounded-xl border border-gray-200 px-4 py-3 pr-10 text-sm text-gray-900 bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"
-        >
-          <option value="" disabled selected>Service wählen...</option>
+      <label for="service" class="cf-label">Ich interessiere mich für <span style="color:#7F77DD" aria-hidden="true">*</span></label>
+      <div style="position:relative;">
+        <select id="service" name="service" required class="cf-select" style="padding-right:2.5rem;">
+          <option value="" disabled selected>Service wählen…</option>
           <option value="Webdesign">Webdesign</option>
           <option value="IT-Services">IT-Services</option>
           <option value="Branding & Marketing">Branding &amp; Marketing</option>
           <option value="Komplettpaket">Komplettpaket</option>
           <option value="Sonstiges">Sonstiges</option>
         </select>
-        <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400" aria-hidden="true">
-          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div style="position:absolute; right:12px; top:50%; transform:translateY(-50%); pointer-events:none; color:rgba(240,239,255,0.35);" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 6l4 4 4-4" />
           </svg>
         </div>
       </div>
     </div>
 
-    <!-- Nachricht -->
     <div>
-      <label for="message" class="block text-sm font-medium text-gray-700 mb-1.5">
-        Nachricht <span class="text-primary" aria-hidden="true">*</span>
-      </label>
-      <textarea
-        id="message"
-        name="message"
-        required
-        rows="5"
-        placeholder="Erzähl mir kurz von deinem Projekt oder deiner Situation..."
-        class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all resize-none"
-      ></textarea>
+      <label for="message" class="cf-label">Nachricht <span style="color:#7F77DD" aria-hidden="true">*</span></label>
+      <textarea id="message" name="message" required rows="5"
+        placeholder="Erzähl mir kurz von deinem Projekt oder deiner Situation…"
+        class="cf-textarea"></textarea>
     </div>
 
-    <!-- Submit -->
     <div>
-      <button
-        type="submit"
-        id="submit-btn"
-        class="w-full py-3.5 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors duration-150 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        Anfrage senden
-      </button>
-      <p id="error-message" class="hidden mt-3 text-sm text-red-600 text-center leading-relaxed">
+      <button type="submit" id="submit-btn" class="cf-btn">Anfrage senden</button>
+      <p id="error-message" class="hidden" style="margin-top:0.75rem; font-size:13px; color:#FF8C6B; text-align:center; line-height:1.6;">
         Etwas ist schiefgelaufen. Schreib mir direkt an
-        <a href="mailto:mbourkiah@mb-solutions.biz" class="underline font-medium whitespace-nowrap">
+        <a href="mailto:mbourkiah@mb-solutions.biz" style="text-decoration:underline; font-weight:500; white-space:nowrap;">
           mbourkiah@mb-solutions.biz
         </a>
       </p>
@@ -100,24 +102,25 @@
   </form>
 </div>
 
-<!-- Success State (hidden until submission) -->
-<div id="success-message" class="hidden text-center py-10">
-  <div class="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-    <svg class="w-7 h-7 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+<!-- Success State -->
+<div id="success-message" class="hidden" style="text-align:center; padding:3rem 1rem;">
+  <div style="width:56px; height:56px; border-radius:50%; background:rgba(45,212,191,0.12); border:1px solid rgba(45,212,191,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem;">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M20 6L9 17l-5-5" />
     </svg>
   </div>
-  <h3 class="text-lg font-semibold text-gray-900 mb-2">Nachricht erhalten!</h3>
-  <p class="text-gray-500 text-sm leading-relaxed">
+  <h3 style="font-size:1.125rem; font-weight:600; color:#F0EFFF; margin:0 0 0.5rem;">Nachricht erhalten!</h3>
+  <p style="font-size:14px; color:rgba(240,239,255,0.5); line-height:1.7;">
     Ich melde mich innerhalb von 48 Stunden bei dir.
   </p>
 </div>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
-  const errorMsg = document.getElementById('error-message');
-  const formWrapper = document.getElementById('form-wrapper');
+  const form       = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn  = document.getElementById('submit-btn')   as HTMLButtonElement | null;
+  const errorMsg   = document.getElementById('error-message');
+  const formWrapper= document.getElementById('form-wrapper');
   const successMsg = document.getElementById('success-message');
 
   form?.addEventListener('submit', async (e) => {
@@ -125,25 +128,19 @@
     if (!submitBtn || !form) return;
 
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Wird gesendet...';
+    submitBtn.textContent = 'Wird gesendet…';
     errorMsg?.classList.add('hidden');
 
     const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
-      email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
+      name:    (form.elements.namedItem('name')    as HTMLInputElement).value.trim(),
+      email:   (form.elements.namedItem('email')   as HTMLInputElement).value.trim(),
       service: (form.elements.namedItem('service') as HTMLSelectElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
     };
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
+      const res    = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data) });
       const result = await res.json();
-
       if (result.success) {
         formWrapper?.classList.add('hidden');
         successMsg?.classList.remove('hidden');

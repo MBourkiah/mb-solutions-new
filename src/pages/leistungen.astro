@@ -28,190 +28,211 @@ const brandingFeatures = [
 ];
 ---
 
+<style>
+  .ls-hero { background: #0d0d18; padding: 6rem 0 5rem; text-align: center; }
+  .ls-section-a { background: #0a0a0f; padding: 6rem 0; }
+  .ls-section-b { background: #0d0d18; padding: 6rem 0; }
+
+  .ls-feature-card {
+    background: #13131f;
+    border: 1px solid rgba(127,119,221,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+  .ls-feature-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(240,239,255,0.6);
+    margin: 0 0 1.25rem;
+    letter-spacing: 0.04em;
+  }
+  .ls-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .ls-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .ls-price-box {
+    display: inline-block;
+    border-radius: 16px;
+    padding: 1.25rem 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .ls-price-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 0.375rem;
+  }
+  .ls-price-sub {
+    font-size: 13px;
+    color: rgba(240,239,255,0.4);
+    margin: 0;
+  }
+  .ls-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    transition: filter 200ms;
+  }
+  .ls-cta-btn:hover { filter: brightness(1.12); }
+
+  .ls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) {
+    .ls-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .ls-reverse { order: -1; }
+  }
+</style>
+
 <BaseLayout
   title="Leistungen | MB-Solutions Köln"
   description="Webdesign, IT-Services und Branding aus Köln – alles aus einer Hand."
 >
   <Navbar />
-
-  <main class="flex-1">
+  <main style="flex:1;">
 
     <!-- Hero -->
-    <section class="bg-gray-50 py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">Leistungen</p>
-        <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Was ich für dich tue.</h1>
-        <p class="text-lg text-gray-500 leading-relaxed max-w-2xl mx-auto">
-          Drei Kernleistungen, die sich perfekt ergänzen – du bekommst alles aus einer Hand,
-          ohne Koordinationsaufwand.
+    <section class="ls-hero">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div style="width:36px; height:2px; background:#7F77DD; margin:0 auto 1.5rem;"></div>
+        <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Leistungen</p>
+        <h1 style="font-size:clamp(2.25rem,4vw,3.5rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">Was ich für dich tue.</h1>
+        <p style="font-size:1.0625rem; color:rgba(240,239,255,0.5); line-height:1.75; max-width:540px; margin:0 auto;">
+          Drei Kernleistungen, die sich perfekt ergänzen – du bekommst alles aus einer Hand, ohne Koordinationsaufwand.
         </p>
       </div>
     </section>
 
     <!-- Webdesign -->
-    <section class="bg-white py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          <!-- Text -->
+    <section class="ls-section-a">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div class="ls-grid">
           <div>
-            <p class="text-primary font-medium tracking-wide uppercase text-xs mb-3">01</p>
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">Webdesign</h2>
-            <p class="text-gray-500 leading-relaxed mb-6">
-              Eine Webseite ist deine wichtigste Verkaufsfläche – sie arbeitet 24/7 für dich.
-              Ich baue Seiten, die nicht nur schön aussehen, sondern auch gefunden werden
-              und konvertieren.
+            <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+            <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1.25rem; line-height:1.15;">Webdesign</h2>
+            <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.8; margin-bottom:2rem;">
+              Eine Webseite ist deine wichtigste Verkaufsfläche – sie arbeitet 24/7 für dich. Ich baue Seiten, die nicht nur schön aussehen, sondern auch gefunden werden und konvertieren.
             </p>
-            <div class="inline-block bg-primary/5 border border-primary/15 rounded-2xl px-6 py-4 mb-8">
-              <p class="text-3xl font-bold text-primary">ab 499 €</p>
-              <p class="text-sm text-gray-500 mt-0.5">Einmalzahlung, kein Abo</p>
+            <div class="ls-price-box" style="background:rgba(127,119,221,0.08); border:1px solid rgba(127,119,221,0.2);">
+              <p class="ls-price-value" style="color:#AFA9EC;">ab 499 €</p>
+              <p class="ls-price-sub">Einmalzahlung, kein Abo</p>
             </div>
             <div>
-              <a
-                href="/kontakt"
-                class="inline-flex items-center px-6 py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors"
-              >
-                Webseite anfragen →
-              </a>
+              <a href="/kontakt" class="ls-cta-btn" style="background:#7F77DD;">Webseite anfragen →</a>
             </div>
           </div>
-
-          <!-- Feature List -->
-          <div class="bg-gray-50 rounded-2xl p-8">
-            <p class="text-sm font-semibold text-gray-900 mb-5">Das ist dabei:</p>
-            <ul class="space-y-4">
-              {webdesignFeatures.map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 shrink-0">
-                    <svg class="w-3 h-3 text-primary" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M2 6l3 3 5-5" />
-                    </svg>
-                  </span>
-                  <span class="text-gray-700 text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="ls-feature-card">
+            <p class="ls-feature-title">Das ist dabei:</p>
+            {webdesignFeatures.map((f) => (
+              <div class="ls-feature-item">
+                <span class="ls-check" style="background:rgba(127,119,221,0.15);">
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#7F77DD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6l3 3 5-5"/></svg>
+                </span>
+                <span style="font-size:14px; color:rgba(240,239,255,0.65);">{f}</span>
+              </div>
+            ))}
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- IT-Services -->
-    <section class="bg-gray-50 py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          <!-- Feature List (links auf Desktop) -->
-          <div class="bg-white rounded-2xl p-8 order-2 lg:order-1">
-            <p class="text-sm font-semibold text-gray-900 mb-5">Das ist dabei:</p>
-            <ul class="space-y-4">
-              {itFeatures.map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-emerald-100 shrink-0">
-                    <svg class="w-3 h-3 text-emerald-600" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M2 6l3 3 5-5" />
-                    </svg>
-                  </span>
-                  <span class="text-gray-700 text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
+    <section class="ls-section-b">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div class="ls-grid">
+          <div class="ls-feature-card ls-reverse">
+            <p class="ls-feature-title">Das ist dabei:</p>
+            {itFeatures.map((f) => (
+              <div class="ls-feature-item">
+                <span class="ls-check" style="background:rgba(45,212,191,0.1);">
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6l3 3 5-5"/></svg>
+                </span>
+                <span style="font-size:14px; color:rgba(240,239,255,0.65);">{f}</span>
+              </div>
+            ))}
           </div>
-
-          <!-- Text (rechts auf Desktop) -->
-          <div class="order-1 lg:order-2">
-            <p class="text-emerald-600 font-medium tracking-wide uppercase text-xs mb-3">02</p>
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">IT-Services</h2>
-            <p class="text-gray-500 leading-relaxed mb-6">
-              Technik soll funktionieren – nicht nerven. Ich kümmere mich um Setup, Wartung
-              und Support, damit du dich auf dein Business konzentrieren kannst.
+          <div>
+            <div style="width:36px; height:2px; background:#2DD4BF; margin-bottom:1.5rem;"></div>
+            <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1.25rem; line-height:1.15;">IT-Services</h2>
+            <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.8; margin-bottom:2rem;">
+              Technik soll funktionieren – nicht nerven. Ich kümmere mich um Setup, Wartung und Support, damit du dich auf dein Business konzentrieren kannst.
             </p>
-            <div class="inline-block bg-emerald-50 border border-emerald-100 rounded-2xl px-6 py-4 mb-8">
-              <p class="text-3xl font-bold text-emerald-700">ab 45 €/Std.</p>
-              <p class="text-sm text-gray-500 mt-0.5">oder Flatrate auf Anfrage</p>
+            <div class="ls-price-box" style="background:rgba(45,212,191,0.07); border:1px solid rgba(45,212,191,0.18);">
+              <p class="ls-price-value" style="color:#2DD4BF;">ab 45 €/Std.</p>
+              <p class="ls-price-sub">oder Flatrate auf Anfrage</p>
             </div>
             <div>
-              <a
-                href="/kontakt"
-                class="inline-flex items-center px-6 py-3 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 transition-colors"
-              >
-                IT-Support anfragen →
-              </a>
+              <a href="/kontakt" class="ls-cta-btn" style="background:#1a8f7a;">IT-Support anfragen →</a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- Branding -->
-    <section class="bg-white py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          <!-- Text -->
+    <section class="ls-section-a">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div class="ls-grid">
           <div>
-            <p class="text-orange-600 font-medium tracking-wide uppercase text-xs mb-3">03</p>
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-5">Branding & Marketing</h2>
-            <p class="text-gray-500 leading-relaxed mb-6">
-              Deine Marke ist der erste Eindruck – und der zählt. Ich entwickle visuelle
-              Identitäten, die professionell wirken und zu deinem Business passen.
+            <div style="width:36px; height:2px; background:#FF8C6B; margin-bottom:1.5rem;"></div>
+            <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1.25rem; line-height:1.15;">Branding & Marketing</h2>
+            <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.8; margin-bottom:2rem;">
+              Deine Marke ist der erste Eindruck – und der zählt. Ich entwickle visuelle Identitäten, die professionell wirken und zu deinem Business passen.
             </p>
-            <div class="inline-block bg-orange-50 border border-orange-100 rounded-2xl px-6 py-4 mb-8">
-              <p class="text-3xl font-bold text-orange-700">ab 149 €</p>
-              <p class="text-sm text-gray-500 mt-0.5">Logo-Paket, Einmalzahlung</p>
+            <div class="ls-price-box" style="background:rgba(255,140,107,0.07); border:1px solid rgba(255,140,107,0.2);">
+              <p class="ls-price-value" style="color:#FF8C6B;">ab 149 €</p>
+              <p class="ls-price-sub">Logo-Paket, Einmalzahlung</p>
             </div>
             <div>
-              <a
-                href="/kontakt"
-                class="inline-flex items-center px-6 py-3 rounded-xl bg-orange-600 text-white text-sm font-semibold hover:bg-orange-700 transition-colors"
-              >
-                Branding anfragen →
-              </a>
+              <a href="/kontakt" class="ls-cta-btn" style="background:#c05030;">Branding anfragen →</a>
             </div>
           </div>
-
-          <!-- Feature List -->
-          <div class="bg-gray-50 rounded-2xl p-8">
-            <p class="text-sm font-semibold text-gray-900 mb-5">Das ist dabei:</p>
-            <ul class="space-y-4">
-              {brandingFeatures.map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-orange-100 shrink-0">
-                    <svg class="w-3 h-3 text-orange-600" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M2 6l3 3 5-5" />
-                    </svg>
-                  </span>
-                  <span class="text-gray-700 text-sm">{f}</span>
-                </li>
-              ))}
-            </ul>
+          <div class="ls-feature-card">
+            <p class="ls-feature-title">Das ist dabei:</p>
+            {brandingFeatures.map((f) => (
+              <div class="ls-feature-item">
+                <span class="ls-check" style="background:rgba(255,140,107,0.1);">
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="#FF8C6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6l3 3 5-5"/></svg>
+                </span>
+                <span style="font-size:14px; color:rgba(240,239,255,0.65);">{f}</span>
+              </div>
+            ))}
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="bg-primary py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">
+    <!-- CTA -->
+    <section style="background:#0d0d18; padding:6rem 0; text-align:center;">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1rem;">
           Noch nicht sicher, welche Leistung du brauchst?
         </h2>
-        <p class="text-white/75 text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+        <p style="font-size:1rem; color:rgba(240,239,255,0.5); margin:0 auto 2.5rem; max-width:440px; line-height:1.75;">
           Im kostenlosen Erstgespräch finden wir gemeinsam heraus, was für dich Sinn macht.
         </p>
-        <a
-          href="/kontakt"
-          class="inline-flex items-center px-7 py-3.5 rounded-xl bg-white text-primary font-semibold hover:bg-gray-50 transition-colors"
-        >
+        <a href="/kontakt" style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:100px; background:#7F77DD; color:white; font-size:15px; font-weight:600; text-decoration:none;">
           Kostenloses Erstgespräch
         </a>
       </div>
     </section>
 
   </main>
-
   <Footer />
 </BaseLayout>

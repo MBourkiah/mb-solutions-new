@@ -5,96 +5,119 @@ import Footer from '../components/Footer.astro';
 
 const skills = [
   {
-    icon: '🎓',
+    accentColor: '#AFA9EC',
+    accentBg: 'rgba(127,119,221,0.1)',
     title: 'Wirtschaftsinformatik',
-    description: 'Ich denke in Prozessen und Geschäftsmodellen – nicht nur in Code.',
+    description: 'Ich denke in Prozessen und Geschäftsmodellen – nicht nur in Code. Deine Website ist Mittel zum Zweck, nicht Selbstzweck.',
   },
   {
-    icon: '💻',
+    accentColor: '#2DD4BF',
+    accentBg: 'rgba(45,212,191,0.08)',
     title: 'Technisches Know-how',
-    description:
-      'Astro, React, Next.js, Tailwind, WordPress, Webflow – ich wähle das richtige Werkzeug für dein Projekt.',
+    description: 'Astro, React, Next.js, Tailwind, WordPress, Webflow – ich wähle das richtige Werkzeug für dein Projekt und Budget.',
   },
   {
-    icon: '🤝',
+    accentColor: '#FF8C6B',
+    accentBg: 'rgba(255,140,107,0.08)',
     title: 'Persönliche Betreuung',
-    description: 'Kein Ticket-System, kein Outsourcing – du erreichst mich direkt, immer.',
+    description: 'Kein Ticket-System, kein Outsourcing – du erreichst mich direkt. Jedes Projekt betreue ich von Anfang bis Ende selbst.',
   },
 ];
 
 const values = [
   {
-    number: '01',
     title: 'Zuhören vor Handeln',
-    description:
-      'Ich verstehe zuerst dein Business, deine Ziele und deine Kunden – bevor ich auch nur eine Zeile Code schreibe.',
+    description: 'Ich verstehe zuerst dein Business, deine Ziele und deine Kunden – bevor ich auch nur eine Zeile Code schreibe.',
   },
   {
-    number: '02',
     title: 'Transparenz immer',
-    description:
-      'Klare Preise, klare Timelines, klare Kommunikation. Keine versteckten Kosten, keine Überraschungen.',
+    description: 'Klare Preise, klare Timelines, klare Kommunikation. Keine versteckten Kosten, keine Überraschungen.',
   },
   {
-    number: '03',
     title: 'Qualität über Quantität',
-    description:
-      'Ich nehme bewusst wenige Projekte an, damit jedes die Aufmerksamkeit bekommt, die es verdient.',
+    description: 'Ich nehme bewusst wenige Projekte an, damit jedes die Aufmerksamkeit bekommt, die es verdient.',
   },
 ];
 ---
+
+<style>
+  .skill-card {
+    background: #13131f;
+    border: 1px solid rgba(127,119,221,0.12);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: border-color 250ms;
+  }
+  .skill-card:hover { border-color: rgba(127,119,221,0.28); }
+
+  .value-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(127,119,221,0.08);
+  }
+  .value-row:last-child { border-bottom: none; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+</style>
 
 <BaseLayout
   title="Über mich | MB-Solutions Köln"
   description="Maurice Bourkiah – Wirtschaftsinformatik-Student und Gründer von MB-Solutions in Köln."
 >
   <Navbar />
+  <main style="flex:1;">
 
-  <main class="flex-1">
-
-    <!-- Hero: Zweispaltig -->
-    <section class="bg-white py-24">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          <!-- Foto-Platzhalter -->
-          <div class="flex flex-col gap-3">
-            <div
-              class="w-full h-96 rounded-2xl bg-primary/10 flex items-center justify-center"
-              aria-label="Foto-Platzhalter"
-            >
-              <div class="text-center">
-                <p class="text-5xl mb-3" aria-hidden="true">📸</p>
-                <p class="text-primary/40 font-medium text-sm">Dein Foto</p>
-              </div>
-            </div>
-            <p class="text-xs text-gray-400 text-center leading-relaxed">
-              Professionelles Foto empfohlen – wirkt Wunder beim Vertrauen.
-            </p>
-          </div>
+    <!-- Hero -->
+    <section style="background:#0d0d18; padding:7rem 0;">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
 
           <!-- Text -->
           <div>
-            <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
-              Über mich
-            </p>
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-              Hallo, ich bin Maurice.
+            <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+            <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Über mich</p>
+            <h1 style="font-size:clamp(2.25rem,3.5vw,3rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.5rem;">
+              Hallo, ich bin<br/><span style="color:#7F77DD;">Maurice.</span>
             </h1>
-            <div class="space-y-4 text-gray-500 leading-relaxed">
+            <div style="display:flex; flex-direction:column; gap:1rem; font-size:1rem; color:rgba(240,239,255,0.55); line-height:1.8;">
               <p>
-                Ich studiere Wirtschaftsinformatik in Köln und habe MB-Solutions gegründet,
-                weil ich gemerkt habe: Viele kleine Unternehmen brauchen keinen teuren
-                Agenturvertrag – sie brauchen einen verlässlichen Partner, der ihre Sprache
-                spricht.
+                Ich studiere Wirtschaftsinformatik in Köln und habe MB-Solutions gegründet, weil ich gemerkt habe: Viele kleine Unternehmen brauchen keinen teuren Agenturvertrag – sie brauchen einen verlässlichen Partner, der ihre Sprache spricht.
               </p>
               <p>
                 Was mich antreibt ist der Moment, wenn ein Kunde sagt:
-                <em class="not-italic font-medium text-gray-700">
-                  „Endlich sieht mein Auftritt so aus wie mein Business wirklich ist."
-                </em>
+                <em style="font-style:normal; color:#F0EFFF; font-weight:500;">„Endlich sieht mein Auftritt so aus wie mein Business wirklich ist."</em>
                 Genau dafür bin ich hier.
               </p>
+            </div>
+          </div>
+
+          <!-- Credentials card -->
+          <div style="background:#13131f; border:1px solid rgba(127,119,221,0.12); border-radius:20px; overflow:hidden;">
+            {[
+              { label: 'Name', value: 'Maurice Bourkiah' },
+              { label: 'Studium', value: 'Wirtschaftsinformatik, Köln' },
+              { label: 'Standort', value: 'Köln, Deutschland' },
+              { label: 'Antwortzeit', value: 'Innerhalb von 48h' },
+              { label: 'Ansatz', value: 'Persönlich, kein Outsourcing' },
+            ].map((row) => (
+              <div style="padding:1.125rem 1.75rem; border-bottom:1px solid rgba(127,119,221,0.07); display:flex; flex-direction:column; gap:3px;">
+                <span style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(240,239,255,0.25);">{row.label}</span>
+                <span style="font-size:0.9375rem; color:rgba(240,239,255,0.78); font-weight:500;">{row.value}</span>
+              </div>
+            ))}
+            <div style="padding:1.125rem 1.75rem;">
+              <span style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(240,239,255,0.25);">Status</span>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:3px;">
+                <span style="width:7px; height:7px; border-radius:50%; background:#2DD4BF; display:inline-block;"></span>
+                <span style="font-size:0.9375rem; color:rgba(240,239,255,0.78); font-weight:500;">Offen für neue Projekte</span>
+              </div>
             </div>
           </div>
 
@@ -103,69 +126,62 @@ const values = [
     </section>
 
     <!-- Skills -->
-    <section class="bg-gray-50 py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Was ich mitbringe.</h2>
+    <section style="background:#0a0a0f; padding:6rem 0;">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div style="margin-bottom:3.5rem;">
+          <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+          <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0;">Was ich mitbringe.</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="skills-grid">
           {skills.map((skill) => (
-            <div class="bg-white rounded-2xl p-8 border border-gray-100">
-              <p class="text-4xl mb-5" aria-hidden="true">{skill.icon}</p>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">{skill.title}</h3>
-              <p class="text-gray-500 text-sm leading-relaxed">{skill.description}</p>
+            <div class="skill-card">
+              <div style={`width:40px; height:40px; border-radius:12px; background:${skill.accentBg}; border:1px solid ${skill.accentColor}30; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;`}>
+                <span style={`font-size:18px; color:${skill.accentColor};`} aria-hidden="true">✦</span>
+              </div>
+              <h3 style="font-size:1.125rem; font-weight:700; color:#F0EFFF; margin:0 0 0.75rem;">{skill.title}</h3>
+              <p style="font-size:0.9375rem; color:rgba(240,239,255,0.5); line-height:1.75;">{skill.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Werte -->
-    <section class="bg-white py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-2xl mx-auto">
-          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-14 text-center">
-            Wie ich arbeite.
-          </h2>
-          <ol class="space-y-12">
-            {values.map((value) => (
-              <li class="flex gap-8 items-start">
-                <span
-                  class="text-4xl font-bold text-primary/20 leading-none shrink-0 tabular-nums"
-                  aria-hidden="true"
-                >
-                  {value.number}
-                </span>
-                <div>
-                  <h3 class="text-lg font-semibold text-gray-900 mb-2">{value.title}</h3>
-                  <p class="text-gray-500 leading-relaxed">{value.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+    <!-- Values -->
+    <section style="background:#0d0d18; padding:6rem 0;">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <div style="max-width:680px; margin:0 auto;">
+          <div style="margin-bottom:3.5rem;">
+            <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+            <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0;">Wie ich arbeite.</h2>
+          </div>
+          {values.map((v) => (
+            <div class="value-row">
+              <span style="width:6px; height:6px; border-radius:50%; background:#7F77DD; flex-shrink:0; margin-top:0.6rem;"></span>
+              <div>
+                <h3 style="font-size:1.0625rem; font-weight:600; color:#F0EFFF; margin:0 0 0.5rem;">{v.title}</h3>
+                <p style="font-size:0.9375rem; color:rgba(240,239,255,0.5); line-height:1.75; margin:0;">{v.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="bg-primary py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">
+    <section style="background:#0a0a0f; padding:6rem 0; text-align:center;">
+      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+        <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1rem;">
           Klingt das nach dem richtigen Partner?
         </h2>
-        <p class="text-white/75 text-lg mb-8">
+        <p style="font-size:1rem; color:rgba(240,239,255,0.5); margin:0 auto 2.5rem; max-width:380px; line-height:1.75;">
           Kostenloses Erstgespräch – unverbindlich und auf Augenhöhe.
         </p>
-        <a
-          href="/kontakt"
-          class="inline-flex items-center px-7 py-3.5 rounded-xl bg-white text-primary font-semibold hover:bg-gray-50 transition-colors"
-        >
+        <a href="/kontakt" style="display:inline-flex; align-items:center; padding:14px 32px; border-radius:100px; background:#7F77DD; color:white; font-size:15px; font-weight:600; text-decoration:none;">
           Lass uns reden →
         </a>
       </div>
     </section>
 
   </main>
-
   <Footer />
 </BaseLayout>

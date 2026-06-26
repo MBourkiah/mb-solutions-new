@@ -1,79 +1,107 @@
 ---
-const trustPoints = [
-  'Wirtschaftsinformatik, Universität Köln',
-  'Persönliche Betreuung – kein Outsourcing',
-];
+// AboutSection – editorial two-column layout, dark theme
 ---
 
-<section class="bg-white py-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<style>
+  .about-section { background: #0d0d18; padding: 7rem 0; }
 
-      <!-- Text Column -->
+  .about-quote {
+    font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+    font-weight: 700;
+    color: #F0EFFF;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .about-quote em { font-style: normal; color: #7F77DD; }
+
+  .fact-card {
+    background: #13131f;
+    border: 1px solid rgba(127,119,221,0.12);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .fact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 1.125rem 1.75rem;
+    border-bottom: 1px solid rgba(127,119,221,0.08);
+  }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,239,255,0.28);
+  }
+  .fact-value {
+    font-size: 0.9375rem;
+    color: rgba(240,239,255,0.78);
+    font-weight: 500;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>
+
+<section class="about-section">
+  <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+
+    <!-- Eyebrow -->
+    <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+    <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:4rem;">
+      Wer steckt dahinter
+    </p>
+
+    <div class="about-grid">
+
+      <!-- Left: Editorial Statement -->
       <div>
-        <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
-          Über mich
-        </p>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-          Technik trifft Wirtschaft.
+        <p style="font-size:4.5rem; line-height:0.65; color:rgba(127,119,221,0.18); font-family:Georgia,serif; margin-bottom:1.5rem;" aria-hidden="true">"</p>
+        <h2 class="about-quote">
+          Jedes Projekt betreue ich <em>persönlich</em> – von der ersten Idee bis zum Launch und danach.
         </h2>
-
-        <div class="space-y-4 text-gray-500 leading-relaxed">
-          <p>
-            Ich bin [Name], Wirtschaftsinformatik-Student in Köln und Gründer
-            von MB-Solutions.
-          </p>
-          <p>
-            Was mich von klassischen Agenturen unterscheidet: Ich denke nicht
-            nur in Code, sondern auch in Geschäftsmodellen. Deine Website soll
-            nicht nur schön aussehen – sie soll dir Kunden bringen.
-          </p>
-          <p>
-            Jedes Projekt betreue ich persönlich, von der ersten Idee bis zum
-            Launch – und danach.
-          </p>
-        </div>
-
-        <!-- Trust Points -->
-        <ul class="mt-8 space-y-3">
-          {trustPoints.map((point) => (
-            <li class="flex items-start gap-3">
-              <span
-                class="mt-0.5 flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 shrink-0"
-                aria-hidden="true"
-              >
-                <svg
-                  class="w-3 h-3 text-primary"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M2 6l3 3 5-5" />
-                </svg>
-              </span>
-              <span class="text-gray-700 font-medium text-sm">{point}</span>
-            </li>
-          ))}
-        </ul>
+        <p style="margin-top:2rem; font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.8; max-width:460px;">
+          Ich bin Maurice, Wirtschaftsinformatik-Student in Köln. Was mich von klassischen Agenturen unterscheidet: Ich denke nicht nur in Code, sondern in Geschäftsmodellen. Deine Website soll nicht nur gut aussehen – sie soll dir Kunden bringen.
+        </p>
+        <a href="/ueber-mich" style="display:inline-flex; align-items:center; gap:6px; margin-top:2rem; color:#7F77DD; font-size:14px; text-decoration:none;">
+          Mehr über mich <span aria-hidden="true">→</span>
+        </a>
       </div>
 
-      <!-- Visual / Photo Placeholder -->
-      <div class="flex flex-col gap-3">
-        <div
-          class="w-full h-80 rounded-2xl bg-primary/10 flex items-center justify-center"
-          aria-label="Foto-Platzhalter"
-        >
-          <div class="text-center">
-            <p class="text-4xl mb-2" aria-hidden="true">📸</p>
-            <p class="text-primary/40 font-medium text-sm">Dein Foto</p>
-          </div>
+      <!-- Right: Credentials -->
+      <div class="fact-card">
+        <div class="fact-row">
+          <span class="fact-label">Name</span>
+          <span class="fact-value">Maurice Bourkiah</span>
         </div>
-        <p class="text-xs text-gray-400 text-center leading-relaxed px-4">
-          Professionelles Foto empfohlen – wirkt Wunder beim Vertrauen.
-        </p>
+        <div class="fact-row">
+          <span class="fact-label">Studium</span>
+          <span class="fact-value">Wirtschaftsinformatik, Köln</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Standort</span>
+          <span class="fact-value">Köln, Deutschland</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Ansprechpartner</span>
+          <span class="fact-value">Direkt – kein Outsourcing</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Antwortzeit</span>
+          <span class="fact-value">Innerhalb von 48 Stunden</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-label">Projekte</span>
+          <span class="fact-value">Persönlich betreut, von Anfang bis Ende</span>
+        </div>
       </div>
 
     </div>

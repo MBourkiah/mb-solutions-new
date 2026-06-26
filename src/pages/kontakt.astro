@@ -5,70 +5,76 @@ import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 
 const infoItems = [
-  { icon: '📍', label: 'Standort', text: 'Köln & deutschlandweit' },
-  { icon: '⏱', label: 'Reaktionszeit', text: 'Antwort innerhalb von 48 Stunden' },
-  { icon: '💬', label: 'Erstgespräch', text: 'Komplett kostenlos & unverbindlich' },
+  { accentColor: '#AFA9EC', accentBg: 'rgba(127,119,221,0.1)', label: 'Standort', text: 'Köln & deutschlandweit' },
+  { accentColor: '#2DD4BF', accentBg: 'rgba(45,212,191,0.08)', label: 'Reaktionszeit', text: 'Antwort innerhalb von 48 Stunden' },
+  { accentColor: '#FF8C6B', accentBg: 'rgba(255,140,107,0.08)', label: 'Erstgespräch', text: 'Komplett kostenlos & unverbindlich' },
 ];
 ---
 
+<style>
+  .kt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .kt-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+</style>
+
 <BaseLayout
   title="Kontakt | MB-Solutions"
-  description="Kostenloses Erstgespräch anfragen – MB-Solutions Köln. Webdesign, IT-Services & Branding für KMU."
+  description="Kostenloses Erstgespräch anfragen – MB-Solutions Köln."
 >
   <Navbar />
+  <main style="flex:1; padding:6rem 0 7rem;">
+    <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
 
-  <main class="flex-1 py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div class="kt-grid">
 
-        <!-- Left: Info Column -->
+        <!-- Left: Info -->
         <div>
-          <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
-            Kontakt
-          </p>
-          <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+          <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Kontakt</p>
+          <h1 style="font-size:clamp(2.25rem,3.5vw,3rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
             Lass uns reden.
           </h1>
-          <p class="text-lg text-gray-500 leading-relaxed mb-10">
-            Kostenloses Erstgespräch – ich schaue mir deine Situation an und
-            zeige dir konkret, was möglich ist.
+          <p style="font-size:1.0625rem; color:rgba(240,239,255,0.5); line-height:1.75; margin:0 0 2.5rem;">
+            Kostenloses Erstgespräch – ich schaue mir deine Situation an und zeige dir konkret, was möglich ist.
           </p>
 
           <!-- Info Items -->
-          <ul class="space-y-5 mb-10">
+          <ul style="list-style:none; margin:0 0 2.5rem; padding:0; display:flex; flex-direction:column; gap:1.25rem;">
             {infoItems.map((item) => (
-              <li class="flex items-start gap-4">
-                <span class="text-2xl leading-none mt-0.5" aria-hidden="true">{item.icon}</span>
+              <li style="display:flex; align-items:center; gap:1rem;">
+                <span style={`width:36px; height:36px; border-radius:10px; background:${item.accentBg}; display:flex; align-items:center; justify-content:center; flex-shrink:0;`}>
+                  <span style={`width:7px; height:7px; border-radius:50%; background:${item.accentColor};`}></span>
+                </span>
                 <div>
-                  <p class="text-xs font-medium text-gray-400 uppercase tracking-wide mb-0.5">
-                    {item.label}
-                  </p>
-                  <p class="text-gray-700 font-medium">{item.text}</p>
+                  <p style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin:0 0 2px;">{item.label}</p>
+                  <p style="font-size:0.9375rem; color:rgba(240,239,255,0.75); font-weight:500; margin:0;">{item.text}</p>
                 </div>
               </li>
             ))}
           </ul>
 
-          <!-- Direct E-Mail -->
-          <div class="pt-6 border-t border-gray-100">
-            <p class="text-sm text-gray-500 mb-1">Oder schreib mir direkt:</p>
-            <a
-              href="mailto:mbourkiah@mb-solutions.biz"
-              class="text-primary font-medium hover:underline text-sm"
-            >
+          <!-- E-Mail -->
+          <div style="padding-top:1.75rem; border-top:1px solid rgba(127,119,221,0.1);">
+            <p style="font-size:13px; color:rgba(240,239,255,0.3); margin:0 0 4px;">Oder schreib mir direkt:</p>
+            <a href="mailto:mbourkiah@mb-solutions.biz" style="font-size:14px; color:#7F77DD; text-decoration:none; font-weight:500;">
               mbourkiah@mb-solutions.biz
             </a>
           </div>
         </div>
 
         <!-- Right: Form Card -->
-        <div class="bg-gray-50 rounded-2xl p-8">
+        <div style="background:#13131f; border:1px solid rgba(127,119,221,0.12); border-radius:20px; padding:2.5rem;">
           <ContactForm />
         </div>
 
       </div>
     </div>
   </main>
-
   <Footer />
 </BaseLayout>

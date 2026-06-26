@@ -1,107 +1,137 @@
 ---
 const services = [
   {
-    title: 'Webdesign',
-    description:
-      'Moderne, schnelle Webseiten mit klarer Struktur. WordPress, Webflow oder Custom – je nach Bedarf und Budget.',
+    tag: 'Webdesign',
+    tagBg: 'rgba(127,119,221,0.12)',
+    tagColor: '#AFA9EC',
+    title: 'Websites, die verkaufen.',
+    description: 'Moderne, schnelle Webseiten mit klarer Struktur. WordPress, Webflow oder Custom-Code – je nach Bedarf und Budget.',
     price: 'ab 499 €',
-    priceClass: 'text-primary',
-    iconBg: 'bg-primary/10',
-    iconColor: 'text-primary',
-    icon: 'monitor',
+    href: '/leistungen',
   },
   {
-    title: 'IT-Services',
-    description:
-      'Einrichtung, Wartung, Cloud-Setup & Support. Kein IT-Chaos mehr – ich übernehme das zuverlässig für dich.',
+    tag: 'IT-Services',
+    tagBg: 'rgba(45,212,191,0.1)',
+    tagColor: '#2DD4BF',
+    title: 'IT ohne Chaos.',
+    description: 'Einrichtung, Wartung, Cloud-Setup und Support. Ich übernehme das zuverlässig – du konzentrierst dich auf dein Business.',
     price: 'ab 45 €/Std.',
-    priceClass: 'text-emerald-700',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
-    icon: 'server',
+    href: '/leistungen',
   },
   {
-    title: 'Branding & Marketing',
-    description:
-      'Logo, Visitenkarten, Corporate Design – dein professioneller Auftritt von Anfang an, der in Erinnerung bleibt.',
+    tag: 'Branding',
+    tagBg: 'rgba(255,140,107,0.1)',
+    tagColor: '#FF8C6B',
+    title: 'Marken, die bleiben.',
+    description: 'Logo, Visitenkarten, Corporate Design – dein professioneller Auftritt von Anfang an, der Vertrauen aufbaut und in Erinnerung bleibt.',
     price: 'ab 149 €',
-    priceClass: 'text-orange-700',
-    iconBg: 'bg-orange-50',
-    iconColor: 'text-orange-600',
-    icon: 'brush',
+    href: '/leistungen',
   },
 ] as const;
 ---
 
-<section class="bg-white py-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<style>
+  .svc-section { background: #0d0d18; padding: 7rem 0; }
+
+  .svc-card {
+    background: #13131f;
+    border: 1px solid rgba(127,119,221,0.12);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 250ms, box-shadow 250ms;
+  }
+  .svc-card:hover {
+    border-color: rgba(127,119,221,0.32);
+    box-shadow: 0 0 36px rgba(127,119,221,0.06);
+  }
+
+  .svc-tag {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+  }
+  .svc-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #F0EFFF;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .svc-desc {
+    font-size: 0.9375rem;
+    color: rgba(240,239,255,0.5);
+    line-height: 1.75;
+    flex: 1;
+  }
+  .svc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(127,119,221,0.1);
+  }
+  .svc-price {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #F0EFFF;
+  }
+  .svc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #7F77DD;
+    text-decoration: none;
+    transition: gap 150ms;
+  }
+  .svc-link:hover { gap: 9px; }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 900px) {
+    .svc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="svc-section">
+  <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
 
     <!-- Header -->
-    <div class="max-w-2xl mx-auto text-center mb-16">
-      <p class="text-primary font-medium tracking-wide uppercase text-sm mb-3">
-        Leistungen
+    <div style="max-width:640px; margin-bottom:4rem;">
+      <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
+      <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">
+        Was ich mache
       </p>
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+      <h2 style="font-size:clamp(2rem,3vw,2.75rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
         Alles aus einer Hand.
       </h2>
-      <p class="text-lg text-gray-500 leading-relaxed">
-        Kein Agentur-Chaos, kein Koordinationsaufwand – ich bin dein einziger
-        Ansprechpartner für deinen kompletten digitalen Auftritt.
+      <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.75;">
+        Kein Agentur-Chaos, kein Koordinationsaufwand – ich bin dein einziger Ansprechpartner für deinen kompletten digitalen Auftritt.
       </p>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {services.map((service) => (
-        <div class="group border border-gray-100 rounded-2xl p-8 hover:border-primary/30 hover:shadow-md transition-all duration-200 flex flex-col">
-
-          <!-- Icon Box -->
-          <div class={`w-11 h-11 rounded-xl flex items-center justify-center mb-6 shrink-0 ${service.iconBg}`}>
-            <span class={`w-5 h-5 ${service.iconColor}`}>
-              {service.icon === 'monitor' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="2" y="3" width="20" height="14" rx="2" />
-                  <path d="M8 21h8M12 17v4" />
-                </svg>
-              )}
-              {service.icon === 'server' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="8" rx="2" />
-                  <rect x="2" y="14" width="20" height="8" rx="2" />
-                  <circle cx="7" cy="6" r="1" fill="currentColor" stroke="none" />
-                  <circle cx="7" cy="18" r="1" fill="currentColor" stroke="none" />
-                </svg>
-              )}
-              {service.icon === 'brush' && (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                  <path d="m15.5 5.5 3 3" />
-                </svg>
-              )}
-            </span>
+    <!-- Cards -->
+    <div class="svc-grid">
+      {services.map((s) => (
+        <div class="svc-card">
+          <span class="svc-tag" style={`background:${s.tagBg}; color:${s.tagColor};`}>{s.tag}</span>
+          <h3 class="svc-title">{s.title}</h3>
+          <p class="svc-desc">{s.description}</p>
+          <div class="svc-footer">
+            <span class="svc-price">{s.price}</span>
+            <a href={s.href} class="svc-link">Mehr erfahren <span aria-hidden="true">→</span></a>
           </div>
-
-          <!-- Title -->
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">
-            {service.title}
-          </h3>
-
-          <!-- Description -->
-          <p class="text-gray-500 leading-relaxed flex-1">
-            {service.description}
-          </p>
-
-          <!-- Price -->
-          <div class="mt-8 pt-6 border-t border-gray-100">
-            <a
-              href="/kontakt"
-              class={`inline-flex items-center gap-1.5 font-medium text-sm group-hover:gap-2.5 transition-all duration-150 ${service.priceClass}`}
-            >
-              {service.price}
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
         </div>
       ))}
     </div>

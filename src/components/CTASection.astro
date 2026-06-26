@@ -1,43 +1,88 @@
 ---
-// No props – static copy
+// No props – static CTA
 ---
 
-<section class="bg-primary py-24">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-2xl mx-auto text-center">
+<style>
+  .cta-section {
+    background: #0a0a0f;
+    padding: 8rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Violet gradient glow from top */
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(127,119,221,0.35), transparent);
+  }
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 220px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(127,119,221,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-headline {
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: #F0EFFF;
+    line-height: 1.1;
+    max-width: 640px;
+    margin: 0 auto 1.5rem;
+  }
+  .cta-sub {
+    font-size: 1.0625rem;
+    color: rgba(240,239,255,0.45);
+    line-height: 1.75;
+    max-width: 400px;
+    margin: 0 auto 3rem;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #7F77DD;
+    color: white;
+    padding: 16px 36px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 200ms;
+  }
+  .cta-btn:hover { background: #6B63C9; }
+  .cta-email {
+    display: block;
+    margin-top: 1.5rem;
+    font-size: 13px;
+    color: rgba(240,239,255,0.25);
+    text-decoration: none;
+    transition: color 150ms;
+  }
+  .cta-email:hover { color: rgba(240,239,255,0.55); }
+</style>
 
-      <!-- Headline -->
-      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-5 leading-tight">
-        Bereit für deinen digitalen Auftritt?
-      </h2>
-
-      <!-- Subtext -->
-      <p class="text-lg text-white/80 leading-relaxed mb-10">
-        Kostenloses Erstgespräch – ich analysiere deine aktuelle Situation und
-        zeige dir konkret, was möglich ist. Unverbindlich.
-      </p>
-
-      <!-- Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-        <a
-          href="/kontakt"
-          class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl bg-white text-primary text-base font-semibold hover:bg-gray-50 transition-colors duration-150"
-        >
-          Jetzt Gespräch buchen
-        </a>
-        <a
-          href="mailto:mbourkiah@k-solutions.biz"
-          class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 rounded-xl border border-white/40 text-white text-base font-medium hover:border-white/70 transition-colors duration-150"
-        >
-          oder schreib mir direkt →
-        </a>
-      </div>
-
-      <!-- Trust line -->
-      <p class="text-sm text-white/60">
-        📍 Aus Köln &nbsp;·&nbsp; 48h Antwortzeit &nbsp;·&nbsp; Keine versteckten Kosten
-      </p>
-
-    </div>
+<section class="cta-section">
+  <div style="position:relative; z-index:1; max-width:72rem; margin:0 auto; padding:0 2rem;">
+    <h2 class="cta-headline">
+      Bereit für deinen<br/>
+      <span style="color:#7F77DD;">digitalen Auftritt?</span>
+    </h2>
+    <p class="cta-sub">
+      Kostenloses Erstgespräch – ich analysiere deine Situation und zeige dir konkret, was möglich ist.
+    </p>
+    <a href="/kontakt" class="cta-btn">Jetzt Gespräch buchen</a>
+    <a href="mailto:mbourkiah@k-solutions.biz" class="cta-email">
+      oder schreib direkt: mbourkiah@k-solutions.biz
+    </a>
+    <p style="margin-top:3rem; font-size:12px; color:rgba(240,239,255,0.18);">
+      📍 Aus Köln &nbsp;·&nbsp; 48h Antwortzeit &nbsp;·&nbsp; Keine versteckten Kosten
+    </p>
   </div>
 </section>
