@@ -3,78 +3,167 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
-
-const infoItems = [
-  { accentColor: '#AFA9EC', accentBg: 'rgba(127,119,221,0.1)', label: 'Standort', text: 'Köln & deutschlandweit' },
-  { accentColor: '#2DD4BF', accentBg: 'rgba(45,212,191,0.08)', label: 'Reaktionszeit', text: 'Antwort innerhalb von 48 Stunden' },
-  { accentColor: '#FF8C6B', accentBg: 'rgba(255,140,107,0.08)', label: 'Erstgespräch', text: 'Komplett kostenlos & unverbindlich' },
-];
 ---
 
 <style>
-  .kt-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
+  .kontakt-section {
+    background: var(--bg);
+    padding: 7rem 5% 6rem;
+    position: relative; overflow: hidden;
+    flex: 1;
   }
-  @media (max-width: 900px) {
-    .kt-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .kontakt-section::before {
+    content: '';
+    position: absolute; top: -20%; left: -5%;
+    width: 50%; height: 70%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .kontakt-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+    position: relative; z-index: 1;
+  }
+  .kontakt-h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
+    line-height: 1.1; margin: 0 0 1.25rem;
+  }
+  .kontakt-sub { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.75; max-width: 44ch; margin: 0 0 2.5rem; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+  .contact-info-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: var(--r-md); padding: 14px 16px; text-decoration: none;
+    transition: border-color 180ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .contact-info-item:hover { border-color: var(--border-accent); }
+  }
+  .ci-icon {
+    width: 38px; height: 38px; border-radius: var(--r-sm);
+    background: rgba(127,119,221,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); flex-shrink: 0;
+  }
+  .ci-text { display: flex; flex-direction: column; gap: 2px; }
+  .ci-label { font-size: 11px; color: var(--text-dim); font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+  .ci-value { font-size: 0.9375rem; color: var(--text); }
+
+  .promise-card {
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.5rem;
+  }
+  .promise-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); font-family: 'Poppins', sans-serif; margin: 0 0 1rem; }
+  .promise-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+  .promise-list li { display: flex; align-items: center; gap: 9px; font-size: 0.875rem; color: var(--text-muted); }
+  .promise-list li svg { flex-shrink: 0; color: var(--accent); }
+
+  @media (max-width: 860px) {
+    .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
   }
 </style>
 
 <BaseLayout
-  title="Kontakt | MB-Solutions"
-  description="Kostenloses Erstgespräch anfragen – MB-Solutions Köln."
+  title="Kontakt – MB-Solutions Köln"
+  description="Kontaktiere MB-Solutions für Webdesign, IT-Services und Branding in Köln. Kostenloses Erstgespräch vereinbaren."
 >
   <Navbar />
-  <main style="flex:1; padding:6rem 0 7rem;">
-    <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
+  <main id="main-content" style="display:flex;flex-direction:column;flex:1;">
 
-      <div class="kt-grid">
+    <section class="kontakt-section" aria-labelledby="kontakt-heading">
+      <div class="kontakt-grid section-inner" style="max-width:none;">
 
         <!-- Left: Info -->
         <div>
-          <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-          <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Kontakt</p>
-          <h1 style="font-size:clamp(2.25rem,3.5vw,3rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
+          <div class="eyebrow">
+            <div class="eyebrow-line"></div>
+            <span class="eyebrow-text">Kontakt</span>
+          </div>
+          <h1 class="kontakt-h1" id="kontakt-heading">
             Lass uns reden.
           </h1>
-          <p style="font-size:1.0625rem; color:rgba(240,239,255,0.5); line-height:1.75; margin:0 0 2.5rem;">
-            Kostenloses Erstgespräch – ich schaue mir deine Situation an und zeige dir konkret, was möglich ist.
+          <p class="kontakt-sub">
+            Schreib mir eine Nachricht oder melde dich direkt per E-Mail.
+            Ich melde mich innerhalb von 48 Stunden zurück.
           </p>
 
-          <!-- Info Items -->
-          <ul style="list-style:none; margin:0 0 2.5rem; padding:0; display:flex; flex-direction:column; gap:1.25rem;">
-            {infoItems.map((item) => (
-              <li style="display:flex; align-items:center; gap:1rem;">
-                <span style={`width:36px; height:36px; border-radius:10px; background:${item.accentBg}; display:flex; align-items:center; justify-content:center; flex-shrink:0;`}>
-                  <span style={`width:7px; height:7px; border-radius:50%; background:${item.accentColor};`}></span>
-                </span>
-                <div>
-                  <p style="font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin:0 0 2px;">{item.label}</p>
-                  <p style="font-size:0.9375rem; color:rgba(240,239,255,0.75); font-weight:500; margin:0;">{item.text}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          <!-- E-Mail -->
-          <div style="padding-top:1.75rem; border-top:1px solid rgba(127,119,221,0.1);">
-            <p style="font-size:13px; color:rgba(240,239,255,0.3); margin:0 0 4px;">Oder schreib mir direkt:</p>
-            <a href="mailto:mbourkiah@mb-solutions.biz" style="font-size:14px; color:#7F77DD; text-decoration:none; font-weight:500;">
-              mbourkiah@mb-solutions.biz
+          <div class="contact-info">
+            <a href="mailto:hallo@mb-solutions.biz" class="contact-info-item">
+              <div class="ci-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                </svg>
+              </div>
+              <div class="ci-text">
+                <span class="ci-label">E-Mail</span>
+                <span class="ci-value">hallo@mb-solutions.biz</span>
+              </div>
             </a>
+            <div class="contact-info-item">
+              <div class="ci-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div class="ci-text">
+                <span class="ci-label">Standort</span>
+                <span class="ci-value">Köln, Deutschland</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <div class="ci-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div class="ci-text">
+                <span class="ci-label">Antwortzeit</span>
+                <span class="ci-value">Innerhalb von 48 Stunden</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="promise-card">
+            <p class="promise-title">Was dich erwartet</p>
+            <ul class="promise-list">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Kostenlose Erstberatung ohne Verkaufsdruck
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Klares Angebot mit transparenten Preisen
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Du sprichst direkt mit dem Entwickler
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Persönliche Treffen in Köln möglich
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Right: Form Card -->
-        <div style="background:#13131f; border:1px solid rgba(127,119,221,0.12); border-radius:20px; padding:2.5rem;">
+        <!-- Right: Form -->
+        <div>
           <ContactForm />
         </div>
 
       </div>
-    </div>
+    </section>
+
   </main>
   <Footer />
 </BaseLayout>

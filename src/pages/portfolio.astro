@@ -1,184 +1,202 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
+import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 
 const projects = [
   {
-    gradient: 'linear-gradient(135deg, rgba(127,119,221,0.28) 0%, rgba(127,119,221,0.04) 100%)',
-    accentColor: '#AFA9EC',
-    tags: ['Webdesign', 'Branding'],
-    title: 'Café Rösterei Köln',
-    description: 'Komplette Website + Corporate Identity für eine Kölner Spezialitätenrösterei.',
+    name: 'Café Rösterei Köln',
+    cat: 'Webdesign',
+    year: '2024',
+    status: 'Fertiggestellt',
+    body: 'Moderner Online-Shop und Storytelling-Website für eine Kölner Spezialitätenrösterei. Entwickelt mit Astro und einer eigenen CMS-Integration für News und Kaffeebeschreibungen.',
+    tags: ['Astro', 'CMS', 'Online-Shop', 'SEO'],
+    accent: '#7F77DD',
   },
   {
-    gradient: 'linear-gradient(135deg, rgba(45,212,191,0.22) 0%, rgba(45,212,191,0.03) 100%)',
-    accentColor: '#2DD4BF',
-    tags: ['Webdesign', 'IT-Setup'],
-    title: 'Elektro Müller GmbH',
-    description: 'Website, Logo & lokale IT-Einrichtung für einen Elektrofachbetrieb.',
+    name: 'Meisterbetrieb Schmitz',
+    cat: 'IT-Setup & Branding',
+    year: '2024',
+    status: 'Fertiggestellt',
+    body: 'Neues Corporate Design inkl. Logo, Briefpapier und Visitenkarten. Dazu vollständiges Cloud-Setup mit Microsoft 365 und E-Mail-Migration aller Mitarbeiter.',
+    tags: ['Logo', 'Branding', 'Microsoft 365', 'E-Mail-Migration'],
+    accent: '#2DD4BF',
   },
   {
-    gradient: 'linear-gradient(135deg, rgba(255,140,107,0.22) 0%, rgba(255,140,107,0.03) 100%)',
-    accentColor: '#FF8C6B',
-    tags: ['Branding'],
-    title: 'Fitnessstudio NordKöln',
-    description: 'Logo, Visitenkarten & Social Media Kit für ein modernes Fitnessstudio.',
+    name: 'Kosmetikstudio Belle',
+    cat: 'Webdesign',
+    year: '2025',
+    status: 'In Bearbeitung',
+    body: 'Booking-fähige Website mit Leistungsübersicht, Preisliste und Online-Terminbuchung via Calendly-Integration. Mobile-first für die Zielgruppe der Endkunden.',
+    tags: ['Responsive', 'Calendly', 'Booking', 'Mobile-first'],
+    accent: '#FF8C6B',
   },
   {
-    gradient: 'linear-gradient(135deg, rgba(127,119,221,0.14) 0%, rgba(10,10,15,0) 100%)',
-    accentColor: '#AFA9EC',
-    tags: ['IT-Services'],
-    title: 'Steuerberatung Hofmann',
-    description: 'Cloud-Migration auf Google Workspace & laufender IT-Support-Retainer.',
+    name: 'Elektro Wagner GmbH',
+    cat: 'Webdesign & SEO',
+    year: '2023',
+    status: 'Fertiggestellt',
+    body: 'Vollständige Website-Überarbeitung für einen Kölner Elektrobetrieb mit Fokus auf lokale Suchmaschinenoptimierung und Google Business-Anbindung.',
+    tags: ['Webdesign', 'Lokales SEO', 'Google Business'],
+    accent: '#7F77DD',
   },
-  {
-    gradient: 'linear-gradient(135deg, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0.02) 100%)',
-    accentColor: '#2DD4BF',
-    tags: ['Webdesign'],
-    title: 'Zahnarzt Praxis Köln-Süd',
-    description: 'Moderne Praxis-Website mit Online-Terminbuchung und Patienten-Portal.',
-  },
-  {
-    gradient: 'linear-gradient(135deg, rgba(255,140,107,0.18) 0%, rgba(255,140,107,0.02) 100%)',
-    accentColor: '#FF8C6B',
-    tags: ['Webdesign', 'Branding'],
-    title: 'Immobilien Weber',
-    description: 'Website + vollständige Brand Identity für einen regionalen Makler.',
-  },
-] as const;
-
-const filters = ['Alle', 'Webdesign', 'Branding', 'IT-Services'];
+];
 ---
 
 <style>
-  .pf-card {
-    background: #13131f;
-    border: 1px solid rgba(127,119,221,0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    transition:
-      border-color 220ms var(--ease-out),
-      transform    220ms var(--ease-out),
-      box-shadow   220ms var(--ease-out);
+  .port-hero {
+    background: var(--bg);
+    padding: 7rem 5% 5rem;
+    position: relative; overflow: hidden;
   }
-  @media (hover: hover) and (pointer: fine) {
-    .pf-card:hover {
-      border-color: rgba(127,119,221,0.28);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-    }
+  .port-hero::before {
+    content: '';
+    position: absolute; top: -30%; left: -5%;
+    width: 50%; height: 80%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .port-hero-inner { position: relative; z-index: 1; }
+  .port-h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
+    line-height: 1.1; margin: 0 0 1.25rem;
+  }
+  .port-sub { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.75; max-width: 50ch; }
+
+  .port-grid-section { background: var(--surface-1); padding: 5rem 5%; }
+  .port-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
   }
 
-  .pf-page-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 32px;
-    border-radius: 100px;
-    background: #7F77DD;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  .proj-card {
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: var(--r-xl); overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   }
-  .pf-page-cta-btn:active { transform: scale(0.97); }
   @media (hover: hover) and (pointer: fine) {
-    .pf-page-cta-btn:hover { background: #6B63C9; }
+    .proj-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--proj-accent);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.32);
+    }
   }
-  .pf-preview {
-    height: 200px;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    padding: 1.25rem;
-    gap: 4px;
-    flex-wrap: wrap;
+  .proj-visual {
+    height: 200px; background: var(--surface-3);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
   }
-  .pf-dots {
+  .proj-visual-overlay {
     position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(240,239,255,0.05) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background: linear-gradient(135deg, var(--proj-accent) 0%, transparent 70%);
+    opacity: 0.1;
   }
-  .pf-tag {
-    position: relative;
-    font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 100px;
-    background: rgba(10,10,15,0.55); backdrop-filter: blur(8px);
+  .proj-visual-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, var(--proj-accent), transparent 60%);
+    opacity: 0.05;
+  }
+  .proj-visual-icon {
+    width: 64px; height: 64px; border-radius: var(--r-lg);
+    background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--proj-accent); position: relative; z-index: 1;
   }
-  .pf-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+  .proj-year-tag {
+    position: absolute; top: 16px; right: 16px; z-index: 2;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 4px 10px; border-radius: var(--r-full);
+    font-size: 11px; color: var(--text-dim); font-family: 'Poppins', sans-serif;
   }
-  @media (max-width: 900px) { .pf-grid { grid-template-columns: repeat(2,1fr); } }
-  @media (max-width: 580px) { .pf-grid { grid-template-columns: 1fr; } }
+  .proj-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
+  .proj-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .proj-cat { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--proj-accent); font-family: 'Poppins', sans-serif; font-weight: 500; }
+  .proj-status {
+    font-size: 11px; padding: 2px 8px; border-radius: var(--r-full);
+    border: 1px solid var(--border); color: var(--text-dim);
+    font-family: 'Poppins', sans-serif;
+  }
+  .proj-name { font-size: 1.125rem; font-weight: 700; color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1.3; margin: 0; }
+  .proj-desc { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin: 0; }
+  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .proj-tag-item {
+    font-size: 11px; padding: 4px 10px; border-radius: var(--r-full);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--text-dim);
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (max-width: 700px) { .port-grid { grid-template-columns: 1fr; } }
 </style>
 
 <BaseLayout
-  title="Portfolio | MB-Solutions Köln"
-  description="Webdesign und Branding Projekte von MB-Solutions aus Köln."
+  title="Portfolio – Projekte von MB-Solutions"
+  description="Portfolio von MB-Solutions: Webdesign, IT-Projekte und Branding für Kölner KMU und Handwerksbetriebe."
 >
   <Navbar />
-  <main style="flex:1;">
+  <main id="main-content">
 
     <!-- Hero -->
-    <section style="background:#0d0d18; padding:6rem 0 5rem; text-align:center;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <div style="width:36px; height:2px; background:#7F77DD; margin:0 auto 1.5rem;"></div>
-        <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Portfolio</p>
-        <h1 style="font-size:clamp(2.25rem,4vw,3.5rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
-          Projekte, die für sich sprechen.
+    <section class="port-hero" aria-labelledby="port-heading">
+      <div class="port-hero-inner section-inner" style="max-width:none;">
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Portfolio</span>
+        </div>
+        <h1 class="port-h1" id="port-heading">
+          Projekte, die<br/>etwas bewegen.
         </h1>
-        <p style="font-size:1.0625rem; color:rgba(240,239,255,0.5); line-height:1.75; max-width:520px; margin:0 auto;">
-          Jedes Projekt ist ein Vertrauensbeweis – hier siehst du, wie ich anderen Unternehmen geholfen habe.
+        <p class="port-sub">
+          Eine Auswahl abgeschlossener und laufender Projekte — echte Kunden, echte Ergebnisse.
         </p>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section style="background:#0a0a0f; padding:5rem 0 7rem;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-
-        <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:3.5rem;" role="group" aria-label="Projekte filtern">
-          {filters.map((filter, i) => (
-            <button type="button" style={`padding:8px 20px; border-radius:100px; font-size:13px; font-weight:500; border:none; cursor:pointer; font-family:inherit; ${i === 0 ? 'background:#7F77DD; color:white;' : 'background:rgba(127,119,221,0.1); color:rgba(240,239,255,0.5);'}`}>
-              {filter}
-            </button>
-          ))}
+    <!-- Grid -->
+    <section class="port-grid-section" aria-labelledby="port-grid-label">
+      <div class="section-inner">
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Alle Projekte</span>
         </div>
+        <h2 class="sr-only" id="port-grid-label">Projektübersicht</h2>
 
-        <div class="pf-grid">
+        <div class="port-grid">
           {projects.map((p) => (
-            <div class="pf-card stagger-reveal">
-              <div class="pf-preview" style={`background:${p.gradient};`}>
-                <div class="pf-dots" aria-hidden="true"></div>
-                {p.tags.map((tag) => (
-                  <span class="pf-tag" style={`color:${p.accentColor};`}>{tag}</span>
-                ))}
+            <article class="proj-card stagger-reveal" style={`--proj-accent:${p.accent};`}>
+              <div class="proj-visual">
+                <div class="proj-visual-overlay" aria-hidden="true"></div>
+                <div class="proj-visual-glow" aria-hidden="true"></div>
+                <div class="proj-visual-icon" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                  </svg>
+                </div>
+                <span class="proj-year-tag">{p.year}</span>
               </div>
-              <div style="padding:1.5rem;">
-                <h3 style="font-size:1rem; font-weight:600; color:#F0EFFF; margin:0 0 0.5rem;">{p.title}</h3>
-                <p style="font-size:13px; color:rgba(240,239,255,0.4); line-height:1.65;">{p.description}</p>
+              <div class="proj-body">
+                <div class="proj-meta">
+                  <span class="proj-cat">{p.cat}</span>
+                  <span class="proj-status">{p.status}</span>
+                </div>
+                <p class="proj-name">{p.name}</p>
+                <p class="proj-desc">{p.body}</p>
+                <div class="proj-tags" aria-label="Technologien">
+                  {p.tags.map(tag => <span class="proj-tag-item">{tag}</span>)}
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
-
       </div>
     </section>
 
-    <!-- CTA -->
-    <section style="background:#0d0d18; padding:5rem 0; text-align:center;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 2rem;">
-          Du willst auch so ein Ergebnis?
-        </h2>
-        <a href="/kontakt" class="pf-page-cta-btn">Projekt anfragen →</a>
-      </div>
-    </section>
-
+    <CTASection />
   </main>
   <Footer />
 </BaseLayout>

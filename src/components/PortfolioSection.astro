@@ -1,135 +1,164 @@
 ---
 const projects = [
   {
-    gradient: 'linear-gradient(135deg, rgba(127,119,221,0.28) 0%, rgba(127,119,221,0.04) 100%)',
-    accentColor: '#AFA9EC',
-    tag: 'Webdesign · Branding',
-    title: 'Café Rösterei Köln',
-    subtitle: 'Website + Corporate Identity',
+    name: 'Café Rösterei Köln',
+    cat: 'Webdesign',
+    body: 'Moderner Online-Auftritt für eine Kölner Spezialitätenrösterei mit Online-Shop und Story-Seiten.',
+    tag: 'Fertiggestellt',
+    accent: '#7F77DD',
   },
   {
-    gradient: 'linear-gradient(135deg, rgba(45,212,191,0.22) 0%, rgba(45,212,191,0.03) 100%)',
-    accentColor: '#2DD4BF',
-    tag: 'Webdesign · IT-Setup',
-    title: 'Elektro Müller GmbH',
-    subtitle: 'Website, Logo & lokale IT-Einrichtung',
+    name: 'Meisterbetrieb Schmitz',
+    cat: 'IT-Setup & Branding',
+    body: 'Neues Logo, Briefpapier und komplettes Cloud-Setup inkl. E-Mail-Migration für Sanitärbetrieb.',
+    tag: 'Fertiggestellt',
+    accent: '#2DD4BF',
   },
   {
-    gradient: 'linear-gradient(135deg, rgba(255,140,107,0.22) 0%, rgba(255,140,107,0.03) 100%)',
-    accentColor: '#FF8C6B',
-    tag: 'Branding',
-    title: 'Fitnessstudio NordKöln',
-    subtitle: 'Logo, Visitenkarten & Social Media Kit',
+    name: 'Kosmetikstudio Belle',
+    cat: 'Webdesign',
+    body: 'Booking-fähige Website mit Leistungsübersicht und Online-Terminbuchung via Calendly-Integration.',
+    tag: 'In Bearbeitung',
+    accent: '#FF8C6B',
   },
-  {
-    gradient: 'linear-gradient(135deg, rgba(127,119,221,0.14) 0%, rgba(13,13,24,0) 100%)',
-    accentColor: '#AFA9EC',
-    tag: 'IT-Services',
-    title: 'Steuerberatung Hofmann',
-    subtitle: 'Cloud-Migration & IT-Support Retainer',
-  },
-] as const;
+];
 ---
 
 <style>
-  .pf-card {
-    background: #13131f;
-    border: 1px solid rgba(127,119,221,0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    transition:
-      border-color 220ms var(--ease-out),
-      transform    220ms var(--ease-out),
-      box-shadow   220ms var(--ease-out);
+  .portfolio {
+    background: var(--surface-1);
+    padding: 6rem 5%;
+    position: relative;
+  }
+  .portfolio::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 0%, rgba(127,119,221,0.05) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .portfolio-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 1.5rem;
+    margin-bottom: 3rem;
+    position: relative; z-index: 1;
+  }
+  .portfolio-headline {
+    font-size: clamp(1.875rem, 3vw, 2.625rem);
+    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
+    max-width: 22ch; line-height: 1.2; margin: 0 0 1rem;
+  }
+  .portfolio-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    position: relative; z-index: 1;
   }
 
+  .proj-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out),
+                box-shadow 240ms var(--ease-out);
+  }
   @media (hover: hover) and (pointer: fine) {
-    .pf-card:hover {
-      border-color: rgba(127,119,221,0.28);
+    .proj-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      border-color: var(--proj-accent);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
     }
   }
 
-  .pf-preview {
-    height: 180px;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    padding: 1.25rem;
+  .proj-visual {
+    height: 160px;
+    background: var(--surface-3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
   }
-  .pf-dots {
+  .proj-visual-inner {
     position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(240,239,255,0.06) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background: linear-gradient(135deg, var(--proj-accent) 0%, transparent 65%);
+    opacity: 0.07;
   }
-  .pf-tag {
-    position: relative;
-    font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase;
-    padding: 4px 10px; border-radius: 100px;
-    background: rgba(10,10,15,0.55); backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.08);
+  .proj-visual-icon {
+    width: 56px; height: 56px; border-radius: var(--r-lg);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--proj-accent);
+    position: relative; z-index: 1;
   }
-  .pf-body { padding: 1.5rem; }
-  .pf-title {
-    font-size: 1.0625rem;
-    font-weight: 600;
-    color: #F0EFFF;
-    margin: 0 0 0.375rem;
-  }
-  .pf-subtitle { font-size: 0.875rem; color: rgba(240,239,255,0.4); }
 
-  .pf-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+  .proj-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem; flex: 1; }
+  .proj-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .proj-cat {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--proj-accent); font-family: 'Poppins', sans-serif; font-weight: 500;
   }
-  @media (max-width: 640px) {
-    .pf-grid { grid-template-columns: 1fr; }
+  .proj-tag {
+    font-size: 11px; padding: 2px 8px; border-radius: var(--r-full);
+    border: 1px solid var(--border); color: var(--text-dim);
+    font-family: 'Poppins', sans-serif;
   }
+  .proj-name {
+    font-size: 1.0625rem; font-weight: 600; color: var(--text);
+    font-family: 'Poppins', sans-serif; line-height: 1.3; margin: 0;
+  }
+  .proj-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin: 0; }
+
+  .portfolio-cta { margin-top: 3rem; text-align: center; position: relative; z-index: 1; }
+
+  @media (max-width: 599px) { .portfolio-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 600px) and (max-width: 900px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 
-<section style="background:#0a0a0f; padding:7rem 0;">
-  <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-
-    <!-- Header -->
-    <div style="max-width:640px; margin-bottom:4rem;">
-      <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-      <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">
-        Ausgewählte Projekte
-      </p>
-      <h2 style="font-size:clamp(2rem,3vw,2.75rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
-        Meine Arbeiten.
-      </h2>
-      <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.75;">
-        Jedes Projekt ist ein Vertrauensbeweis – hier siehst du, womit ich anderen Unternehmen geholfen habe.
-      </p>
-    </div>
-
-    <!-- Cards — stagger-reveal -->
-    <div class="pf-grid">
-      {projects.map((p) => (
-        <div class="pf-card stagger-reveal">
-          <div class="pf-preview" style={`background:${p.gradient};`}>
-            <div class="pf-dots" aria-hidden="true"></div>
-            <span class="pf-tag" style={`color:${p.accentColor};`}>{p.tag}</span>
-          </div>
-          <div class="pf-body">
-            <h3 class="pf-title">{p.title}</h3>
-            <p class="pf-subtitle">{p.subtitle}</p>
-          </div>
+<section class="portfolio" aria-labelledby="portfolio-heading">
+  <div class="section-inner">
+    <div class="portfolio-head">
+      <div>
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Portfolio</span>
         </div>
-      ))}
-    </div>
-
-    <div style="margin-top:3rem; text-align:center;">
-      <a href="/portfolio" class="press-btn" style="
-        display:inline-flex; align-items:center; gap:6px;
-        color:#7F77DD; font-size:14px; text-decoration:none;
-      ">
-        Alle Projekte ansehen <span aria-hidden="true">→</span>
+        <h2 class="portfolio-headline" id="portfolio-heading">
+          Projekte, die etwas bewegen.
+        </h2>
+        <p class="portfolio-sub">Echte Kunden. Echte Ergebnisse.</p>
+      </div>
+      <a href="/portfolio" class="btn-outline" aria-label="Alle Projekte ansehen">
+        Alle ansehen
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
 
+    <div class="portfolio-grid">
+      {projects.map((p) => (
+        <article class="proj-card stagger-reveal" style={`--proj-accent:${p.accent};`}>
+          <div class="proj-visual">
+            <div class="proj-visual-inner" aria-hidden="true"></div>
+            <div class="proj-visual-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <path d="M8 21h8M12 17v4"/>
+              </svg>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-meta">
+              <span class="proj-cat">{p.cat}</span>
+              <span class="proj-tag">{p.tag}</span>
+            </div>
+            <p class="proj-name">{p.name}</p>
+            <p class="proj-desc">{p.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

@@ -1,107 +1,182 @@
 ---
-// AboutSection – editorial two-column layout, dark theme
+// AboutSection — two-column editorial, new design system
 ---
 
 <style>
-  .about-section { background: #0d0d18; padding: 7rem 0; }
-
-  .about-quote {
-    font-size: clamp(1.75rem, 2.8vw, 2.5rem);
-    font-weight: 700;
-    color: #F0EFFF;
-    line-height: 1.25;
-    margin: 0;
+  .about {
+    background: var(--bg);
+    padding: 6rem 5%;
   }
-  .about-quote em { font-style: normal; color: #7F77DD; }
-
-  .fact-card {
-    background: #13131f;
-    border: 1px solid rgba(127,119,221,0.12);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .fact-row {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    padding: 1.125rem 1.75rem;
-    border-bottom: 1px solid rgba(127,119,221,0.08);
-  }
-  .fact-row:last-child { border-bottom: none; }
-  .fact-label {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(240,239,255,0.28);
-  }
-  .fact-value {
-    font-size: 0.9375rem;
-    color: rgba(240,239,255,0.78);
-    font-weight: 500;
-  }
-
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: 1fr 1fr;
     gap: 5rem;
-    align-items: start;
+    align-items: center;
   }
-  @media (max-width: 900px) {
+
+  /* ─── Visual ───────────────────── */
+  .about-visual {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; inset: -24px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .about-avatar-wrap {
+    position: relative; z-index: 1;
+    width: 260px; height: 260px;
+    border-radius: var(--r-xl);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .about-avatar-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(127,119,221,0.12) 0%, rgba(45,212,191,0.05) 100%);
+  }
+  .about-avatar-icon {
+    position: relative; z-index: 1;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(127,119,221,0.15);
+    border: 1px solid rgba(127,119,221,0.25);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .about-badge {
+    position: absolute;
+    bottom: -16px; right: -16px;
+    background: var(--surface-2);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--r-md);
+    padding: 12px 16px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .about-badge-val {
+    font-size: 1.375rem; font-weight: 700; color: var(--accent);
+    font-family: 'Poppins', sans-serif; line-height: 1;
+  }
+  .about-badge-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+
+  /* ─── Content ──────────────────── */
+  .about-headline {
+    font-size: clamp(1.875rem, 3vw, 2.5rem);
+    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
+    line-height: 1.2; margin: 0 0 1.25rem;
+  }
+  .about-body {
+    font-size: 1rem; color: var(--text-muted); line-height: 1.8;
+    margin: 0 0 2rem;
+  }
+  .about-facts { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+  .about-fact {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-fact:first-child { border-top: 1px solid var(--border); }
+  .about-fact-icon {
+    width: 32px; height: 32px; border-radius: var(--r-sm);
+    background: rgba(127,119,221,0.08);
+    border: 1px solid rgba(127,119,221,0.14);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent); flex-shrink: 0; margin-top: 2px;
+  }
+  .about-fact-text { display: flex; flex-direction: column; gap: 2px; }
+  .about-fact-title {
+    font-size: 0.875rem; font-weight: 600; color: var(--text);
+    font-family: 'Poppins', sans-serif;
+  }
+  .about-fact-sub { font-size: 0.8125rem; color: var(--text-dim); line-height: 1.5; }
+
+  @media (max-width: 860px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { order: -1; }
+    .about-avatar-wrap { width: 200px; height: 200px; }
   }
 </style>
 
-<section class="about-section">
-  <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-
-    <!-- Eyebrow -->
-    <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-    <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:4rem;">
-      Wer steckt dahinter
-    </p>
-
+<section class="about" aria-labelledby="about-heading">
+  <div class="section-inner">
     <div class="about-grid">
 
-      <!-- Left: Editorial Statement -->
-      <div>
-        <p style="font-size:4.5rem; line-height:0.65; color:rgba(127,119,221,0.18); font-family:Georgia,serif; margin-bottom:1.5rem;" aria-hidden="true">"</p>
-        <h2 class="about-quote">
-          Jedes Projekt betreue ich <em>persönlich</em> – von der ersten Idee bis zum Launch und danach.
-        </h2>
-        <p style="margin-top:2rem; font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.8; max-width:460px;">
-          Ich bin Maurice, Wirtschaftsinformatik-Student in Köln. Was mich von klassischen Agenturen unterscheidet: Ich denke nicht nur in Code, sondern in Geschäftsmodellen. Deine Website soll nicht nur gut aussehen – sie soll dir Kunden bringen.
-        </p>
-        <a href="/ueber-mich" style="display:inline-flex; align-items:center; gap:6px; margin-top:2rem; color:#7F77DD; font-size:14px; text-decoration:none;">
-          Mehr über mich <span aria-hidden="true">→</span>
-        </a>
+      <!-- Visual -->
+      <div class="about-visual">
+        <div class="about-avatar-wrap">
+          <div class="about-avatar-bg" aria-hidden="true"></div>
+          <div class="about-avatar-icon" aria-hidden="true">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+        </div>
+        <div class="about-badge" aria-hidden="true">
+          <span class="about-badge-val">5+</span>
+          <span class="about-badge-label">Jahre Erfahrung</span>
+        </div>
       </div>
 
-      <!-- Right: Credentials -->
-      <div class="fact-card">
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Name</span>
-          <span class="fact-value">Maurice Bourkiah</span>
+      <!-- Text -->
+      <div>
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Über mich</span>
         </div>
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Studium</span>
-          <span class="fact-value">Wirtschaftsinformatik, Köln</span>
+        <h2 class="about-headline" id="about-heading">
+          Ein Ansprechpartner.<br/>Null Overhead.
+        </h2>
+        <p class="about-body">
+          Ich bin Maurice, Freelancer aus Köln. Ich helfe kleinen Unternehmen und Handwerksbetrieben,
+          ihren digitalen Auftritt auf Vordermann zu bringen — ohne Agentur-Preise, ohne Warteschlange.
+        </p>
+
+        <div class="about-facts">
+          <div class="about-fact stagger-reveal">
+            <div class="about-fact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="about-fact-text">
+              <span class="about-fact-title">Köln-basiert</span>
+              <span class="about-fact-sub">Persönliche Treffen möglich, deutschlandweite Betreuung remote.</span>
+            </div>
+          </div>
+          <div class="about-fact stagger-reveal">
+            <div class="about-fact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <div class="about-fact-text">
+              <span class="about-fact-title">Full-Stack-Ansatz</span>
+              <span class="about-fact-sub">Design, Code und IT aus einer Hand — keine Reibungsverluste zwischen Teams.</span>
+            </div>
+          </div>
+          <div class="about-fact stagger-reveal">
+            <div class="about-fact-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div class="about-fact-text">
+              <span class="about-fact-title">Langfristige Betreuung</span>
+              <span class="about-fact-sub">Kein Projekt-Dump — ich bleibe Ansprechpartner auch nach dem Launch.</span>
+            </div>
+          </div>
         </div>
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Standort</span>
-          <span class="fact-value">Köln, Deutschland</span>
-        </div>
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Ansprechpartner</span>
-          <span class="fact-value">Direkt – kein Outsourcing</span>
-        </div>
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Antwortzeit</span>
-          <span class="fact-value">Innerhalb von 48 Stunden</span>
-        </div>
-        <div class="fact-row stagger-reveal">
-          <span class="fact-label">Projekte</span>
-          <span class="fact-value">Persönlich betreut, von Anfang bis Ende</span>
-        </div>
+
+        <a href="/ueber-mich" class="btn-outline">
+          Mehr über mich
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
 
     </div>

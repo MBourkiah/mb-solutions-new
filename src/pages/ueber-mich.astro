@@ -1,187 +1,260 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
+import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 
 const skills = [
-  {
-    accentColor: '#AFA9EC',
-    accentBg: 'rgba(127,119,221,0.1)',
-    title: 'Wirtschaftsinformatik',
-    description: 'Ich denke in Prozessen und Geschäftsmodellen – nicht nur in Code. Deine Website ist Mittel zum Zweck, nicht Selbstzweck.',
-  },
-  {
-    accentColor: '#2DD4BF',
-    accentBg: 'rgba(45,212,191,0.08)',
-    title: 'Technisches Know-how',
-    description: 'Astro, React, Next.js, Tailwind, WordPress, Webflow – ich wähle das richtige Werkzeug für dein Projekt und Budget.',
-  },
-  {
-    accentColor: '#FF8C6B',
-    accentBg: 'rgba(255,140,107,0.08)',
-    title: 'Persönliche Betreuung',
-    description: 'Kein Ticket-System, kein Outsourcing – du erreichst mich direkt. Jedes Projekt betreue ich von Anfang bis Ende selbst.',
-  },
+  { label: 'Webdesign & Frontend', level: 90, accent: '#7F77DD' },
+  { label: 'Astro / React / HTML+CSS', level: 88, accent: '#7F77DD' },
+  { label: 'IT-Infrastruktur & Cloud', level: 80, accent: '#2DD4BF' },
+  { label: 'Branding & Grafikdesign', level: 75, accent: '#FF8C6B' },
+  { label: 'SEO & Analytics', level: 72, accent: '#7F77DD' },
 ];
 
-const values = [
-  {
-    title: 'Zuhören vor Handeln',
-    description: 'Ich verstehe zuerst dein Business, deine Ziele und deine Kunden – bevor ich auch nur eine Zeile Code schreibe.',
-  },
-  {
-    title: 'Transparenz immer',
-    description: 'Klare Preise, klare Timelines, klare Kommunikation. Keine versteckten Kosten, keine Überraschungen.',
-  },
-  {
-    title: 'Qualität über Quantität',
-    description: 'Ich nehme bewusst wenige Projekte an, damit jedes die Aufmerksamkeit bekommt, die es verdient.',
-  },
+const timeline = [
+  { year: '2019', title: 'Erste Kundenprojekte', body: 'Einstieg in die Selbstständigkeit mit einfachen WordPress-Websites für lokale Betriebe.' },
+  { year: '2021', title: 'Full-Stack & IT', body: 'Erweiterung auf IT-Services: Microsoft 365, Cloud-Setups und Netzwerkinstallationen.' },
+  { year: '2023', title: 'Gründung MB-Solutions', body: 'Formale Gründung als MB-Solutions mit Fokus auf Webdesign, IT und Branding aus einer Hand.' },
+  { year: '2024', title: 'Modern Stack', body: 'Migration auf Astro und moderne Performance-Stacks für schnellere, skalierbare Websites.' },
 ];
 ---
 
 <style>
-  .skill-card {
-    background: #13131f;
-    border: 1px solid rgba(127,119,221,0.12);
-    border-radius: 20px;
-    padding: 2rem;
-    transition: border-color 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  /* ── Hero ─────────────────────────────── */
+  .about-hero {
+    background: var(--bg);
+    padding: 7rem 5% 5rem;
+    position: relative; overflow: hidden;
   }
-  @media (hover: hover) and (pointer: fine) {
-    .skill-card:hover {
-      border-color: rgba(127,119,221,0.28);
-      box-shadow: 0 0 36px rgba(127,119,221,0.06);
-    }
+  .about-hero::before {
+    content: '';
+    position: absolute; top: -30%; right: -10%;
+    width: 50%; height: 80%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .about-hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .about-h1 {
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
+    line-height: 1.1; margin: 0 0 1.25rem;
+  }
+  .about-lead { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.8; max-width: 48ch; margin: 0 0 2rem; }
+  .about-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .stat-item { display: flex; flex-direction: column; gap: 3px; }
+  .stat-val { font-size: 1.75rem; font-weight: 800; color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+
+  /* ── Visual ─────────────────────── */
+  .about-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+  .about-visual::before {
+    content: '';
+    position: absolute; inset: -30px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .about-portrait {
+    position: relative; z-index: 1;
+    width: 280px; height: 320px; border-radius: var(--r-xl);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .about-portrait-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(150deg, rgba(127,119,221,0.12) 0%, rgba(45,212,191,0.05) 100%);
+  }
+  .about-portrait-icon {
+    position: relative; z-index: 1;
+    width: 96px; height: 96px; border-radius: 50%;
+    background: rgba(127,119,221,0.12);
+    border: 1.5px solid rgba(127,119,221,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
   }
 
-  .um-cta-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 32px;
-    border-radius: 100px;
-    background: #7F77DD;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
+  /* ── Skills ────────────────────── */
+  .skills-section { background: var(--surface-1); padding: 6rem 5%; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
+  .skills-intro { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+  .skill-bars { display: flex; flex-direction: column; gap: 1.25rem; }
+  .skill-row { display: flex; flex-direction: column; gap: 8px; }
+  .skill-meta { display: flex; justify-content: space-between; align-items: baseline; }
+  .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); font-family: 'Poppins', sans-serif; }
+  .skill-pct { font-size: 0.8125rem; color: var(--text-dim); font-family: 'Poppins', sans-serif; }
+  .skill-track {
+    height: 5px; border-radius: var(--r-full);
+    background: var(--surface-3); overflow: hidden;
   }
-  .um-cta-btn:active { transform: scale(0.97); }
-  @media (hover: hover) and (pointer: fine) {
-    .um-cta-btn:hover { background: #6B63C9; }
+  .skill-fill {
+    height: 100%; border-radius: var(--r-full);
+    background: linear-gradient(90deg, var(--skill-accent) 0%, color-mix(in srgb, var(--skill-accent) 70%, #9B73E8) 100%);
+    transform-origin: left;
   }
 
-  .value-row {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(127,119,221,0.08);
+  /* ── Timeline ──────────────────── */
+  .timeline-section { background: var(--bg); padding: 6rem 5%; }
+  .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; max-width: 700px; }
+  .tl-item {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 1.5rem; padding-bottom: 2rem; position: relative;
   }
-  .value-row:last-child { border-bottom: none; }
+  .tl-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 36px; top: 28px; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .tl-year {
+    font-size: 0.875rem; font-weight: 700; color: var(--accent);
+    font-family: 'Poppins', sans-serif; padding-top: 4px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .tl-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px rgba(127,119,221,0.2);
+    flex-shrink: 0;
+  }
+  .tl-content { padding-top: 2px; }
+  .tl-title { font-size: 1rem; font-weight: 600; color: var(--text); font-family: 'Poppins', sans-serif; margin: 0 0 0.375rem; }
+  .tl-body { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 1.25rem;
+  /* ── Responsive ─────────────────── */
+  @media (max-width: 860px) {
+    .about-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { order: -1; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
   }
-  @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr; } }
+
+  /* ── Shared ─────────────────────── */
+  .section-h2 {
+    font-size: clamp(1.75rem, 2.75vw, 2.375rem);
+    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
+    margin: 0 0 0.875rem; line-height: 1.2;
+  }
 </style>
 
 <BaseLayout
-  title="Über mich | MB-Solutions Köln"
-  description="Maurice Bourkiah – Wirtschaftsinformatik-Student und Gründer von MB-Solutions in Köln."
+  title="Über mich – Maurice Bourkiah, MB-Solutions Köln"
+  description="Über Maurice Bourkiah von MB-Solutions – Freelancer für Webdesign, IT-Services und Branding in Köln."
 >
   <Navbar />
-  <main style="flex:1;">
+  <main id="main-content">
 
     <!-- Hero -->
-    <section style="background:#0d0d18; padding:7rem 0;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;">
-
-          <!-- Text -->
-          <div>
-            <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-            <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">Über mich</p>
-            <h1 style="font-size:clamp(2.25rem,3.5vw,3rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.5rem;">
-              Hallo, ich bin<br/><span style="color:#7F77DD;">Maurice.</span>
-            </h1>
-            <div style="display:flex; flex-direction:column; gap:1rem; font-size:1rem; color:rgba(240,239,255,0.55); line-height:1.8;">
-              <p>
-                Ich studiere Wirtschaftsinformatik in Köln und habe MB-Solutions gegründet, weil ich gemerkt habe: Viele kleine Unternehmen brauchen keinen teuren Agenturvertrag – sie brauchen einen verlässlichen Partner, der ihre Sprache spricht.
-              </p>
-              <p>
-                Was mich antreibt ist der Moment, wenn ein Kunde sagt:
-                <em style="font-style:normal; color:#F0EFFF; font-weight:500;">„Endlich sieht mein Auftritt so aus wie mein Business wirklich ist."</em>
-                Genau dafür bin ich hier.
-              </p>
+    <section class="about-hero" aria-labelledby="about-heading">
+      <div class="about-hero-grid section-inner" style="max-width:none;">
+        <div>
+          <div class="eyebrow">
+            <div class="eyebrow-line"></div>
+            <span class="eyebrow-text">Über mich</span>
+          </div>
+          <h1 class="about-h1" id="about-heading">
+            Hallo, ich bin<br/>Maurice.
+          </h1>
+          <p class="about-lead">
+            Freelancer aus Köln mit einem Ding für schöne Websites,
+            sauber aufgesetzte IT und Marken, die im Gedächtnis bleiben.
+            Ich arbeite direkt mit meinen Kunden — kein Mittelmann, keine Warteschlange.
+          </p>
+          <div class="about-stats" aria-label="Kennzahlen">
+            <div class="stat-item">
+              <span class="stat-val">5+</span>
+              <span class="stat-label">Jahre Erfahrung</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val">12+</span>
+              <span class="stat-label">Projekte</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-val">100%</span>
+              <span class="stat-label">Direktbetreuung</span>
             </div>
           </div>
+        </div>
 
-          <!-- Credentials card -->
-          <div style="background:#13131f; border:1px solid rgba(127,119,221,0.12); border-radius:20px; overflow:hidden;">
-            {[
-              { label: 'Name', value: 'Maurice Bourkiah' },
-              { label: 'Studium', value: 'Wirtschaftsinformatik, Köln' },
-              { label: 'Standort', value: 'Köln, Deutschland' },
-              { label: 'Antwortzeit', value: 'Innerhalb von 48h' },
-              { label: 'Ansatz', value: 'Persönlich, kein Outsourcing' },
-            ].map((row) => (
-              <div style="padding:1.125rem 1.75rem; border-bottom:1px solid rgba(127,119,221,0.07); display:flex; flex-direction:column; gap:3px;">
-                <span style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(240,239,255,0.25);">{row.label}</span>
-                <span style="font-size:0.9375rem; color:rgba(240,239,255,0.78); font-weight:500;">{row.value}</span>
-              </div>
-            ))}
-            <div style="padding:1.125rem 1.75rem;">
-              <span style="font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(240,239,255,0.25);">Status</span>
-              <div style="display:flex; align-items:center; gap:8px; margin-top:3px;">
-                <span style="width:7px; height:7px; border-radius:50%; background:#2DD4BF; display:inline-block;"></span>
-                <span style="font-size:0.9375rem; color:rgba(240,239,255,0.78); font-weight:500;">Offen für neue Projekte</span>
-              </div>
+        <div class="about-visual">
+          <div class="about-portrait">
+            <div class="about-portrait-bg" aria-hidden="true"></div>
+            <div class="about-portrait-icon" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- Skills -->
-    <section style="background:#0a0a0f; padding:6rem 0;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <div style="margin-bottom:3.5rem;">
-          <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-          <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0;">Was ich mitbringe.</h2>
+    <section class="skills-section" aria-labelledby="skills-heading">
+      <div class="section-inner">
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Kenntnisse</span>
         </div>
+        <h2 class="section-h2" id="skills-heading">Was ich mitbringe.</h2>
+
         <div class="skills-grid">
-          {skills.map((skill) => (
-            <div class="skill-card stagger-reveal">
-              <div style={`width:40px; height:40px; border-radius:12px; background:${skill.accentBg}; border:1px solid ${skill.accentColor}30; display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem;`}>
-                <span style={`font-size:18px; color:${skill.accentColor};`} aria-hidden="true">✦</span>
-              </div>
-              <h3 style="font-size:1.125rem; font-weight:700; color:#F0EFFF; margin:0 0 0.75rem;">{skill.title}</h3>
-              <p style="font-size:0.9375rem; color:rgba(240,239,255,0.5); line-height:1.75;">{skill.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Values -->
-    <section style="background:#0d0d18; padding:6rem 0;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <div style="max-width:680px; margin:0 auto;">
-          <div style="margin-bottom:3.5rem;">
-            <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-            <h2 style="font-size:clamp(1.75rem,2.5vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0;">Wie ich arbeite.</h2>
+          <div>
+            <p class="skills-intro">
+              Ich bin kein Spezialist in einer Nische — ich verstehe das Ganze.
+              Vom Design über den Code bis zur IT-Infrastruktur denke ich vernetzt
+              und liefere Lösungen, die langfristig funktionieren.
+            </p>
           </div>
-          {values.map((v) => (
-            <div class="value-row">
-              <span style="width:6px; height:6px; border-radius:50%; background:#7F77DD; flex-shrink:0; margin-top:0.6rem;"></span>
-              <div>
-                <h3 style="font-size:1.0625rem; font-weight:600; color:#F0EFFF; margin:0 0 0.5rem;">{v.title}</h3>
-                <p style="font-size:0.9375rem; color:rgba(240,239,255,0.5); line-height:1.75; margin:0;">{v.description}</p>
+          <div class="skill-bars">
+            {skills.map(s => (
+              <div class="skill-row stagger-reveal">
+                <div class="skill-meta">
+                  <span class="skill-name">{s.label}</span>
+                  <span class="skill-pct">{s.level}%</span>
+                </div>
+                <div class="skill-track">
+                  <div
+                    class="skill-fill"
+                    style={`width:${s.level}%;--skill-accent:${s.accent};`}
+                    role="progressbar"
+                    aria-valuenow={s.level}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={s.label}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section" aria-labelledby="timeline-heading">
+      <div class="section-inner">
+        <div class="eyebrow">
+          <div class="eyebrow-line"></div>
+          <span class="eyebrow-text">Werdegang</span>
+        </div>
+        <h2 class="section-h2" id="timeline-heading">Wie es dazu kam.</h2>
+
+        <div class="timeline">
+          {timeline.map((item) => (
+            <div class="tl-item stagger-reveal">
+              <div class="tl-year">
+                <span class="tl-dot" aria-hidden="true"></span>
+                {item.year}
+              </div>
+              <div class="tl-content">
+                <p class="tl-title">{item.title}</p>
+                <p class="tl-body">{item.body}</p>
               </div>
             </div>
           ))}
@@ -189,19 +262,7 @@ const values = [
       </div>
     </section>
 
-    <!-- CTA -->
-    <section style="background:#0a0a0f; padding:6rem 0; text-align:center;">
-      <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-        <h2 style="font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#F0EFFF; margin:0 0 1rem;">
-          Klingt das nach dem richtigen Partner?
-        </h2>
-        <p style="font-size:1rem; color:rgba(240,239,255,0.5); margin:0 auto 2.5rem; max-width:380px; line-height:1.75;">
-          Kostenloses Erstgespräch – unverbindlich und auf Augenhöhe.
-        </p>
-        <a href="/kontakt" class="um-cta-btn">Lass uns reden →</a>
-      </div>
-    </section>
-
+    <CTASection />
   </main>
   <Footer />
 </BaseLayout>

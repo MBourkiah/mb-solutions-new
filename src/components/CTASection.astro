@@ -4,93 +4,71 @@
 
 <style>
   .cta-section {
-    background: #0a0a0f;
-    padding: 8rem 0;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: var(--surface-1);
+    padding: 6rem 5%;
+    position: relative; overflow: hidden;
   }
   .cta-section::before {
     content: '';
     position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 700px; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(127,119,221,0.35), transparent);
-  }
-  .cta-section::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 400px; height: 220px;
-    background: radial-gradient(ellipse at 50% 0%, rgba(127,119,221,0.07) 0%, transparent 70%);
+    top: -30%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.12) 0%, transparent 65%);
     pointer-events: none;
   }
+  .cta-inner {
+    position: relative; z-index: 1;
+    text-align: center;
+    max-width: 640px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+  }
+  .cta-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(45,212,191,0.08);
+    border: 1px solid rgba(45,212,191,0.2);
+    padding: 5px 14px; border-radius: var(--r-full);
+  }
+  .cta-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #2DD4BF;
+    box-shadow: 0 0 0 3px rgba(45,212,191,0.15);
+  }
+  .cta-badge-text { font-size: 12px; color: rgba(45,212,191,0.8); font-family: 'Poppins', sans-serif; font-weight: 500; }
   .cta-headline {
-    font-size: clamp(2.25rem, 4vw, 3.5rem);
-    font-weight: 700;
-    color: #F0EFFF;
-    line-height: 1.1;
-    max-width: 640px;
-    margin: 0 auto 1.5rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -0.03em; color: var(--text);
+    line-height: 1.12; margin: 0;
   }
+  .cta-headline .hl { color: var(--accent); }
   .cta-sub {
-    font-size: 1.0625rem;
-    color: rgba(240,239,255,0.45);
-    line-height: 1.75;
-    max-width: 400px;
-    margin: 0 auto 3rem;
+    font-size: 1rem; color: var(--text-muted); line-height: 1.75;
+    max-width: 44ch; margin: 0;
   }
-  .cta-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #7F77DD;
-    color: white;
-    padding: 16px 36px;
-    border-radius: 100px;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
-    /* Specific properties — never "all" */
-    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
-  }
-  /* Press feedback: instant and tactile */
-  .cta-btn:active { transform: scale(0.97); }
-
-  @media (hover: hover) and (pointer: fine) {
-    .cta-btn:hover { background: #6B63C9; }
-  }
-
-  .cta-email {
-    display: block;
-    margin-top: 1.5rem;
-    font-size: 13px;
-    color: rgba(240,239,255,0.25);
-    text-decoration: none;
-    transition: color 150ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .cta-email:hover { color: rgba(240,239,255,0.55); }
-  }
+  .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .cta-note { font-size: 0.8125rem; color: var(--text-dim); margin: 0; }
 </style>
 
-<section class="cta-section">
-  <div style="position:relative; z-index:1; max-width:72rem; margin:0 auto; padding:0 2rem;">
-    <h2 class="cta-headline">
-      Bereit für deinen<br/>
-      <span style="color:#7F77DD;">digitalen Auftritt?</span>
+<section class="cta-section" aria-labelledby="cta-heading">
+  <div class="cta-inner">
+    <div class="cta-badge">
+      <span class="cta-badge-dot" aria-hidden="true"></span>
+      <span class="cta-badge-text">Kostenloses Erstgespräch</span>
+    </div>
+
+    <h2 class="cta-headline" id="cta-heading">
+      Bereit für deinen<br/><span class="hl">digitalen Auftritt?</span>
     </h2>
+
     <p class="cta-sub">
-      Kostenloses Erstgespräch – ich analysiere deine Situation und zeige dir konkret, was möglich ist.
+      In einem kurzen Gespräch finden wir heraus, was du brauchst —
+      unverbindlich und ohne Agentur-Preis-Schock.
     </p>
-    <a href="/kontakt" class="cta-btn">Jetzt Gespräch buchen</a>
-    <a href="mailto:mbourkiah@k-solutions.biz" class="cta-email">
-      oder schreib direkt: mbourkiah@k-solutions.biz
-    </a>
-    <p style="margin-top:3rem; font-size:12px; color:rgba(240,239,255,0.18);">
-      📍 Aus Köln &nbsp;·&nbsp; 48h Antwortzeit &nbsp;·&nbsp; Keine versteckten Kosten
-    </p>
+
+    <div class="cta-btns">
+      <a href="/kontakt" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+      <a href="/leistungen" class="btn-outline">Leistungen ansehen</a>
+    </div>
+
+    <p class="cta-note">Antwort innerhalb von 48 Stunden · Direkt von Maurice</p>
   </div>
 </section>

@@ -1,151 +1,133 @@
 ---
 const services = [
   {
-    tag: 'Webdesign',
-    tagBg: 'rgba(127,119,221,0.12)',
-    tagColor: '#AFA9EC',
-    title: 'Websites, die verkaufen.',
-    description: 'Moderne, schnelle Webseiten mit klarer Struktur. WordPress, Webflow oder Custom-Code – je nach Bedarf und Budget.',
-    price: 'ab 499 €',
-    href: '/leistungen',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+    label: 'Webdesign & Entwicklung',
+    body: 'Schnelle, mobile-first Websites die Kunden überzeugen — von der Konzeption bis zum Launch.',
+    accent: 'var(--accent)',
+    glow: 'rgba(127,119,221,0.08)',
+    items: ['Responsive Design', 'Performance-Optimierung', 'CMS-Integration', 'SEO-Grundlagen'],
   },
   {
-    tag: 'IT-Services',
-    tagBg: 'rgba(45,212,191,0.1)',
-    tagColor: '#2DD4BF',
-    title: 'IT ohne Chaos.',
-    description: 'Einrichtung, Wartung, Cloud-Setup und Support. Ich übernehme das zuverlässig – du konzentrierst dich auf dein Business.',
-    price: 'ab 45 €/Std.',
-    href: '/leistungen',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>`,
+    label: 'IT-Services & Setup',
+    body: 'Alles, damit dein Betrieb digital läuft: E-Mail, Cloud, Hardware und laufende Betreuung.',
+    accent: '#2DD4BF',
+    glow: 'rgba(45,212,191,0.07)',
+    items: ['E-Mail & Domain', 'Cloud-Setup', 'Datensicherung', 'Remote-Support'],
   },
   {
-    tag: 'Branding',
-    tagBg: 'rgba(255,140,107,0.1)',
-    tagColor: '#FF8C6B',
-    title: 'Marken, die bleiben.',
-    description: 'Logo, Visitenkarten, Corporate Design – dein professioneller Auftritt von Anfang an, der Vertrauen aufbaut und in Erinnerung bleibt.',
-    price: 'ab 149 €',
-    href: '/leistungen',
+    icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    label: 'Branding & Corporate Identity',
+    body: 'Logo, Farben und Visitenkarten — ein stimmiges Erscheinungsbild, das in Erinnerung bleibt.',
+    accent: '#FF8C6B',
+    glow: 'rgba(255,140,107,0.07)',
+    items: ['Logo-Design', 'Farbkonzept', 'Visitenkarten', 'Briefpapier'],
   },
-] as const;
+];
 ---
 
 <style>
-  .svc-section { background: #0d0d18; padding: 7rem 0; }
-
-  .svc-card {
-    background: #13131f;
-    border: 1px solid rgba(127,119,221,0.12);
-    border-radius: 20px;
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    /* transition only what's needed — no "all" */
-    transition:
-      border-color 220ms var(--ease-out),
-      box-shadow   220ms var(--ease-out);
+  .services {
+    background: var(--bg);
+    padding: 6rem 5%;
   }
-
-  /* Hover: guarded for pointer devices only */
-  @media (hover: hover) and (pointer: fine) {
-    .svc-card:hover {
-      border-color: rgba(127,119,221,0.32);
-      box-shadow: 0 0 36px rgba(127,119,221,0.06);
-    }
+  .services-header { margin-bottom: 3.5rem; }
+  .services-headline {
+    font-size: clamp(1.875rem, 3vw, 2.625rem);
+    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
+    max-width: 28ch; line-height: 1.2; margin: 0 0 1rem;
   }
-
-  .svc-tag {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 1.25rem;
+  .services-sub {
+    font-size: 1rem; color: var(--text-muted); max-width: 52ch; line-height: 1.75;
   }
-  .svc-title {
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: #F0EFFF;
-    line-height: 1.2;
-    margin: 0 0 1rem;
-  }
-  .svc-desc {
-    font-size: 0.9375rem;
-    color: rgba(240,239,255,0.5);
-    line-height: 1.75;
-    flex: 1;
-  }
-  .svc-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(127,119,221,0.1);
-  }
-  .svc-price {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #F0EFFF;
-  }
-  .svc-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 13px;
-    color: #7F77DD;
-    text-decoration: none;
-    transition: gap 150ms var(--ease-out), transform 160ms var(--ease-out);
-  }
-  .svc-link:active { transform: scale(0.95); }
-
-  @media (hover: hover) and (pointer: fine) {
-    .svc-link:hover { gap: 9px; }
-  }
-
-  .svc-grid {
+  .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
   }
-  @media (max-width: 900px) {
-    .svc-grid { grid-template-columns: 1fr; }
+  .svc-card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out),
+                box-shadow 240ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .svc-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--card-accent);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.28);
+    }
+  }
+  .svc-icon-wrap {
+    width: 46px; height: 46px; border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card-glow);
+    color: var(--card-accent);
+    flex-shrink: 0;
+  }
+  .svc-label {
+    font-size: 1.0625rem; font-weight: 600; color: var(--text);
+    font-family: 'Poppins', sans-serif; line-height: 1.3; margin: 0;
+  }
+  .svc-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.75; flex: 1; margin: 0; }
+  .svc-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+  .svc-list li {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8125rem; color: var(--text-dim);
+  }
+  .svc-list li svg { flex-shrink: 0; color: var(--card-accent); }
+
+  @media (max-width: 599px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 600px) and (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (min-width: 901px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 
-<section class="svc-section">
-  <div style="max-width:72rem; margin:0 auto; padding:0 2rem;">
-
-    <!-- Header -->
-    <div style="max-width:640px; margin-bottom:4rem;">
-      <div style="width:36px; height:2px; background:#7F77DD; margin-bottom:1.5rem;"></div>
-      <p style="font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(240,239,255,0.3); margin-bottom:1rem;">
-        Was ich mache
-      </p>
-      <h2 style="font-size:clamp(2rem,3vw,2.75rem); font-weight:700; color:#F0EFFF; line-height:1.1; margin:0 0 1.25rem;">
-        Alles aus einer Hand.
+<section class="services" aria-labelledby="services-heading">
+  <div class="section-inner">
+    <header class="services-header">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">Leistungen</span>
+      </div>
+      <h2 class="services-headline" id="services-heading">
+        Alles aus einer Hand,<br/>direkt aus Köln.
       </h2>
-      <p style="font-size:1rem; color:rgba(240,239,255,0.5); line-height:1.75;">
-        Kein Agentur-Chaos, kein Koordinationsaufwand – ich bin dein einziger Ansprechpartner für deinen kompletten digitalen Auftritt.
+      <p class="services-sub">
+        Kein Projektmanager dazwischen — du sprichst direkt mit dem, der's baut.
       </p>
-    </div>
+    </header>
 
-    <!-- Cards — stagger-reveal activated by IntersectionObserver -->
-    <div class="svc-grid">
+    <div class="services-grid">
       {services.map((s) => (
-        <div class="svc-card stagger-reveal">
-          <span class="svc-tag" style={`background:${s.tagBg}; color:${s.tagColor};`}>{s.tag}</span>
-          <h3 class="svc-title">{s.title}</h3>
-          <p class="svc-desc">{s.description}</p>
-          <div class="svc-footer">
-            <span class="svc-price">{s.price}</span>
-            <a href={s.href} class="svc-link">Mehr erfahren <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
+        <article
+          class="svc-card stagger-reveal"
+          style={`--card-accent:${s.accent};--card-glow:${s.glow};`}
+        >
+          <div class="svc-icon-wrap" aria-hidden="true" set:html={s.icon}></div>
+          <p class="svc-label">{s.label}</p>
+          <p class="svc-body">{s.body}</p>
+          <ul class="svc-list">
+            {s.items.map(item => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
       ))}
     </div>
-
   </div>
 </section>

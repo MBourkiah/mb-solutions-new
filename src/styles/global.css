@@ -1,64 +1,176 @@
 @import "tailwindcss";
 
+/* ── Brand (Tailwind-Tokens) ───────────────────────────── */
 @theme {
-  --color-primary: #7F77DD;
+  --color-primary:      #7F77DD;
   --color-primary-dark: #6B63C9;
-  --color-teal: #E1F5EE;
-  --color-coral: #FAECE7;
+  --color-teal:         #2DD4BF;
+  --color-coral:        #FF8C6B;
 }
 
-/* ── Custom easing curves (Emil Kowalski / animations.dev) ── */
+/* ── Semantic Design Tokens ────────────────────────────── */
 :root {
-  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --bg:        #05050f;
+  --surface-1: #0d0d1a;
+  --surface-2: #131320;
+  --surface-3: #1a1a28;
+
+  --text:       #F0EFFF;
+  --text-muted: rgba(240,239,255,0.52);
+  --text-dim:   rgba(240,239,255,0.28);
+
+  --accent:      #7F77DD;
+  --accent-dark: #6B63C9;
+  --accent-glow: rgba(127,119,221,0.18);
+
+  --border:        rgba(255,255,255,0.07);
+  --border-accent: rgba(127,119,221,0.2);
+
+  /* spring-out easing — ui-ux-pro-max skill recommendation */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:     cubic-bezier(0.7, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   20px;
+  --r-full: 9999px;
 }
 
-/* ── Hero entrance keyframe (used above the fold) ─────────── */
+/* ── Keyframes ──────────────────────────────────────────── */
 @keyframes heroFadeIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0);    }
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Base ───────────────────────────────────────────────── */
 @layer base {
+  html { scroll-behavior: smooth; }
+
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background: #0a0a0f;
-    color: #F0EFFF;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4 {
-    font-family: 'Syne', system-ui, -apple-system, sans-serif;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
   }
 }
 
+/* ── Components ─────────────────────────────────────────── */
 @layer components {
-  /* ── Universal press feedback for any button/link ── */
-  .press-btn {
-    transition: transform 160ms var(--ease-out), background 160ms var(--ease-out);
-  }
-  .press-btn:active { transform: scale(0.97); }
 
-  /* ── Scroll-triggered stagger reveal ─────────────── */
-  /* Activated by IntersectionObserver adding .is-visible */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent) 0%, #9B73E8 100%);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: var(--r-md);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out),
+                box-shadow 160ms var(--ease-out);
+  }
+  .btn-primary:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-primary:hover {
+      opacity: 0.88;
+      box-shadow: 0 8px 24px rgba(127,119,221,0.3);
+    }
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 12px 22px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-accent);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out),
+                transform 160ms var(--ease-out);
+  }
+  .btn-outline:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+  }
+
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .section-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .eyebrow-line {
+    width: 28px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+  }
+
+  /* 40ms stagger per item (skill: 30–50ms) */
   .stagger-reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
     transition:
-      opacity  440ms var(--ease-out),
-      transform 440ms var(--ease-out);
+      opacity  420ms var(--ease-out),
+      transform 420ms var(--ease-out);
   }
   .stagger-reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
-  /* Sequential stagger delays (30–80ms per item, Emil's rule) */
-  .stagger-reveal:nth-child(2) { transition-delay: 70ms;  }
-  .stagger-reveal:nth-child(3) { transition-delay: 140ms; }
-  .stagger-reveal:nth-child(4) { transition-delay: 210ms; }
-  .stagger-reveal:nth-child(5) { transition-delay: 280ms; }
-  .stagger-reveal:nth-child(6) { transition-delay: 350ms; }
+  .stagger-reveal:nth-child(2) { transition-delay:  40ms; }
+  .stagger-reveal:nth-child(3) { transition-delay:  80ms; }
+  .stagger-reveal:nth-child(4) { transition-delay: 120ms; }
+  .stagger-reveal:nth-child(5) { transition-delay: 160ms; }
+  .stagger-reveal:nth-child(6) { transition-delay: 200ms; }
+
+  .press-btn { transition: transform 160ms var(--ease-out); }
+  .press-btn:active { transform: scale(0.97); }
 }
 
-/* ── prefers-reduced-motion: no position animations ─────── */
+/* ── Reduced motion ─────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;

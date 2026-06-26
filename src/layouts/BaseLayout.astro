@@ -17,9 +17,13 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Poppins (headings) + Inter (body) — ui-ux-pro-max: Modern Professional pairing -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
@@ -27,8 +31,24 @@ const {
     <title>{title} | MB-Solutions</title>
   </head>
   <body class="antialiased min-h-screen flex flex-col">
+    <!-- Skip link for keyboard / screen reader users (a11y: skill §1) -->
+    <a
+      href="#main-content"
+      style="
+        position:absolute; left:-9999px; top:4px; z-index:9999;
+        background:var(--accent); color:#fff; padding:8px 16px;
+        border-radius:var(--r-md); font-size:14px; font-weight:600;
+        text-decoration:none;
+      "
+      onfocus="this.style.left='4px'"
+      onblur="this.style.left='-9999px'"
+    >
+      Zum Hauptinhalt springen
+    </a>
+
     <slot />
-    <!-- Stagger reveal: IntersectionObserver adds .is-visible when card enters viewport -->
+
+    <!-- Stagger reveal via IntersectionObserver -->
     <script is:inline>
       (function () {
         var observer = new IntersectionObserver(
@@ -40,7 +60,7 @@ const {
               }
             });
           },
-          { threshold: 0.07, rootMargin: '-20px 0px' }
+          { threshold: 0.07, rootMargin: '-16px 0px' }
         );
         document.querySelectorAll('.stagger-reveal').forEach(function (el) {
           observer.observe(el);
