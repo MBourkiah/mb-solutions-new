@@ -107,9 +107,13 @@ const links = [
     background: var(--bg);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none;
-    transition: opacity 200ms var(--ease-out);
+    transform: translateY(10px);
+    transition: opacity 240ms var(--ease-out), transform 240ms var(--ease-out);
   }
-  .mobile-overlay.open { opacity: 1; pointer-events: all; }
+  .mobile-overlay.open {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0);
+  }
   .mobile-close {
     position: absolute; top: 20px; right: 24px;
     width: 40px; height: 40px; background: none; border: none;
@@ -120,9 +124,17 @@ const links = [
     font-family: 'Outfit', sans-serif;
     font-size: 2.5rem; font-weight: 700; letter-spacing: -0.04em;
     color: var(--text); text-decoration: none; padding: 0.6rem 0;
-    transition: color 140ms var(--ease-out);
+    opacity: 0; transform: translateY(10px);
+    transition: color 140ms var(--ease-out),
+                opacity 260ms var(--ease-out),
+                transform 260ms var(--ease-out);
   }
   .mobile-link.active { color: var(--accent); }
+  .mobile-overlay.open .mobile-link { opacity: 1; transform: translateY(0); }
+  .mobile-overlay.open .mobile-link:nth-child(1) { transition-delay: 60ms; }
+  .mobile-overlay.open .mobile-link:nth-child(2) { transition-delay: 110ms; }
+  .mobile-overlay.open .mobile-link:nth-child(3) { transition-delay: 160ms; }
+  .mobile-overlay.open .mobile-link:nth-child(4) { transition-delay: 210ms; }
   @media (hover: hover) and (pointer: fine) {
     .mobile-link:hover { color: var(--accent); }
   }

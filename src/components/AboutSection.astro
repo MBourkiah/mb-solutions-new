@@ -29,9 +29,11 @@ const facts = [
     display: inline-flex; align-items: center; gap: 6px;
     font-size: 14px; font-weight: 600; color: var(--accent);
     text-decoration: none; font-family: 'Outfit', sans-serif;
-    transition: gap 150ms var(--ease-out);
   }
-  @media (hover: hover) and (pointer: fine) { .about-link:hover { gap: 10px; } }
+  .about-link svg { transition: transform 150ms var(--ease-out); flex-shrink: 0; }
+  @media (hover: hover) and (pointer: fine) {
+    .about-link:hover svg { transform: translate(3px, -3px); }
+  }
 
   .about-right { display: flex; flex-direction: column; gap: 16px; }
 
@@ -39,7 +41,16 @@ const facts = [
   .fact-card {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);
+    transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
   }
+  @media (hover: hover) and (pointer: fine) {
+    .fact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  }
+  /* Stagger fact cards when revealing */
+  .fact-card:nth-child(1) { transition-delay: 0ms; }
+  .fact-card:nth-child(2) { transition-delay: 70ms; }
+  .fact-card:nth-child(3) { transition-delay: 140ms; }
+  .fact-card:nth-child(4) { transition-delay: 210ms; }
   .fact-val {
     font-family: 'Outfit', sans-serif; font-size: 2.25rem; font-weight: 800;
     letter-spacing: -0.04em; color: var(--accent); line-height: 1;
