@@ -7,6 +7,8 @@ const projects = [
     tags: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
     year: '2024',
     accent: '#D97706',
+    img: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=240&h=160&fit=crop&q=80&auto=format',
+    imgAlt: 'Café Innenraum mit warmer Atmosphäre',
   },
   {
     title: 'Keller & Söhne GmbH',
@@ -15,6 +17,8 @@ const projects = [
     tags: ['Google Workspace', 'Logo Design', 'CI-Manual'],
     year: '2024',
     accent: '#16A34A',
+    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=240&h=160&fit=crop&q=80&auto=format',
+    imgAlt: 'Handwerksbetrieb mit Werkzeug und Materialien',
   },
   {
     title: 'Yogastudio Sonnenlicht',
@@ -23,6 +27,8 @@ const projects = [
     tags: ['Next.js', 'Framer Motion', 'Vercel'],
     year: '2023',
     accent: 'var(--accent)',
+    img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=240&h=160&fit=crop&q=80&auto=format',
+    imgAlt: 'Helles Yogastudio mit natürlichem Licht',
   },
 ];
 ---
@@ -44,9 +50,9 @@ const projects = [
 
   .portfolio-item {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--r-xl); padding: 2rem 2.5rem;
-    display: grid; grid-template-columns: 60px 1fr auto;
-    gap: 0 2rem; align-items: center;
+    border-radius: var(--r-xl); padding: 1.75rem 2rem;
+    display: grid; grid-template-columns: 52px 1fr 120px;
+    gap: 0 1.75rem; align-items: center;
     text-decoration: none; color: inherit;
     transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out),
                 border-color 200ms var(--ease-out);
@@ -56,7 +62,7 @@ const projects = [
     .portfolio-item:hover {
       box-shadow: var(--shadow-md); transform: translateX(4px); border-color: var(--border-2);
     }
-    .portfolio-item:hover .pf-arrow { transform: translateX(4px); }
+    .portfolio-item:hover .pf-thumb-img { transform: scale(1.06); }
     .portfolio-item:hover::before { opacity: 1; }
   }
   .portfolio-item::before {
@@ -68,7 +74,9 @@ const projects = [
   .pf-num {
     font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
+    align-self: center;
   }
+
   .pf-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
   .pf-cat { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
   .pf-year {
@@ -87,23 +95,36 @@ const projects = [
     padding: 2px 8px; border-radius: var(--r-full);
   }
 
-  .pf-arrow {
-    width: 36px; height: 36px; border-radius: var(--r-md);
-    background: var(--bg-alt); border: 1px solid var(--border);
+  /* Thumbnail with arrow overlay */
+  .pf-thumb {
+    width: 120px; height: 80px; border-radius: var(--r-md);
+    overflow: hidden; position: relative; flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .pf-thumb-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 400ms var(--ease-out);
+    display: block;
+  }
+  .pf-thumb-arrow {
+    position: absolute; bottom: 7px; right: 7px;
+    width: 26px; height: 26px; border-radius: 6px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(28,26,23,0.10);
     display: flex; align-items: center; justify-content: center;
-    color: var(--text-3); flex-shrink: 0;
-    transition: transform 200ms var(--ease-out);
+    color: var(--text);
+    backdrop-filter: blur(4px);
   }
 
   .portfolio-cta-row { display: flex; justify-content: center; margin-top: 3rem; }
 
   @media (max-width: 700px) {
-    .portfolio-item { grid-template-columns: 1fr auto; }
+    .portfolio-item { grid-template-columns: 1fr 100px; }
     .pf-num { display: none; }
   }
   @media (max-width: 500px) {
     .portfolio-item { padding: 1.5rem; grid-template-columns: 1fr; }
-    .pf-arrow { display: none; }
+    .pf-thumb { display: none; }
   }
 </style>
 
@@ -123,8 +144,14 @@ const projects = [
 
     <div class="portfolio-list">
       {projects.map((p, i) => (
-        <a href="/portfolio" class="portfolio-item reveal" style={`--item-accent:${p.accent};`} aria-label={`Projekt: ${p.title}`}>
+        <a
+          href="/portfolio"
+          class="portfolio-item reveal"
+          style={`--item-accent:${p.accent};`}
+          aria-label={`Projekt: ${p.title}`}
+        >
           <span class="pf-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+
           <div>
             <div class="pf-meta">
               <span class="pf-cat">{p.category}</span>
@@ -134,10 +161,22 @@ const projects = [
             <div class="pf-desc">{p.desc}</div>
             <div class="pf-tags">{p.tags.map(t => <span class="pf-tag">{t}</span>)}</div>
           </div>
-          <div class="pf-arrow" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M3 11L11 3M11 3H6M11 3V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+
+          <div class="pf-thumb">
+            <img
+              src={p.img}
+              alt={p.imgAlt}
+              class="pf-thumb-img"
+              loading="lazy"
+              decoding="async"
+              width="240"
+              height="160"
+            />
+            <div class="pf-thumb-arrow" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H5M9.5 2.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
           </div>
         </a>
       ))}

@@ -13,7 +13,8 @@ const projects = [
     body: 'Booking-Website mit Online-Reservierung für ein Kölner Café. Mobile-first, atmosphärisches Design mit Fokus auf Conversion.',
     tags: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
     accent: '#D97706',
-    bg: '#FFFBEB',
+    img: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&h=400&fit=crop&q=82&auto=format',
+    imgAlt: 'Gemütlicher Café-Innenraum mit Holztischen und warmer Beleuchtung',
   },
   {
     name: 'Keller & Söhne GmbH',
@@ -23,7 +24,8 @@ const projects = [
     body: 'Komplettes IT-Setup inkl. Google Workspace-Migration und neues Corporate Identity für ein Handwerksunternehmen.',
     tags: ['Google Workspace', 'Logo Design', 'CI-Manual'],
     accent: '#16A34A',
-    bg: '#F0FDF4',
+    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&h=400&fit=crop&q=82&auto=format',
+    imgAlt: 'Handwerksbetrieb mit Werkzeug und Arbeitsmaterial',
   },
   {
     name: 'Yogastudio Sonnenlicht',
@@ -33,7 +35,8 @@ const projects = [
     body: 'Ruhige, minimalistische Website mit Kurskalender und Buchungsfunktion für ein Yoga-Studio in Köln-Nippes.',
     tags: ['Next.js', 'Framer Motion', 'Vercel'],
     accent: 'var(--accent)',
-    bg: 'var(--accent-light)',
+    img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&h=400&fit=crop&q=82&auto=format',
+    imgAlt: 'Helles, minimalistisches Yogastudio mit natürlichem Lichteinfall',
   },
   {
     name: 'Kosmetikstudio Belle',
@@ -43,7 +46,8 @@ const projects = [
     body: 'Booking-fähige Website mit Leistungsübersicht und Online-Terminbuchung via Calendly-Integration.',
     tags: ['Responsive', 'Calendly', 'Mobile-first'],
     accent: '#D97706',
-    bg: '#FFFBEB',
+    img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&h=400&fit=crop&q=82&auto=format',
+    imgAlt: 'Kosmetikstudio mit modernem, sauberem Ambiente',
   },
 ];
 ---
@@ -70,28 +74,41 @@ const projects = [
     transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   }
   @media (hover: hover) and (pointer: fine) {
-    .proj-card:hover { transform: translateY(-4px); border-color: var(--proj-border); box-shadow: var(--shadow-lg); }
+    .proj-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--proj-border);
+      box-shadow: var(--shadow-lg);
+    }
+    .proj-card:hover .proj-img { transform: scale(1.04); }
   }
 
-  .proj-visual {
-    height: 180px; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+  /* Image header */
+  .proj-visual { height: 220px; position: relative; overflow: hidden; }
+  .proj-img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: transform 600ms var(--ease-out);
   }
-  .proj-visual-icon {
-    width: 56px; height: 56px; border-radius: var(--r-lg);
-    border: 1px solid var(--border); background: var(--bg);
-    display: flex; align-items: center; justify-content: center; z-index: 1;
+  /* Gradient overlay so tags are readable */
+  .proj-visual::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0) 40%);
+    pointer-events: none;
   }
+
   .proj-year-tag {
     position: absolute; top: 14px; right: 14px; z-index: 2;
-    background: var(--bg); border: 1px solid var(--border);
+    background: rgba(255,255,255,0.92); border: 1px solid rgba(255,255,255,0.6);
     padding: 3px 9px; border-radius: var(--r-full);
-    font-size: 11px; color: var(--text-3); font-weight: 500;
+    font-size: 11px; color: var(--text-2); font-weight: 500;
+    backdrop-filter: blur(6px);
   }
   .proj-status-tag {
     position: absolute; top: 14px; left: 14px; z-index: 2;
     padding: 3px 9px; border-radius: var(--r-full);
     font-size: 11px; font-weight: 500;
+    backdrop-filter: blur(6px);
   }
 
   .proj-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
@@ -139,20 +156,21 @@ const projects = [
 
         <div class="port-grid">
           {projects.map(p => (
-            <article
-              class="proj-card reveal"
-              style={`--proj-border:${p.accent};`}
-            >
-              <div class="proj-visual" style={`background:${p.bg};`}>
-                <div class="proj-visual-icon" aria-hidden="true">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={p.accent} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
-                  </svg>
-                </div>
+            <article class="proj-card reveal" style={`--proj-border:${p.accent};`}>
+              <div class="proj-visual">
+                <img
+                  src={p.img}
+                  alt={p.imgAlt}
+                  class="proj-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="700"
+                  height="400"
+                />
                 <span class="proj-year-tag">{p.year}</span>
                 <span
                   class="proj-status-tag"
-                  style={`background:${p.status === 'In Bearbeitung' ? '#FFFBEB' : '#F0FDF4'};color:${p.status === 'In Bearbeitung' ? '#D97706' : '#16A34A'};`}
+                  style={`background:${p.status === 'In Bearbeitung' ? 'rgba(255,251,235,0.92)' : 'rgba(240,253,244,0.92)'};color:${p.status === 'In Bearbeitung' ? '#D97706' : '#16A34A'};`}
                 >{p.status}</span>
               </div>
               <div class="proj-body">
