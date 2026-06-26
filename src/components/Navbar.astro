@@ -12,74 +12,160 @@ const navLinks = [
 ---
 
 <style>
+  /* ── Header-Band ───────────────────────────────────── */
+  .navbar {
+    height: 72px;
+    /* Immer sichtbar — kein transparent-on-load mehr */
+    background: rgba(8, 8, 18, 0.82);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba(127, 119, 221, 0.18);
+    transition:
+      background   240ms var(--ease-out),
+      border-color 240ms var(--ease-out);
+  }
+  .navbar.scrolled {
+    background: rgba(8, 8, 18, 0.96);
+    border-color: rgba(127, 119, 221, 0.26);
+  }
+
+  /* ── Logo ─────────────────────────────────────────── */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-mark {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    background: #7F77DD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.04em;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1;
+  }
+  .logo-name {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #F0EFFF;
+    letter-spacing: -0.01em;
+  }
+  .logo-sub {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: rgba(240, 239, 255, 0.28);
+    text-transform: uppercase;
+  }
+
+  /* ── Nav-Links ────────────────────────────────────── */
   .nav-link {
     position: relative;
-    font-size: 14px;
+    font-size: 13.5px;
+    font-weight: 450;
     text-decoration: none;
+    color: rgba(240, 239, 255, 0.55);
+    padding-bottom: 3px;
     transition: color 150ms var(--ease-out);
-    color: rgba(240,239,255,0.45);
-    padding-bottom: 2px;
   }
-  /* Slide-in Underline */
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -1px; left: 0;
-    width: 0; height: 1px;
+    bottom: 0; left: 0;
+    width: 0; height: 1.5px;
     background: #7F77DD;
-    transition: width 220ms var(--ease-out);
     border-radius: 1px;
+    transition: width 220ms var(--ease-out);
   }
   .nav-link.active {
     color: #F0EFFF;
     font-weight: 500;
   }
-  /* Active: Underline dauerhaft sichtbar */
   .nav-link.active::after { width: 100%; }
 
   @media (hover: hover) and (pointer: fine) {
     .nav-link:hover { color: #F0EFFF; }
-    .nav-link:not(.active):hover::after { width: 60%; background: rgba(127,119,221,0.45); }
+    .nav-link:not(.active):hover::after { width: 100%; background: rgba(127, 119, 221, 0.45); }
   }
 
+  /* ── CTA-Button ───────────────────────────────────── */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid rgba(127, 119, 221, 0.5);
+    color: #AFA9EC;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background  160ms var(--ease-out),
+      border-color 160ms var(--ease-out),
+      color       160ms var(--ease-out),
+      transform   160ms var(--ease-out);
+  }
+  .nav-cta:active { transform: scale(0.97); }
+  @media (hover: hover) and (pointer: fine) {
+    .nav-cta:hover {
+      background: #7F77DD;
+      border-color: #7F77DD;
+      color: white;
+    }
+  }
+
+  /* ── Mobile Overlay ───────────────────────────────── */
   .overlay-link {
     font-size: 1.75rem;
     text-decoration: none;
     padding: 0.75rem 0;
     transition: color 150ms var(--ease-out);
-    color: rgba(240,239,255,0.4);
+    color: rgba(240, 239, 255, 0.4);
   }
   .overlay-link.active { color: #F0EFFF; font-weight: 600; }
   @media (hover: hover) and (pointer: fine) {
     .overlay-link:hover { color: #F0EFFF; }
   }
-
-  .nav-cta {
-    background: #7F77DD;
-    color: white;
-    transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
-  }
-  .nav-cta:active { transform: scale(0.97); }
-  @media (hover: hover) and (pointer: fine) {
-    .nav-cta:hover { background: #6B63C9; }
+  .overlay-cta {
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 28px;
+    border-radius: 10px;
+    border: 1px solid rgba(127, 119, 221, 0.4);
+    color: #AFA9EC;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
   }
 </style>
 
-<header
-  id="navbar"
-  class="sticky top-0 z-50 h-16"
-  style="background: transparent; transition: background 280ms var(--ease-out), border-color 280ms var(--ease-out), backdrop-filter 280ms var(--ease-out);"
->
+<header id="navbar" class="navbar sticky top-0 z-50">
   <div class="flex items-center justify-between h-full px-6 md:px-12 lg:px-20">
 
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2.5 shrink-0" style="text-decoration:none;">
-      <span
-        class="flex items-center justify-center w-7 h-7 rounded-lg bg-primary text-white font-bold leading-none"
-        style="font-size:10px; letter-spacing:-0.02em;"
-        aria-hidden="true"
-      >MB</span>
-      <span style="font-weight:600; font-size:15px; color:#F0EFFF;">MB-Solutions</span>
+    <a href="/" class="logo-link">
+      <span class="logo-mark" aria-hidden="true">MB</span>
+      <span class="logo-text">
+        <span class="logo-name">MB-Solutions</span>
+        <span class="logo-sub">Köln</span>
+      </span>
     </a>
 
     <!-- Desktop Nav -->
@@ -95,27 +181,25 @@ const navLinks = [
       ))}
     </nav>
 
-    <!-- Right side -->
+    <!-- CTA + Hamburger -->
     <div class="flex items-center gap-3">
-      <a
-        href="/kontakt"
-        id="nav-cta"
-        class="nav-cta hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-medium"
-      >
-        Projekt anfragen
+      <a href="/kontakt" class="nav-cta hidden md:inline-flex">
+        Anfragen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+          <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
 
-      <!-- Mobile Hamburger -->
       <button
         id="menu-btn"
-        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.25"
+        class="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
         aria-label="Menü öffnen"
         aria-expanded="false"
         aria-controls="mobile-overlay"
       >
-        <span style="display:block;width:20px;height:1px;background:rgba(240,239,255,0.7);"></span>
-        <span style="display:block;width:20px;height:1px;background:rgba(240,239,255,0.7);"></span>
-        <span style="display:block;width:20px;height:1px;background:rgba(240,239,255,0.7);"></span>
+        <span style="display:block;width:22px;height:1.5px;background:rgba(240,239,255,0.7);border-radius:1px;"></span>
+        <span style="display:block;width:15px;height:1.5px;background:rgba(240,239,255,0.4);border-radius:1px;align-self:flex-start;"></span>
+        <span style="display:block;width:22px;height:1.5px;background:rgba(240,239,255,0.7);border-radius:1px;"></span>
       </button>
     </div>
 
@@ -143,20 +227,11 @@ const navLinks = [
 
   <nav class="flex flex-col items-center" aria-label="Mobile Navigation">
     {navLinks.map((link) => (
-      <a
-        href={link.href}
-        class={`overlay-link ${isActive(link.href) ? 'active' : ''}`}
-      >
+      <a href={link.href} class={`overlay-link ${isActive(link.href) ? 'active' : ''}`}>
         {link.label}
       </a>
     ))}
-    <a
-      href="/kontakt"
-      class="mt-8 px-8 py-3 rounded-full text-white text-base font-medium"
-      style="background:#7F77DD;"
-    >
-      Projekt anfragen
-    </a>
+    <a href="/kontakt" class="overlay-cta">Anfragen →</a>
   </nav>
 </div>
 
@@ -165,16 +240,10 @@ const navLinks = [
 
   function updateScroll() {
     if (!header) return;
-    if (window.scrollY > 40) {
-      header.style.borderBottom = '1px solid rgba(127,119,221,0.12)';
-      header.style.background   = 'rgba(10,10,15,0.88)';
-      header.style.backdropFilter = 'blur(20px) saturate(1.4)';
-      (header.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = 'blur(20px) saturate(1.4)';
+    if (window.scrollY > 30) {
+      header.classList.add('scrolled');
     } else {
-      header.style.borderBottom = 'none';
-      header.style.background   = 'transparent';
-      header.style.backdropFilter = '';
-      (header.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = '';
+      header.classList.remove('scrolled');
     }
   }
   window.addEventListener('scroll', updateScroll, { passive: true });
