@@ -1,283 +1,334 @@
 ---
-// Dark-theme hero – MB-Solutions
+// HeroSection — Editorial dark hero
+// Signature: vertikale violette Akzentlinie + Werkstatt-Preisboard rechts
 ---
 
-<!-- Keyframes global so SVG <g> style="animation:..." resolves.
-     Float animations use ease-in-out (on-screen ambient motion = correct per Emil's framework). -->
-<style is:global>
-  @keyframes float1 {
-    0%, 100% { transform: translate(40px, 40px); }
-    50%       { transform: translate(40px, 30px); }
-  }
-  @keyframes float2 {
-    0%, 100% { transform: translate(260px, 170px); }
-    50%       { transform: translate(260px, 158px); }
-  }
-  @keyframes float3 {
-    0%, 100% { transform: translate(60px, 310px); }
-    50%       { transform: translate(60px, 302px); }
-  }
-</style>
-
 <style>
-  .hero-section {
+  .hero-root {
     min-height: 100vh;
     background: #0a0a0f;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     align-items: center;
-    padding: 0 5% 0 8%;
-    gap: 4rem;
+    padding: 7rem 8% 5rem;
     position: relative;
     overflow: hidden;
   }
 
-  /* ── Entrance animations (above the fold: keyframe-based) ── */
-  .hero-badge-wrap {
-    animation: heroFadeIn 600ms var(--ease-out) 80ms both;
+  /* Hintergrundflächen — dezent */
+  .hero-root::before {
+    content: '';
+    position: absolute;
+    top: -15%; left: -10%;
+    width: 65%; height: 90%;
+    background: radial-gradient(ellipse at 0% 0%, rgba(127,119,221,0.07) 0%, transparent 60%);
+    pointer-events: none;
   }
-  .hero-h1 {
-    font-size: clamp(2.8rem, 4vw, 4.5rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: #ffffff;
-    margin: 0 0 1.5rem;
-    animation: heroFadeIn 700ms var(--ease-out) 180ms both;
-  }
-  .hero-sub-wrap {
-    animation: heroFadeIn 700ms var(--ease-out) 280ms both;
-  }
-  .hero-ctas-wrap {
-    animation: heroFadeIn 700ms var(--ease-out) 360ms both;
-  }
-  .hero-trust {
-    margin-top: 3rem;
-    display: flex;
-    gap: 2.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    animation: heroFadeIn 700ms var(--ease-out) 440ms both;
-  }
-  .hero-illustration {
-    width: 100%; max-width: 520px;
-    margin-left: auto;
-    position: relative; z-index: 1;
-    animation: heroFadeIn 900ms var(--ease-out) 200ms both;
+  .hero-root::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 40%; height: 50%;
+    background: radial-gradient(ellipse at 100% 100%, rgba(29,158,117,0.04) 0%, transparent 60%);
+    pointer-events: none;
   }
 
-  /* ── CTA buttons ─── */
-  .hero-cta-primary {
-    background: #7F77DD;
-    color: #ffffff;
-    padding: 14px 28px;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    border: none;
-    text-decoration: none;
+  /* Grid: Text links, Preisboard rechts */
+  .hero-inner {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 72rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  /* ─── Badge ─────────────────────────────────────── */
+  .hero-badge {
     display: inline-flex;
     align-items: center;
-    white-space: nowrap;
+    gap: 8px;
+    margin-bottom: 2.75rem;
+    animation: heroFadeIn 500ms var(--ease-out) 60ms both;
+  }
+  .hero-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #2DD4BF;
+    box-shadow: 0 0 0 3px rgba(45,212,191,0.15);
+    flex-shrink: 0;
+  }
+  .hero-badge-text {
+    font-size: 12px;
+    letter-spacing: 0.07em;
+    color: rgba(240,239,255,0.35);
+  }
+
+  /* ─── Headline mit vertikaler Akzentlinie ────────── */
+  .hero-headline-wrap {
+    display: flex;
+    gap: 1.75rem;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    animation: heroFadeIn 650ms var(--ease-out) 140ms both;
+  }
+  /* Das Signature-Element: die violette vertikale Linie */
+  .hero-vbar {
+    width: 2px;
+    background: linear-gradient(to bottom, #7F77DD 60%, rgba(127,119,221,0) 100%);
+    flex-shrink: 0;
+    border-radius: 1px;
+  }
+  .hero-h1 {
+    font-family: 'Syne', system-ui, sans-serif;
+    margin: 0;
+  }
+  .hero-h1-upper {
+    display: block;
+    font-size: clamp(1.875rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: rgba(240,239,255,0.55);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 0.05em;
+  }
+  .hero-h1-main {
+    display: block;
+    font-size: clamp(3.75rem, 8vw, 7.5rem);
+    font-weight: 800;
+    color: #F0EFFF;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+  }
+  /* Violetter Punkt als Micro-Signature */
+  .hero-h1-main .vdot { color: #7F77DD; }
+  .hero-h1-qualifier {
+    display: block;
+    font-size: clamp(1rem, 1.8vw, 1.375rem);
+    font-weight: 400;
+    color: rgba(240,239,255,0.32);
+    letter-spacing: 0.01em;
+    margin-top: 0.85em;
+  }
+
+  /* ─── Fließtext ──────────────────────────────────── */
+  .hero-body {
+    font-size: 1rem;
+    color: rgba(240,239,255,0.5);
+    line-height: 1.8;
+    max-width: 460px;
+    margin: 0 0 2.5rem;
+    animation: heroFadeIn 600ms var(--ease-out) 230ms both;
+  }
+
+  /* ─── CTAs ───────────────────────────────────────── */
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    animation: heroFadeIn 600ms var(--ease-out) 310ms both;
+  }
+  .hero-cta-primary {
+    display: inline-flex; align-items: center;
+    background: #7F77DD; color: #fff;
+    padding: 13px 26px;
+    border-radius: 100px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
     transition: background 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
   .hero-cta-primary:active { transform: scale(0.97); }
-
+  @media (hover: hover) and (pointer: fine) {
+    .hero-cta-primary:hover { background: #6B63C9; }
+  }
   .hero-cta-secondary {
-    background: transparent;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 14px 28px;
+    display: inline-flex; align-items: center;
+    background: transparent; color: rgba(240,239,255,0.55);
+    padding: 13px 26px;
     border-radius: 100px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(240,239,255,0.1);
     font-size: 14px;
-    font-weight: 400;
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    white-space: nowrap;
-    transition: border-color 160ms var(--ease-out), transform 160ms var(--ease-out);
+    transition: border-color 160ms var(--ease-out), color 160ms var(--ease-out), transform 160ms var(--ease-out);
   }
   .hero-cta-secondary:active { transform: scale(0.97); }
-
-  /* Hover: only on devices that support it (not touch) */
   @media (hover: hover) and (pointer: fine) {
-    .hero-cta-primary:hover  { background: #6B63C9; }
-    .hero-cta-secondary:hover { border-color: rgba(255, 255, 255, 0.4); }
+    .hero-cta-secondary:hover {
+      border-color: rgba(240,239,255,0.22);
+      color: #F0EFFF;
+    }
   }
 
-  @media (max-width: 768px) {
-    .hero-section {
-      grid-template-columns: 1fr;
-      padding: 6rem 6% 3rem;
-      min-height: auto;
-    }
-    .hero-h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
-    .hero-illustration { display: none; }
-    .hero-trust { gap: 1.5rem !important; }
+  /* Nur mobile: schmale Service-Zeile unterhalb CTAs */
+  .hero-mobile-services {
+    display: none;
+    margin-top: 2rem;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: rgba(240,239,255,0.22);
+    animation: heroFadeIn 600ms var(--ease-out) 380ms both;
+  }
+
+  /* ─── Werkstatt-Preisboard ───────────────────────── */
+  .hero-panel {
+    background: #0e0e1c;
+    border: 1px solid rgba(127,119,221,0.14);
+    border-radius: 20px;
+    padding: 1.875rem 2rem 1.625rem;
+    animation: heroFadeIn 700ms var(--ease-out) 200ms both;
+  }
+  .hero-panel-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(240,239,255,0.22);
+    margin-bottom: 1.375rem;
+  }
+
+  /* Dotted-Leader Preiszeile */
+  .price-row {
+    display: flex;
+    align-items: center;
+    padding: 0.8125rem 0;
+    border-bottom: 1px solid rgba(127,119,221,0.07);
+  }
+  .price-row:last-of-type { border-bottom: none; }
+  .price-name {
+    font-size: 13.5px;
+    color: rgba(240,239,255,0.68);
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  /* Gestrichelte Linie als Verbindung */
+  .price-dots {
+    flex: 1;
+    height: 1px;
+    background-image: repeating-linear-gradient(
+      to right,
+      rgba(127,119,221,0.2) 0px,
+      rgba(127,119,221,0.2) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+    margin: 0 10px;
+  }
+  .price-value {
+    font-size: 12.5px;
+    color: rgba(240,239,255,0.32);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero-panel-rule {
+    height: 1px;
+    background: rgba(127,119,221,0.09);
+    margin: 1.25rem 0;
+  }
+  .hero-panel-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-loc {
+    font-size: 11px;
+    color: rgba(240,239,255,0.22);
+  }
+  .panel-avail {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: rgba(45,212,191,0.65);
+  }
+  .avail-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #2DD4BF;
+    flex-shrink: 0;
+  }
+
+  /* ─── Responsive ─────────────────────────────────── */
+  @media (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 0; }
+    .hero-panel { display: none; }
+    .hero-mobile-services { display: block; }
+    .hero-root { padding: 6rem 6% 4rem; min-height: auto; }
+  }
+  @media (max-width: 480px) {
+    .hero-badge { margin-bottom: 2rem; }
+    .hero-headline-wrap { gap: 1.25rem; }
   }
 </style>
 
-<section class="hero-section">
+<section class="hero-root">
+  <div class="hero-inner">
 
-  <!-- Background blobs -->
-  <div aria-hidden="true" style="
-    position:absolute; pointer-events:none; border-radius:50%;
-    width:600px; height:600px;
-    background:radial-gradient(circle, rgba(127,119,221,0.15) 0%, transparent 70%);
-    top:-200px; left:-200px;
-  "></div>
-  <div aria-hidden="true" style="
-    position:absolute; pointer-events:none; border-radius:50%;
-    width:400px; height:400px;
-    background:radial-gradient(circle, rgba(29,158,117,0.08) 0%, transparent 70%);
-    bottom:-100px; right:0;
-  "></div>
-
-  <!-- ══ LEFT: Text ══════════════════════════════════════════ -->
-  <div style="position:relative; z-index:1; padding:6rem 0;">
-
-    <!-- Badge -->
-    <div class="hero-badge-wrap">
-      <div style="
-        display:inline-flex; align-items:center; gap:8px;
-        background:rgba(127,119,221,0.15);
-        border:1px solid rgba(127,119,221,0.3);
-        padding:6px 14px; border-radius:100px;
-        margin-bottom:2rem;
-      ">
-        <span style="width:6px;height:6px;border-radius:50%;background:#7F77DD;flex-shrink:0;"></span>
-        <span style="color:#AFA9EC;font-size:13px;">Webdesign &amp; IT aus Köln</span>
+    <!-- ══ LINKS: Editorial Text ══════════════════════ -->
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span class="hero-badge-text">Offen für neue Projekte · Köln</span>
       </div>
-    </div>
 
-    <!-- Headline -->
-    <h1 class="hero-h1">
-      Digitale Lösungen,<br />
-      die wirklich<br />
-      <span style="color:#7F77DD;">wirken.</span>
-    </h1>
+      <div class="hero-headline-wrap">
+        <div class="hero-vbar" aria-hidden="true"></div>
+        <h1 class="hero-h1">
+          <span class="hero-h1-upper">Dein digitaler</span>
+          <span class="hero-h1-main">Auftritt<span class="vdot">.</span></span>
+          <span class="hero-h1-qualifier">Von einer Person.</span>
+        </h1>
+      </div>
 
-    <!-- Subtext -->
-    <div class="hero-sub-wrap">
-      <p style="
-        font-size:1.0625rem;
-        color:rgba(255,255,255,0.5);
-        line-height:1.8;
-        max-width:400px;
-        margin:0 0 2.5rem;
-      ">
-        Ich baue Webseiten, die Kunden gewinnen – und Brands,
-        die in Erinnerung bleiben. Für KMU in Köln und deutschlandweit.
+      <p class="hero-body">
+        Webseiten, IT-Setup und Branding für KMU und Handwerksbetriebe in Köln —
+        persönlich, direkt und ohne Agentur-Overhead.
       </p>
-    </div>
 
-    <!-- CTAs -->
-    <div class="hero-ctas-wrap">
-      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <div class="hero-ctas">
         <a href="/kontakt" class="hero-cta-primary">Kostenloses Erstgespräch</a>
         <a href="/portfolio" class="hero-cta-secondary">Portfolio ansehen →</a>
       </div>
+
+      <p class="hero-mobile-services">
+        Webdesign &nbsp;·&nbsp; IT-Services &nbsp;·&nbsp; Branding
+      </p>
     </div>
 
-    <!-- Trust Bar -->
-    <div class="hero-trust">
-      <div>
-        <p style="font-size:1.5rem;font-weight:600;color:white;margin:0;">3-in-1</p>
-        <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;">Leistungen aus einer Hand</p>
+    <!-- ══ RECHTS: Werkstatt-Preisboard ══════════════ -->
+    <aside class="hero-panel" aria-label="Leistungen und Preise">
+      <p class="hero-panel-label">Leistungen</p>
+
+      <div class="price-row">
+        <span class="price-name">Webdesign</span>
+        <span class="price-dots" aria-hidden="true"></span>
+        <span class="price-value">ab 499 €</span>
       </div>
-      <div>
-        <p style="font-size:1.5rem;font-weight:600;color:white;margin:0;">48h</p>
-        <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;">Antwortzeit garantiert</p>
+      <div class="price-row">
+        <span class="price-name">IT-Services</span>
+        <span class="price-dots" aria-hidden="true"></span>
+        <span class="price-value">ab 45 €/Std.</span>
       </div>
-      <div>
-        <p style="font-size:1.5rem;font-weight:600;color:white;margin:0;">Köln</p>
-        <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:4px;">Persönlich vor Ort</p>
+      <div class="price-row">
+        <span class="price-name">Branding</span>
+        <span class="price-dots" aria-hidden="true"></span>
+        <span class="price-value">ab 149 €</span>
       </div>
-    </div>
+      <div class="price-row">
+        <span class="price-name">Komplettpaket</span>
+        <span class="price-dots" aria-hidden="true"></span>
+        <span class="price-value">auf Anfrage</span>
+      </div>
+
+      <div class="hero-panel-rule" aria-hidden="true"></div>
+
+      <div class="hero-panel-footer">
+        <span class="panel-loc">📍 Köln</span>
+        <span class="panel-avail">
+          <span class="avail-dot"></span>
+          Verfügbar
+        </span>
+      </div>
+    </aside>
 
   </div>
-
-  <!-- ══ RIGHT: SVG Illustration ═════════════════════════════ -->
-  <div class="hero-illustration">
-    <svg viewBox="0 0 520 480" width="100%" height="auto" aria-hidden="true" role="img">
-
-      <circle cx="260" cy="240" r="210"
-        fill="rgba(127,119,221,0.06)"
-        stroke="rgba(127,119,221,0.1)" stroke-width="1"/>
-      <circle cx="260" cy="240" r="230"
-        fill="none"
-        stroke="rgba(127,119,221,0.06)" stroke-width="1"
-        stroke-dasharray="4 8"/>
-
-      <line x1="220" y1="100" x2="270" y2="175"
-        stroke="rgba(127,119,221,0.2)" stroke-width="1" stroke-dasharray="3 6"/>
-      <line x1="270" y1="305" x2="165" y2="315"
-        stroke="rgba(127,119,221,0.2)" stroke-width="1" stroke-dasharray="3 6"/>
-
-      <circle cx="68"  cy="22"  r="3" fill="#7F77DD" opacity="0.3"/>
-      <circle cx="445" cy="82"  r="4" fill="#7F77DD" opacity="0.3"/>
-      <circle cx="28"  cy="288" r="5" fill="#7F77DD" opacity="0.3"/>
-      <circle cx="372" cy="402" r="3" fill="#7F77DD" opacity="0.3"/>
-      <circle cx="472" cy="272" r="4" fill="#7F77DD" opacity="0.3"/>
-      <circle cx="198" cy="458" r="3" fill="#7F77DD" opacity="0.25"/>
-
-      <!-- Card 1: Website Preview — float1 5s ease-in-out -->
-      <g style="animation: float1 5s cubic-bezier(0.45,0.05,0.55,0.95) infinite;">
-        <rect x="0" y="0" width="220" height="130" rx="14"
-          fill="#1a1a2e" stroke="rgba(127,119,221,0.3)" stroke-width="1"/>
-        <path d="M14,0 L206,0 C214,0 220,6 220,14 L220,32 L0,32 L0,14 C0,6 6,0 14,0 Z"
-          fill="#7F77DD"/>
-        <circle cx="14" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
-        <circle cx="26" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
-        <circle cx="38" cy="16" r="4" fill="rgba(255,255,255,0.4)"/>
-        <rect x="14" y="48" width="132" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-        <rect x="14" y="62" width="88"  height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-        <rect x="14" y="76" width="112" height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-        <rect x="14" y="90" width="68"  height="6" rx="3" fill="rgba(255,255,255,0.08)"/>
-        <circle cx="14" cy="115" r="4" fill="#1D9E75"/>
-        <text x="24" y="119" font-size="10" fill="rgba(255,255,255,0.4)"
-          font-family="system-ui,-apple-system,sans-serif">Live</text>
-      </g>
-
-      <!-- Card 2: Analytics / Donut — float2 6s delay 0.8s -->
-      <g style="animation: float2 6s cubic-bezier(0.45,0.05,0.55,0.95) infinite 0.8s;">
-        <rect x="0" y="0" width="210" height="140" rx="14"
-          fill="#12122a" stroke="rgba(127,119,221,0.2)" stroke-width="1"/>
-        <!-- Donut: C=2π×35≈220; positive dashoffset = C−arc_start -->
-        <g transform="rotate(-90 50 70)">
-          <circle cx="50" cy="70" r="35" fill="none" stroke="#7F77DD" stroke-width="8"
-            stroke-dasharray="66 154" stroke-dashoffset="0" stroke-linecap="butt"/>
-          <circle cx="50" cy="70" r="35" fill="none" stroke="#1D9E75" stroke-width="8"
-            stroke-dasharray="44 176" stroke-dashoffset="154" stroke-linecap="butt"/>
-          <circle cx="50" cy="70" r="35" fill="none" stroke="#D85A30" stroke-width="8"
-            stroke-dasharray="44 176" stroke-dashoffset="110" stroke-linecap="butt"/>
-        </g>
-        <text x="50" y="74" text-anchor="middle" font-size="11" font-weight="600" fill="white"
-          font-family="system-ui,-apple-system,sans-serif">82%</text>
-        <rect x="102" y="42" width="60" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
-        <rect x="102" y="52" width="40" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-        <rect x="102" y="67" width="60" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
-        <rect x="102" y="77" width="42" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-        <rect x="102" y="92" width="52" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
-        <rect x="102" y="102" width="34" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
-      </g>
-
-      <!-- Card 3: Success — float3 4s delay 0.3s -->
-      <g style="animation: float3 4s cubic-bezier(0.45,0.05,0.55,0.95) infinite 0.3s;">
-        <rect x="0" y="0" width="190" height="80" rx="14" fill="#7F77DD"/>
-        <circle cx="28" cy="40" r="18" fill="rgba(255,255,255,0.2)"/>
-        <path d="M20,40 L26,46 L36,34"
-          stroke="white" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="56" y="33" font-size="11" font-weight="600" fill="white"
-          font-family="system-ui,-apple-system,sans-serif">Projekt</text>
-        <text x="56" y="48" font-size="11" font-weight="600" fill="white"
-          font-family="system-ui,-apple-system,sans-serif">abgeschlossen</text>
-        <text x="56" y="63" font-size="10" fill="rgba(255,255,255,0.6)"
-          font-family="system-ui,-apple-system,sans-serif">mb-solutions.biz</text>
-      </g>
-
-    </svg>
-  </div>
-
 </section>

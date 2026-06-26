@@ -13,14 +13,33 @@ const navLinks = [
 
 <style>
   .nav-link {
+    position: relative;
     font-size: 14px;
     text-decoration: none;
     transition: color 150ms var(--ease-out);
-    color: rgba(240,239,255,0.5);
+    color: rgba(240,239,255,0.45);
+    padding-bottom: 2px;
   }
-  .nav-link.active { color: #F0EFFF; font-weight: 500; }
+  /* Slide-in Underline */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 0; height: 1px;
+    background: #7F77DD;
+    transition: width 220ms var(--ease-out);
+    border-radius: 1px;
+  }
+  .nav-link.active {
+    color: #F0EFFF;
+    font-weight: 500;
+  }
+  /* Active: Underline dauerhaft sichtbar */
+  .nav-link.active::after { width: 100%; }
+
   @media (hover: hover) and (pointer: fine) {
     .nav-link:hover { color: #F0EFFF; }
+    .nav-link:not(.active):hover::after { width: 60%; background: rgba(127,119,221,0.45); }
   }
 
   .overlay-link {
@@ -49,7 +68,7 @@ const navLinks = [
 <header
   id="navbar"
   class="sticky top-0 z-50 h-16"
-  style="background: #0a0a0f; transition: background 200ms, border-bottom 200ms;"
+  style="background: transparent; transition: background 280ms var(--ease-out), border-color 280ms var(--ease-out), backdrop-filter 280ms var(--ease-out);"
 >
   <div class="flex items-center justify-between h-full px-6 md:px-12 lg:px-20">
 
@@ -146,14 +165,14 @@ const navLinks = [
 
   function updateScroll() {
     if (!header) return;
-    if (window.scrollY > 20) {
+    if (window.scrollY > 40) {
       header.style.borderBottom = '1px solid rgba(127,119,221,0.12)';
-      header.style.background   = 'rgba(10,10,15,0.92)';
-      header.style.backdropFilter = 'blur(16px)';
-      (header.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = 'blur(16px)';
+      header.style.background   = 'rgba(10,10,15,0.88)';
+      header.style.backdropFilter = 'blur(20px) saturate(1.4)';
+      (header.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = 'blur(20px) saturate(1.4)';
     } else {
-      header.style.borderBottom = '';
-      header.style.background   = '#0a0a0f';
+      header.style.borderBottom = 'none';
+      header.style.background   = 'transparent';
       header.style.backdropFilter = '';
       (header.style as CSSStyleDeclaration & { webkitBackdropFilter: string }).webkitBackdropFilter = '';
     }
