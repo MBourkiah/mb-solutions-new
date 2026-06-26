@@ -5,11 +5,11 @@ import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 
 const skills = [
-  { label: 'Webdesign & Frontend', level: 90, accent: '#7F77DD' },
-  { label: 'Astro / React / HTML+CSS', level: 88, accent: '#7F77DD' },
-  { label: 'IT-Infrastruktur & Cloud', level: 80, accent: '#2DD4BF' },
-  { label: 'Branding & Grafikdesign', level: 75, accent: '#FF8C6B' },
-  { label: 'SEO & Analytics', level: 72, accent: '#7F77DD' },
+  { label: 'Webdesign & Frontend', level: 90, color: 'var(--accent)' },
+  { label: 'Astro / React / HTML+CSS', level: 88, color: 'var(--accent)' },
+  { label: 'IT-Infrastruktur & Cloud', level: 80, color: '#16A34A' },
+  { label: 'Branding & Grafikdesign', level: 75, color: '#D97706' },
+  { label: 'SEO & Analytics', level: 72, color: 'var(--accent)' },
 ];
 
 const timeline = [
@@ -21,123 +21,89 @@ const timeline = [
 ---
 
 <style>
-  /* ── Hero ─────────────────────────────── */
-  .about-hero {
-    background: var(--bg);
-    padding: 7rem 5% 5rem;
-    position: relative; overflow: hidden;
-  }
+  .about-hero { background: var(--bg); padding: 7rem 5% 5rem; position: relative; overflow: hidden; }
   .about-hero::before {
-    content: '';
-    position: absolute; top: -30%; right: -10%;
-    width: 50%; height: 80%;
-    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
-    pointer-events: none;
+    content: ''; position: absolute; top: -30%; right: -10%; width: 50%; height: 80%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%); pointer-events: none;
   }
   .about-hero-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5rem; align-items: center;
-    position: relative; z-index: 1;
+    gap: 5rem; align-items: center; position: relative; z-index: 1;
+    max-width: 80rem; margin: 0 auto;
   }
   .about-h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
-    line-height: 1.1; margin: 0 0 1.25rem;
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem); font-weight: 800; letter-spacing: -0.035em;
+    color: var(--text); line-height: 1.1; margin: 0 0 1.25rem;
   }
-  .about-lead { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.8; max-width: 48ch; margin: 0 0 2rem; }
-  .about-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .about-lead { font-size: 1.0625rem; color: var(--text-2); line-height: 1.8; max-width: 48ch; margin: 0 0 2rem; }
+  .about-stats { display: flex; gap: 2rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid var(--border); }
   .stat-item { display: flex; flex-direction: column; gap: 3px; }
-  .stat-val { font-size: 1.75rem; font-weight: 800; color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1; }
-  .stat-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+  .stat-val { font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.03em; }
+  .stat-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
 
-  /* ── Visual ─────────────────────── */
-  .about-visual { display: flex; justify-content: center; align-items: center; position: relative; }
-  .about-visual::before {
-    content: '';
-    position: absolute; inset: -30px;
-    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.1) 0%, transparent 60%);
-    pointer-events: none;
-  }
+  .about-portrait-wrap { display: flex; justify-content: center; align-items: center; }
   .about-portrait {
-    position: relative; z-index: 1;
     width: 280px; height: 320px; border-radius: var(--r-xl);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
+    background: var(--bg-alt); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
+    box-shadow: var(--shadow-md); position: relative; overflow: hidden;
   }
-  .about-portrait-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(150deg, rgba(127,119,221,0.12) 0%, rgba(45,212,191,0.05) 100%);
+  .about-portrait::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 40%, rgba(127,119,221,0.10) 0%, transparent 60%);
   }
-  .about-portrait-icon {
-    position: relative; z-index: 1;
-    width: 96px; height: 96px; border-radius: 50%;
-    background: rgba(127,119,221,0.12);
-    border: 1.5px solid rgba(127,119,221,0.3);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent);
+  .portrait-icon {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--accent-light); border: 2px solid var(--border-a);
+    display: flex; align-items: center; justify-content: center; color: var(--accent); z-index: 1;
   }
 
-  /* ── Skills ────────────────────── */
-  .skills-section { background: var(--surface-1); padding: 6rem 5%; }
+  /* Skills */
+  .skills-section { background: var(--bg-alt); padding: 6rem 5%; }
+  .skills-inner { max-width: 80rem; margin: 0 auto; }
   .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
-  .skills-intro { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+  .skills-intro { font-size: 1rem; color: var(--text-2); line-height: 1.8; }
   .skill-bars { display: flex; flex-direction: column; gap: 1.25rem; }
   .skill-row { display: flex; flex-direction: column; gap: 8px; }
   .skill-meta { display: flex; justify-content: space-between; align-items: baseline; }
-  .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); font-family: 'Poppins', sans-serif; }
-  .skill-pct { font-size: 0.8125rem; color: var(--text-dim); font-family: 'Poppins', sans-serif; }
-  .skill-track {
-    height: 5px; border-radius: var(--r-full);
-    background: var(--surface-3); overflow: hidden;
-  }
-  .skill-fill {
-    height: 100%; border-radius: var(--r-full);
-    background: linear-gradient(90deg, var(--skill-accent) 0%, color-mix(in srgb, var(--skill-accent) 70%, #9B73E8) 100%);
-    transform-origin: left;
-  }
+  .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); }
+  .skill-pct { font-size: 0.8125rem; color: var(--text-3); }
+  .skill-track { height: 5px; border-radius: var(--r-full); background: var(--border-2); overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: var(--r-full); }
 
-  /* ── Timeline ──────────────────── */
+  /* Timeline */
   .timeline-section { background: var(--bg); padding: 6rem 5%; }
+  .timeline-inner { max-width: 80rem; margin: 0 auto; }
   .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; max-width: 700px; }
   .tl-item {
     display: grid; grid-template-columns: 80px 1fr;
     gap: 1.5rem; padding-bottom: 2rem; position: relative;
   }
   .tl-item:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: 36px; top: 28px; bottom: 0;
+    content: ''; position: absolute; left: 36px; top: 28px; bottom: 0;
     width: 1px; background: var(--border);
   }
   .tl-year {
-    font-size: 0.875rem; font-weight: 700; color: var(--accent);
-    font-family: 'Poppins', sans-serif; padding-top: 4px;
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: 'Outfit', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--accent);
+    padding-top: 4px; display: flex; flex-direction: column; align-items: center; gap: 8px;
   }
   .tl-dot {
     width: 10px; height: 10px; border-radius: 50%;
     background: var(--accent); border: 2px solid var(--bg);
-    box-shadow: 0 0 0 3px rgba(127,119,221,0.2);
-    flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(127,119,221,0.20); flex-shrink: 0;
   }
-  .tl-content { padding-top: 2px; }
-  .tl-title { font-size: 1rem; font-weight: 600; color: var(--text); font-family: 'Poppins', sans-serif; margin: 0 0 0.375rem; }
-  .tl-body { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65; margin: 0; }
+  .tl-title { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.375rem; letter-spacing: -0.02em; }
+  .tl-body { font-size: 0.9375rem; color: var(--text-2); line-height: 1.65; margin: 0; }
 
-  /* ── Responsive ─────────────────── */
+  .section-h2 {
+    font-size: clamp(1.75rem, 2.75vw, 2.375rem); font-weight: 700;
+    letter-spacing: -0.03em; color: var(--text); margin: 0 0 0.875rem; line-height: 1.2;
+  }
+
   @media (max-width: 860px) {
     .about-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-visual { order: -1; }
+    .about-portrait-wrap { order: -1; }
     .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  /* ── Shared ─────────────────────── */
-  .section-h2 {
-    font-size: clamp(1.75rem, 2.75vw, 2.375rem);
-    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
-    margin: 0 0 0.875rem; line-height: 1.2;
   }
 </style>
 
@@ -148,43 +114,32 @@ const timeline = [
   <Navbar />
   <main id="main-content">
 
-    <!-- Hero -->
     <section class="about-hero" aria-labelledby="about-heading">
-      <div class="about-hero-grid section-inner" style="max-width:none;">
+      <div class="about-hero-grid">
         <div>
-          <div class="eyebrow">
-            <div class="eyebrow-line"></div>
-            <span class="eyebrow-text">Über mich</span>
+          <div class="eyebrow reveal">
+            <span class="eyebrow-bar" aria-hidden="true"></span>
+            Über mich
           </div>
-          <h1 class="about-h1" id="about-heading">
+          <h1 class="about-h1 reveal" id="about-heading">
             Hallo, ich bin<br/>Maurice.
           </h1>
-          <p class="about-lead">
+          <p class="about-lead reveal">
             Freelancer aus Köln mit einem Ding für schöne Websites,
             sauber aufgesetzte IT und Marken, die im Gedächtnis bleiben.
             Ich arbeite direkt mit meinen Kunden — kein Mittelmann, keine Warteschlange.
           </p>
-          <div class="about-stats" aria-label="Kennzahlen">
-            <div class="stat-item">
-              <span class="stat-val">5+</span>
-              <span class="stat-label">Jahre Erfahrung</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-val">12+</span>
-              <span class="stat-label">Projekte</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-val">100%</span>
-              <span class="stat-label">Direktbetreuung</span>
-            </div>
+          <div class="about-stats reveal" aria-label="Kennzahlen">
+            <div class="stat-item"><span class="stat-val">5+</span><span class="stat-label">Jahre Erfahrung</span></div>
+            <div class="stat-item"><span class="stat-val">12+</span><span class="stat-label">Projekte</span></div>
+            <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Direktbetreuung</span></div>
           </div>
         </div>
 
-        <div class="about-visual">
-          <div class="about-portrait">
-            <div class="about-portrait-bg" aria-hidden="true"></div>
-            <div class="about-portrait-icon" aria-hidden="true">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <div class="about-portrait-wrap">
+          <div class="about-portrait reveal">
+            <div class="portrait-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
               </svg>
@@ -194,26 +149,22 @@ const timeline = [
       </div>
     </section>
 
-    <!-- Skills -->
     <section class="skills-section" aria-labelledby="skills-heading">
-      <div class="section-inner">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Kenntnisse</span>
+      <div class="skills-inner">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Kenntnisse
         </div>
-        <h2 class="section-h2" id="skills-heading">Was ich mitbringe.</h2>
-
+        <h2 class="section-h2 reveal" id="skills-heading">Was ich mitbringe.</h2>
         <div class="skills-grid">
-          <div>
-            <p class="skills-intro">
-              Ich bin kein Spezialist in einer Nische — ich verstehe das Ganze.
-              Vom Design über den Code bis zur IT-Infrastruktur denke ich vernetzt
-              und liefere Lösungen, die langfristig funktionieren.
-            </p>
-          </div>
+          <p class="skills-intro reveal">
+            Ich bin kein Spezialist in einer Nische — ich verstehe das Ganze.
+            Vom Design über den Code bis zur IT-Infrastruktur denke ich vernetzt
+            und liefere Lösungen, die langfristig funktionieren.
+          </p>
           <div class="skill-bars">
             {skills.map(s => (
-              <div class="skill-row stagger-reveal">
+              <div class="skill-row reveal">
                 <div class="skill-meta">
                   <span class="skill-name">{s.label}</span>
                   <span class="skill-pct">{s.level}%</span>
@@ -221,7 +172,7 @@ const timeline = [
                 <div class="skill-track">
                   <div
                     class="skill-fill"
-                    style={`width:${s.level}%;--skill-accent:${s.accent};`}
+                    style={`width:${s.level}%;background:${s.color};`}
                     role="progressbar"
                     aria-valuenow={s.level}
                     aria-valuemin={0}
@@ -236,23 +187,21 @@ const timeline = [
       </div>
     </section>
 
-    <!-- Timeline -->
     <section class="timeline-section" aria-labelledby="timeline-heading">
-      <div class="section-inner">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Werdegang</span>
+      <div class="timeline-inner">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Werdegang
         </div>
-        <h2 class="section-h2" id="timeline-heading">Wie es dazu kam.</h2>
-
+        <h2 class="section-h2 reveal" id="timeline-heading">Wie es dazu kam.</h2>
         <div class="timeline">
-          {timeline.map((item) => (
-            <div class="tl-item stagger-reveal">
+          {timeline.map(item => (
+            <div class="tl-item reveal">
               <div class="tl-year">
                 <span class="tl-dot" aria-hidden="true"></span>
                 {item.year}
               </div>
-              <div class="tl-content">
+              <div>
                 <p class="tl-title">{item.title}</p>
                 <p class="tl-body">{item.body}</p>
               </div>

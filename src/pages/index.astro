@@ -16,6 +16,33 @@ import Footer from '../components/Footer.astro';
   <Navbar />
   <main>
     <HeroSection />
+
+    <!-- Marquee strip -->
+    <div class="marquee-outer" aria-hidden="true">
+      <div class="marquee-inner">
+        {Array.from({length: 2}).map(() => (
+          <>
+            <span class="marquee-word">Webdesign</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">IT-Services</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">Branding</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">Köln</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">KMU</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">Direktbetreuung</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">Corporate Identity</span>
+            <span class="marquee-sep">·</span>
+            <span class="marquee-word">Next.js</span>
+            <span class="marquee-sep">·</span>
+          </>
+        ))}
+      </div>
+    </div>
+
     <ServicesSection />
     <PortfolioSection />
     <AboutSection />

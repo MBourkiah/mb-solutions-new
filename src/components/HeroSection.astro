@@ -1,278 +1,262 @@
 ---
-// Hero — Trust & Authority pattern (ui-ux-pro-max: landing.csv)
+// Hero — Exaggerated Minimalism, warm cream, editorial
 ---
 
 <style>
   .hero {
-    min-height: 100vh;
     background: var(--bg);
-    display: flex;
-    align-items: center;
-    padding: 7rem 5% 5rem;
-    position: relative;
-    overflow: hidden;
+    min-height: 100svh;
+    display: flex; align-items: center;
+    padding: 5rem 5% 4rem;
+    position: relative; overflow: hidden;
   }
+
+  /* Subtle background texture dots */
   .hero::before {
     content: '';
-    position: absolute;
-    top: -20%; left: -8%;
-    width: 55%; height: 90%;
-    background: radial-gradient(ellipse at 0% 30%, rgba(127,119,221,0.09) 0%, transparent 65%);
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(28,26,23,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
     pointer-events: none;
   }
 
-  .hero-grid {
+  .hero-inner {
     position: relative; z-index: 1;
     width: 100%; max-width: 80rem; margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    grid-template-columns: 1fr 380px;
+    gap: 3rem; align-items: center;
   }
 
-  /* ─── Badge ─────────────────── */
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(45,212,191,0.08);
-    border: 1px solid rgba(45,212,191,0.2);
-    padding: 5px 12px; border-radius: var(--r-full);
-    margin-bottom: 2rem;
-    animation: heroFadeIn 500ms var(--ease-out) 60ms both;
-  }
-  .hero-badge-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: #2DD4BF;
-    box-shadow: 0 0 0 3px rgba(45,212,191,0.15);
-    flex-shrink: 0;
-  }
-  .hero-badge-label {
-    font-size: 12px; letter-spacing: 0.06em;
-    color: rgba(45,212,191,0.8);
-    font-family: 'Poppins', sans-serif; font-weight: 500;
-  }
+  /* ─── Left: Text ─────────────── */
+  .hero-pill { animation: fadeUp 500ms var(--ease-out) 60ms both; }
 
-  /* ─── Headline ───────────────── */
   .hero-headline {
-    display: flex; gap: 1.5rem; align-items: stretch;
-    margin-bottom: 2rem;
-    animation: heroFadeIn 650ms var(--ease-out) 140ms both;
+    margin: 1.75rem 0;
+    animation: fadeUp 650ms var(--ease-out) 130ms both;
   }
-  .hero-vbar {
-    width: 3px;
-    background: linear-gradient(to bottom, var(--accent) 60%, transparent 100%);
-    border-radius: 2px; flex-shrink: 0;
-  }
-  .hero-h1 { font-family: 'Poppins', sans-serif; margin: 0; }
-  .hero-h1-upper {
+  .hero-line {
     display: block;
-    font-size: clamp(1.75rem, 3.5vw, 3rem);
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: -0.02em; line-height: 1.1;
-    margin-bottom: 0.05em;
-  }
-  .hero-h1-main {
-    display: block;
-    font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+    font-size: clamp(4rem, 8.5vw, 8rem);
     font-weight: 800;
     color: var(--text);
-    letter-spacing: -0.035em; line-height: 0.93;
+    letter-spacing: -0.04em;
+    line-height: 0.96;
   }
-  .hero-h1-main .vdot { color: var(--accent); }
-  .hero-h1-qualifier {
-    display: block;
-    font-size: clamp(1rem, 1.75vw, 1.3rem);
-    font-weight: 400;
-    color: var(--text-dim);
-    margin-top: 0.85em;
+  .hero-line.accent { color: var(--accent); }
+  .hero-line.light  { font-weight: 500; color: var(--text-2); font-size: clamp(2rem, 4vw, 3.75rem); }
+
+  .hero-divider {
+    width: 100%; height: 1px; background: var(--border-2);
+    margin: 2rem 0;
+    animation: fadeUp 500ms var(--ease-out) 220ms both;
   }
 
-  /* ─── Body text ──────────────── */
-  .hero-body {
-    font-size: 1rem; color: var(--text-muted);
-    line-height: 1.8; max-width: 440px;
-    margin: 0 0 2rem;
-    animation: heroFadeIn 600ms var(--ease-out) 230ms both;
+  .hero-sub {
+    font-size: 1.0625rem; color: var(--text-2);
+    line-height: 1.75; max-width: 44ch; margin: 0 0 2.25rem;
+    animation: fadeUp 500ms var(--ease-out) 270ms both;
   }
 
-  /* ─── CTAs ───────────────────── */
   .hero-ctas {
-    display: flex; gap: 12px; flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-    animation: heroFadeIn 600ms var(--ease-out) 310ms both;
+    display: flex; gap: 10px; flex-wrap: wrap;
+    animation: fadeUp 500ms var(--ease-out) 330ms both;
   }
 
-  /* ─── Trust bar ──────────────── */
-  .hero-trust {
-    display: flex; gap: 2rem; flex-wrap: wrap;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    animation: heroFadeIn 600ms var(--ease-out) 380ms both;
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+    animation: fadeUp 500ms var(--ease-out) 400ms both;
+    flex-wrap: wrap;
   }
-  .trust-item { display: flex; flex-direction: column; gap: 3px; }
-  .trust-value {
-    font-size: 1.375rem; font-weight: 700;
-    color: var(--text);
-    font-family: 'Poppins', sans-serif;
+  .stat-val {
+    display: block;
+    font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700;
+    color: var(--text); line-height: 1; letter-spacing: -0.03em;
   }
-  .trust-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
-
-  /* ─── Browser mockup ─────────── */
-  .hero-mockup-wrap {
-    position: relative;
-    display: flex; justify-content: center; align-items: center;
-    padding: 2rem 0;
-    animation: heroFadeIn 900ms var(--ease-out) 180ms both;
-  }
-  .hero-mockup-wrap::before {
-    content: '';
-    position: absolute; inset: -20px;
-    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.16) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .browser-frame {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 520px;
-    border-radius: 14px; overflow: hidden;
-    border: 1px solid rgba(127,119,221,0.22);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
-    transform: perspective(1100px) rotateY(-6deg) rotateX(3deg);
-    transition: transform 400ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .browser-frame:hover { transform: perspective(1100px) rotateY(-2deg) rotateX(1deg); }
+  .stat-label {
+    font-size: 12px; color: var(--text-3); margin-top: 4px;
+    letter-spacing: 0.02em;
   }
 
-  /* ─── Responsive ─────────────── */
-  @media (max-width: 960px) {
-    .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; }
-    .browser-frame { transform: none; max-width: 100%; }
-    .hero { padding: 6rem 6% 4rem; min-height: auto; }
+  /* ─── Right: Cards ───────────── */
+  .hero-right {
+    display: flex; flex-direction: column; gap: 14px;
+    animation: fadeUp 800ms var(--ease-out) 200ms both;
+  }
+
+  .hero-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Availability card */
+  .avail-card {
+    border-top: 3px solid var(--accent);
+  }
+  .avail-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .avail-title {
+    font-family: 'Outfit', sans-serif; font-size: 0.9375rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.02em;
+  }
+  .avail-badge {
+    font-size: 11px; font-weight: 500; color: #16A34A;
+    background: #F0FDF4; border: 1px solid #BBF7D0;
+    padding: 3px 9px; border-radius: var(--r-full);
+  }
+  .avail-services { display: flex; flex-direction: column; gap: 8px; }
+  .avail-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 10px; border-radius: 8px; background: var(--bg);
+  }
+  .avail-row-name { font-size: 13px; color: var(--text-2); font-weight: 500; }
+  .avail-row-tag {
+    font-size: 11px; font-weight: 500; color: var(--accent);
+    background: var(--accent-light); padding: 2px 8px; border-radius: var(--r-full);
+  }
+
+  /* Location card */
+  .loc-card { padding: 1.25rem 1.5rem; }
+  .loc-inner { display: flex; align-items: center; gap: 12px; }
+  .loc-icon {
+    width: 38px; height: 38px; border-radius: 9px;
+    background: var(--accent-light); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .loc-label { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; }
+  .loc-name  { font-size: 0.9375rem; font-weight: 600; color: var(--text); font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; }
+
+  /* Verified card */
+  .verified-card { padding: 1rem 1.5rem; }
+  .verified-inner { display: flex; align-items: center; gap: 12px; }
+  .verified-icon {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: #F0FDF4; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .verified-text { font-size: 0.875rem; color: var(--text-2); line-height: 1.4; }
+  .verified-text strong { color: var(--text); font-weight: 600; }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-right { order: -1; max-width: 420px; margin: 0 auto; }
+    .hero { padding: 4rem 6% 3rem; min-height: auto; }
+    .hero-line { font-size: clamp(3rem, 10vw, 5.5rem); }
   }
 </style>
 
 <section class="hero" id="main-content" aria-label="Startseite Hero">
-  <div class="hero-grid">
+  <div class="hero-inner">
 
-    <!-- Text -->
+    <!-- Left: Text content -->
     <div>
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span class="hero-badge-label">Offen für neue Projekte · Köln</span>
+      <div class="hero-pill">
+        <span class="pill">
+          <span class="pill-dot" aria-hidden="true"></span>
+          Verfügbar für neue Projekte
+        </span>
       </div>
 
       <div class="hero-headline">
-        <div class="hero-vbar" aria-hidden="true"></div>
-        <h1 class="hero-h1">
-          <span class="hero-h1-upper">Dein digitaler</span>
-          <span class="hero-h1-main">Auftritt<span class="vdot">.</span></span>
-          <span class="hero-h1-qualifier">Von einer Person.</span>
-        </h1>
+        <span class="hero-line">Dein</span>
+        <span class="hero-line accent">digitaler</span>
+        <span class="hero-line">Auftritt.</span>
+        <span class="hero-line light">Von einer Person.</span>
       </div>
 
-      <p class="hero-body">
-        Webseiten, IT-Setup und Branding für KMU und Handwerksbetriebe in Köln —
-        persönlich, direkt und ohne Agentur-Overhead.
+      <div class="hero-divider" aria-hidden="true"></div>
+
+      <p class="hero-sub">
+        Webseiten, IT-Setup und Branding für KMU und Handwerksbetriebe
+        in Köln — persönlich, direkt und ohne Agentur-Overhead.
       </p>
 
       <div class="hero-ctas">
         <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
-        <a href="/portfolio" class="btn-outline">Portfolio ansehen</a>
+        <a href="/portfolio" class="btn-outline">
+          Portfolio ansehen
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+            <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
 
-      <div class="hero-trust" aria-label="Kennzahlen">
-        <div class="trust-item">
-          <span class="trust-value">12+</span>
-          <span class="trust-label">Projekte umgesetzt</span>
+      <div class="hero-stats" aria-label="Kennzahlen">
+        <div>
+          <span class="stat-val">12+</span>
+          <span class="stat-label">Projekte umgesetzt</span>
         </div>
-        <div class="trust-item">
-          <span class="trust-value">48h</span>
-          <span class="trust-label">Antwortzeit</span>
+        <div>
+          <span class="stat-val">48h</span>
+          <span class="stat-label">Antwortzeit</span>
         </div>
-        <div class="trust-item">
-          <span class="trust-value">1:1</span>
-          <span class="trust-label">Direkte Betreuung</span>
+        <div>
+          <span class="stat-val">5+</span>
+          <span class="stat-label">Jahre Erfahrung</span>
         </div>
-      </div>
-    </div>
-
-    <!-- Browser Mockup -->
-    <div class="hero-mockup-wrap">
-      <div class="browser-frame" role="img" aria-label="Beispiel einer MB-Solutions Website">
-        <svg viewBox="0 0 560 400" width="100%" xmlns="http://www.w3.org/2000/svg">
-          <rect width="560" height="400" fill="#111122"/>
-          <rect width="560" height="40" fill="#0d0d1c"/>
-          <rect y="39" width="560" height="1" fill="rgba(127,119,221,0.18)"/>
-          <circle cx="20" cy="20" r="6" fill="#FF5F57"/>
-          <circle cx="38" cy="20" r="6" fill="#FFBD2E"/>
-          <circle cx="56" cy="20" r="6" fill="#28CA41"/>
-          <rect x="100" y="10" width="260" height="20" rx="5" fill="#1a1a2e"/>
-          <text x="126" y="24" font-family="system-ui,sans-serif" font-size="10" fill="rgba(240,239,255,0.35)">cafe-roesterei-koeln.de</text>
-          <rect x="490" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
-          <rect x="510" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
-          <rect x="530" y="13" width="14" height="14" rx="3" fill="rgba(255,255,255,0.06)"/>
-          <rect y="40" width="560" height="34" fill="#0c0c1e"/>
-          <rect x="20" y="50" width="16" height="16" rx="4" fill="#7F77DD"/>
-          <text x="40" y="62" font-family="system-ui,sans-serif" font-size="9.5" font-weight="600" fill="rgba(240,239,255,0.8)">Café Rösterei</text>
-          <text x="300" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Über uns</text>
-          <text x="350" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Produkte</text>
-          <text x="402" y="62" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.3)">Kontakt</text>
-          <rect x="450" y="52" width="80" height="17" rx="8" fill="#7F77DD"/>
-          <text x="490" y="64" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="white">Bestellen</text>
-          <rect y="73" width="560" height="1" fill="rgba(127,119,221,0.12)"/>
-          <defs>
-            <radialGradient id="hg" cx="30%" cy="50%" r="70%">
-              <stop offset="0%" stop-color="#7F77DD" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#0a0a14" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="ig" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.12"/>
-              <stop offset="100%" stop-color="#13131f" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect y="74" width="560" height="200" fill="#0a0a14"/>
-          <rect y="74" width="560" height="200" fill="url(#hg)"/>
-          <rect x="24" y="102" width="7" height="52" rx="2" fill="#7F77DD" opacity="0.9"/>
-          <text x="38" y="120" font-family="system-ui,sans-serif" font-size="12" font-weight="400" fill="rgba(240,239,255,0.45)">Frisch geröstet,</text>
-          <text x="38" y="138" font-family="system-ui,sans-serif" font-size="21" font-weight="800" fill="#F0EFFF" letter-spacing="-0.5">direkt zu dir.</text>
-          <text x="38" y="155" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.28)">Kölner Spezialitätenkaffee</text>
-          <rect x="38" y="164" width="140" height="5" rx="2" fill="rgba(240,239,255,0.07)"/>
-          <rect x="38" y="173" width="112" height="5" rx="2" fill="rgba(240,239,255,0.07)"/>
-          <rect x="38" y="186" width="88" height="22" rx="11" fill="#7F77DD"/>
-          <text x="82" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="white">Jetzt bestellen</text>
-          <rect x="132" y="186" width="68" height="22" rx="11" fill="rgba(240,239,255,0.06)" stroke="rgba(240,239,255,0.1)" stroke-width="0.5"/>
-          <text x="166" y="201" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" fill="rgba(240,239,255,0.4)">Mehr erfahren</text>
-          <rect x="340" y="82" width="200" height="184" rx="10" fill="#13131f" stroke="rgba(127,119,221,0.15)" stroke-width="0.75"/>
-          <rect x="340" y="82" width="200" height="184" rx="10" fill="url(#ig)"/>
-          <ellipse cx="440" cy="150" rx="52" ry="52" fill="rgba(127,119,221,0.07)"/>
-          <ellipse cx="440" cy="150" rx="35" ry="35" fill="rgba(127,119,221,0.1)"/>
-          <ellipse cx="440" cy="150" rx="22" ry="22" fill="rgba(127,119,221,0.18)"/>
-          <ellipse cx="440" cy="150" rx="12" ry="12" fill="#7F77DD" opacity="0.6"/>
-          <path d="M428 152 Q440 142 452 152 Q452 168 440 172 Q428 168 428 152Z" fill="rgba(240,239,255,0.1)"/>
-          <rect x="420" y="170" width="40" height="4" rx="2" fill="rgba(240,239,255,0.08)"/>
-          <rect x="363" y="95" width="56" height="18" rx="9" fill="rgba(45,212,191,0.18)" stroke="rgba(45,212,191,0.3)" stroke-width="0.5"/>
-          <text x="391" y="107" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8" font-weight="600" fill="#2DD4BF">Frisch geröstet</text>
-          <rect y="273" width="560" height="1" fill="rgba(127,119,221,0.1)"/>
-          <rect y="274" width="560" height="126" fill="#0c0c1e"/>
-          <text x="24" y="294" font-family="system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(240,239,255,0.35)" letter-spacing="0.08em">UNSERE SORTEN</text>
-          <rect x="20" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(127,119,221,0.12)" stroke-width="0.5"/>
-          <rect x="20" y="302" width="160" height="36" rx="10" fill="rgba(127,119,221,0.14)"/>
-          <rect x="20" y="320" width="160" height="18" fill="rgba(127,119,221,0.14)"/>
-          <text x="100" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Ethiopia Yirgacheffe</text>
-          <text x="160" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#AFA9EC">14,90 €</text>
-          <rect x="196" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(45,212,191,0.12)" stroke-width="0.5"/>
-          <rect x="196" y="302" width="160" height="36" rx="10" fill="rgba(45,212,191,0.1)"/>
-          <rect x="196" y="320" width="160" height="18" fill="rgba(45,212,191,0.1)"/>
-          <text x="276" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Colombia Huila</text>
-          <text x="336" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#2DD4BF">12,50 €</text>
-          <rect x="372" y="302" width="160" height="80" rx="10" fill="#13131f" stroke="rgba(255,140,107,0.12)" stroke-width="0.5"/>
-          <rect x="372" y="302" width="160" height="36" rx="10" fill="rgba(255,140,107,0.1)"/>
-          <rect x="372" y="320" width="160" height="18" fill="rgba(255,140,107,0.1)"/>
-          <text x="452" y="325" text-anchor="middle" font-family="system-ui,sans-serif" font-size="8.5" font-weight="600" fill="rgba(240,239,255,0.65)">Brazil Santos</text>
-          <text x="512" y="374" text-anchor="end" font-family="system-ui,sans-serif" font-size="10" font-weight="700" fill="#FF8C6B">11,90 €</text>
-        </svg>
       </div>
     </div>
 
+    <!-- Right: Info cards -->
+    <div class="hero-right" aria-label="Übersicht">
+
+      <div class="hero-card avail-card">
+        <div class="avail-header">
+          <span class="avail-title">Services</span>
+          <span class="avail-badge">Verfügbar</span>
+        </div>
+        <div class="avail-services">
+          <div class="avail-row">
+            <span class="avail-row-name">Webdesign</span>
+            <span class="avail-row-tag">Astro · Next.js</span>
+          </div>
+          <div class="avail-row">
+            <span class="avail-row-name">IT-Services</span>
+            <span class="avail-row-tag">Cloud · Setup</span>
+          </div>
+          <div class="avail-row">
+            <span class="avail-row-name">Branding</span>
+            <span class="avail-row-tag">Logo · CI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card loc-card">
+        <div class="loc-inner">
+          <div class="loc-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="loc-label">Standort</div>
+            <div class="loc-name">Köln, Deutschland</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card verified-card">
+        <div class="verified-inner">
+          <div class="verified-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <path d="M22 4L12 14.01l-3-3"/>
+            </svg>
+          </div>
+          <div class="verified-text">
+            <strong>Direktbetreuung</strong><br/>
+            Du sprichst mit dem Entwickler — kein Vermittler, keine Warteschlange.
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>

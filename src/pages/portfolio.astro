@@ -6,129 +6,104 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
-    name: 'Café Rösterei Köln',
+    name: 'Café Morgenrot',
     cat: 'Webdesign',
     year: '2024',
     status: 'Fertiggestellt',
-    body: 'Moderner Online-Shop und Storytelling-Website für eine Kölner Spezialitätenrösterei. Entwickelt mit Astro und einer eigenen CMS-Integration für News und Kaffeebeschreibungen.',
-    tags: ['Astro', 'CMS', 'Online-Shop', 'SEO'],
-    accent: '#7F77DD',
+    body: 'Booking-Website mit Online-Reservierung für ein Kölner Café. Mobile-first, atmosphärisches Design mit Fokus auf Conversion.',
+    tags: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
+    accent: '#D97706',
+    bg: '#FFFBEB',
   },
   {
-    name: 'Meisterbetrieb Schmitz',
-    cat: 'IT-Setup & Branding',
+    name: 'Keller & Söhne GmbH',
+    cat: 'IT-Services + Branding',
     year: '2024',
     status: 'Fertiggestellt',
-    body: 'Neues Corporate Design inkl. Logo, Briefpapier und Visitenkarten. Dazu vollständiges Cloud-Setup mit Microsoft 365 und E-Mail-Migration aller Mitarbeiter.',
-    tags: ['Logo', 'Branding', 'Microsoft 365', 'E-Mail-Migration'],
-    accent: '#2DD4BF',
+    body: 'Komplettes IT-Setup inkl. Google Workspace-Migration und neues Corporate Identity für ein Handwerksunternehmen.',
+    tags: ['Google Workspace', 'Logo Design', 'CI-Manual'],
+    accent: '#16A34A',
+    bg: '#F0FDF4',
+  },
+  {
+    name: 'Yogastudio Sonnenlicht',
+    cat: 'Webdesign',
+    year: '2023',
+    status: 'Fertiggestellt',
+    body: 'Ruhige, minimalistische Website mit Kurskalender und Buchungsfunktion für ein Yoga-Studio in Köln-Nippes.',
+    tags: ['Next.js', 'Framer Motion', 'Vercel'],
+    accent: 'var(--accent)',
+    bg: 'var(--accent-light)',
   },
   {
     name: 'Kosmetikstudio Belle',
     cat: 'Webdesign',
     year: '2025',
     status: 'In Bearbeitung',
-    body: 'Booking-fähige Website mit Leistungsübersicht, Preisliste und Online-Terminbuchung via Calendly-Integration. Mobile-first für die Zielgruppe der Endkunden.',
-    tags: ['Responsive', 'Calendly', 'Booking', 'Mobile-first'],
-    accent: '#FF8C6B',
-  },
-  {
-    name: 'Elektro Wagner GmbH',
-    cat: 'Webdesign & SEO',
-    year: '2023',
-    status: 'Fertiggestellt',
-    body: 'Vollständige Website-Überarbeitung für einen Kölner Elektrobetrieb mit Fokus auf lokale Suchmaschinenoptimierung und Google Business-Anbindung.',
-    tags: ['Webdesign', 'Lokales SEO', 'Google Business'],
-    accent: '#7F77DD',
+    body: 'Booking-fähige Website mit Leistungsübersicht und Online-Terminbuchung via Calendly-Integration.',
+    tags: ['Responsive', 'Calendly', 'Mobile-first'],
+    accent: '#D97706',
+    bg: '#FFFBEB',
   },
 ];
 ---
 
 <style>
-  .port-hero {
-    background: var(--bg);
-    padding: 7rem 5% 5rem;
-    position: relative; overflow: hidden;
-  }
+  .port-hero { background: var(--bg); padding: 7rem 5% 5rem; position: relative; overflow: hidden; }
   .port-hero::before {
-    content: '';
-    position: absolute; top: -30%; left: -5%;
-    width: 50%; height: 80%;
-    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
-    pointer-events: none;
+    content: ''; position: absolute; top: -20%; left: -5%; width: 50%; height: 80%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%); pointer-events: none;
   }
-  .port-hero-inner { position: relative; z-index: 1; }
   .port-h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
-    line-height: 1.1; margin: 0 0 1.25rem;
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem); font-weight: 800; letter-spacing: -0.035em;
+    color: var(--text); line-height: 1.1; margin: 0 0 1.25rem;
   }
-  .port-sub { font-size: 1.0625rem; color: var(--text-muted); line-height: 1.75; max-width: 50ch; }
+  .port-sub { font-size: 1.0625rem; color: var(--text-2); line-height: 1.75; max-width: 50ch; }
 
-  .port-grid-section { background: var(--surface-1); padding: 5rem 5%; }
-  .port-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem; margin-top: 3rem;
-  }
+  .port-grid-section { background: var(--bg-alt); padding: 5rem 5%; }
+  .port-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
 
   .proj-card {
-    background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: var(--r-xl); overflow: hidden;
-    display: flex; flex-direction: column;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
+    overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: var(--shadow-sm);
     transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   }
   @media (hover: hover) and (pointer: fine) {
-    .proj-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--proj-accent);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.32);
-    }
+    .proj-card:hover { transform: translateY(-4px); border-color: var(--proj-border); box-shadow: var(--shadow-lg); }
   }
+
   .proj-visual {
-    height: 200px; background: var(--surface-3);
-    position: relative; overflow: hidden;
+    height: 180px; position: relative; overflow: hidden;
     display: flex; align-items: center; justify-content: center;
-  }
-  .proj-visual-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--proj-accent) 0%, transparent 70%);
-    opacity: 0.1;
-  }
-  .proj-visual-glow {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 30% 50%, var(--proj-accent), transparent 60%);
-    opacity: 0.05;
   }
   .proj-visual-icon {
-    width: 64px; height: 64px; border-radius: var(--r-lg);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--proj-accent); position: relative; z-index: 1;
+    width: 56px; height: 56px; border-radius: var(--r-lg);
+    border: 1px solid var(--border); background: var(--bg);
+    display: flex; align-items: center; justify-content: center; z-index: 1;
   }
   .proj-year-tag {
-    position: absolute; top: 16px; right: 16px; z-index: 2;
-    background: rgba(0,0,0,0.45);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 4px 10px; border-radius: var(--r-full);
-    font-size: 11px; color: var(--text-dim); font-family: 'Poppins', sans-serif;
+    position: absolute; top: 14px; right: 14px; z-index: 2;
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 3px 9px; border-radius: var(--r-full);
+    font-size: 11px; color: var(--text-3); font-weight: 500;
   }
+  .proj-status-tag {
+    position: absolute; top: 14px; left: 14px; z-index: 2;
+    padding: 3px 9px; border-radius: var(--r-full);
+    font-size: 11px; font-weight: 500;
+  }
+
   .proj-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
   .proj-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .proj-cat { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--proj-accent); font-family: 'Poppins', sans-serif; font-weight: 500; }
-  .proj-status {
-    font-size: 11px; padding: 2px 8px; border-radius: var(--r-full);
-    border: 1px solid var(--border); color: var(--text-dim);
-    font-family: 'Poppins', sans-serif;
-  }
-  .proj-name { font-size: 1.125rem; font-weight: 700; color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1.3; margin: 0; }
-  .proj-desc { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin: 0; }
+  .proj-cat { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .proj-name { font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--text); letter-spacing: -0.025em; line-height: 1.3; margin: 0; }
+  .proj-desc { font-size: 0.9375rem; color: var(--text-2); line-height: 1.7; flex: 1; margin: 0; }
   .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .proj-tag-item {
-    font-size: 11px; padding: 4px 10px; border-radius: var(--r-full);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border); color: var(--text-dim);
-    font-family: 'Poppins', sans-serif;
+  .proj-tag {
+    font-size: 11px; font-weight: 500; color: var(--text-3);
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: var(--r-full);
   }
 
   @media (max-width: 700px) { .port-grid { grid-template-columns: 1fr; } }
@@ -141,53 +116,53 @@ const projects = [
   <Navbar />
   <main id="main-content">
 
-    <!-- Hero -->
     <section class="port-hero" aria-labelledby="port-heading">
-      <div class="port-hero-inner section-inner" style="max-width:none;">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Portfolio</span>
+      <div style="max-width:80rem;margin:0 auto;position:relative;z-index:1;">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Portfolio
         </div>
-        <h1 class="port-h1" id="port-heading">
-          Projekte, die<br/>etwas bewegen.
-        </h1>
-        <p class="port-sub">
+        <h1 class="port-h1 reveal" id="port-heading">Projekte, die<br/>etwas bewegen.</h1>
+        <p class="port-sub reveal">
           Eine Auswahl abgeschlossener und laufender Projekte — echte Kunden, echte Ergebnisse.
         </p>
       </div>
     </section>
 
-    <!-- Grid -->
     <section class="port-grid-section" aria-labelledby="port-grid-label">
-      <div class="section-inner">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Alle Projekte</span>
+      <div style="max-width:80rem;margin:0 auto;">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Alle Projekte
         </div>
         <h2 class="sr-only" id="port-grid-label">Projektübersicht</h2>
 
         <div class="port-grid">
-          {projects.map((p) => (
-            <article class="proj-card stagger-reveal" style={`--proj-accent:${p.accent};`}>
-              <div class="proj-visual">
-                <div class="proj-visual-overlay" aria-hidden="true"></div>
-                <div class="proj-visual-glow" aria-hidden="true"></div>
+          {projects.map(p => (
+            <article
+              class="proj-card reveal"
+              style={`--proj-border:${p.accent};`}
+            >
+              <div class="proj-visual" style={`background:${p.bg};`}>
                 <div class="proj-visual-icon" aria-hidden="true">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={p.accent} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
                   </svg>
                 </div>
                 <span class="proj-year-tag">{p.year}</span>
+                <span
+                  class="proj-status-tag"
+                  style={`background:${p.status === 'In Bearbeitung' ? '#FFFBEB' : '#F0FDF4'};color:${p.status === 'In Bearbeitung' ? '#D97706' : '#16A34A'};`}
+                >{p.status}</span>
               </div>
               <div class="proj-body">
                 <div class="proj-meta">
-                  <span class="proj-cat">{p.cat}</span>
-                  <span class="proj-status">{p.status}</span>
+                  <span class="proj-cat" style={`color:${p.accent};`}>{p.cat}</span>
                 </div>
                 <p class="proj-name">{p.name}</p>
                 <p class="proj-desc">{p.body}</p>
-                <div class="proj-tags" aria-label="Technologien">
-                  {p.tags.map(tag => <span class="proj-tag-item">{tag}</span>)}
+                <div class="proj-tags">
+                  {p.tags.map(tag => <span class="proj-tag">{tag}</span>)}
                 </div>
               </div>
             </article>

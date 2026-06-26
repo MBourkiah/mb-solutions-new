@@ -17,11 +17,11 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Poppins (headings) + Inter (body) — ui-ux-pro-max: Modern Professional pairing -->
+    <!-- Outfit (headings) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -30,41 +30,50 @@ const {
     <meta name="description" content={description} />
     <title>{title} | MB-Solutions</title>
   </head>
-  <body class="antialiased min-h-screen flex flex-col">
-    <!-- Skip link for keyboard / screen reader users (a11y: skill §1) -->
+  <body>
+    <!-- Custom cursor (desktop only) -->
+    <div id="mb-cursor" aria-hidden="true"></div>
+
+    <!-- Skip link -->
     <a
       href="#main-content"
-      style="
-        position:absolute; left:-9999px; top:4px; z-index:9999;
-        background:var(--accent); color:#fff; padding:8px 16px;
-        border-radius:var(--r-md); font-size:14px; font-weight:600;
-        text-decoration:none;
-      "
+      style="position:absolute;left:-9999px;top:4px;z-index:10000;background:var(--accent);color:#fff;padding:8px 16px;border-radius:var(--r-md);font-size:14px;font-weight:600;text-decoration:none;"
       onfocus="this.style.left='4px'"
       onblur="this.style.left='-9999px'"
-    >
-      Zum Hauptinhalt springen
-    </a>
+    >Zum Hauptinhalt springen</a>
 
     <slot />
 
-    <!-- Stagger reveal via IntersectionObserver -->
     <script is:inline>
+      /* Custom cursor */
       (function () {
-        var observer = new IntersectionObserver(
-          function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-visible');
-                observer.unobserve(e.target);
-              }
-            });
-          },
-          { threshold: 0.07, rootMargin: '-16px 0px' }
-        );
-        document.querySelectorAll('.stagger-reveal').forEach(function (el) {
-          observer.observe(el);
+        var cur = document.getElementById('mb-cursor');
+        if (!cur) return;
+        var mx = 0, my = 0, cx = 0, cy = 0;
+        document.addEventListener('mousemove', function (e) {
+          mx = e.clientX; my = e.clientY;
+          cur.style.left = mx + 'px';
+          cur.style.top  = my + 'px';
         });
+        document.addEventListener('mousedown', function () { cur.classList.add('clicking'); });
+        document.addEventListener('mouseup',   function () { cur.classList.remove('clicking'); });
+        document.querySelectorAll('a,button,[role="button"]').forEach(function (el) {
+          el.addEventListener('mouseenter', function () { cur.classList.add('hovering'); });
+          el.addEventListener('mouseleave', function () { cur.classList.remove('hovering'); });
+        });
+      })();
+
+      /* Scroll reveal via IntersectionObserver */
+      (function () {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '-12px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
       })();
     </script>
   </body>

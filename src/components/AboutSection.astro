@@ -1,184 +1,133 @@
 ---
-// AboutSection — two-column editorial, new design system
+const facts = [
+  { val: '5+',  label: 'Jahre Erfahrung' },
+  { val: '12+', label: 'Projekte' },
+  { val: '48h', label: 'Antwortzeit' },
+  { val: '1:1', label: 'Direktbetreuung' },
+];
 ---
 
 <style>
-  .about {
-    background: var(--bg);
-    padding: 6rem 5%;
-  }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+  .about { background: var(--bg-alt); padding: 6rem 5% 7rem; }
+  .about-inner {
+    max-width: 80rem; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 440px;
+    gap: 5rem; align-items: center;
   }
 
-  /* ─── Visual ───────────────────── */
-  .about-visual {
-    position: relative;
-    display: flex; align-items: center; justify-content: center;
+  .about-h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
+    letter-spacing: -0.04em; color: var(--text); line-height: 1.02; margin-bottom: 1.75rem;
   }
-  .about-visual::before {
-    content: '';
-    position: absolute; inset: -24px;
-    background: radial-gradient(ellipse at 50% 50%, rgba(127,119,221,0.1) 0%, transparent 65%);
-    pointer-events: none;
+  .about-p {
+    font-size: 1.0625rem; color: var(--text-2);
+    line-height: 1.8; max-width: 52ch; margin-bottom: 1.375rem;
   }
-  .about-avatar-wrap {
-    position: relative; z-index: 1;
-    width: 260px; height: 260px;
-    border-radius: var(--r-xl);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .about-avatar-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(127,119,221,0.12) 0%, rgba(45,212,191,0.05) 100%);
-  }
-  .about-avatar-icon {
-    position: relative; z-index: 1;
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: rgba(127,119,221,0.15);
-    border: 1px solid rgba(127,119,221,0.25);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent);
-  }
-  .about-badge {
-    position: absolute;
-    bottom: -16px; right: -16px;
-    background: var(--surface-2);
-    border: 1px solid var(--border-accent);
-    border-radius: var(--r-md);
-    padding: 12px 16px;
-    display: flex; flex-direction: column; gap: 2px;
-  }
-  .about-badge-val {
-    font-size: 1.375rem; font-weight: 700; color: var(--accent);
-    font-family: 'Poppins', sans-serif; line-height: 1;
-  }
-  .about-badge-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em; }
+  .about-p:last-of-type { margin-bottom: 2rem; }
 
-  /* ─── Content ──────────────────── */
-  .about-headline {
-    font-size: clamp(1.875rem, 3vw, 2.5rem);
-    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
-    line-height: 1.2; margin: 0 0 1.25rem;
+  .about-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 14px; font-weight: 600; color: var(--accent);
+    text-decoration: none; font-family: 'Outfit', sans-serif;
+    transition: gap 150ms var(--ease-out);
   }
-  .about-body {
-    font-size: 1rem; color: var(--text-muted); line-height: 1.8;
-    margin: 0 0 2rem;
-  }
-  .about-facts { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
-  .about-fact {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .about-fact:first-child { border-top: 1px solid var(--border); }
-  .about-fact-icon {
-    width: 32px; height: 32px; border-radius: var(--r-sm);
-    background: rgba(127,119,221,0.08);
-    border: 1px solid rgba(127,119,221,0.14);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--accent); flex-shrink: 0; margin-top: 2px;
-  }
-  .about-fact-text { display: flex; flex-direction: column; gap: 2px; }
-  .about-fact-title {
-    font-size: 0.875rem; font-weight: 600; color: var(--text);
-    font-family: 'Poppins', sans-serif;
-  }
-  .about-fact-sub { font-size: 0.8125rem; color: var(--text-dim); line-height: 1.5; }
+  @media (hover: hover) and (pointer: fine) { .about-link:hover { gap: 10px; } }
 
-  @media (max-width: 860px) {
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .about-visual { order: -1; }
-    .about-avatar-wrap { width: 200px; height: 200px; }
+  .about-right { display: flex; flex-direction: column; gap: 16px; }
+
+  .fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .fact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);
   }
+  .fact-val {
+    font-family: 'Outfit', sans-serif; font-size: 2.25rem; font-weight: 800;
+    letter-spacing: -0.04em; color: var(--accent); line-height: 1;
+    display: block; margin-bottom: 4px;
+  }
+  .fact-label { font-size: 12px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 500; }
+
+  .about-quote {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 1.75rem;
+    box-shadow: var(--shadow-sm); position: relative;
+  }
+  .about-quote::before {
+    content: '"'; position: absolute; top: 12px; right: 20px;
+    font-family: 'Outfit', sans-serif; font-size: 5rem; font-weight: 800; line-height: 1;
+    color: var(--accent-light); pointer-events: none;
+  }
+  .quote-text { font-size: 1rem; color: var(--text-2); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
+  .quote-author { display: flex; align-items: center; gap: 10px; }
+  .quote-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--accent); color: white;
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .quote-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .quote-role { font-size: 11px; color: var(--text-3); }
+
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-right { order: -1; }
+    .fact-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 600px) { .fact-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
 <section class="about" aria-labelledby="about-heading">
-  <div class="section-inner">
-    <div class="about-grid">
+  <div class="about-inner">
+    <div>
+      <div class="eyebrow reveal">
+        <span class="eyebrow-bar" aria-hidden="true"></span>
+        Über mich
+      </div>
+      <h2 class="about-h2 reveal" id="about-heading">
+        Technik mit<br/>Handschlag.
+      </h2>
+      <p class="about-p reveal">
+        Ich bin Maurice Bourkiah — Webdesigner, Entwickler und
+        IT-Berater aus Köln. Ich arbeite direkt mit meinen Kunden:
+        keine Unterauftragnehmer, keine langen Kommunikationsketten.
+      </p>
+      <p class="about-p reveal">
+        Was mich antreibt: Handwerksbetriebe und kleine Unternehmen
+        verdienen denselben professionellen Webauftritt wie große Konzerne —
+        ohne die großen Agentur-Budgets dafür zu brauchen.
+      </p>
+      <a href="/ueber-mich" class="about-link reveal">
+        Mehr über mich
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+          <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
 
-      <!-- Visual -->
-      <div class="about-visual">
-        <div class="about-avatar-wrap">
-          <div class="about-avatar-bg" aria-hidden="true"></div>
-          <div class="about-avatar-icon" aria-hidden="true">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
+    <div class="about-right">
+      <div class="fact-grid">
+        {facts.map(f => (
+          <div class="fact-card reveal">
+            <span class="fact-val">{f.val}</span>
+            <span class="fact-label">{f.label}</span>
           </div>
-        </div>
-        <div class="about-badge" aria-hidden="true">
-          <span class="about-badge-val">5+</span>
-          <span class="about-badge-label">Jahre Erfahrung</span>
+        ))}
+      </div>
+      <div class="about-quote reveal">
+        <blockquote>
+          <p class="quote-text">
+            "Maurice hat unsere Website in unter drei Wochen komplett neu aufgesetzt.
+            Endlich sieht unser Auftritt so professionell aus wie unsere Arbeit."
+          </p>
+        </blockquote>
+        <div class="quote-author">
+          <div class="quote-avatar" aria-hidden="true">KS</div>
+          <div>
+            <div class="quote-name">Klaus S.</div>
+            <div class="quote-role">Inhaber, Keller &amp; Söhne GmbH</div>
+          </div>
         </div>
       </div>
-
-      <!-- Text -->
-      <div>
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Über mich</span>
-        </div>
-        <h2 class="about-headline" id="about-heading">
-          Ein Ansprechpartner.<br/>Null Overhead.
-        </h2>
-        <p class="about-body">
-          Ich bin Maurice, Freelancer aus Köln. Ich helfe kleinen Unternehmen und Handwerksbetrieben,
-          ihren digitalen Auftritt auf Vordermann zu bringen — ohne Agentur-Preise, ohne Warteschlange.
-        </p>
-
-        <div class="about-facts">
-          <div class="about-fact stagger-reveal">
-            <div class="about-fact-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <div class="about-fact-text">
-              <span class="about-fact-title">Köln-basiert</span>
-              <span class="about-fact-sub">Persönliche Treffen möglich, deutschlandweite Betreuung remote.</span>
-            </div>
-          </div>
-          <div class="about-fact stagger-reveal">
-            <div class="about-fact-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-              </svg>
-            </div>
-            <div class="about-fact-text">
-              <span class="about-fact-title">Full-Stack-Ansatz</span>
-              <span class="about-fact-sub">Design, Code und IT aus einer Hand — keine Reibungsverluste zwischen Teams.</span>
-            </div>
-          </div>
-          <div class="about-fact stagger-reveal">
-            <div class="about-fact-icon" aria-hidden="true">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <div class="about-fact-text">
-              <span class="about-fact-title">Langfristige Betreuung</span>
-              <span class="about-fact-sub">Kein Projekt-Dump — ich bleibe Ansprechpartner auch nach dem Launch.</span>
-            </div>
-          </div>
-        </div>
-
-        <a href="/ueber-mich" class="btn-outline">
-          Mehr über mich
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-            <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
     </div>
   </div>
 </section>

@@ -1,145 +1,110 @@
 ---
-// No props – static form, submit handled by client-side JS
 ---
 
 <style>
-  .contact-form-wrap {
-    background: var(--surface-1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-xl);
-    padding: 2.5rem;
-    max-width: 560px;
-    width: 100%;
+  .cf-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 2.5rem; box-shadow: var(--shadow-md);
   }
-  .form-title {
-    font-size: 1.25rem; font-weight: 700; color: var(--text);
-    font-family: 'Poppins', sans-serif; margin: 0 0 0.375rem;
+  .cf-title {
+    font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 700;
+    letter-spacing: -0.025em; color: var(--text); margin-bottom: 0.375rem;
   }
-  .form-sub { font-size: 0.875rem; color: var(--text-muted); margin: 0 0 2rem; }
+  .cf-sub { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; margin-bottom: 2rem; }
 
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.125rem; }
-  .form-label {
-    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--text-dim); font-family: 'Poppins', sans-serif; font-weight: 500;
-  }
-  .form-input {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-md);
-    color: var(--text);
-    font-family: 'Inter', sans-serif; font-size: 0.9375rem;
-    padding: 11px 14px;
-    outline: none;
-    transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
-    width: 100%;
-  }
-  .form-input::placeholder { color: var(--text-dim); }
-  .form-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(127,119,221,0.14);
-  }
-  textarea.form-input { resize: vertical; min-height: 130px; }
+  .cf-form { display: flex; flex-direction: column; gap: 14px; }
+  .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cf-field { display: flex; flex-direction: column; gap: 5px; }
+  .cf-label { font-size: 12px; font-weight: 600; color: var(--text-2); letter-spacing: 0.02em; text-transform: uppercase; }
 
-  .form-submit {
-    width: 100%;
-    justify-content: center;
-    margin-top: 0.5rem;
+  .cf-input, .cf-textarea, .cf-select {
+    width: 100%; background: var(--bg); border: 1.5px solid var(--border-2);
+    border-radius: var(--r-md); padding: 12px 14px;
+    font-size: 0.9375rem; color: var(--text); font-family: 'DM Sans', sans-serif;
+    transition: border-color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+    outline: none; -webkit-appearance: none;
   }
-  .form-status {
-    display: none; padding: 12px 16px; border-radius: var(--r-md);
-    font-size: 0.875rem; margin-top: 1rem;
+  .cf-input::placeholder, .cf-textarea::placeholder { color: var(--text-3); }
+  .cf-input:focus, .cf-textarea:focus, .cf-select:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
   }
-  .form-status.success {
-    display: block;
-    background: rgba(45,212,191,0.08);
-    border: 1px solid rgba(45,212,191,0.2);
-    color: #2DD4BF;
-  }
-  .form-status.error {
-    display: block;
-    background: rgba(255,140,107,0.08);
-    border: 1px solid rgba(255,140,107,0.2);
-    color: #FF8C6B;
-  }
+  .cf-textarea { resize: vertical; min-height: 130px; line-height: 1.65; }
+  .cf-select { cursor: pointer; }
+  .cf-submit { width: 100%; margin-top: 6px; padding: 14px; font-size: 15px; }
 
-  @media (max-width: 480px) {
-    .form-row { grid-template-columns: 1fr; }
-    .contact-form-wrap { padding: 1.75rem 1.25rem; }
+  .cf-success { display: none; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 2rem 1rem; }
+  .cf-success.visible { display: flex; }
+  .cf-success-icon { width: 48px; height: 48px; border-radius: 50%; background: #F0FDF4; display: flex; align-items: center; justify-content: center; }
+  .cf-success-title { font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--text); }
+  .cf-success-sub { font-size: 0.9375rem; color: var(--text-2); line-height: 1.6; max-width: 36ch; }
+
+  @media (max-width: 500px) {
+    .cf-row { grid-template-columns: 1fr; }
+    .cf-card { padding: 1.75rem; }
   }
 </style>
 
-<div class="contact-form-wrap">
-  <p class="form-title">Nachricht schreiben</p>
-  <p class="form-sub">Ich melde mich innerhalb von 48 Stunden zurück.</p>
+<div class="cf-card">
+  <div class="cf-title">Schreib mir eine Nachricht</div>
+  <div class="cf-sub">Antwortet innerhalb von 48 Stunden.</div>
 
-  <form id="contact-form" novalidate>
-    <div class="form-row">
-      <div class="form-group">
-        <label for="cf-name" class="form-label">Name</label>
-        <input
-          type="text" id="cf-name" name="name"
-          class="form-input" placeholder="Max Mustermann"
-          required autocomplete="name"
-        />
+  <form id="contact-form" action="https://formspree.io/f/xeojkgkv" method="POST" novalidate aria-label="Kontaktformular" class="cf-form">
+    <div class="cf-row">
+      <div class="cf-field">
+        <label class="cf-label" for="cf-name">Name *</label>
+        <input type="text" id="cf-name" name="name" class="cf-input" placeholder="Max Mustermann" required autocomplete="name" />
       </div>
-      <div class="form-group">
-        <label for="cf-email" class="form-label">E-Mail</label>
-        <input
-          type="email" id="cf-email" name="email"
-          class="form-input" placeholder="max@beispiel.de"
-          required autocomplete="email"
-        />
+      <div class="cf-field">
+        <label class="cf-label" for="cf-email">E-Mail *</label>
+        <input type="email" id="cf-email" name="email" class="cf-input" placeholder="max@firma.de" required autocomplete="email" />
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="cf-subject" class="form-label">Betreff</label>
-      <input
-        type="text" id="cf-subject" name="subject"
-        class="form-input" placeholder="Neue Website / IT-Frage / ..."
-      />
+    <div class="cf-field">
+      <label class="cf-label" for="cf-service">Ich interessiere mich für</label>
+      <select id="cf-service" name="service" class="cf-select">
+        <option value="">— Bitte auswählen —</option>
+        <option value="webdesign">Webdesign &amp; Entwicklung</option>
+        <option value="it-services">IT-Services &amp; Cloud-Setup</option>
+        <option value="branding">Branding &amp; Corporate Identity</option>
+        <option value="beratung">Allgemeine Beratung</option>
+      </select>
     </div>
-
-    <div class="form-group">
-      <label for="cf-message" class="form-label">Nachricht</label>
-      <textarea
-        id="cf-message" name="message"
-        class="form-input" placeholder="Erzähl mir von deinem Projekt..."
-        required
-      ></textarea>
+    <div class="cf-field">
+      <label class="cf-label" for="cf-message">Nachricht *</label>
+      <textarea id="cf-message" name="message" class="cf-textarea" placeholder="Beschreib kurz, was du brauchst — Stichpunkte reichen." required></textarea>
     </div>
-
-    <button type="submit" class="btn-primary form-submit press-btn">
+    <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
+    <input type="hidden" name="_subject" value="Neue Anfrage über mb-solutions.biz" />
+    <button type="submit" class="btn-primary cf-submit">
       Nachricht senden
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M3 11L11 3M11 3H6M11 3V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
-
-    <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
   </form>
+
+  <div id="cf-success" class="cf-success" aria-live="polite" role="status">
+    <div class="cf-success-icon" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 11.08V12a9 9 0 1 1-5.34-8.23"/><path d="M20 4L11 13l-2.5-2.5"/>
+      </svg>
+    </div>
+    <div class="cf-success-title">Nachricht gesendet!</div>
+    <div class="cf-success-sub">Vielen Dank. Ich melde mich innerhalb von 48 Stunden bei dir.</div>
+  </div>
 </div>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement | null;
-  const statusEl = document.getElementById('form-status');
-
+  const form    = document.getElementById('contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('cf-success');
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!statusEl) return;
-
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet…';
-
-    await new Promise(r => setTimeout(r, 900));
-
-    statusEl.textContent = 'Danke! Ich melde mich bald bei dir.';
-    statusEl.className = 'form-status success';
-    form.reset();
-    btn.disabled = false;
-    btn.textContent = orig;
+    btn.disabled = true; btn.textContent = 'Wird gesendet…';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) { form.style.display = 'none'; success?.classList.add('visible'); }
+      else { btn.disabled = false; btn.textContent = 'Erneut versuchen'; }
+    } catch { btn.disabled = false; btn.textContent = 'Erneut versuchen'; }
   });
 </script>

@@ -10,200 +10,113 @@ const packages = [
     price: 'ab 790 €',
     sub: 'Einmalig',
     body: 'Perfekt für Neugründungen und Betriebe, die einen soliden Online-Einstieg brauchen.',
-    accent: 'var(--accent)',
     highlight: false,
-    items: [
-      'Bis zu 5 Unterseiten',
-      'Responsive Design',
-      'Kontaktformular',
-      'Google Analytics',
-      'Basis-SEO-Setup',
-    ],
+    items: ['Bis zu 5 Unterseiten', 'Responsive Design', 'Kontaktformular', 'Google Analytics', 'Basis-SEO-Setup'],
   },
   {
     name: 'Professional',
     price: 'ab 1.490 €',
     sub: 'Einmalig',
     body: 'Für etablierte Betriebe, die professionell auftreten und Leads generieren möchten.',
-    accent: '#7F77DD',
     highlight: true,
-    items: [
-      'Bis zu 12 Unterseiten',
-      'CMS-Integration',
-      'Performance-Optimierung',
-      'SEO-Paket inkl. lokale Suche',
-      'Branding-Anpassung',
-      'Wartungspaket 3 Monate',
-    ],
+    items: ['Bis zu 12 Unterseiten', 'CMS-Integration', 'Performance-Optimierung', 'SEO-Paket inkl. lokale Suche', 'Branding-Anpassung', 'Wartungspaket 3 Monate'],
   },
   {
     name: 'All-in-one',
     price: 'ab 2.490 €',
     sub: 'Einmalig + laufend',
     body: 'Komplett-Lösung: Website, IT-Setup und Branding aus einer Hand.',
-    accent: '#2DD4BF',
     highlight: false,
-    items: [
-      'Unbegrenzte Unterseiten',
-      'Komplettes Branding',
-      'IT-Setup & Cloud',
-      'E-Mail & Domain',
-      'Laufende Betreuung',
-      'Prioritätssupport',
-    ],
+    items: ['Unbegrenzte Unterseiten', 'Komplettes Branding', 'IT-Setup & Cloud', 'E-Mail & Domain', 'Laufende Betreuung', 'Prioritätssupport'],
   },
 ];
 
 const details = [
   {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
     title: 'Webdesign & Entwicklung',
-    items: [
-      'Mobile-first Responsive Design',
-      'Astro / Next.js / WordPress',
-      'Performance & Core Web Vitals',
-      'Barrierefreiheit (WCAG)',
-      'SSL & Sicherheits-Setup',
-      'Deployment & Hosting-Beratung',
-    ],
-    accent: 'var(--accent)',
+    color: 'var(--accent)',
+    bg: 'var(--accent-light)',
+    items: ['Mobile-first Responsive Design', 'Astro / Next.js / WordPress', 'Performance & Core Web Vitals', 'Barrierefreiheit (WCAG)', 'SSL & Sicherheits-Setup', 'Deployment & Hosting-Beratung'],
   },
   {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>`,
     title: 'IT-Services',
-    items: [
-      'Domain & E-Mail-Einrichtung',
-      'Microsoft 365 / Google Workspace',
-      'NAS & Datensicherung',
-      'Hardware-Einrichtung',
-      'VPN & Remote-Zugang',
-      'Laufender Remote-Support',
-    ],
-    accent: '#2DD4BF',
+    color: '#16A34A',
+    bg: '#F0FDF4',
+    items: ['Domain & E-Mail-Einrichtung', 'Microsoft 365 / Google Workspace', 'NAS & Datensicherung', 'Hardware-Einrichtung', 'VPN & Remote-Zugang', 'Laufender Remote-Support'],
   },
   {
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
     title: 'Branding & CI',
-    items: [
-      'Logo-Design (Vektordaten)',
-      'Farbpalette & Typografie',
-      'Briefpapier & Visitenkarten',
-      'E-Mail-Signatur',
-      'Social-Media-Templates',
-      'Brand-Guidelines PDF',
-    ],
-    accent: '#FF8C6B',
+    color: '#D97706',
+    bg: '#FFFBEB',
+    items: ['Logo-Design (Vektordaten)', 'Farbpalette & Typografie', 'Briefpapier & Visitenkarten', 'E-Mail-Signatur', 'Social-Media-Templates', 'Brand-Guidelines PDF'],
   },
 ];
 ---
 
 <style>
-  /* ── Hero ──────────────────────────────── */
-  .ls-hero {
-    background: var(--bg);
-    padding: 7rem 5% 5rem;
-    position: relative; overflow: hidden;
-  }
+  .ls-hero { background: var(--bg); padding: 7rem 5% 5rem; position: relative; overflow: hidden; }
   .ls-hero::before {
-    content: '';
-    position: absolute; top: -20%; right: -10%;
-    width: 50%; height: 80%;
-    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%);
-    pointer-events: none;
+    content: ''; position: absolute; top: -20%; right: -10%; width: 50%; height: 80%;
+    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%); pointer-events: none;
   }
-  .ls-hero-inner { position: relative; z-index: 1; max-width: 640px; }
   .ls-h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    font-weight: 800; letter-spacing: -0.035em; color: var(--text);
-    line-height: 1.1; margin: 0 0 1.25rem;
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem); font-weight: 800; letter-spacing: -0.035em;
+    color: var(--text); line-height: 1.1; margin: 0 0 1.25rem;
   }
-  .ls-sub {
-    font-size: 1.0625rem; color: var(--text-muted); line-height: 1.75;
-    max-width: 50ch; margin: 0 0 2rem;
-  }
+  .ls-sub { font-size: 1.0625rem; color: var(--text-2); line-height: 1.75; max-width: 50ch; margin: 0 0 2rem; }
 
-  /* ── Packages ──────────────────────────── */
-  .ls-packages { background: var(--surface-1); padding: 6rem 5%; }
-  .ls-pkg-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 3rem;
-  }
+  /* Packages */
+  .ls-packages { background: var(--bg-alt); padding: 6rem 5%; }
+  .ls-pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
   .pkg-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 2rem;
-    display: flex; flex-direction: column; gap: 1.25rem;
-    position: relative;
-    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 2.25rem; display: flex; flex-direction: column; gap: 1.25rem;
+    position: relative; box-shadow: var(--shadow-sm);
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   }
-  .pkg-card.highlighted {
-    background: var(--surface-3);
-    border-color: rgba(127,119,221,0.35);
-  }
+  .pkg-card.highlighted { border-color: var(--border-a); box-shadow: var(--shadow-md); }
+  @media (hover: hover) and (pointer: fine) { .pkg-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); } }
   .pkg-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
     background: var(--accent); color: white;
     font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
     padding: 4px 14px; border-radius: var(--r-full);
-    font-family: 'Poppins', sans-serif; white-space: nowrap;
+    font-family: 'Outfit', sans-serif; white-space: nowrap;
   }
-  .pkg-name { font-size: 0.875rem; color: var(--text-dim); font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
+  .pkg-name { font-size: 11px; color: var(--text-3); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
   .pkg-price-row { display: flex; align-items: baseline; gap: 8px; }
-  .pkg-price { font-size: 2rem; font-weight: 800; color: var(--text); font-family: 'Poppins', sans-serif; letter-spacing: -0.03em; }
-  .pkg-sub { font-size: 0.8125rem; color: var(--text-dim); }
-  .pkg-body { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
+  .pkg-price { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text); letter-spacing: -0.03em; }
+  .pkg-sub-label { font-size: 0.8125rem; color: var(--text-3); }
+  .pkg-body { font-size: 0.875rem; color: var(--text-2); line-height: 1.65; }
   .pkg-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; flex: 1; }
-  .pkg-items li { display: flex; align-items: center; gap: 9px; font-size: 0.875rem; color: var(--text-muted); }
+  .pkg-items li { display: flex; align-items: center; gap: 9px; font-size: 0.875rem; color: var(--text-2); }
   .pkg-items li svg { flex-shrink: 0; color: var(--accent); }
   .pkg-cta { display: block; text-align: center; }
-  @media (hover: hover) and (pointer: fine) {
-    .pkg-card:hover { transform: translateY(-3px); }
-  }
 
-  /* ── Detail Services ───────────────────── */
+  /* Details */
   .ls-detail { background: var(--bg); padding: 6rem 5%; }
-  .ls-detail-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem; margin-top: 3rem;
-  }
+  .ls-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
   .detail-card {
-    background: var(--surface-1);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    padding: 2rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: 2rem; box-shadow: var(--shadow-sm);
   }
   .detail-icon {
     width: 44px; height: 44px; border-radius: var(--r-md);
-    background: var(--detail-glow, rgba(127,119,221,0.08));
-    border: 1px solid var(--detail-border, rgba(127,119,221,0.15));
-    display: flex; align-items: center; justify-content: center;
-    color: var(--detail-accent, var(--accent));
-    margin-bottom: 1.25rem;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;
   }
-  .detail-title {
-    font-size: 1rem; font-weight: 600; color: var(--text);
-    font-family: 'Poppins', sans-serif; margin: 0 0 1rem;
-  }
+  .detail-title { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; letter-spacing: -0.02em; }
   .detail-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
-  .detail-list li { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-muted); }
-  .detail-list li svg { flex-shrink: 0; color: var(--detail-accent, var(--accent)); }
+  .detail-list li { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-2); }
+  .detail-list li svg { flex-shrink: 0; }
 
-  /* ── Responsive ─────────────────────────── */
-  @media (max-width: 599px) {
-    .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr; }
-  }
-  @media (min-width: 600px) and (max-width: 900px) {
-    .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr 1fr; }
-  }
   .ls-section-headline {
-    font-size: clamp(1.75rem, 2.75vw, 2.375rem);
-    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
-    margin: 0 0 0.875rem; line-height: 1.2;
+    font-size: clamp(1.75rem, 2.75vw, 2.375rem); font-weight: 700;
+    letter-spacing: -0.03em; color: var(--text); margin: 0 0 0.875rem; line-height: 1.2;
   }
-  .ls-section-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 52ch; }
+  .ls-section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; }
+
+  @media (max-width: 599px) { .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr; } }
+  @media (min-width: 600px) and (max-width: 900px) { .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 
 <BaseLayout
@@ -213,43 +126,39 @@ const details = [
   <Navbar />
   <main id="main-content">
 
-    <!-- Hero -->
     <section class="ls-hero" aria-labelledby="ls-heading">
-      <div class="ls-hero-inner section-inner" style="max-width:none;">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Leistungen</span>
+      <div style="max-width:80rem;margin:0 auto;position:relative;z-index:1;">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Leistungen
         </div>
-        <h1 class="ls-h1" id="ls-heading">
-          Was ich für dich tun kann.
-        </h1>
-        <p class="ls-sub">
+        <h1 class="ls-h1 reveal" id="ls-heading">Was ich für dich tun kann.</h1>
+        <p class="ls-sub reveal">
           Von der ersten Idee bis zur fertigen Website — und alles, was ein moderner
           Betrieb digital braucht. Fest kalkulierbare Preise, keine Überraschungen.
         </p>
-        <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch vereinbaren</a>
+        <a href="/kontakt" class="btn-primary reveal">Kostenloses Erstgespräch vereinbaren</a>
       </div>
     </section>
 
-    <!-- Pakete -->
     <section class="ls-packages" aria-labelledby="pkg-heading">
-      <div class="section-inner">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Pakete & Preise</span>
+      <div style="max-width:80rem;margin:0 auto;">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Pakete & Preise
         </div>
-        <h2 class="ls-section-headline" id="pkg-heading">Transparente Preise.</h2>
-        <p class="ls-section-sub">Keine versteckten Kosten — alles im Voraus besprochen und festgelegt.</p>
+        <h2 class="ls-section-headline reveal" id="pkg-heading">Transparente Preise.</h2>
+        <p class="ls-section-sub reveal">Keine versteckten Kosten — alles im Voraus besprochen und festgelegt.</p>
 
         <div class="ls-pkg-grid">
-          {packages.map((pkg) => (
-            <div class={`pkg-card stagger-reveal ${pkg.highlight ? 'highlighted' : ''}`}>
+          {packages.map(pkg => (
+            <div class={`pkg-card reveal ${pkg.highlight ? 'highlighted' : ''}`}>
               {pkg.highlight && <span class="pkg-badge">Beliebtestes Paket</span>}
               <div>
                 <p class="pkg-name">{pkg.name}</p>
                 <div class="pkg-price-row">
                   <span class="pkg-price">{pkg.price}</span>
-                  <span class="pkg-sub">{pkg.sub}</span>
+                  <span class="pkg-sub-label">{pkg.sub}</span>
                 </div>
               </div>
               <p class="pkg-body">{pkg.body}</p>
@@ -263,38 +172,36 @@ const details = [
                   </li>
                 ))}
               </ul>
-              <a href="/kontakt" class={pkg.highlight ? 'btn-primary pkg-cta' : 'btn-outline pkg-cta'}>
-                Anfragen
-              </a>
+              <a href="/kontakt" class={`pkg-cta ${pkg.highlight ? 'btn-primary' : 'btn-outline'}`}>Anfragen</a>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Detail Leistungen -->
     <section class="ls-detail" aria-labelledby="detail-heading">
-      <div class="section-inner">
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Im Detail</span>
+      <div style="max-width:80rem;margin:0 auto;">
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Im Detail
         </div>
-        <h2 class="ls-section-headline" id="detail-heading">Was ist enthalten?</h2>
-        <p class="ls-section-sub">Ein Überblick über alle Einzelleistungen je Bereich.</p>
+        <h2 class="ls-section-headline reveal" id="detail-heading">Was ist enthalten?</h2>
+        <p class="ls-section-sub reveal">Ein Überblick über alle Einzelleistungen je Bereich.</p>
 
         <div class="ls-detail-grid">
-          {details.map((d) => (
-            <div
-              class="detail-card stagger-reveal"
-              style={`--detail-accent:${d.accent};--detail-glow:${d.accent}22;--detail-border:${d.accent}28;`}
-            >
-              <div class="detail-icon" aria-hidden="true" set:html={d.icon}></div>
+          {details.map(d => (
+            <div class="detail-card reveal">
+              <div class="detail-icon" style={`background:${d.bg};`} aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={d.color} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                </svg>
+              </div>
               <p class="detail-title">{d.title}</p>
               <ul class="detail-list">
                 {d.items.map(item => (
                   <li>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke={d.color} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     {item}
                   </li>

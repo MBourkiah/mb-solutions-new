@@ -1,164 +1,155 @@
 ---
 const projects = [
   {
-    name: 'Café Rösterei Köln',
-    cat: 'Webdesign',
-    body: 'Moderner Online-Auftritt für eine Kölner Spezialitätenrösterei mit Online-Shop und Story-Seiten.',
-    tag: 'Fertiggestellt',
-    accent: '#7F77DD',
+    title: 'Café Morgenrot',
+    category: 'Webdesign',
+    desc: 'Booking-Website mit Online-Reservierung für ein Kölner Café. Fokus auf Atmosphäre und Conversion.',
+    tags: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
+    year: '2024',
+    accent: '#D97706',
   },
   {
-    name: 'Meisterbetrieb Schmitz',
-    cat: 'IT-Setup & Branding',
-    body: 'Neues Logo, Briefpapier und komplettes Cloud-Setup inkl. E-Mail-Migration für Sanitärbetrieb.',
-    tag: 'Fertiggestellt',
-    accent: '#2DD4BF',
+    title: 'Keller & Söhne GmbH',
+    category: 'IT-Services + Branding',
+    desc: 'Komplettes IT-Setup inkl. Google Workspace-Migration und neues Corporate Identity für ein Handwerksunternehmen.',
+    tags: ['Google Workspace', 'Logo Design', 'CI-Manual'],
+    year: '2024',
+    accent: '#16A34A',
   },
   {
-    name: 'Kosmetikstudio Belle',
-    cat: 'Webdesign',
-    body: 'Booking-fähige Website mit Leistungsübersicht und Online-Terminbuchung via Calendly-Integration.',
-    tag: 'In Bearbeitung',
-    accent: '#FF8C6B',
+    title: 'Yogastudio Sonnenlicht',
+    category: 'Webdesign',
+    desc: 'Ruhige, minimalistische Website mit Kurskalender und Buchungsfunktion für ein Yoga-Studio in Köln-Nippes.',
+    tags: ['Next.js', 'Framer Motion', 'Vercel'],
+    year: '2023',
+    accent: 'var(--accent)',
   },
 ];
 ---
 
 <style>
-  .portfolio {
-    background: var(--surface-1);
-    padding: 6rem 5%;
-    position: relative;
-  }
-  .portfolio::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 70% 0%, rgba(127,119,221,0.05) 0%, transparent 55%);
-    pointer-events: none;
-  }
-  .portfolio-head {
+  .portfolio { background: var(--bg); padding: 6rem 5% 7rem; }
+  .portfolio-inner { max-width: 80rem; margin: 0 auto; }
+
+  .portfolio-header {
     display: flex; justify-content: space-between; align-items: flex-end;
-    flex-wrap: wrap; gap: 1.5rem;
-    margin-bottom: 3rem;
-    position: relative; z-index: 1;
+    margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap;
   }
-  .portfolio-headline {
-    font-size: clamp(1.875rem, 3vw, 2.625rem);
-    font-weight: 700; letter-spacing: -0.025em; color: var(--text);
-    max-width: 22ch; line-height: 1.2; margin: 0 0 1rem;
-  }
-  .portfolio-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
-
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    position: relative; z-index: 1;
+  .portfolio-h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800; letter-spacing: -0.04em; color: var(--text); line-height: 1.0;
   }
 
-  .proj-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    display: flex; flex-direction: column;
-    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out),
-                box-shadow 240ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .proj-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--proj-accent);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-  }
+  .portfolio-list { display: flex; flex-direction: column; gap: 2px; }
 
-  .proj-visual {
-    height: 160px;
-    background: var(--surface-3);
-    display: flex; align-items: center; justify-content: center;
+  .portfolio-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-xl); padding: 2rem 2.5rem;
+    display: grid; grid-template-columns: 60px 1fr auto;
+    gap: 0 2rem; align-items: center;
+    text-decoration: none; color: inherit;
+    transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out),
+                border-color 200ms var(--ease-out);
     position: relative; overflow: hidden;
   }
-  .proj-visual-inner {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, var(--proj-accent) 0%, transparent 65%);
-    opacity: 0.07;
+  @media (hover: hover) and (pointer: fine) {
+    .portfolio-item:hover {
+      box-shadow: var(--shadow-md); transform: translateX(4px); border-color: var(--border-2);
+    }
+    .portfolio-item:hover .pf-arrow { transform: translateX(4px); }
+    .portfolio-item:hover::before { opacity: 1; }
   }
-  .proj-visual-icon {
-    width: 56px; height: 56px; border-radius: var(--r-lg);
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.07);
+  .portfolio-item::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--item-accent); opacity: 0; transition: opacity 200ms var(--ease-out);
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+  }
+
+  .pf-num {
+    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3);
+  }
+  .pf-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .pf-cat { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-3); }
+  .pf-year {
+    font-size: 11px; color: var(--text-3);
+    padding: 1px 7px; border-radius: var(--r-full); border: 1px solid var(--border);
+  }
+  .pf-title {
+    font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 700;
+    letter-spacing: -0.025em; color: var(--text); margin-bottom: 4px;
+  }
+  .pf-desc { font-size: 0.875rem; color: var(--text-2); line-height: 1.6; max-width: 62ch; }
+  .pf-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .pf-tag {
+    font-size: 11px; font-weight: 500; color: var(--text-3);
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: var(--r-full);
+  }
+
+  .pf-arrow {
+    width: 36px; height: 36px; border-radius: var(--r-md);
+    background: var(--bg-alt); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center;
-    color: var(--proj-accent);
-    position: relative; z-index: 1;
+    color: var(--text-3); flex-shrink: 0;
+    transition: transform 200ms var(--ease-out);
   }
 
-  .proj-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.875rem; flex: 1; }
-  .proj-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .proj-cat {
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--proj-accent); font-family: 'Poppins', sans-serif; font-weight: 500;
-  }
-  .proj-tag {
-    font-size: 11px; padding: 2px 8px; border-radius: var(--r-full);
-    border: 1px solid var(--border); color: var(--text-dim);
-    font-family: 'Poppins', sans-serif;
-  }
-  .proj-name {
-    font-size: 1.0625rem; font-weight: 600; color: var(--text);
-    font-family: 'Poppins', sans-serif; line-height: 1.3; margin: 0;
-  }
-  .proj-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; flex: 1; margin: 0; }
+  .portfolio-cta-row { display: flex; justify-content: center; margin-top: 3rem; }
 
-  .portfolio-cta { margin-top: 3rem; text-align: center; position: relative; z-index: 1; }
-
-  @media (max-width: 599px) { .portfolio-grid { grid-template-columns: 1fr; } }
-  @media (min-width: 600px) and (max-width: 900px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 700px) {
+    .portfolio-item { grid-template-columns: 1fr auto; }
+    .pf-num { display: none; }
+  }
+  @media (max-width: 500px) {
+    .portfolio-item { padding: 1.5rem; grid-template-columns: 1fr; }
+    .pf-arrow { display: none; }
+  }
 </style>
 
 <section class="portfolio" aria-labelledby="portfolio-heading">
-  <div class="section-inner">
-    <div class="portfolio-head">
+  <div class="portfolio-inner">
+    <div class="portfolio-header">
       <div>
-        <div class="eyebrow">
-          <div class="eyebrow-line"></div>
-          <span class="eyebrow-text">Portfolio</span>
+        <div class="eyebrow reveal">
+          <span class="eyebrow-bar" aria-hidden="true"></span>
+          Portfolio
         </div>
-        <h2 class="portfolio-headline" id="portfolio-heading">
-          Projekte, die etwas bewegen.
+        <h2 class="portfolio-h2 reveal" id="portfolio-heading">
+          Ausgewählte<br/>Arbeiten.
         </h2>
-        <p class="portfolio-sub">Echte Kunden. Echte Ergebnisse.</p>
       </div>
-      <a href="/portfolio" class="btn-outline" aria-label="Alle Projekte ansehen">
-        Alle ansehen
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-          <path d="M2.5 7H11.5M8 3.5L11.5 7L8 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
     </div>
 
-    <div class="portfolio-grid">
-      {projects.map((p) => (
-        <article class="proj-card stagger-reveal" style={`--proj-accent:${p.accent};`}>
-          <div class="proj-visual">
-            <div class="proj-visual-inner" aria-hidden="true"></div>
-            <div class="proj-visual-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/>
-                <path d="M8 21h8M12 17v4"/>
-              </svg>
+    <div class="portfolio-list">
+      {projects.map((p, i) => (
+        <a href="/portfolio" class="portfolio-item reveal" style={`--item-accent:${p.accent};`} aria-label={`Projekt: ${p.title}`}>
+          <span class="pf-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <div>
+            <div class="pf-meta">
+              <span class="pf-cat">{p.category}</span>
+              <span class="pf-year">{p.year}</span>
             </div>
+            <div class="pf-title">{p.title}</div>
+            <div class="pf-desc">{p.desc}</div>
+            <div class="pf-tags">{p.tags.map(t => <span class="pf-tag">{t}</span>)}</div>
           </div>
-          <div class="proj-body">
-            <div class="proj-meta">
-              <span class="proj-cat">{p.cat}</span>
-              <span class="proj-tag">{p.tag}</span>
-            </div>
-            <p class="proj-name">{p.name}</p>
-            <p class="proj-desc">{p.body}</p>
+          <div class="pf-arrow" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M3 11L11 3M11 3H6M11 3V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-        </article>
+        </a>
       ))}
+    </div>
+
+    <div class="portfolio-cta-row">
+      <a href="/portfolio" class="btn-outline reveal">
+        Alle Projekte ansehen
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+          <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
