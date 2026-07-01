@@ -40,11 +40,12 @@ const links = [
   .logo {
     display: flex; align-items: center;
     text-decoration: none; flex-shrink: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 17px; font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1;
   }
-  .logo-img {
-    height: 48px; width: auto;
-    display: block;
-  }
+  .logo-mb   { color: #7F77DD; }
+  .logo-rest { color: #1C1A17; }
 
   /* Nav links */
   .nav-links { display: flex; align-items: center; gap: 4px; }
@@ -136,16 +137,8 @@ const links = [
 
 <div class="nav-wrap">
   <header id="nav-bar" class="nav-bar">
-    <a href="/" class="logo">
-      <img
-        src="/logos/mb-solutions-horizontal.svg"
-        alt="MB-Solutions Logo"
-        class="logo-img"
-        width="180"
-        height="30"
-        loading="eager"
-        decoding="async"
-      />
+    <a href="/" class="logo" aria-label="MB-Solutions – Startseite">
+      <span class="logo-mb">MB</span><span class="logo-rest">-Solutions</span>
     </a>
 
     <nav class="nav-links" aria-label="Hauptnavigation">
