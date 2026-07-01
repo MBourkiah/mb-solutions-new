@@ -108,9 +108,41 @@ const timeline = [
 </style>
 
 <BaseLayout
-  title="Über mich – Maurice Bourkiah, MB-Solutions Köln"
+  title="Über mich – Maurice Bourkiah, Webdesigner Köln"
   description="Über Maurice Bourkiah von MB-Solutions – Freelancer für Webdesign, IT-Services und Branding in Köln."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline>{JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+            { "@type": "ListItem", "position": 2, "name": "Über mich", "item": "https://www.mb-solutions.biz/ueber-mich" }
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://www.mb-solutions.biz/ueber-mich#person",
+          "name": "Maurice Bourkiah",
+          "givenName": "Maurice",
+          "familyName": "Bourkiah",
+          "jobTitle": "Freelancer – Webdesign, IT-Services & Branding",
+          "description": "Freelancer aus Köln für Webdesign, IT-Services und Branding. Direktbetreuung für KMU und Handwerksbetriebe.",
+          "url": "https://www.mb-solutions.biz/ueber-mich",
+          "email": "hallo@mb-solutions.biz",
+          "worksFor": { "@id": "https://www.mb-solutions.biz/#business" },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Köln",
+            "addressCountry": "DE"
+          },
+          "knowsAbout": ["Webdesign", "Frontend-Entwicklung", "IT-Infrastruktur", "Branding", "SEO", "Astro", "Next.js", "React"]
+        }
+      ]
+    })}</script>
+  </Fragment>
   <Navbar />
   <main id="main-content">
 

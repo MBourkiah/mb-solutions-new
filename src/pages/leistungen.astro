@@ -121,8 +121,48 @@ const details = [
 
 <BaseLayout
   title="Leistungen – Webdesign, IT & Branding"
-  description="Leistungen von MB-Solutions: Webdesign, IT-Services und Branding für KMU in Köln."
+  description="Leistungen von MB-Solutions: Webdesign, IT-Services und Branding für KMU in Köln. Transparente Preise ab 790 €."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline>{JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+            { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://www.mb-solutions.biz/leistungen" }
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "Webdesign & Entwicklung",
+          "description": "Mobile-first Responsive Design mit Astro, Next.js oder WordPress. Performance-Optimierung, Core Web Vitals, SEO-Setup.",
+          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
+          "areaServed": "Köln",
+          "offers": [
+            { "@type": "Offer", "name": "Starter", "price": "790", "priceCurrency": "EUR" },
+            { "@type": "Offer", "name": "Professional", "price": "1490", "priceCurrency": "EUR" },
+            { "@type": "Offer", "name": "All-in-one", "price": "2490", "priceCurrency": "EUR" }
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "IT-Services & Cloud-Setup",
+          "description": "E-Mail-Systeme, Cloud-Backup, Geräteeinrichtung und laufende IT-Betreuung für KMU in Köln.",
+          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
+          "areaServed": "Köln"
+        },
+        {
+          "@type": "Service",
+          "name": "Branding & Corporate Identity",
+          "description": "Logo, Farben, Typografie und CI-Manual für konsistentes Erscheinungsbild.",
+          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
+          "areaServed": "Köln"
+        }
+      ]
+    })}</script>
+  </Fragment>
   <Navbar />
   <main id="main-content">
 

@@ -127,9 +127,35 @@ const projects = [
 </style>
 
 <BaseLayout
-  title="Portfolio – Projekte von MB-Solutions"
+  title="Portfolio – Webdesign-Projekte aus Köln"
   description="Portfolio von MB-Solutions: Webdesign, IT-Projekte und Branding für Kölner KMU und Handwerksbetriebe."
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline>{JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+            { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.mb-solutions.biz/portfolio" }
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "name": "Webdesign-Projekte von MB-Solutions",
+          "url": "https://www.mb-solutions.biz/portfolio",
+          "numberOfItems": 4,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Café Morgenrot", "description": "Booking-Website mit Online-Reservierung für ein Kölner Café.", "dateCreated": "2024", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
+            { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "Keller & Söhne GmbH", "description": "IT-Setup inkl. Google Workspace-Migration und Corporate Identity für ein Handwerksunternehmen.", "dateCreated": "2024", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
+            { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "Yogastudio Sonnenlicht", "description": "Minimalistische Website mit Kurskalender und Buchungsfunktion für ein Yoga-Studio in Köln-Nippes.", "dateCreated": "2023", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
+            { "@type": "ListItem", "position": 4, "item": { "@type": "CreativeWork", "name": "Kosmetikstudio Belle", "description": "Booking-fähige Website mit Online-Terminbuchung via Calendly.", "dateCreated": "2025", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } }
+          ]
+        }
+      ]
+    })}</script>
+  </Fragment>
   <Navbar />
   <main id="main-content">
 

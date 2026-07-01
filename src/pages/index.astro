@@ -13,6 +13,61 @@ import Footer from '../components/Footer.astro';
   title="Webdesign & IT-Services für KMU in Köln"
   description="MB-Solutions – Ihr Partner für Webdesign, IT-Services und Branding in Köln. Professionelle digitale Lösungen für KMU und Handwerksbetriebe."
 >
+  <Fragment slot="head">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=720&h=460&fit=crop&q=82&auto=format" />
+    <script type="application/ld+json" is:inline>{JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://www.mb-solutions.biz/#business",
+          "name": "MB-Solutions",
+          "alternateName": "MB Solutions Köln",
+          "description": "Webdesign, IT-Services und Branding für KMU und Handwerksbetriebe in Köln. Direktbetreuung durch Maurice Bourkiah.",
+          "url": "https://www.mb-solutions.biz",
+          "email": "hallo@mb-solutions.biz",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Auf der Bitze 18",
+            "addressLocality": "Köln",
+            "postalCode": "51107",
+            "addressCountry": "DE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 50.9333,
+            "longitude": 6.9500
+          },
+          "areaServed": { "@type": "City", "name": "Köln" },
+          "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }],
+          "priceRange": "€€",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Leistungen",
+            "itemListElement": [
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Webdesign & Entwicklung" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "IT-Services & Cloud-Setup" } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding & Corporate Identity" } }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.mb-solutions.biz/#website",
+          "url": "https://www.mb-solutions.biz",
+          "name": "MB-Solutions",
+          "description": "Webdesign, IT-Services und Branding für KMU in Köln",
+          "publisher": { "@id": "https://www.mb-solutions.biz/#business" },
+          "inLanguage": "de-DE"
+        }
+      ]
+    })}</script>
+  </Fragment>
   <Navbar />
   <main>
     <HeroSection />
