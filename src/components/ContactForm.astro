@@ -48,7 +48,11 @@
   <div class="cf-title">Schreib mir eine Nachricht</div>
   <div class="cf-sub">Antwortet innerhalb von 48 Stunden.</div>
 
-  <form id="contact-form" action="https://formspree.io/f/xeojkgkv" method="POST" novalidate aria-label="Kontaktformular" class="cf-form">
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate aria-label="Kontaktformular" class="cf-form">
+    <input type="hidden" name="access_key" value="bb35103f-8376-463d-ac6e-f98f06367d68" />
+    <input type="hidden" name="subject" value="Neue Anfrage über mb-solutions.biz" />
+    <input type="hidden" name="from_name" value="MB-Solutions Website" />
+    <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
     <div class="cf-row">
       <div class="cf-field">
         <label class="cf-label" for="cf-name">Name *</label>
@@ -73,8 +77,6 @@
       <label class="cf-label" for="cf-message">Nachricht *</label>
       <textarea id="cf-message" name="message" class="cf-textarea" placeholder="Beschreib kurz, was du brauchst — Stichpunkte reichen." required></textarea>
     </div>
-    <input type="text" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off" />
-    <input type="hidden" name="_subject" value="Neue Anfrage über mb-solutions.biz" />
     <button type="submit" class="btn-primary cf-submit">
       Nachricht senden
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
