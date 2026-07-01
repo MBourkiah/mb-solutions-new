@@ -38,24 +38,12 @@ const links = [
 
   /* Logo */
   .logo {
-    display: flex; align-items: center; gap: 9px;
+    display: flex; align-items: center;
     text-decoration: none; flex-shrink: 0;
   }
-  .logo-mark {
-    width: 34px; height: 34px; border-radius: 9px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 800;
-    color: white; letter-spacing: -0.04em; flex-shrink: 0;
-  }
-  .logo-name {
-    font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700;
-    color: var(--text); letter-spacing: -0.02em; line-height: 1;
-  }
-  .logo-city {
-    font-size: 10px; font-weight: 400; color: var(--text-3);
-    letter-spacing: 0.06em; text-transform: uppercase;
-    display: block; margin-top: 1px;
+  .logo-img {
+    height: 30px; width: auto;
+    display: block;
   }
 
   /* Nav links */
@@ -149,11 +137,15 @@ const links = [
 <div class="nav-wrap">
   <header id="nav-bar" class="nav-bar">
     <a href="/" class="logo">
-      <span class="logo-mark" aria-hidden="true">MB</span>
-      <span>
-        <span class="logo-name">MB-Solutions</span>
-        <span class="logo-city">Köln</span>
-      </span>
+      <img
+        src="/logos/mb-solutions-horizontal.svg"
+        alt="MB-Solutions Logo"
+        class="logo-img"
+        width="180"
+        height="30"
+        loading="eager"
+        decoding="async"
+      />
     </a>
 
     <nav class="nav-links" aria-label="Hauptnavigation">
