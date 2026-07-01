@@ -1,0 +1,170 @@
+---
+const faqs = [
+  {
+    q: 'Was kostet eine Website bei MB-Solutions?',
+    a: 'Einfache Unternehmenswebsites starten ab 790 €. Shops, Buchungssysteme und individuelle Projekte besprechen wir im Erstgespräch — du bekommst immer ein transparentes Festpreisangebot, ohne versteckte Stundensätze.',
+  },
+  {
+    q: 'Wie lange dauert ein Webdesign-Projekt?',
+    a: 'Eine einfache Unternehmenswebsite ist in der Regel nach 2–4 Wochen live. Komplexere Projekte mit Shop oder Buchungssystem dauern 4–8 Wochen. Du bekommst von Anfang an eine konkrete Zeitplanung.',
+  },
+  {
+    q: 'Was passiert nach dem Launch?',
+    a: 'Nach dem Live-Gang stehe ich dir direkt zur Verfügung — für Fragen, Korrekturen und technischen Support. Viele Kunden buchen mich auch danach für Updates, Erweiterungen oder laufende IT-Betreuung.',
+  },
+  {
+    q: 'Muss ich technisch versiert sein, um mit dir zu arbeiten?',
+    a: 'Nein — überhaupt nicht. Ich erkläre alles verständlich, ohne Fachjargon. Deine Aufgabe ist es, mir zu erzählen, was du brauchst. Den technischen Rest übernehme ich komplett.',
+  },
+  {
+    q: 'Arbeitest du auch außerhalb von Köln?',
+    a: 'Mein Schwerpunkt liegt auf Köln und der Region — persönliche Treffen sind natürlich möglich. Viele Projekte wickle ich auch vollständig remote ab: telefonisch, per Video-Call und mit digitaler Zusammenarbeit.',
+  },
+  {
+    q: 'Was unterscheidet dich von einer klassischen Werbeagentur?',
+    a: 'Du sprichst immer direkt mit mir — ohne Projektleiter-Schicht, ohne wechselnde Ansprechpartner, ohne Unterauftragnehmer. Das bedeutet kürzere Wege, schnellere Antworten und ein Ergebnis, das wirklich zu deinem Betrieb passt.',
+  },
+];
+---
+
+<style>
+  .faq { background: var(--bg); padding: 6rem 5% 7rem; }
+  .faq-inner { max-width: 68rem; margin: 0 auto; }
+
+  .faq-header {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; margin-bottom: 3.5rem; gap: 0.75rem;
+  }
+  .faq-h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800; letter-spacing: -0.04em;
+    color: var(--text); line-height: 1.0;
+  }
+  .faq-sub {
+    font-size: 1.0625rem; color: var(--text-2);
+    line-height: 1.7; max-width: 44ch;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .faq-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
+  }
+  .faq-item[open] {
+    border-color: rgba(127,119,221,0.30);
+    box-shadow: 0 0 0 3px rgba(127,119,221,0.07);
+  }
+
+  .faq-summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.375rem 1.75rem;
+    cursor: pointer; list-style: none;
+    font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.015em;
+    user-select: none;
+    transition: background-color 150ms var(--ease-out);
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-summary::marker { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .faq-summary:hover { background: var(--bg); }
+  }
+
+  .faq-chevron {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+    background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-2);
+    transition: transform 300ms var(--ease-out), background-color 180ms var(--ease-out),
+                border-color 180ms var(--ease-out), color 180ms var(--ease-out);
+  }
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    background: var(--accent-light); border-color: rgba(127,119,221,0.4);
+    color: var(--accent);
+  }
+
+  .faq-body {
+    padding: 0 1.75rem 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+  .faq-item[open] .faq-body {
+    animation: faqReveal 250ms var(--ease-out) both;
+  }
+  @keyframes faqReveal {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .faq-body p {
+    font-size: 0.9375rem; color: var(--text-2); line-height: 1.8; margin: 0;
+  }
+
+  /* CTA row */
+  .faq-cta {
+    text-align: center; margin-top: 3.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
+  }
+  .faq-cta-text {
+    font-size: 1.0625rem; color: var(--text-2); line-height: 1.7;
+  }
+  .faq-cta-btns {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  }
+
+  @media (max-width: 599px) {
+    .faq { padding: 4rem 5% 4.5rem; }
+    .faq-summary { padding: 1.25rem 1.25rem; font-size: 0.9375rem; }
+    .faq-body { padding: 0 1.25rem 1.25rem; padding-top: 1rem; }
+    .faq-cta-btns { flex-direction: column; width: 100%; }
+    .faq-cta-btns .btn-primary,
+    .faq-cta-btns .btn-outline { justify-content: center; width: 100%; }
+  }
+</style>
+
+<section class="faq" aria-labelledby="faq-heading">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="eyebrow reveal" style="justify-content:center;">
+        <span class="eyebrow-bar" aria-hidden="true"></span>
+        Häufige Fragen
+      </div>
+      <h2 class="faq-h2 reveal" id="faq-heading">Alles Wichtige auf einen Blick.</h2>
+      <p class="faq-sub reveal">Kurze, direkte Antworten — ohne Marketingsprache.</p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((item, i) => (
+        <details class="faq-item reveal" {...(i === 0 ? { open: true } : {})}>
+          <summary class="faq-summary">
+            <span>{item.q}</span>
+            <span class="faq-chevron" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M2.5 5l4.5 4.5L11.5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </summary>
+          <div class="faq-body">
+            <p>{item.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="faq-cta reveal">
+      <p class="faq-cta-text">Noch weitere Fragen? Ich beantworte sie gerne direkt.</p>
+      <div class="faq-cta-btns">
+        <a href="/kontakt" class="btn-primary">Kostenloses Gespräch anfragen</a>
+        <a href="tel:+491718165966" class="btn-outline">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.29 6.29l1.8-1.8a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2.04z"/>
+          </svg>
+          Direkt anrufen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
