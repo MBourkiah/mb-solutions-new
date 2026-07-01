@@ -1,13 +1,12 @@
 ---
-// Hero — Exaggerated Minimalism, warm cream, editorial
 ---
 
 <style>
   .hero {
     background: var(--bg);
-    min-height: 100svh;
+    min-height: 100dvh;
     display: flex; align-items: center;
-    padding: 5rem 5% 4rem;
+    padding: 4rem 5% 3rem;
     position: relative; overflow: hidden;
   }
   .hero::before {
@@ -22,41 +21,42 @@
     position: relative; z-index: 1;
     width: 100%; max-width: 80rem; margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 3rem; align-items: center;
+    grid-template-columns: 1fr 400px;
+    gap: 3.5rem; align-items: center;
   }
 
   /* ─── Left: Text ─────────────── */
   .hero-pill { animation: fadeUp 500ms var(--ease-out) 60ms both; }
-  .hero-headline { margin: 1.75rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
+  .hero-headline { margin: 1.25rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
   .hero-line {
-    display: block; font-size: clamp(4rem, 8.5vw, 8rem);
+    display: block;
+    font-size: clamp(3.25rem, 6vw, 6rem);
     font-weight: 800; color: var(--text);
     letter-spacing: -0.04em; line-height: 0.96;
   }
   .hero-line.accent { color: var(--accent); }
-  .hero-line.light  { font-weight: 500; color: var(--text-2); font-size: clamp(2rem, 4vw, 3.75rem); }
+  .hero-line.light  { font-weight: 500; color: var(--text-2); font-size: clamp(1.75rem, 3vw, 3rem); }
 
   .hero-divider {
     width: 100%; height: 1px; background: var(--border-2);
-    margin: 2rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
+    margin: 1.5rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
   }
   .hero-sub {
-    font-size: 1.0625rem; color: var(--text-2);
-    line-height: 1.75; max-width: 44ch; margin: 0 0 2.25rem;
+    font-size: 1rem; color: var(--text-2);
+    line-height: 1.75; max-width: 42ch; margin: 0 0 2rem;
     animation: fadeUp 500ms var(--ease-out) 270ms both;
   }
   .hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; animation: fadeUp 500ms var(--ease-out) 330ms both; }
   .hero-stats {
-    display: flex; gap: 2.5rem; margin-top: 2.5rem;
-    padding-top: 2rem; border-top: 1px solid var(--border);
+    display: flex; gap: 2rem; margin-top: 2rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--border);
     animation: fadeUp 500ms var(--ease-out) 400ms both; flex-wrap: wrap;
   }
   .stat-val {
-    display: block; font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 700;
+    display: block; font-family: 'Outfit', sans-serif; font-size: 1.625rem; font-weight: 700;
     color: var(--text); line-height: 1; letter-spacing: -0.03em;
   }
-  .stat-label { font-size: 12px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.02em; }
+  .stat-label { font-size: 11px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.02em; }
 
   /* ─── Right: Browser Mockup ───── */
   .hero-right {
@@ -87,9 +87,7 @@
     border-bottom: 1px solid var(--border);
   }
   .browser-dots { display: flex; gap: 6px; flex-shrink: 0; }
-  .browser-dots span {
-    width: 10px; height: 10px; border-radius: 50%; display: block;
-  }
+  .browser-dots span { width: 10px; height: 10px; border-radius: 50%; display: block; }
   .browser-url {
     flex: 1; background: var(--surface); border: 1px solid var(--border);
     border-radius: 6px; padding: 4px 10px;
@@ -98,7 +96,7 @@
   }
 
   .browser-img {
-    display: block; width: 100%; height: 240px;
+    display: block; width: 100%; height: 220px;
     object-fit: cover; object-position: top;
     transition: transform 6000ms ease;
   }
@@ -106,7 +104,6 @@
     .browser-mockup:hover .browser-img { transform: translateY(-12%); }
   }
 
-  /* Meta strip below browser */
   .hero-meta-strip {
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 4px;
@@ -116,7 +113,6 @@
     font-size: 12px; color: var(--text-3); font-weight: 500;
   }
 
-  /* Project label on browser */
   .browser-label {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r-lg); padding: 12px 16px;
@@ -132,19 +128,46 @@
     padding: 3px 8px; border-radius: var(--r-full);
   }
 
+  /* ─── Scroll indicator ────────── */
+  .hero-scroll {
+    position: absolute; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: var(--text-3); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    animation: fadeUp 600ms var(--ease-out) 800ms both;
+  }
+  .hero-scroll svg {
+    animation: scrollBounce 2.4s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(5px); }
+  }
+
+  /* ─── Responsive ──────────────── */
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-    .hero-right { max-width: 480px; margin: 0 auto; width: 100%; }
-    .hero { padding: 4rem 6% 3rem; min-height: auto; }
-    .hero-line { font-size: clamp(3rem, 10vw, 5.5rem); }
+    .hero {
+      min-height: 100dvh;
+      padding: 5rem 6% 4rem;
+      align-items: center;
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .hero-right  { display: none; }
+    .hero-stats  { display: none; }
+    .hero-line   { font-size: clamp(3rem, 11vw, 5rem); }
+    .hero-line.light { font-size: clamp(1.75rem, 7vw, 2.75rem); }
     .browser-mockup { transform: none; }
   }
+
   @media (max-width: 480px) {
-    .hero { padding: 3.5rem 5% 2.5rem; }
-    .hero-inner { gap: 2rem; }
-    .browser-img { height: 190px; }
-    .hero-stats { gap: 1.5rem; margin-top: 2rem; padding-top: 1.5rem; }
-    .hero-line { font-size: clamp(2.75rem, 11vw, 3.5rem); }
+    .hero { padding: 5rem 5% 3rem; }
+    .hero-line { font-size: clamp(2.75rem, 12vw, 4rem); }
+    .hero-line.light { font-size: clamp(1.5rem, 7.5vw, 2.5rem); }
+    .hero-sub { font-size: 0.9375rem; }
   }
 </style>
 
@@ -191,7 +214,7 @@
       </div>
     </div>
 
-    <!-- Right: Browser Mockup -->
+    <!-- Right: Browser Mockup (desktop only) -->
     <div class="hero-right">
       <div class="browser-mockup">
         <div class="browser-topbar" aria-hidden="true">
@@ -240,5 +263,12 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll" aria-hidden="true">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
 </section>
