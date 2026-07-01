@@ -51,21 +51,169 @@ const details = [
     items: ['Logo-Design (Vektordaten)', 'Farbpalette & Typografie', 'Briefpapier & Visitenkarten', 'E-Mail-Signatur', 'Social-Media-Templates', 'Brand-Guidelines PDF'],
   },
 ];
+
+const serviceCards = [
+  {
+    title: 'Webdesign & Entwicklung',
+    desc: 'Ab 790 € · Mobile-first',
+    color: 'var(--accent)',
+    bg: 'var(--accent-light)',
+  },
+  {
+    title: 'IT-Services',
+    desc: 'Cloud & Infrastruktur',
+    color: '#16A34A',
+    bg: '#F0FDF4',
+  },
+  {
+    title: 'Branding & CI',
+    desc: 'Logo bis Brand-Guide',
+    color: '#D97706',
+    bg: '#FFFBEB',
+  },
+];
 ---
 
 <style>
-  .ls-hero { background: var(--bg); padding: 7rem 5% 5rem; position: relative; overflow: hidden; }
+  /* ── Hero ──────────────────────────────────────────────────── */
+  .ls-hero {
+    background: var(--bg);
+    min-height: 100dvh;
+    display: flex; align-items: center;
+    padding: 5rem 5% 3rem;
+    position: relative; overflow: hidden;
+  }
   .ls-hero::before {
-    content: ''; position: absolute; top: -20%; right: -10%; width: 50%; height: 80%;
-    background: radial-gradient(ellipse, rgba(127,119,221,0.07) 0%, transparent 65%); pointer-events: none;
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(28,26,23,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
   }
-  .ls-h1 {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem); font-weight: 800; letter-spacing: -0.035em;
-    color: var(--text); line-height: 1.1; margin: 0 0 1.25rem;
+  .ls-hero-inner {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 80rem; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3.5rem; align-items: center;
   }
-  .ls-sub { font-size: 1.0625rem; color: var(--text-2); line-height: 1.75; max-width: 50ch; margin: 0 0 2rem; }
 
-  /* Packages */
+  /* Left text */
+  .ls-pill  { animation: fadeUp 500ms var(--ease-out) 60ms  both; }
+  .ls-headline { margin: 1.25rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
+  .ls-line {
+    display: block;
+    font-size: clamp(3.25rem, 6vw, 6rem);
+    font-weight: 800; color: var(--text);
+    letter-spacing: -0.04em; line-height: 0.96;
+  }
+  .ls-line.accent { color: var(--accent); }
+  .ls-divider {
+    width: 100%; height: 1px; background: var(--border-2);
+    margin: 1.5rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
+  }
+  .ls-sub {
+    font-size: 1rem; color: var(--text-2);
+    line-height: 1.75; max-width: 44ch; margin: 0 0 2rem;
+    animation: fadeUp 500ms var(--ease-out) 270ms both;
+  }
+  .ls-ctas {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    animation: fadeUp 500ms var(--ease-out) 330ms both;
+  }
+  .ls-stats {
+    display: flex; gap: 2rem; margin-top: 2rem;
+    padding-top: 1.5rem; border-top: 1px solid var(--border);
+    animation: fadeUp 500ms var(--ease-out) 400ms both; flex-wrap: wrap;
+  }
+  .lstat-val {
+    display: block; font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700;
+    color: var(--text); line-height: 1; letter-spacing: -0.03em;
+  }
+  .lstat-label { font-size: 11px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.02em; }
+
+  /* Right: Services card */
+  .ls-hero-right {
+    animation: fadeUp 800ms var(--ease-out) 200ms both;
+  }
+  .ls-services-card {
+    background: var(--surface);
+    border: 1px solid var(--border-2);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(28,26,23,0.04);
+    transform: rotate(-1.5deg);
+    transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .ls-services-card:hover {
+      transform: rotate(0deg) scale(1.01);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 0 0 1px rgba(28,26,23,0.04);
+    }
+  }
+  .lsc-head {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .lsc-eyebrow {
+    font-size: 11px; font-weight: 700; color: var(--text-3);
+    text-transform: uppercase; letter-spacing: 0.1em;
+    font-family: 'Outfit', sans-serif;
+  }
+  .lsc-dots { display: flex; gap: 5px; }
+  .lsc-dots span { width: 8px; height: 8px; border-radius: 50%; display: block; }
+  .lsc-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px; border-bottom: 1px solid var(--border);
+    transition: background 150ms var(--ease-out);
+    text-decoration: none;
+  }
+  .lsc-item:last-of-type { border-bottom: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .lsc-item:hover { background: var(--bg); }
+  }
+  .lsc-icon {
+    width: 42px; height: 42px; border-radius: var(--r-md);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .lsc-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+  .lsc-name {
+    font-family: 'Outfit', sans-serif; font-size: 0.875rem; font-weight: 700;
+    color: var(--text); letter-spacing: -0.02em;
+  }
+  .lsc-desc { font-size: 0.8125rem; color: var(--text-3); }
+  .lsc-arrow { color: var(--text-3); flex-shrink: 0; }
+  .lsc-footer {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 16px 18px;
+    background: var(--accent-light); border-top: 1px solid var(--border-a);
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    font-family: 'Outfit', sans-serif; text-decoration: none;
+    transition: background 150ms var(--ease-out), color 150ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .lsc-footer:hover { background: var(--accent); color: white; }
+  }
+
+  /* Scroll indicator */
+  .ls-scroll {
+    position: absolute; bottom: 24px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: var(--text-3); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    animation: fadeUp 600ms var(--ease-out) 800ms both;
+  }
+  .ls-scroll svg { animation: scrollBounce 2.4s ease-in-out infinite; }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(5px); }
+  }
+
+  /* ── Packages ──────────────────────────────────────────────── */
   .ls-packages { background: var(--bg-alt); padding: 6rem 5%; }
   .ls-pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
   .pkg-card {
@@ -93,13 +241,15 @@ const details = [
   .pkg-items li svg { flex-shrink: 0; color: var(--accent); }
   .pkg-cta { display: block; text-align: center; }
 
-  /* Details */
+  /* ── Detail Cards ──────────────────────────────────────────── */
   .ls-detail { background: var(--bg); padding: 6rem 5%; }
   .ls-detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
   .detail-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
     padding: 2rem; box-shadow: var(--shadow-sm);
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
   }
+  @media (hover: hover) and (pointer: fine) { .detail-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); } }
   .detail-icon {
     width: 44px; height: 44px; border-radius: var(--r-md);
     display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;
@@ -107,7 +257,6 @@ const details = [
   .detail-title { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; letter-spacing: -0.02em; }
   .detail-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
   .detail-list li { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--text-2); }
-  .detail-list li svg { flex-shrink: 0; }
 
   .ls-section-headline {
     font-size: clamp(1.75rem, 2.75vw, 2.375rem); font-weight: 700;
@@ -115,12 +264,20 @@ const details = [
   }
   .ls-section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; }
 
+  /* ── Responsive ────────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .ls-hero { padding: 5rem 6% 4rem; align-items: center; }
+    .ls-hero-inner { grid-template-columns: 1fr; gap: 0; }
+    .ls-hero-right { display: none; }
+    .ls-line { font-size: clamp(3rem, 11vw, 5rem); }
+  }
   @media (max-width: 599px) {
     .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr; }
-    .ls-hero { padding: 5rem 5% 3.5rem; }
     .ls-packages { padding: 4rem 5%; }
     .ls-detail { padding: 4rem 5%; }
     .ls-pkg-grid { padding-top: 14px; margin-top: 2rem; }
+    .ls-line { font-size: clamp(2.75rem, 12vw, 4rem); }
+    .ls-sub { font-size: 0.9375rem; }
   }
   @media (min-width: 600px) and (max-width: 900px) {
     .ls-detail-grid { grid-template-columns: 1fr 1fr; }
@@ -154,43 +311,119 @@ const details = [
             { "@type": "Offer", "name": "Professional", "price": "1490", "priceCurrency": "EUR" },
             { "@type": "Offer", "name": "All-in-one", "price": "2490", "priceCurrency": "EUR" }
           ]
-        },
-        {
-          "@type": "Service",
-          "name": "IT-Services & Cloud-Setup",
-          "description": "E-Mail-Systeme, Cloud-Backup, Geräteeinrichtung und laufende IT-Betreuung für KMU in Köln.",
-          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
-          "areaServed": "Köln"
-        },
-        {
-          "@type": "Service",
-          "name": "Branding & Corporate Identity",
-          "description": "Logo, Farben, Typografie und CI-Manual für konsistentes Erscheinungsbild.",
-          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
-          "areaServed": "Köln"
         }
       ]
     })}</script>
   </Fragment>
+
   <Navbar />
   <main id="main-content">
 
+    <!-- Hero -->
     <section class="ls-hero" aria-labelledby="ls-heading">
-      <div style="max-width:80rem;margin:0 auto;position:relative;z-index:1;">
-        <div class="eyebrow reveal">
-          <span class="eyebrow-bar" aria-hidden="true"></span>
-          Leistungen
+      <div class="ls-hero-inner">
+
+        <!-- Left: Text -->
+        <div>
+          <div class="ls-pill">
+            <span class="pill">
+              <span class="pill-dot" aria-hidden="true"></span>
+              3 Leistungsbereiche
+            </span>
+          </div>
+
+          <div class="ls-headline">
+            <span class="ls-line">Was ich</span>
+            <span class="ls-line accent">für dich</span>
+            <span class="ls-line" id="ls-heading">tun kann.</span>
+          </div>
+
+          <div class="ls-divider" aria-hidden="true"></div>
+
+          <p class="ls-sub">
+            Von der ersten Idee bis zur fertigen Website — und alles, was ein moderner
+            Betrieb digital braucht. Fest kalkulierbare Preise, keine Überraschungen.
+          </p>
+
+          <div class="ls-ctas">
+            <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
+            <a href="#pakete" class="btn-outline">
+              Preise ansehen
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M6.5 2.5L10.5 6.5L6.5 10.5M2.5 6.5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="ls-stats" aria-label="Kennzahlen">
+            <div><span class="lstat-val">790 €</span><span class="lstat-label">Ab Starter</span></div>
+            <div><span class="lstat-val">Festpreis</span><span class="lstat-label">Keine Überraschungen</span></div>
+            <div><span class="lstat-val">48h</span><span class="lstat-label">Antwortzeit</span></div>
+          </div>
         </div>
-        <h1 class="ls-h1 reveal" id="ls-heading">Was ich für dich tun kann.</h1>
-        <p class="ls-sub reveal">
-          Von der ersten Idee bis zur fertigen Website — und alles, was ein moderner
-          Betrieb digital braucht. Fest kalkulierbare Preise, keine Überraschungen.
-        </p>
-        <a href="/kontakt" class="btn-primary reveal">Kostenloses Erstgespräch vereinbaren</a>
+
+        <!-- Right: Services overview card -->
+        <div class="ls-hero-right" aria-hidden="true">
+          <div class="ls-services-card">
+            <div class="lsc-head">
+              <span class="lsc-eyebrow">Leistungsübersicht</span>
+              <div class="lsc-dots">
+                <span style="background:#FF5F57;"></span>
+                <span style="background:#FFBD2E;"></span>
+                <span style="background:#28C840;"></span>
+              </div>
+            </div>
+
+            {serviceCards.map((s, i) => (
+              <div class="lsc-item">
+                <div class="lsc-icon" style={`background:${s.bg};`}>
+                  {i === 0 && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={s.color} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                    </svg>
+                  )}
+                  {i === 1 && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={s.color} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+                    </svg>
+                  )}
+                  {i === 2 && (
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={s.color} stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>
+                    </svg>
+                  )}
+                </div>
+                <div class="lsc-info">
+                  <span class="lsc-name">{s.title}</span>
+                  <span class="lsc-desc">{s.desc}</span>
+                </div>
+                <svg class="lsc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M3 7h8M7.5 4l3.5 3-3.5 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            ))}
+
+            <a href="#pakete" class="lsc-footer">
+              Alle Preise ansehen
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+                <path d="M6.5 2.5L10.5 6.5L6.5 10.5M2.5 6.5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="ls-scroll" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
     </section>
 
-    <section class="ls-packages" aria-labelledby="pkg-heading">
+    <!-- Packages -->
+    <section class="ls-packages" id="pakete" aria-labelledby="pkg-heading">
       <div style="max-width:80rem;margin:0 auto;">
         <div class="eyebrow reveal">
           <span class="eyebrow-bar" aria-hidden="true"></span>
@@ -228,6 +461,7 @@ const details = [
       </div>
     </section>
 
+    <!-- Detail breakdown -->
     <section class="ls-detail" aria-labelledby="detail-heading">
       <div style="max-width:80rem;margin:0 auto;">
         <div class="eyebrow reveal">
