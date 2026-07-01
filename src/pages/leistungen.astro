@@ -115,8 +115,17 @@ const details = [
   }
   .ls-section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; }
 
-  @media (max-width: 599px) { .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr; } }
-  @media (min-width: 600px) and (max-width: 900px) { .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 599px) {
+    .ls-pkg-grid, .ls-detail-grid { grid-template-columns: 1fr; }
+    .ls-hero { padding: 5rem 5% 3.5rem; }
+    .ls-packages { padding: 4rem 5%; }
+    .ls-detail { padding: 4rem 5%; }
+    .ls-pkg-grid { padding-top: 14px; margin-top: 2rem; }
+  }
+  @media (min-width: 600px) and (max-width: 900px) {
+    .ls-detail-grid { grid-template-columns: 1fr 1fr; }
+    .ls-pkg-grid { grid-template-columns: 1fr; max-width: 480px; padding-top: 14px; }
+  }
 </style>
 
 <BaseLayout

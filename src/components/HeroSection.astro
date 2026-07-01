@@ -133,11 +133,18 @@
   }
 
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .hero-right { order: -1; max-width: 460px; margin: 0 auto; }
     .hero { padding: 4rem 6% 3rem; min-height: auto; }
     .hero-line { font-size: clamp(3rem, 10vw, 5.5rem); }
     .browser-mockup { transform: none; }
+  }
+  @media (max-width: 480px) {
+    .hero { padding: 3.5rem 5% 2.5rem; }
+    .hero-inner { gap: 2rem; }
+    .browser-img { height: 190px; }
+    .hero-stats { gap: 1.5rem; margin-top: 2rem; padding-top: 1.5rem; }
+    .hero-line { font-size: clamp(2.75rem, 11vw, 3.5rem); }
   }
 </style>
 

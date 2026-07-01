@@ -124,6 +124,11 @@ const services = [
   @media (min-width: 600px) and (max-width: 900px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
+  @media (max-width: 599px) {
+    .services { padding: 4rem 5% 4.5rem; }
+    .services-header { margin-bottom: 2.5rem; }
+    .service-card { padding: 2rem 1.5rem; }
+  }
 </style>
 
 <section class="services" aria-labelledby="services-heading">

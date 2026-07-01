@@ -45,6 +45,11 @@ import Footer from '../components/Footer.astro';
   .promise-list li svg { flex-shrink: 0; color: var(--accent); }
 
   @media (max-width: 860px) { .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; } }
+  @media (max-width: 599px) {
+    .kontakt-section { padding: 5rem 5% 4rem; }
+    .contact-info { gap: 10px; }
+    .ci-item { padding: 12px 14px; }
+  }
 </style>
 
 <BaseLayout
