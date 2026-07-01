@@ -56,24 +56,43 @@ const testimonials = [
     border-radius: var(--r-xl); padding: 2.25rem 2rem;
     display: flex; flex-direction: column; gap: 1.125rem;
     box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
-    transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out),
-                border-color 220ms var(--ease-out);
+    transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out),
+                border-color 260ms var(--ease-out), background 260ms var(--ease-out);
+  }
+  /* Gradient sheen on hover */
+  .testi-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(145deg,
+      rgba(127,119,221,0.07) 0%,
+      transparent 55%);
+    opacity: 0;
+    transition: opacity 300ms var(--ease-out);
+    pointer-events: none; z-index: 0; border-radius: var(--r-xl);
   }
   @media (hover: hover) and (pointer: fine) {
     .testi-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
-      border-color: var(--border-2);
+      border-color: var(--border-a);
     }
+    .testi-card:hover::before { opacity: 1; }
   }
   /* Decorative large quote mark */
   .testi-card::after {
     content: '"';
-    position: absolute; bottom: -10px; right: 16px;
-    font-family: 'Outfit', sans-serif; font-size: 6rem; font-weight: 900;
-    line-height: 1; color: var(--accent-light);
-    pointer-events: none; user-select: none; opacity: 0.7;
+    position: absolute; bottom: -8px; right: 16px;
+    font-family: 'Outfit', sans-serif; font-size: 7rem; font-weight: 900;
+    line-height: 1; color: rgba(127,119,221,0.10);
+    pointer-events: none; user-select: none;
+    transition: color 300ms var(--ease-out);
   }
+  @media (hover: hover) and (pointer: fine) {
+    .testi-card:hover::after { color: rgba(127,119,221,0.18); }
+  }
+  /* Ensure content is above pseudo-elements */
+  .testi-top, .testi-service, .testi-quote, .testi-divider, .testi-author,
+  .testimonials-trust { position: relative; z-index: 1; }
 
   .testi-top {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -145,7 +164,7 @@ const testimonials = [
 
     <div class="testimonials-grid">
       {testimonials.map(t => (
-        <div class="testi-card reveal">
+        <div class="testi-card reveal-scale">
           <div class="testi-top">
             <div class="testi-stars" role="img" aria-label={`${t.stars} von 5 Sternen`}>
               {Array.from({length: t.stars}).map(() => (

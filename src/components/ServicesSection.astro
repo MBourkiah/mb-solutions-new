@@ -59,17 +59,27 @@ const services = [
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r-xl); padding: 2.5rem 2rem;
     display: flex; flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: box-shadow 240ms var(--ease-out), transform 240ms var(--ease-out),
-                border-color 240ms var(--ease-out);
+    box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+    transition: box-shadow 260ms var(--ease-out), transform 260ms var(--ease-out),
+                border-color 260ms var(--ease-out);
+  }
+  /* Colored top accent bar — slides in on hover */
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--s-color, var(--accent));
+    border-radius: var(--r-xl) var(--r-xl) 0 0;
+    transform: scaleX(0); transform-origin: left center;
+    transition: transform 340ms var(--ease-out);
   }
   @media (hover: hover) and (pointer: fine) {
     .service-card:hover {
       box-shadow: var(--shadow-lg);
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: var(--border-2);
     }
-    .service-card:hover .service-icon { transform: scale(1.07); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover .service-icon { transform: scale(1.1) rotate(-4deg); }
   }
 
   .service-num {
@@ -152,7 +162,7 @@ const services = [
 
     <div class="services-grid">
       {services.map(s => (
-        <div class="service-card reveal">
+        <div class="service-card reveal-scale" style={`--s-color:${s.color};`}>
           <span class="service-num" style={`color:${s.color};`}>{s.num}</span>
 
           <div class="service-icon" style={`background:${s.bg};`} aria-hidden="true">

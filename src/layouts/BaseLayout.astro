@@ -138,7 +138,7 @@ const fullTitle = `${title} | MB-Solutions`;
             }
           });
         }, { threshold: 0.08, rootMargin: '-12px 0px' });
-        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+        document.querySelectorAll('.reveal, .reveal-scale').forEach(function (el) { obs.observe(el); });
       })();
     </script>
   </body>

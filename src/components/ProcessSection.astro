@@ -59,16 +59,24 @@ const steps = [
     display: grid; grid-template-columns: repeat(3, 1fr);
     margin-bottom: -16px; position: relative; z-index: 2;
   }
+  /* Line draws itself when connector enters viewport */
   .process-connector::before {
     content: '';
     position: absolute;
-    top: 50%; transform: translateY(-50%);
+    top: 50%; transform: translateY(-50%) scaleX(0);
+    transform-origin: left center;
     left: calc(16.667% + 24px);
     right: calc(16.667% + 24px);
     height: 1px;
-    background: linear-gradient(90deg, var(--accent) 0%, var(--border-2) 50%, var(--accent) 100%);
-    opacity: 0.35;
+    background: linear-gradient(90deg,
+      rgba(127,119,221,0.8) 0%,
+      rgba(127,119,221,0.35) 50%,
+      rgba(127,119,221,0.8) 100%);
     z-index: 0;
+    transition: transform 720ms var(--ease-out) 300ms;
+  }
+  .process-connector.visible::before {
+    transform: translateY(-50%) scaleX(1);
   }
   .step-badge {
     width: 48px; height: 48px; border-radius: 50%;
@@ -76,8 +84,16 @@ const steps = [
     font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800;
     display: flex; align-items: center; justify-content: center;
     justify-self: center; position: relative; z-index: 1;
-    box-shadow: 0 0 0 5px var(--bg), 0 0 0 6px rgba(127,119,221,0.25);
+    box-shadow: 0 0 0 5px var(--bg), 0 0 0 6.5px rgba(127,119,221,0.30);
     letter-spacing: -0.03em;
+    transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .step-badge:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 0 5px var(--bg), 0 0 0 7px rgba(127,119,221,0.5),
+                  0 8px 24px rgba(127,119,221,0.3);
+    }
   }
 
   /* ── Step cards grid ─────────────────────── */
@@ -89,17 +105,17 @@ const steps = [
     border-radius: var(--r-xl); padding: 2.5rem 2rem;
     display: flex; flex-direction: column; gap: 0;
     box-shadow: var(--shadow-sm);
-    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out),
-                border-color 240ms var(--ease-out);
+    transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out),
+                border-color 260ms var(--ease-out);
     padding-top: 2.75rem;
   }
   @media (hover: hover) and (pointer: fine) {
     .process-step:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       box-shadow: var(--shadow-lg);
-      border-color: var(--border-2);
+      border-color: var(--border-a);
     }
-    .process-step:hover .step-icon { transform: scale(1.07); }
+    .process-step:hover .step-icon { transform: scale(1.1) rotate(-6deg); }
   }
 
   /* Mobile step number (shown when connector is hidden) */
@@ -173,7 +189,7 @@ const steps = [
       </p>
     </div>
 
-    <div class="process-connector" aria-hidden="true">
+    <div class="process-connector reveal" aria-hidden="true">
       {steps.map(s => (
         <div class="step-badge">{s.num}</div>
       ))}
@@ -181,7 +197,7 @@ const steps = [
 
     <div class="process-grid">
       {steps.map(s => (
-        <div class="process-step reveal">
+        <div class="process-step reveal-scale">
           <span class="step-num-mobile" aria-hidden="true">{s.num}</span>
 
           <div class="step-icon" aria-hidden="true">

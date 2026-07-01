@@ -16,6 +16,17 @@
     background-size: 28px 28px;
     pointer-events: none;
   }
+  /* Ambient accent glow */
+  .hero::after {
+    content: '';
+    position: absolute; top: -10%; right: -5%;
+    width: 55%; height: 120%;
+    background: radial-gradient(ellipse at 65% 38%,
+      rgba(127,119,221,0.13) 0%,
+      rgba(127,119,221,0.05) 45%,
+      transparent 68%);
+    pointer-events: none; z-index: 0;
+  }
 
   .hero-inner {
     position: relative; z-index: 1;
