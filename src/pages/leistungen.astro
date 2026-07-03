@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
+import DecoShapes from '../components/DecoShapes.astro';
 
 const services = [
   {
@@ -82,7 +83,10 @@ const packages = [
 
 <style>
   /* ── Seiten-Hero ── */
-  .page-hero { padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem); }
+  .page-hero {
+    position: relative;
+    padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem);
+  }
   .page-hero-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
   .page-h1 {
     font-size: clamp(2.75rem, 6.5vw, 5rem);
@@ -110,10 +114,12 @@ const packages = [
     gap: clamp(2.5rem, 6vw, 6rem);
     align-items: start;
   }
+  .svc-num-row { display: flex; align-items: center; gap: 12px; }
   .svc-num {
     font-family: var(--font-mono); font-size: 12px; font-weight: 500;
     letter-spacing: 0.14em; color: var(--accent);
   }
+  .svc-glyph { display: block; flex-shrink: 0; }
   .svc-h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
@@ -220,6 +226,7 @@ const packages = [
 
     <!-- Seiten-Hero -->
     <section class="page-hero" aria-labelledby="ls-heading">
+      <DecoShapes variant="corner" />
       <div class="container-site">
         <p class="label-mono page-hero-label">Leistungen</p>
         <h1 class="page-h1" id="ls-heading">
@@ -242,7 +249,27 @@ const packages = [
         <div class="container-site">
           <div class="svc-grid">
             <div>
-              <span class="svc-num reveal">{s.num}</span>
+              <div class="svc-num-row reveal">
+                {s.id === 'webdesign' && (
+                  <svg class="svc-glyph" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <rect x="2" y="3" width="18" height="16" rx="3" stroke="var(--accent)" stroke-width="2"/>
+                    <path d="M2 8h18" stroke="var(--accent)" stroke-width="2"/>
+                  </svg>
+                )}
+                {s.id === 'it-services' && (
+                  <svg class="svc-glyph" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <circle cx="5" cy="17" r="3" stroke="var(--accent)" stroke-width="2"/>
+                    <circle cx="17" cy="5" r="3" stroke="var(--accent)" stroke-width="2"/>
+                    <path d="M7 15L15 7" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {s.id === 'branding' && (
+                  <svg class="svc-glyph" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+                    <path d="M3 19l8-15l8 15Z" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+                  </svg>
+                )}
+                <span class="svc-num">{s.num}</span>
+              </div>
               <h2 class="svc-h2 reveal" id={`${s.id}-heading`}>{s.title}</h2>
               <p class="svc-lead reveal">{s.lead}</p>
               <p class="svc-outcome reveal">{s.outcome}</p>

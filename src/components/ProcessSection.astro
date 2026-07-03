@@ -1,4 +1,6 @@
 ---
+import DecoShapes from './DecoShapes.astro';
+
 const steps = [
   {
     num: '01',
@@ -35,6 +37,7 @@ const steps = [
 
 <style>
   .process {
+    position: relative;
     background: var(--deep);
     color: var(--on-deep);
   }
@@ -127,6 +130,7 @@ const steps = [
 </style>
 
 <section class="process section-pad on-deep" aria-labelledby="process-heading" id="prozess">
+  <DecoShapes variant="deep" />
   <div class="container-site">
     <div class="process-header">
       <p class="label-mono reveal">Ablauf</p>

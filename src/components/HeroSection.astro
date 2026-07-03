@@ -1,4 +1,6 @@
 ---
+import DecoShapes from './DecoShapes.astro';
+
 const index = [
   { num: '01', label: 'Webdesign',   desc: 'Websites, die Anfragen bringen',        href: '/leistungen#webdesign' },
   { num: '02', label: 'IT-Services', desc: 'E-Mail, Cloud & Geräte im Griff',       href: '/leistungen#it-services' },
@@ -8,9 +10,13 @@ const index = [
 
 <style>
   .hero {
+    position: relative;
     min-height: calc(100svh - 77px);
     display: flex; flex-direction: column; justify-content: center;
     padding-block: clamp(3rem, 8vh, 6rem) clamp(2rem, 5vh, 3.5rem);
+  }
+  .hero :global(.deco) {
+    animation: fadeUp 900ms var(--ease-out) 420ms both;
   }
 
   .hero-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
@@ -104,6 +110,7 @@ const index = [
 </style>
 
 <section class="hero" id="main-content" aria-label="Startseite Hero">
+  <DecoShapes variant="hero" />
   <div class="container-site">
     <p class="label-mono hero-label">Webdesign · IT-Services · Branding — Köln</p>
 

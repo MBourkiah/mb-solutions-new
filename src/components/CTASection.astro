@@ -1,8 +1,10 @@
 ---
+import DecoShapes from './DecoShapes.astro';
 ---
 
 <style>
   .cta {
+    position: relative;
     background: var(--deep);
     color: var(--on-deep);
   }
@@ -55,6 +57,7 @@
 </style>
 
 <section class="cta section-pad on-deep" aria-labelledby="cta-heading">
+  <DecoShapes variant="deep" flip />
   <div class="container-site">
     <div class="cta-inner-grid">
       <div>
