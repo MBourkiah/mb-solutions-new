@@ -1,145 +1,109 @@
 ---
-const facts = [
-  { val: '5+',  label: 'Jahre Erfahrung' },
-  { val: '12+', label: 'Projekte' },
-  { val: '48h', label: 'Antwortzeit' },
-  { val: '1:1', label: 'Direktbetreuung' },
+const compare = [
+  { label: 'Ansprechpartner',  agency: 'Wechselnd, je nach Projektphase', me: 'Immer ich — vom ersten Gespräch bis zum Support' },
+  { label: 'Kommunikation',    agency: 'Über Projektleiter und Tickets',  me: 'Direkt: Anruf, WhatsApp oder E-Mail' },
+  { label: 'Preis',            agency: 'Stundensätze plus Overhead',      me: 'Festpreis vor Projektstart' },
+  { label: 'Nach dem Launch',  agency: 'Supportcenter',                   me: 'Kurzer Draht zu dem, der die Seite gebaut hat' },
 ];
 ---
 
 <style>
-  .about { background: var(--bg-alt); padding: 6rem 5% 7rem; }
-  .about-inner {
-    max-width: 80rem; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 440px;
-    gap: 5rem; align-items: center;
+  .about { background: var(--paper-dim); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
   }
 
   .about-h2 {
-    font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800;
-    letter-spacing: -0.04em; color: var(--text); line-height: 1.02; margin-bottom: 1.75rem;
+    font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.04; margin: 1.25rem 0 1.5rem;
   }
   .about-p {
-    font-size: 1.0625rem; color: var(--text-2);
-    line-height: 1.8; max-width: 52ch; margin-bottom: 1.375rem;
-  }
-  .about-p:last-of-type { margin-bottom: 2rem; }
-
-  .about-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 14px; font-weight: 600; color: var(--accent);
-    text-decoration: none; font-family: 'Outfit', sans-serif;
-  }
-  .about-link svg { transition: transform 150ms var(--ease-out); flex-shrink: 0; }
-  @media (hover: hover) and (pointer: fine) {
-    .about-link:hover svg { transform: translate(3px, -3px); }
+    font-size: 1.0625rem; color: var(--ink-2);
+    line-height: 1.75; max-width: 50ch; margin: 0 0 1.25rem;
   }
 
-  .about-right { display: flex; flex-direction: column; gap: 16px; }
+  /* Vergleich Agentur vs. direkt */
+  .compare { border-top: 1px solid var(--border-2); }
+  .compare-head {
+    display: grid; grid-template-columns: 110px 1fr 1fr; gap: 1.25rem;
+    padding: 12px 0 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-head span {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .compare-head span:last-child { color: var(--accent); }
 
-  .fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .fact-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);
-    transition: transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  .compare-row {
+    display: grid; grid-template-columns: 110px 1fr 1fr; gap: 1.25rem;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem; line-height: 1.55;
   }
-  @media (hover: hover) and (pointer: fine) {
-    .fact-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .compare-label {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 0.875rem; color: var(--ink); letter-spacing: -0.01em;
   }
-  /* Stagger fact cards when revealing */
-  .fact-card:nth-child(1) { transition-delay: 0ms; }
-  .fact-card:nth-child(2) { transition-delay: 70ms; }
-  .fact-card:nth-child(3) { transition-delay: 140ms; }
-  .fact-card:nth-child(4) { transition-delay: 210ms; }
-  .fact-val {
-    font-family: 'Outfit', sans-serif; font-size: 2.25rem; font-weight: 800;
-    letter-spacing: -0.04em; color: var(--accent); line-height: 1;
-    display: block; margin-bottom: 4px;
-  }
-  .fact-label { font-size: 12px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.07em; font-weight: 500; }
+  .compare-agency { color: var(--ink-3); }
+  .compare-me { color: var(--ink); font-weight: 500; }
 
-  .about-quote {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--r-lg); padding: 1.75rem;
-    box-shadow: var(--shadow-sm); position: relative;
-  }
-  .about-quote::before {
-    content: '"'; position: absolute; top: 12px; right: 20px;
-    font-family: 'Outfit', sans-serif; font-size: 5rem; font-weight: 800; line-height: 1;
-    color: var(--accent-light); pointer-events: none;
-  }
-  .quote-text { font-size: 1rem; color: var(--text-2); line-height: 1.7; font-style: italic; margin-bottom: 1.25rem; }
-  .quote-author { display: flex; align-items: center; gap: 10px; }
-  .quote-avatar {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--accent); color: white;
-    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .quote-name { font-size: 13px; font-weight: 600; color: var(--text); }
-  .quote-role { font-size: 11px; color: var(--text-3); }
+  .about-link-row { margin-top: 1.75rem; }
 
-  @media (max-width: 900px) {
-    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .about-right { order: -1; }
-    .fact-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 599px) {
-    .about { padding: 4rem 5% 4.5rem; }
+  @media (max-width: 820px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .compare-head, .compare-row { grid-template-columns: 1fr; gap: 4px; }
+    .compare-head { display: none; }
+    .compare-row { padding: 16px 0; }
+    .compare-agency { text-decoration: line-through; text-decoration-color: rgba(30,27,46,0.25); }
   }
 </style>
 
-<section class="about" aria-labelledby="about-heading">
-  <div class="about-inner">
-    <div>
-      <div class="eyebrow reveal">
-        <span class="eyebrow-bar" aria-hidden="true"></span>
-        Über mich
+<section class="about section-pad" aria-labelledby="about-heading">
+  <div class="container-site">
+    <div class="about-grid">
+      <div>
+        <p class="label-mono reveal">Über mich</p>
+        <h2 class="about-h2 reveal" id="about-heading">
+          Du sprichst mit dem, der es baut.
+        </h2>
+        <p class="about-p reveal">
+          Ich bin Maurice Bourkiah — Webdesigner, Entwickler und IT-Berater
+          aus Köln. Ich arbeite direkt mit meinen Kunden: keine
+          Unterauftragnehmer, keine langen Kommunikationsketten.
+        </p>
+        <p class="about-p reveal">
+          Handwerksbetriebe und kleine Unternehmen verdienen denselben
+          professionellen Auftritt wie große Konzerne — ohne die großen
+          Agentur-Budgets dafür zu brauchen.
+        </p>
+        <div class="about-link-row reveal">
+          <a href="/ueber-mich" class="link-arrow">
+            Mehr über mich
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+              <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
-      <h2 class="about-h2 reveal" id="about-heading">
-        Technik mit<br/>Handschlag.
-      </h2>
-      <p class="about-p reveal">
-        Ich bin Maurice Bourkiah — Webdesigner, Entwickler und
-        IT-Berater aus Köln. Ich arbeite direkt mit meinen Kunden:
-        keine Unterauftragnehmer, keine langen Kommunikationsketten.
-      </p>
-      <p class="about-p reveal">
-        Was mich antreibt: Handwerksbetriebe und kleine Unternehmen
-        verdienen denselben professionellen Webauftritt wie große Konzerne —
-        ohne die großen Agentur-Budgets dafür zu brauchen.
-      </p>
-      <a href="/ueber-mich" class="about-link reveal">
-        Mehr über mich
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-          <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
 
-    <div class="about-right">
-      <div class="fact-grid">
-        {facts.map(f => (
-          <div class="fact-card reveal">
-            <span class="fact-val">{f.val}</span>
-            <span class="fact-label">{f.label}</span>
+      <div class="compare reveal" role="table" aria-label="Vergleich: klassische Agentur und MB-Solutions">
+        <div class="compare-head" role="row">
+          <span></span>
+          <span role="columnheader">Klassische Agentur</span>
+          <span role="columnheader">Mit mir</span>
+        </div>
+        {compare.map(row => (
+          <div class="compare-row" role="row">
+            <span class="compare-label" role="rowheader">{row.label}</span>
+            <span class="compare-agency" role="cell">{row.agency}</span>
+            <span class="compare-me" role="cell">{row.me}</span>
           </div>
         ))}
-      </div>
-      <div class="about-quote reveal">
-        <blockquote>
-          <p class="quote-text">
-            "Maurice hat unsere Website in unter drei Wochen komplett neu aufgesetzt.
-            Endlich sieht unser Auftritt so professionell aus wie unsere Arbeit."
-          </p>
-        </blockquote>
-        <div class="quote-author">
-          <div class="quote-avatar" aria-hidden="true">KS</div>
-          <div>
-            <div class="quote-name">Klaus S.</div>
-            <div class="quote-role">Inhaber, Keller &amp; Söhne GmbH</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -3,287 +3,135 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
+import ProjectVisual from '../components/ProjectVisual.astro';
 
 const projects = [
   {
-    name: 'Café Morgenrot',
-    cat: 'Webdesign',
-    year: '2024',
-    status: 'Fertiggestellt',
-    body: 'Booking-Website mit Online-Reservierung für ein Kölner Café. Mobile-first, atmosphärisches Design mit Fokus auf Conversion.',
-    tags: ['Astro', 'Tailwind CSS', 'Netlify Forms'],
-    accent: '#D97706',
-    img: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=700&h=400&fit=crop&q=82&auto=format',
-    imgAlt: 'Gemütlicher Café-Innenraum mit Holztischen und warmer Beleuchtung',
+    title: 'Diese Website',
+    category: 'Webdesign — in eigener Sache',
+    isReal: true,
+    visual: { real: 'mb-solutions-website', variant: 'web' as const },
+    visualAlt: 'Screenshot der Startseite von mb-solutions.biz',
+    visualCaption: 'Echter Screenshot · mb-solutions.biz',
+    problem: 'MB-Solutions brauchte genau das, was ich Kunden verspreche: einen Auftritt, der Vertrauen aufbaut — ohne fertige Kundenreferenzen und ohne so zu tun, als gäbe es welche.',
+    approach: 'Komplettes Redesign mit Astro und Tailwind: eigenes Farbsystem (Tiefviolett & Papier), selbst gehostete Schriften, fast kein JavaScript — und Konzeptarbeiten ehrlich als solche gekennzeichnet.',
+    result: 'Die Seite, die du gerade liest: schnell, ohne Bilder von fremden Servern, ehrlich im Inhalt. Derselbe Prozess und dieselben Bausteine, die auch dein Projekt bekommt.',
+    transfer: 'Jeden Betrieb, der professionell auftreten will, ohne sich größer darzustellen, als er ist.',
   },
   {
-    name: 'Keller & Söhne GmbH',
-    cat: 'IT-Services + Branding',
-    year: '2024',
-    status: 'Fertiggestellt',
-    body: 'Komplettes IT-Setup inkl. Google Workspace-Migration und neues Corporate Identity für ein Handwerksunternehmen.',
-    tags: ['Google Workspace', 'Logo Design', 'CI-Manual'],
-    accent: '#16A34A',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&h=400&fit=crop&q=82&auto=format',
-    imgAlt: 'Handwerksbetrieb mit Werkzeug und Arbeitsmaterial',
+    title: 'Café Morgenrot',
+    category: 'Webdesign — Gastronomie',
+    isReal: false,
+    visual: { real: 'cafe-morgenrot', variant: 'web' as const },
+    visualAlt: 'Abstrakte Illustration einer Website-Struktur in Violett auf Papierweiß',
+    problem: 'Reservierungen liefen ausschließlich über das Telefon. Wer abends nach Feierabend einen Tisch buchen wollte, landete auf dem Anrufbeantworter — und buchte woanders.',
+    approach: 'Mobile-first Website mit Online-Reservierung, Speisekarte als echte Webseite statt PDF-Download, Anbindung an Google Maps und Google-Unternehmensprofil.',
+    result: 'Gäste reservieren rund um die Uhr, das Team wird seltener aus dem Service ans Telefon geholt. Die Speisekarte ist bei Google auffindbar.',
+    transfer: 'Restaurants, Bäckereien, Bars — überall, wo Termine oder Tische gebucht werden.',
   },
   {
-    name: 'Yogastudio Sonnenlicht',
-    cat: 'Webdesign',
-    year: '2023',
-    status: 'Fertiggestellt',
-    body: 'Ruhige, minimalistische Website mit Kurskalender und Buchungsfunktion für ein Yoga-Studio in Köln-Nippes.',
-    tags: ['Next.js', 'Framer Motion', 'Vercel'],
-    accent: 'var(--accent)',
-    img: 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=700&h=400&fit=crop&q=82&auto=format',
-    imgAlt: 'Helles, minimalistisches Yogastudio mit natürlichem Lichteinfall',
+    title: 'Keller & Söhne GmbH',
+    category: 'IT-Setup + Branding — Handwerk',
+    isReal: false,
+    visual: { real: 'keller-soehne', variant: 'it' as const },
+    visualAlt: 'Abstrakte Illustration: verstreute Elemente laufen in eine geordnete Struktur zusammen',
+    problem: 'Angebote gingen von drei verschiedenen Freemail-Adressen raus, jedes Dokument sah anders aus. Beim Kunden wirkte der 12-Mann-Betrieb kleiner, als er ist.',
+    approach: 'Migration auf Google Workspace mit eigener Domain, neues Logo, Angebots- und Briefvorlagen, E-Mail-Signaturen für das ganze Team — dokumentiert in einem kompakten CI-Manual.',
+    result: 'Ein Erscheinungsbild vom Briefkopf bis zur E-Mail. Neue Mitarbeiter bekommen am ersten Tag eine fertige Adresse und die richtigen Vorlagen.',
+    transfer: 'Handwerksbetriebe jeder Größe, die professioneller wirken wollen, als ihre Freemail-Adresse es zulässt.',
   },
   {
-    name: 'Kosmetikstudio Belle',
-    cat: 'Webdesign',
-    year: '2025',
-    status: 'In Bearbeitung',
-    body: 'Booking-fähige Website mit Leistungsübersicht und Online-Terminbuchung via Calendly-Integration.',
-    tags: ['Responsive', 'Calendly', 'Mobile-first'],
-    accent: '#D97706',
-    img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&h=400&fit=crop&q=82&auto=format',
-    imgAlt: 'Kosmetikstudio mit modernem, sauberem Ambiente',
+    title: 'Yogastudio Sonnenlicht',
+    category: 'Webdesign — Kurse & Buchung',
+    isReal: false,
+    visual: { real: 'yogastudio-sonnenlicht', variant: 'brand' as const },
+    visualAlt: 'Abstrakte Illustration aus Grundformen: Kreis, Quadrat und Dreieck in Violett',
+    problem: 'Kursanmeldungen kamen per Instagram-DM, SMS und Zuruf. Die Inhaberin führte Teilnehmerlisten von Hand und verlor den Überblick über freie Plätze.',
+    approach: 'Ruhige, minimalistische Website mit Kurskalender und Online-Buchung. Die Gestaltung nimmt die Atmosphäre des Studios auf, statt sie mit Effekten zu übertönen.',
+    result: 'Buchungen laufen über den Kalender, Wartelisten füllen sich automatisch. Die Inhaberin unterrichtet, statt Listen zu pflegen.',
+    transfer: 'Studios, Praxen und Kursanbieter mit festen Terminen und begrenzten Plätzen.',
   },
 ];
-
-const heroProjects = [projects[0], projects[2]];
 ---
 
 <style>
-  /* ── Hero ──────────────────────────────────────────────────── */
-  .port-hero {
-    background: var(--bg);
-    min-height: 100dvh;
-    display: flex; align-items: center;
-    padding: 5rem 5% 3rem;
-    position: relative; overflow: hidden;
+  .page-hero { padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem); }
+  .page-h1 {
+    font-size: clamp(2.75rem, 6.5vw, 5rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+    margin: 1.25rem 0 1.5rem; max-width: 16ch;
+    animation: fadeUp 650ms var(--ease-out) 140ms both;
   }
-  .port-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(28,26,23,0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
+  .page-h1 .accent { color: var(--accent); }
+  .page-hero-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
+  .page-hero-sub {
+    font-size: 1.125rem; color: var(--ink-2); line-height: 1.7;
+    max-width: 52ch; margin: 0;
+    animation: fadeUp 550ms var(--ease-out) 240ms both;
   }
-  .port-hero-inner {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 80rem; margin: 0 auto;
+  .page-hero-sub strong { color: var(--ink); font-weight: 600; }
+
+  .case { scroll-margin-top: 90px; }
+  .case:nth-of-type(even) { background: var(--paper-dim); }
+
+  .case-grid {
     display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 3.5rem; align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+  .case-head { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; position: sticky; top: 100px; }
+  .case-badge {
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-strong); background: var(--tint);
+    padding: 4px 10px; border-radius: var(--r-sm);
+  }
+  .case-badge.real { color: #fff; background: var(--accent); }
+  .case-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.08; margin: 0;
+  }
+  .case-cat {
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
   }
 
-  /* Left text */
-  .port-pill  { animation: fadeUp 500ms var(--ease-out) 60ms  both; }
-  .port-headline { margin: 1.25rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
-  .port-line {
-    display: block;
-    font-size: clamp(3.25rem, 6vw, 6rem);
-    font-weight: 800; color: var(--text);
-    letter-spacing: -0.04em; line-height: 0.96;
-  }
-  .port-line.accent { color: var(--accent); }
-  .port-divider {
-    width: 100%; height: 1px; background: var(--border-2);
-    margin: 1.5rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
-  }
-  .port-sub {
-    font-size: 1rem; color: var(--text-2);
-    line-height: 1.75; max-width: 44ch; margin: 0 0 2rem;
-    animation: fadeUp 500ms var(--ease-out) 270ms both;
-  }
-  .port-ctas {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    animation: fadeUp 500ms var(--ease-out) 330ms both;
-  }
-  .port-stats {
-    display: flex; gap: 2rem; margin-top: 2rem;
-    padding-top: 1.5rem; border-top: 1px solid var(--border);
-    animation: fadeUp 500ms var(--ease-out) 400ms both; flex-wrap: wrap;
-  }
-  .pstat-val {
-    display: block; font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 700;
-    color: var(--text); line-height: 1; letter-spacing: -0.03em;
-  }
-  .pstat-label { font-size: 11px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.02em; }
-
-  /* Right: Stacked project cards */
-  .port-hero-right {
-    position: relative; height: 400px;
-    animation: fadeUp 800ms var(--ease-out) 200ms both;
-  }
-  .port-img-card {
-    position: absolute;
-    width: calc(100% - 40px);
-    background: var(--surface);
-    border: 1px solid var(--border-2);
-    border-radius: var(--r-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(28,26,23,0.04);
-    transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
-  }
-  .port-img-card:first-child {
-    top: 0; left: 0;
-    transform: rotate(-2.5deg);
-  }
-  .port-img-card:last-child {
-    bottom: 0; right: 0;
-    transform: rotate(1.5deg);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .port-img-card:hover {
-      transform: rotate(0deg) scale(1.02);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.14), 0 0 0 1px rgba(28,26,23,0.04);
-    }
-  }
-  .port-img-card img {
-    display: block; width: 100%; height: 180px;
-    object-fit: cover; object-position: center;
-    transition: transform 600ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .port-img-card:hover img { transform: scale(1.04); }
-  }
-  .port-card-label {
-    padding: 12px 14px;
-    display: flex; align-items: center; justify-content: space-between;
+  .case-body { display: flex; flex-direction: column; gap: 1.75rem; }
+  .case-fields { display: flex; flex-direction: column; }
+  .case-field {
+    display: grid; grid-template-columns: 130px 1fr; gap: 1.25rem;
+    padding: 1.25rem 0;
     border-top: 1px solid var(--border);
   }
-  .pcl-name {
-    font-family: 'Outfit', sans-serif; font-size: 0.8125rem; font-weight: 700;
-    color: var(--text); letter-spacing: -0.02em;
+  .case-field:last-child { border-bottom: 1px solid var(--border); }
+  .case-field-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+    padding-top: 3px;
   }
-  .pcl-tag {
-    font-size: 10px; font-weight: 500;
-    padding: 2px 8px; border-radius: var(--r-full);
-    background: var(--accent-light); color: var(--accent);
-  }
+  .case-field-text { font-size: 0.9688rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
+  .case-field.transfer .case-field-label { color: var(--accent); }
+  .case-field.transfer .case-field-text { color: var(--ink); font-weight: 500; }
 
-  /* Scroll indicator */
-  .port-scroll {
-    position: absolute; bottom: 24px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    color: var(--text-3); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    animation: fadeUp 600ms var(--ease-out) 800ms both;
-  }
-  .port-scroll svg { animation: scrollBounce 2.4s ease-in-out infinite; }
-  @keyframes scrollBounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(5px); }
-  }
-
-  /* ── Grid Section ──────────────────────────────────────────── */
-  .port-grid-section { background: var(--bg-alt); padding: 6rem 5%; }
-  .port-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
-
-  .proj-card {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl);
-    overflow: hidden; display: flex; flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 240ms var(--ease-out), transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .proj-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--proj-border);
-      box-shadow: var(--shadow-lg);
-    }
-    .proj-card:hover .proj-img { transform: scale(1.04); }
-  }
-  .proj-visual { height: 240px; position: relative; overflow: hidden; }
-  .proj-img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: block;
-    transition: transform 600ms var(--ease-out);
-  }
-  .proj-visual::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0) 40%);
-    pointer-events: none;
-  }
-  .proj-year-tag {
-    position: absolute; top: 14px; right: 14px; z-index: 2;
-    background: rgba(255,255,255,0.92); border: 1px solid rgba(255,255,255,0.6);
-    padding: 3px 9px; border-radius: var(--r-full);
-    font-size: 11px; color: var(--text-2); font-weight: 500;
-    backdrop-filter: blur(6px);
-  }
-  .proj-status-tag {
-    position: absolute; top: 14px; left: 14px; z-index: 2;
-    padding: 3px 9px; border-radius: var(--r-full);
-    font-size: 11px; font-weight: 500;
-    backdrop-filter: blur(6px);
-  }
-  .proj-body { padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
-  .proj-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .proj-cat { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
-  .proj-name { font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 700; color: var(--text); letter-spacing: -0.025em; line-height: 1.3; margin: 0; }
-  .proj-desc { font-size: 0.9375rem; color: var(--text-2); line-height: 1.7; flex: 1; margin: 0; }
-  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .proj-tag {
-    font-size: 11px; font-weight: 500; color: var(--text-3);
-    background: var(--bg); border: 1px solid var(--border);
-    padding: 2px 8px; border-radius: var(--r-full);
-  }
-
-  .port-section-headline {
-    font-size: clamp(1.75rem, 2.75vw, 2.375rem); font-weight: 700;
-    letter-spacing: -0.03em; color: var(--text); margin: 0 0 0.875rem; line-height: 1.2;
-  }
-  .port-section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; }
-
-  /* ── Responsive ────────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    .port-hero { padding: 5rem 6% 4rem; align-items: center; }
-    .port-hero-inner { grid-template-columns: 1fr; gap: 0; }
-    .port-hero-right { display: none; }
-    .port-line { font-size: clamp(3rem, 11vw, 5rem); }
-  }
-  @media (max-width: 700px) { .port-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 599px) {
-    .port-hero { padding: 5rem 5% 3rem; }
-    .port-grid-section { padding: 3.5rem 5%; }
-    .port-grid { margin-top: 2rem; }
-    .port-line { font-size: clamp(2.75rem, 12vw, 4rem); }
-    .port-sub { font-size: 0.9375rem; }
+  @media (max-width: 820px) {
+    .case-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .case-head { position: static; }
+    .case-field { grid-template-columns: 1fr; gap: 4px; }
   }
 </style>
 
 <BaseLayout
-  title="Portfolio – Webdesign-Projekte aus Köln"
-  description="Portfolio von MB-Solutions: Webdesign, IT-Projekte und Branding für Kölner KMU und Handwerksbetriebe."
+  title="Arbeiten – Konzeptprojekte & eigene Projekte"
+  description="Arbeiten von MB-Solutions: die eigene Website als erstes echtes Projekt und Konzeptprojekte, die zeigen, wie ich Webdesign, IT-Setup und Branding angehe."
 >
   <Fragment slot="head">
     <script type="application/ld+json" is:inline>{JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
-            { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://www.mb-solutions.biz/portfolio" }
-          ]
-        },
-        {
-          "@type": "ItemList",
-          "name": "Webdesign-Projekte von MB-Solutions",
-          "url": "https://www.mb-solutions.biz/portfolio",
-          "numberOfItems": 4,
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "item": { "@type": "CreativeWork", "name": "Café Morgenrot", "description": "Booking-Website mit Online-Reservierung für ein Kölner Café.", "dateCreated": "2024", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
-            { "@type": "ListItem", "position": 2, "item": { "@type": "CreativeWork", "name": "Keller & Söhne GmbH", "description": "IT-Setup inkl. Google Workspace-Migration und Corporate Identity.", "dateCreated": "2024", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
-            { "@type": "ListItem", "position": 3, "item": { "@type": "CreativeWork", "name": "Yogastudio Sonnenlicht", "description": "Minimalistische Website mit Kurskalender für ein Yoga-Studio in Köln.", "dateCreated": "2023", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } },
-            { "@type": "ListItem", "position": 4, "item": { "@type": "CreativeWork", "name": "Kosmetikstudio Belle", "description": "Booking-fähige Website mit Online-Terminbuchung via Calendly.", "dateCreated": "2025", "creator": { "@id": "https://www.mb-solutions.biz/#business" } } }
-          ]
-        }
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+        { "@type": "ListItem", "position": 2, "name": "Arbeiten", "item": "https://www.mb-solutions.biz/portfolio" }
       ]
     })}</script>
   </Fragment>
@@ -291,123 +139,64 @@ const heroProjects = [projects[0], projects[2]];
   <Navbar />
   <main id="main-content">
 
-    <!-- Hero -->
-    <section class="port-hero" aria-labelledby="port-heading">
-      <div class="port-hero-inner">
+    <section class="page-hero" aria-labelledby="port-heading">
+      <div class="container-site">
+        <p class="label-mono page-hero-label">Arbeiten</p>
+        <h1 class="page-h1" id="port-heading">
+          So gehe ich Projekte <span class="accent">an.</span>
+        </h1>
+        <p class="page-hero-sub">
+          <strong>Offen gesagt:</strong> MB-Solutions ist frisch gestartet — hier
+          stehen noch keine Kundenlogos. Das erste echte Projekt ist diese
+          Website selbst. Dazu kommen drei Konzeptprojekte, die ehrlich zeigen,
+          wie ich typische Aufgaben von Kölner Betrieben angehen würde.
+        </p>
+      </div>
+    </section>
 
-        <!-- Left: Text -->
-        <div>
-          <div class="port-pill">
-            <span class="pill">
-              <span class="pill-dot" aria-hidden="true"></span>
-              4 abgeschlossene Projekte
-            </span>
-          </div>
-
-          <div class="port-headline">
-            <span class="port-line">Projekte,</span>
-            <span class="port-line accent">die etwas</span>
-            <span class="port-line" id="port-heading">bewegen.</span>
-          </div>
-
-          <div class="port-divider" aria-hidden="true"></div>
-
-          <p class="port-sub">
-            Echte Kunden, echte Ergebnisse — eine Auswahl abgeschlossener und
-            laufender Projekte aus Köln und Umgebung.
-          </p>
-
-          <div class="port-ctas">
-            <a href="/kontakt" class="btn-primary">Projekt anfragen</a>
-            <a href="/leistungen" class="btn-outline">
-              Leistungen & Preise
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                <path d="M6.5 2.5L10.5 6.5L6.5 10.5M2.5 6.5h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="port-stats" aria-label="Kennzahlen">
-            <div><span class="pstat-val">4</span><span class="pstat-label">Projekte</span></div>
-            <div><span class="pstat-val">3</span><span class="pstat-label">Leistungsbereiche</span></div>
-            <div><span class="pstat-val">Seit 2019</span><span class="pstat-label">Erfahrung</span></div>
-          </div>
-        </div>
-
-        <!-- Right: Stacked project previews -->
-        <div class="port-hero-right" aria-hidden="true">
-          {heroProjects.map((p, i) => (
-            <div class="port-img-card">
-              <img
-                src={p.img}
-                alt={p.imgAlt}
-                loading={i === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-                width="700"
-                height="400"
-              />
-              <div class="port-card-label">
-                <span class="pcl-name">{p.name}</span>
-                <span class="pcl-tag">{p.cat}</span>
+    {projects.map(p => (
+      <section class="case section-pad" aria-label={`${p.isReal ? 'Projekt' : 'Konzeptprojekt'} ${p.title}`}>
+        <div class="container-site">
+          <div class="case-grid">
+            <div class="case-head">
+              <span class={`case-badge ${p.isReal ? 'real' : ''}`}>
+                {p.isReal ? 'Echtes Projekt' : 'Konzeptprojekt'}
+              </span>
+              <h2 class="case-title reveal">{p.title}</h2>
+              <span class="case-cat">{p.category}</span>
+            </div>
+            <div class="case-body">
+              <div class="reveal">
+                <ProjectVisual
+                  real={p.visual.real}
+                  variant={p.visual.variant}
+                  alt={p.visualAlt}
+                  caption={p.visualCaption}
+                />
+              </div>
+              <div class="case-fields reveal">
+                <div class="case-field">
+                  <span class="case-field-label">Ausgangslage</span>
+                  <p class="case-field-text">{p.problem}</p>
+                </div>
+                <div class="case-field">
+                  <span class="case-field-label">Ansatz</span>
+                  <p class="case-field-text">{p.approach}</p>
+                </div>
+                <div class="case-field">
+                  <span class="case-field-label">Ergebnis</span>
+                  <p class="case-field-text">{p.result}</p>
+                </div>
+                <div class="case-field transfer">
+                  <span class="case-field-label">Passt zu</span>
+                  <p class="case-field-text">{p.transfer}</p>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="port-scroll" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Projects grid -->
-    <section class="port-grid-section" aria-labelledby="port-grid-label">
-      <div style="max-width:80rem;margin:0 auto;">
-        <div class="eyebrow reveal">
-          <span class="eyebrow-bar" aria-hidden="true"></span>
-          Alle Projekte
-        </div>
-        <h2 class="port-section-headline reveal" id="port-grid-label">Ausgewählte Arbeiten.</h2>
-        <p class="port-section-sub reveal">Von Webdesign über IT-Setup bis zum kompletten Rebranding.</p>
-
-        <div class="port-grid">
-          {projects.map(p => (
-            <article class="proj-card reveal" style={`--proj-border:${p.accent};`}>
-              <div class="proj-visual">
-                <img
-                  src={p.img}
-                  alt={p.imgAlt}
-                  class="proj-img"
-                  loading="lazy"
-                  decoding="async"
-                  width="700"
-                  height="400"
-                />
-                <span class="proj-year-tag">{p.year}</span>
-                <span
-                  class="proj-status-tag"
-                  style={`background:${p.status === 'In Bearbeitung' ? 'rgba(255,251,235,0.92)' : 'rgba(240,253,244,0.92)'};color:${p.status === 'In Bearbeitung' ? '#D97706' : '#16A34A'};`}
-                >{p.status}</span>
-              </div>
-              <div class="proj-body">
-                <div class="proj-meta">
-                  <span class="proj-cat" style={`color:${p.accent};`}>{p.cat}</span>
-                </div>
-                <p class="proj-name">{p.name}</p>
-                <p class="proj-desc">{p.body}</p>
-                <div class="proj-tags">
-                  {p.tags.map(tag => <span class="proj-tag">{tag}</span>)}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    ))}
 
     <CTASection />
   </main>

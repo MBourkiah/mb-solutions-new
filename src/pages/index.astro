@@ -3,43 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 import Navbar from '../components/Navbar.astro';
 import HeroSection from '../components/HeroSection.astro';
-import ServicesSection from '../components/ServicesSection.astro';
-import ProcessSection from '../components/ProcessSection.astro';
-import PortfolioSection from '../components/PortfolioSection.astro';
-import TestimonialsSection from '../components/TestimonialsSection.astro';
 import AboutSection from '../components/AboutSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import PortfolioSection from '../components/PortfolioSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import PricingSection from '../components/PricingSection.astro';
 import FAQSection from '../components/FAQSection.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<style>
-  .mobile-stats-strip {
-    display: none;
-    background: var(--bg-alt);
-    border-bottom: 1px solid var(--border);
-    padding: 1.25rem 6%;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-  }
-  .ms-divider { width: 1px; background: var(--border); height: 2rem; margin: 0 2rem; }
-  .ms-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-  .ms-val {
-    font-family: 'Outfit', sans-serif; font-size: 1.375rem; font-weight: 700;
-    color: var(--text); letter-spacing: -0.03em; line-height: 1;
-  }
-  .ms-label { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
-
-  @media (max-width: 900px) { .mobile-stats-strip { display: flex; } }
-</style>
-
 <BaseLayout
   title="Webdesign & IT-Services für KMU in Köln"
-  description="MB-Solutions – Ihr Partner für Webdesign, IT-Services und Branding in Köln. Professionelle digitale Lösungen für KMU und Handwerksbetriebe."
+  description="MB-Solutions – Webdesign, IT-Services und Branding für KMU und Handwerksbetriebe in Köln. Alles aus einer Hand, zum Festpreis, mit direktem Ansprechpartner."
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=720&h=460&fit=crop&q=82&auto=format" />
     <script type="application/ld+json" is:inline>{JSON.stringify({
       "@context": "https://schema.org",
       "@graph": [
@@ -97,47 +76,12 @@ import Footer from '../components/Footer.astro';
   <Navbar />
   <main>
     <HeroSection />
-
-    <!-- Stats strip: only visible on mobile (hero-stats is hidden there) -->
-    <div class="mobile-stats-strip" aria-label="Kennzahlen">
-      <div class="ms-stat"><span class="ms-val">12+</span><span class="ms-label">Projekte</span></div>
-      <div class="ms-divider" aria-hidden="true"></div>
-      <div class="ms-stat"><span class="ms-val">48h</span><span class="ms-label">Antwortzeit</span></div>
-      <div class="ms-divider" aria-hidden="true"></div>
-      <div class="ms-stat"><span class="ms-val">5+</span><span class="ms-label">Jahre Erfahrung</span></div>
-    </div>
-
-    <!-- Marquee strip -->
-    <div class="marquee-outer" aria-hidden="true">
-      <div class="marquee-inner">
-        {Array.from({length: 2}).map(() => (
-          <>
-            <span class="marquee-word">Webdesign</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">IT-Services</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">Branding</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">Köln</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">KMU</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">Direktbetreuung</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">Corporate Identity</span>
-            <span class="marquee-sep">·</span>
-            <span class="marquee-word">Next.js</span>
-            <span class="marquee-sep">·</span>
-          </>
-        ))}
-      </div>
-    </div>
-
-    <ServicesSection />
-    <ProcessSection />
-    <PortfolioSection />
-    <TestimonialsSection />
     <AboutSection />
+    <ServicesSection />
+    <PortfolioSection />
+    <ProcessSection />
+    <TestimonialsSection />
+    <PricingSection />
     <FAQSection />
     <CTASection />
   </main>

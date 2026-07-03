@@ -5,7 +5,7 @@ const footerLinks = [
     links: [
       { label: 'Startseite',  href: '/' },
       { label: 'Leistungen',  href: '/leistungen' },
-      { label: 'Portfolio',   href: '/portfolio' },
+      { label: 'Arbeiten',    href: '/portfolio' },
       { label: 'Über mich',   href: '/ueber-mich' },
       { label: 'Kontakt',     href: '/kontakt' },
     ],
@@ -13,90 +13,101 @@ const footerLinks = [
   {
     heading: 'Leistungen',
     links: [
-      { label: 'Webdesign',   href: '/leistungen' },
-      { label: 'IT-Services', href: '/leistungen' },
-      { label: 'Branding',    href: '/leistungen' },
-      { label: 'Beratung',    href: '/leistungen' },
+      { label: 'Webdesign',   href: '/leistungen#webdesign' },
+      { label: 'IT-Services', href: '/leistungen#it-services' },
+      { label: 'Branding',    href: '/leistungen#branding' },
     ],
   },
   {
     heading: 'Kontakt',
     links: [
-      { label: '+49 171 816 59 66',        href: 'tel:+491718165966' },
-      { label: 'mbourkiah@mb-solutions.biz', href: 'mailto:mbourkiah@mb-solutions.biz' },
-      { label: 'Köln, Deutschland',      href: '/kontakt' },
+      { label: '+49 171 816 59 66',           href: 'tel:+491718165966' },
+      { label: 'mbourkiah@mb-solutions.biz',  href: 'mailto:mbourkiah@mb-solutions.biz' },
+      { label: 'Köln, Deutschland',           href: '/kontakt' },
     ],
   },
 ];
 ---
 
 <style>
-  .footer { background: var(--text); color: rgba(255,255,255,0.58); padding: 5rem 5% 2.5rem; }
-  .footer-inner { max-width: 80rem; margin: 0 auto; }
+  .footer {
+    background: var(--deep-2);
+    color: var(--on-deep-2);
+    padding: clamp(3.5rem, 7vw, 5rem) 0 2.25rem;
+    border-top: 1px solid var(--deep-line);
+  }
 
   .footer-top {
     display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
-    gap: 3rem; padding-bottom: 3.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.10);
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid var(--deep-line);
   }
 
   .footer-logo {
-    display: flex; align-items: center; text-decoration: none; margin-bottom: 1.25rem;
-    font-family: 'Outfit', sans-serif;
-    font-size: 17px; font-weight: 700;
-    letter-spacing: -0.03em; line-height: 1;
+    display: inline-flex; align-items: baseline;
+    text-decoration: none; margin-bottom: 1.125rem;
+    font-family: var(--font-display);
+    font-size: 19px; font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1;
+    color: var(--on-deep);
   }
-  .footer-logo-mb   { color: #7F77DD; }
-  .footer-logo-rest { color: rgba(255,255,255,0.90); }
-  .footer-desc { font-size: 0.875rem; line-height: 1.7; max-width: 30ch; margin-bottom: 1.5rem; }
-  .footer-badge {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: var(--r-full); padding: 5px 12px;
-    font-size: 11px; letter-spacing: 0.05em; font-weight: 500; color: rgba(255,255,255,0.70);
+  .footer-logo .logo-dot { color: var(--accent-deep); }
+  .footer-desc {
+    font-size: 0.875rem; line-height: 1.7; max-width: 30ch;
+    margin: 0;
   }
-  .footer-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 2.5px rgba(34,197,94,0.25); }
 
   .footer-col-heading {
-    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.40); margin-bottom: 1rem;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--on-deep-3); margin-bottom: 1.125rem;
   }
   .footer-col-links { display: flex; flex-direction: column; gap: 10px; }
-  .footer-col-link { font-size: 0.9375rem; color: rgba(255,255,255,0.60); text-decoration: none; transition: color 130ms var(--ease-out); overflow-wrap: break-word; word-break: break-all; }
-  @media (hover: hover) and (pointer: fine) { .footer-col-link:hover { color: white; } }
+  .footer-col-link {
+    font-size: 0.9063rem; color: var(--on-deep-2); text-decoration: none;
+    transition: color 130ms var(--ease-out);
+    overflow-wrap: anywhere;
+    width: fit-content;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .footer-col-link:hover { color: var(--on-deep); }
+  }
 
   .footer-bottom {
     display: flex; justify-content: space-between; align-items: center;
     padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
   }
-  .footer-copy { font-size: 12.5px; color: rgba(255,255,255,0.35); }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 12px; color: var(--on-deep-3); margin: 0;
+  }
   .footer-legal { display: flex; gap: 1.5rem; }
-  .footer-legal a { font-size: 12.5px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 130ms var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .footer-legal a:hover { color: rgba(255,255,255,0.70); } }
+  .footer-legal a {
+    font-size: 13px; color: var(--on-deep-3); text-decoration: none;
+    transition: color 130ms var(--ease-out);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .footer-legal a:hover { color: var(--on-deep); }
+  }
 
   @media (max-width: 860px) { .footer-top { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) {
-    .footer-top { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom { flex-direction: column; align-items: flex-start; }
   }
 </style>
 
-<footer class="footer" aria-label="Footer">
-  <div class="footer-inner">
+<footer class="footer on-deep" aria-label="Footer">
+  <div class="container-site">
     <div class="footer-top">
       <div>
         <a href="/" class="footer-logo" aria-label="MB-Solutions – Startseite">
-          <span class="footer-logo-mb">MB</span><span class="footer-logo-rest">-Solutions</span>
+          MB<span class="logo-dot">.</span>Solutions
         </a>
         <p class="footer-desc">
           Webdesign, IT-Services und Branding für Handwerksbetriebe
           und KMU in Köln. Persönlich. Direkt. Ohne Overhead.
         </p>
-        <span class="footer-badge">
-          <span class="footer-badge-dot" aria-hidden="true"></span>
-          Verfügbar für neue Projekte
-        </span>
       </div>
 
       {footerLinks.map(col => (
@@ -110,7 +121,7 @@ const footerLinks = [
     </div>
 
     <div class="footer-bottom">
-      <p class="footer-copy">&copy; {new Date().getFullYear()} MB-Solutions, Köln. Alle Rechte vorbehalten.</p>
+      <p class="footer-copy">© {new Date().getFullYear()} MB-Solutions, Köln</p>
       <div class="footer-legal">
         <a href="/impressum">Impressum</a>
         <a href="/datenschutz">Datenschutz</a>

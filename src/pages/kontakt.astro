@@ -3,98 +3,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+
+const contacts = [
+  { label: 'Telefon',     value: '+49 171 816 59 66',            href: 'tel:+491718165966' },
+  { label: 'E-Mail',      value: 'mbourkiah@mb-solutions.biz',   href: 'mailto:mbourkiah@mb-solutions.biz' },
+  { label: 'WhatsApp',    value: 'Direkt schreiben',             href: 'https://wa.me/491718165966' },
+  { label: 'Standort',    value: 'Köln, Deutschland',            href: null },
+];
+
+const promises = [
+  'Kostenloses Erstgespräch ohne Verkaufsdruck',
+  'Klares Festpreisangebot vor Projektstart',
+  'Du sprichst direkt mit dem, der es baut',
+  'Persönliche Treffen in Köln möglich',
+];
 ---
 
 <style>
-  /* ── Hero / Main section ───────────────────────────────────── */
-  .kontakt-section {
-    background: var(--bg);
-    min-height: 100dvh;
-    padding: max(7rem, 13vh) 5% 5rem;
-    position: relative;
-  }
-  .kontakt-section::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(28,26,23,0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
-  }
-  .kontakt-inner {
-    position: relative; z-index: 1;
-    max-width: 80rem; margin: 0 auto;
-  }
+  .kontakt { padding: clamp(4rem, 9vh, 7rem) 0 clamp(4rem, 8vw, 7rem); }
   .kontakt-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5rem; align-items: start;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: start;
   }
 
-  /* Left: heading + info */
-  .kt-pill   { animation: fadeUp 500ms var(--ease-out) 60ms  both; }
-  .kt-h1-wrap { margin: 1.25rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
-  .kt-line {
-    display: block;
-    font-size: clamp(3rem, 5.5vw, 5.5rem);
-    font-weight: 800; color: var(--text);
-    letter-spacing: -0.04em; line-height: 0.96;
+  .kt-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
+  .kt-h1 {
+    font-size: clamp(2.75rem, 6.5vw, 5rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+    margin: 1.25rem 0 1.5rem;
+    animation: fadeUp 650ms var(--ease-out) 140ms both;
   }
-  .kt-line.accent { color: var(--accent); }
-  .kt-divider {
-    width: 100%; height: 1px; background: var(--border-2);
-    margin: 1.5rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
-  }
-  .kontakt-sub {
-    font-size: 1.0625rem; color: var(--text-2); line-height: 1.75;
-    max-width: 44ch; margin: 0 0 2.5rem;
-    animation: fadeUp 500ms var(--ease-out) 270ms both;
+  .kt-h1 .accent { color: var(--accent); }
+  .kt-sub {
+    font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75;
+    max-width: 42ch; margin: 0 0 2.5rem;
+    animation: fadeUp 550ms var(--ease-out) 240ms both;
   }
 
-  .contact-info {
-    display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;
-    animation: fadeUp 500ms var(--ease-out) 330ms both;
+  .kt-contacts {
+    display: flex; flex-direction: column;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 550ms var(--ease-out) 320ms both;
   }
-  .ci-item {
-    display: flex; align-items: center; gap: 12px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--r-md); padding: 14px 16px; text-decoration: none;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 180ms var(--ease-out), transform 180ms var(--ease-out);
+  .kt-row {
+    display: grid; grid-template-columns: 110px 1fr; gap: 1.25rem;
+    align-items: baseline;
+    padding: 14px 4px;
+    border-top: 1px solid var(--border);
+    text-decoration: none;
+    transition: background 150ms var(--ease-out);
   }
+  .kt-contacts .kt-row:last-child { border-bottom: 1px solid var(--border); }
+  a.kt-row:hover { background: var(--surface); }
+  .kt-row-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  }
+  .kt-row-value { font-size: 1rem; color: var(--ink); font-weight: 500; }
+  a.kt-row .kt-row-value { transition: color 150ms var(--ease-out); }
   @media (hover: hover) and (pointer: fine) {
-    .ci-item:hover { border-color: var(--border-a); transform: translateX(3px); }
+    a.kt-row:hover .kt-row-value { color: var(--accent-strong); }
   }
-  .ci-icon {
-    width: 38px; height: 38px; border-radius: var(--r-sm);
-    background: var(--accent-light); display: flex; align-items: center; justify-content: center;
-    color: var(--accent); flex-shrink: 0;
-  }
-  .ci-label { font-size: 11px; color: var(--text-3); font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
-  .ci-value { font-size: 0.9375rem; color: var(--text); }
 
-  .promise-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--r-lg); padding: 1.5rem; box-shadow: var(--shadow-sm);
-    animation: fadeUp 500ms var(--ease-out) 400ms both;
+  .kt-promises {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+    animation: fadeUp 550ms var(--ease-out) 400ms both;
   }
-  .promise-title { font-family: 'Outfit', sans-serif; font-size: 0.9375rem; font-weight: 700; color: var(--text); margin: 0 0 1rem; letter-spacing: -0.02em; }
-  .promise-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
-  .promise-list li { display: flex; align-items: center; gap: 9px; font-size: 0.875rem; color: var(--text-2); }
-  .promise-list li svg { flex-shrink: 0; color: var(--accent); }
+  .kt-promises li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.9375rem; color: var(--ink-2); line-height: 1.55;
+  }
+  .kt-promises svg { color: var(--accent); flex-shrink: 0; margin-top: 5px; }
 
-  /* Right: Form */
   .kt-form-col { animation: fadeUp 700ms var(--ease-out) 300ms both; }
 
-  /* ── Responsive ────────────────────────────────────────────── */
   @media (max-width: 860px) {
     .kontakt-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .kt-line { font-size: clamp(2.75rem, 10vw, 4.5rem); }
-  }
-  @media (max-width: 599px) {
-    .kontakt-section { padding: 5rem 5% 4rem; }
-    .contact-info { gap: 10px; }
-    .ci-item { padding: 12px 14px; }
-    .kt-line { font-size: clamp(2.5rem, 12vw, 4rem); }
-    .kontakt-sub { font-size: 0.9375rem; }
   }
 </style>
 
@@ -104,99 +90,46 @@ import Footer from '../components/Footer.astro';
 >
   <Navbar />
   <main id="main-content">
-    <section class="kontakt-section" aria-labelledby="kontakt-heading">
-      <div class="kontakt-inner">
+    <section class="kontakt" aria-labelledby="kontakt-heading">
+      <div class="container-site">
         <div class="kontakt-grid">
 
-          <!-- Left: Info -->
+          <!-- Links: Info -->
           <div>
-            <div class="kt-pill">
-              <span class="pill">
-                <span class="pill-dot" aria-hidden="true"></span>
-                Kostenloser Erstkontakt
-              </span>
-            </div>
-
-            <div class="kt-h1-wrap">
-              <span class="kt-line" id="kontakt-heading">Lass uns</span>
-              <span class="kt-line accent">reden.</span>
-            </div>
-
-            <div class="kt-divider" aria-hidden="true"></div>
-
-            <p class="kontakt-sub">
-              Schreib mir eine Nachricht oder ruf direkt an.
-              Ich melde mich innerhalb von 24 Stunden zurück.
+            <p class="label-mono kt-label">Kontakt</p>
+            <h1 class="kt-h1" id="kontakt-heading">
+              Lass uns <span class="accent">reden.</span>
+            </h1>
+            <p class="kt-sub">
+              Schreib mir eine Nachricht oder ruf direkt an — du bekommst
+              innerhalb von 48 Stunden eine ehrliche Einschätzung.
             </p>
 
-            <div class="contact-info">
-              <a href="tel:+491718165966" class="ci-item">
-                <div class="ci-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.84a16 16 0 0 0 6.29 6.29l1.8-1.8a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7a2 2 0 0 1 1.72 2.04z"/>
-                  </svg>
+            <div class="kt-contacts">
+              {contacts.map(c => c.href ? (
+                <a href={c.href} class="kt-row" {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                  <span class="kt-row-label">{c.label}</span>
+                  <span class="kt-row-value">{c.value}</span>
+                </a>
+              ) : (
+                <div class="kt-row">
+                  <span class="kt-row-label">{c.label}</span>
+                  <span class="kt-row-value">{c.value}</span>
                 </div>
-                <div>
-                  <div class="ci-label">Telefon</div>
-                  <div class="ci-value">+49 171 816 59 66</div>
-                </div>
-              </a>
-              <a href="mailto:mbourkiah@mb-solutions.biz" class="ci-item">
-                <div class="ci-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="ci-label">E-Mail</div>
-                  <div class="ci-value">mbourkiah@mb-solutions.biz</div>
-                </div>
-              </a>
-              <div class="ci-item">
-                <div class="ci-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="ci-label">Standort</div>
-                  <div class="ci-value">Köln, Deutschland</div>
-                </div>
-              </div>
-              <div class="ci-item">
-                <div class="ci-icon" aria-hidden="true">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                </div>
-                <div>
-                  <div class="ci-label">Antwortzeit</div>
-                  <div class="ci-value">Innerhalb von 24–48 Stunden</div>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <div class="promise-card">
-              <p class="promise-title">Was dich erwartet</p>
-              <ul class="promise-list">
-                {[
-                  'Kostenlose Erstberatung ohne Verkaufsdruck',
-                  'Klares Angebot mit transparenten Preisen',
-                  'Du sprichst direkt mit dem Entwickler',
-                  'Persönliche Treffen in Köln möglich',
-                ].map(item => (
-                  <li>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                      <path d="M2.5 7.5L5.5 10.5L11.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul class="kt-promises" aria-label="Was dich erwartet">
+              {promises.map(item => (
+                <li>
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <!-- Right: Form -->
+          <!-- Rechts: Formular -->
           <div class="kt-form-col">
             <ContactForm />
           </div>

@@ -3,395 +3,200 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
+import PortraitSlot from '../components/PortraitSlot.astro';
 
-const skills = [
-  { label: 'Webdesign & Frontend', level: 90, color: 'var(--accent)' },
-  { label: 'Astro / React / HTML+CSS', level: 88, color: 'var(--accent)' },
-  { label: 'IT-Infrastruktur & Cloud', level: 80, color: '#16A34A' },
-  { label: 'Branding & Grafikdesign', level: 75, color: '#D97706' },
-  { label: 'SEO & Analytics', level: 72, color: 'var(--accent)' },
+const principles = [
+  {
+    title: 'Klartext statt Fachjargon',
+    body: 'Du musst nicht wissen, was ein CMS ist. Ich erkläre alles so, dass du gute Entscheidungen treffen kannst — und den Rest übernehme ich.',
+  },
+  {
+    title: 'Festpreis statt Überraschung',
+    body: 'Vor dem Start bekommst du ein verbindliches Angebot. Was drinsteht, gilt — auch wenn ich mich mal verschätze.',
+  },
+  {
+    title: 'Erreichbar statt abgetaucht',
+    body: 'Kein Ticketsystem, keine Warteschleife. Du hast meine Nummer, und ich antworte innerhalb von 48 Stunden — meistens deutlich schneller.',
+  },
 ];
 
 const timeline = [
   { year: '2019', title: 'Erste Kundenprojekte', body: 'Einstieg in die Selbstständigkeit mit einfachen WordPress-Websites für lokale Betriebe.' },
-  { year: '2021', title: 'Full-Stack & IT', body: 'Erweiterung auf IT-Services: Microsoft 365, Cloud-Setups und Netzwerkinstallationen.' },
-  { year: '2023', title: 'Gründung MB-Solutions', body: 'Formale Gründung als MB-Solutions mit Fokus auf Webdesign, IT und Branding aus einer Hand.' },
-  { year: '2024', title: 'Modern Stack', body: 'Migration auf Astro und moderne Performance-Stacks für schnellere, skalierbare Websites.' },
+  { year: '2021', title: 'Erweiterung auf IT-Services', body: 'Microsoft 365, Cloud-Setups und Netzwerkinstallationen kommen dazu — oft direkt aus Website-Projekten heraus.' },
+  { year: '2023', title: 'Gründung MB-Solutions', body: 'Formale Gründung mit klarem Fokus: Webdesign, IT und Branding aus einer Hand für Kölner KMU.' },
+  { year: '2024', title: 'Moderner Technik-Stack', body: 'Umstieg auf moderne Website-Technik, die schneller lädt und weniger Wartung braucht.' },
 ];
 
-const techStack = ['Astro', 'Next.js', 'WordPress', 'Microsoft 365', 'Figma', 'Tailwind CSS'];
+const tools = [
+  { name: 'Astro & Next.js', use: 'Schnelle, wartungsarme Websites' },
+  { name: 'WordPress', use: 'Wenn du Inhalte selbst pflegen willst' },
+  { name: 'Microsoft 365 / Google Workspace', use: 'E-Mail, Kalender und Dateien im Betrieb' },
+  { name: 'Figma', use: 'Design, Logos und Vorlagen' },
+  { name: 'Tailwind CSS', use: 'Sauberes, konsistentes Styling' },
+];
 ---
 
 <style>
-  /* ── Hero ──────────────────────────────────────────────────── */
-  .about-hero {
-    background: var(--bg);
-    min-height: 100dvh;
-    display: flex; align-items: center;
-    padding: 5rem 5% 3rem;
-    position: relative; overflow: hidden;
-  }
-  .about-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(28,26,23,0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
-  }
-  .about-hero-inner {
-    position: relative; z-index: 1;
-    width: 100%; max-width: 80rem; margin: 0 auto;
+  .page-hero { padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem); }
+  .page-hero-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 4rem; align-items: center;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    align-items: center;
   }
+  .page-hero-portrait {
+    max-width: 360px; width: 100%; justify-self: end;
+    animation: fadeUp 700ms var(--ease-out) 300ms both;
+  }
+  .page-hero-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
+  .page-h1 {
+    font-size: clamp(2.75rem, 6.5vw, 5rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+    margin: 1.25rem 0 1.5rem; max-width: 15ch;
+    animation: fadeUp 650ms var(--ease-out) 140ms both;
+  }
+  .page-h1 .accent { color: var(--accent); }
+  .page-hero-sub {
+    font-size: 1.125rem; color: var(--ink-2); line-height: 1.75;
+    max-width: 52ch; margin: 0 0 2rem;
+    animation: fadeUp 550ms var(--ease-out) 240ms both;
+  }
+  .page-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 550ms var(--ease-out) 320ms both; }
 
-  /* Left text */
-  .about-pill   { animation: fadeUp 500ms var(--ease-out) 60ms  both; }
-  .about-h1-wrap { margin: 1.25rem 0; animation: fadeUp 650ms var(--ease-out) 130ms both; }
-  .about-line {
-    display: block;
-    font-size: clamp(3.25rem, 6vw, 6rem);
-    font-weight: 800; color: var(--text);
-    letter-spacing: -0.04em; line-height: 0.96;
+  /* Grundsätze */
+  .principles { background: var(--paper-dim); }
+  .principles-h2, .tl-h2, .tools-h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;
+    margin: 1rem 0 0;
   }
-  .about-line.accent { color: var(--accent); }
-  .about-divider {
-    width: 100%; height: 1px; background: var(--border-2);
-    margin: 1.5rem 0; animation: fadeUp 500ms var(--ease-out) 220ms both;
+  .principles-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    margin-top: clamp(2rem, 4vw, 3rem);
   }
-  .about-lead {
-    font-size: 1rem; color: var(--text-2);
-    line-height: 1.8; max-width: 44ch; margin: 0 0 2rem;
-    animation: fadeUp 500ms var(--ease-out) 270ms both;
+  .principle {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2rem);
   }
-  .about-ctas {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    animation: fadeUp 500ms var(--ease-out) 330ms both;
+  .principle-title {
+    font-size: 1.125rem; font-weight: 700; letter-spacing: -0.015em;
+    margin: 0 0 0.625rem;
   }
-  .about-stats {
-    display: flex; gap: 2rem; margin-top: 2rem;
-    padding-top: 1.5rem; border-top: 1px solid var(--border);
-    animation: fadeUp 500ms var(--ease-out) 400ms both; flex-wrap: wrap;
-  }
-  .stat-item { display: flex; flex-direction: column; gap: 3px; }
-  .stat-val {
-    font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 800;
-    color: var(--text); line-height: 1; letter-spacing: -0.03em;
-  }
-  .stat-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+  .principle-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
 
-  /* Right: Profile card */
-  .about-portrait-wrap {
-    animation: fadeUp 800ms var(--ease-out) 200ms both;
-  }
-  .about-profile-card {
-    background: var(--surface);
-    border: 1px solid var(--border-2);
-    border-radius: var(--r-xl);
-    padding: 1.75rem;
-    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(28,26,23,0.04);
-    transform: rotate(1.5deg);
-    transition: transform 400ms var(--ease-out), box-shadow 400ms var(--ease-out);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .about-profile-card:hover {
-      transform: rotate(0deg) scale(1.01);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 0 0 1px rgba(28,26,23,0.04);
+  /* Werdegang */
+  .tl-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
     }
-  }
-  .apc-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .apc-avatar {
-    width: 56px; height: 56px; border-radius: 50%;
-    background: var(--accent-light); border: 2px solid var(--border-a);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Outfit', sans-serif; font-size: 1.125rem; font-weight: 800;
-    color: var(--accent); letter-spacing: -0.02em;
-  }
-  .apc-avail {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: #F0FDF4; border: 1px solid #BBF7D0;
-    border-radius: var(--r-full); padding: 5px 11px;
-    font-size: 11px; font-weight: 600; color: #16A34A;
-    font-family: 'Outfit', sans-serif;
-  }
-  .apc-avail-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: #22C55E;
-    box-shadow: 0 0 0 2.5px rgba(34,197,94,0.25);
-    animation: pulseDot 2.4s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  .apc-name {
-    font-family: 'Outfit', sans-serif; font-size: 1.0625rem; font-weight: 800;
-    color: var(--text); letter-spacing: -0.03em; margin-bottom: 3px;
-  }
-  .apc-role { font-size: 0.8125rem; color: var(--text-2); margin-bottom: 10px; }
-  .apc-location {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 0.8125rem; color: var(--text-3); margin-bottom: 1.25rem;
-  }
-  .apc-divider { height: 1px; background: var(--border); margin-bottom: 1.25rem; }
-  .apc-skills { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.25rem; }
-  .apc-skill {
-    font-size: 11px; font-weight: 500; color: var(--text-2);
-    background: var(--bg-alt); border: 1px solid var(--border);
-    padding: 3px 9px; border-radius: var(--r-full);
-  }
-  .apc-stats-row {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px; border-radius: var(--r-md); overflow: hidden;
-    border: 1px solid var(--border);
-  }
-  .apc-stat-box {
-    background: var(--bg-alt); padding: 12px 14px;
-    display: flex; flex-direction: column; gap: 3px;
-  }
-  .apc-stat-val {
-    font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800;
-    color: var(--text); letter-spacing: -0.03em; line-height: 1;
-  }
-  .apc-stat-label { font-size: 10px; color: var(--text-3); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
-
-  /* Scroll indicator */
-  .about-scroll {
-    position: absolute; bottom: 24px; left: 50%;
-    transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    color: var(--text-3); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    animation: fadeUp 600ms var(--ease-out) 900ms both;
-  }
-  .about-scroll svg { animation: scrollBounce 2.4s ease-in-out infinite; }
-  @keyframes scrollBounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(5px); }
-  }
-
-  /* ── Skills section ────────────────────────────────────────── */
-  .skills-section { background: var(--bg-alt); padding: 6rem 5%; }
-  .skills-inner { max-width: 80rem; margin: 0 auto; }
-  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; align-items: start; }
-  .skills-intro { font-size: 1rem; color: var(--text-2); line-height: 1.8; }
-  .skill-bars { display: flex; flex-direction: column; gap: 1.25rem; }
-  .skill-row { display: flex; flex-direction: column; gap: 8px; }
-  .skill-meta { display: flex; justify-content: space-between; align-items: baseline; }
-  .skill-name { font-size: 0.875rem; font-weight: 500; color: var(--text); }
-  .skill-pct { font-size: 0.8125rem; color: var(--text-3); }
-  .skill-track { height: 5px; border-radius: var(--r-full); background: var(--border-2); overflow: hidden; }
-  .skill-fill { height: 100%; border-radius: var(--r-full); }
-
-  /* ── Timeline section ──────────────────────────────────────── */
-  .timeline-section { background: var(--bg); padding: 6rem 5%; }
-  .timeline-inner { max-width: 80rem; margin: 0 auto; }
-  .timeline { display: flex; flex-direction: column; gap: 0; margin-top: 3rem; max-width: 700px; }
+  .tl-side-text { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 36ch; margin: 1.25rem 0 0; }
+  .tl-list { display: flex; flex-direction: column; }
   .tl-item {
-    display: grid; grid-template-columns: 80px 1fr;
-    gap: 1.5rem; padding-bottom: 2rem; position: relative;
+    display: grid; grid-template-columns: 72px 1fr; gap: 1.5rem;
+    padding: 1.375rem 4px;
+    border-top: 1px solid var(--border);
   }
-  .tl-item:not(:last-child)::before {
-    content: ''; position: absolute; left: 36px; top: 28px; bottom: 0;
-    width: 1px; background: var(--border);
-  }
+  .tl-item:last-child { border-bottom: 1px solid var(--border); }
   .tl-year {
-    font-family: 'Outfit', sans-serif; font-size: 0.875rem; font-weight: 700; color: var(--accent);
-    padding-top: 4px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+    color: var(--accent); padding-top: 3px;
   }
-  .tl-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--accent); border: 2px solid var(--bg);
-    box-shadow: 0 0 0 3px rgba(127,119,221,0.20); flex-shrink: 0;
-  }
-  .tl-title { font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin: 0 0 0.375rem; letter-spacing: -0.02em; }
-  .tl-body { font-size: 0.9375rem; color: var(--text-2); line-height: 1.65; margin: 0; }
+  .tl-title { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.015em; margin: 0 0 4px; }
+  .tl-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.65; margin: 0; }
 
-  .section-h2 {
-    font-size: clamp(1.75rem, 2.75vw, 2.375rem); font-weight: 700;
-    letter-spacing: -0.03em; color: var(--text); margin: 0 0 0.875rem; line-height: 1.2;
+  /* Werkzeuge */
+  .tools { background: var(--paper-dim); }
+  .tools-sub { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 48ch; margin: 1rem 0 0; }
+  .tools-list { display: flex; flex-direction: column; margin-top: clamp(2rem, 4vw, 3rem); }
+  .tool-row {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem;
+    padding: 14px 4px; border-top: 1px solid var(--border);
+    align-items: baseline;
   }
-  .section-sub { font-size: 1rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; }
+  .tool-row:last-child { border-bottom: 1px solid var(--border); }
+  .tool-name { font-family: var(--font-display); font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+  .tool-use { font-size: 0.9063rem; color: var(--ink-2); }
 
-  /* ── Responsive ────────────────────────────────────────────── */
-  @media (max-width: 900px) {
-    .about-hero { padding: 5rem 6% 4rem; }
-    .about-hero-inner { grid-template-columns: 1fr; gap: 0; }
-    .about-portrait-wrap { display: none; }
-    .about-line { font-size: clamp(3rem, 11vw, 5rem); }
-    .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
-  }
-  @media (max-width: 599px) {
-    .about-hero { padding: 5rem 5% 3rem; }
-    .skills-section { padding: 4rem 5%; }
-    .timeline-section { padding: 4rem 5%; }
-    .about-line { font-size: clamp(2.75rem, 12vw, 4rem); }
-    .about-lead { font-size: 0.9375rem; }
-    .about-stats { gap: 1.5rem; }
+  @media (max-width: 820px) {
+    .page-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .page-hero-portrait { justify-self: start; max-width: 300px; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .tl-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .tool-row { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
 
 <BaseLayout
-  title="Über mich – Maurice Bourkiah, Webdesigner Köln"
-  description="Über Maurice Bourkiah von MB-Solutions – Freelancer für Webdesign, IT-Services und Branding in Köln."
+  title="Über mich – Maurice Bourkiah"
+  description="Maurice Bourkiah, MB-Solutions Köln: Webdesigner, Entwickler und IT-Berater. Warum ein direkter Ansprechpartner oft die bessere Agentur ist."
 >
-  <Fragment slot="head">
-    <script type="application/ld+json" is:inline>{JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
-            { "@type": "ListItem", "position": 2, "name": "Über mich", "item": "https://www.mb-solutions.biz/ueber-mich" }
-          ]
-        },
-        {
-          "@type": "Person",
-          "@id": "https://www.mb-solutions.biz/ueber-mich#person",
-          "name": "Maurice Bourkiah",
-          "givenName": "Maurice",
-          "familyName": "Bourkiah",
-          "jobTitle": "Freelancer – Webdesign, IT-Services & Branding",
-          "description": "Freelancer aus Köln für Webdesign, IT-Services und Branding. Direktbetreuung für KMU und Handwerksbetriebe.",
-          "url": "https://www.mb-solutions.biz/ueber-mich",
-          "telephone": "+491718165966",
-          "email": "mbourkiah@mb-solutions.biz",
-          "worksFor": { "@id": "https://www.mb-solutions.biz/#business" },
-          "address": { "@type": "PostalAddress", "addressLocality": "Köln", "addressCountry": "DE" },
-          "knowsAbout": ["Webdesign", "Frontend-Entwicklung", "IT-Infrastruktur", "Branding", "SEO", "Astro", "Next.js", "React"]
-        }
-      ]
-    })}</script>
-  </Fragment>
-
   <Navbar />
   <main id="main-content">
 
     <!-- Hero -->
-    <section class="about-hero" aria-labelledby="about-heading">
-      <div class="about-hero-inner">
-
-        <!-- Left: Text -->
-        <div>
-          <div class="about-pill">
-            <span class="pill">
-              <span class="pill-dot" aria-hidden="true"></span>
-              Verfügbar für neue Projekte
-            </span>
+    <section class="page-hero" aria-labelledby="about-heading">
+      <div class="container-site">
+        <div class="page-hero-grid">
+          <div>
+            <p class="label-mono page-hero-label">Über mich</p>
+            <h1 class="page-h1" id="about-heading">
+              Technik mit <span class="accent">Handschlag.</span>
+            </h1>
+            <p class="page-hero-sub">
+              Ich bin Maurice Bourkiah — Webdesigner, Entwickler und IT-Berater
+              aus Köln. Ich glaube, dass Handwerksbetriebe und kleine Unternehmen
+              denselben professionellen Auftritt verdienen wie große Konzerne,
+              ohne die großen Agentur-Budgets dafür zu brauchen. Deshalb arbeite
+              ich direkt: keine Unterauftragnehmer, keine Projektleiter-Schicht,
+              keine langen Kommunikationsketten.
+            </p>
+            <div class="page-hero-ctas">
+              <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
+              <a href="/portfolio" class="btn-ghost">Arbeiten ansehen</a>
+            </div>
           </div>
-
-          <div class="about-h1-wrap">
-            <span class="about-line">Hallo, ich</span>
-            <span class="about-line accent">bin Maurice.</span>
-          </div>
-
-          <div class="about-divider" aria-hidden="true"></div>
-
-          <p class="about-lead" id="about-heading">
-            Freelancer aus Köln mit einem Ding für schöne Websites,
-            sauber aufgesetzte IT und Marken, die im Gedächtnis bleiben.
-            Ich arbeite direkt mit meinen Kunden — kein Mittelmann, keine Warteschlange.
-          </p>
-
-          <div class="about-ctas">
-            <a href="/kontakt" class="btn-primary">Zusammenarbeiten</a>
-            <a href="/portfolio" class="btn-outline">
-              Portfolio ansehen
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
-                <path d="M2.5 10.5L10.5 2.5M10.5 2.5H5M10.5 2.5V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-
-          <div class="about-stats" aria-label="Kennzahlen">
-            <div class="stat-item"><span class="stat-val">5+</span><span class="stat-label">Jahre Erfahrung</span></div>
-            <div class="stat-item"><span class="stat-val">12+</span><span class="stat-label">Projekte</span></div>
-            <div class="stat-item"><span class="stat-val">100%</span><span class="stat-label">Direktbetreuung</span></div>
+          <div class="page-hero-portrait">
+            <PortraitSlot />
           </div>
         </div>
-
-        <!-- Right: Profile card -->
-        <div class="about-portrait-wrap" aria-hidden="true">
-          <div class="about-profile-card">
-            <div class="apc-header">
-              <div class="apc-avatar">MB</div>
-              <span class="apc-avail">
-                <span class="apc-avail-dot"></span>
-                Verfügbar
-              </span>
-            </div>
-
-            <div class="apc-name">Maurice Bourkiah</div>
-            <div class="apc-role">Webdesign · IT-Services · Branding</div>
-
-            <div class="apc-location">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-              Köln, Deutschland
-            </div>
-
-            <div class="apc-divider"></div>
-
-            <div class="apc-skills">
-              {techStack.map(t => <span class="apc-skill">{t}</span>)}
-            </div>
-
-            <div class="apc-stats-row">
-              <div class="apc-stat-box">
-                <span class="apc-stat-val">5+</span>
-                <span class="apc-stat-label">Jahre</span>
-              </div>
-              <div class="apc-stat-box">
-                <span class="apc-stat-val">12+</span>
-                <span class="apc-stat-label">Projekte</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Scroll indicator -->
-      <div class="about-scroll" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-          <path d="M4 6.5L9 11.5L14 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
       </div>
     </section>
 
-    <!-- Skills -->
-    <section class="skills-section" aria-labelledby="skills-heading">
-      <div class="skills-inner">
-        <div class="eyebrow reveal">
-          <span class="eyebrow-bar" aria-hidden="true"></span>
-          Kenntnisse
+    <!-- Grundsätze -->
+    <section class="principles section-pad" aria-labelledby="principles-heading">
+      <div class="container-site">
+        <p class="label-mono reveal">Arbeitsweise</p>
+        <h2 class="principles-h2 reveal" id="principles-heading">Drei Grundsätze, die gelten.</h2>
+        <div class="principles-grid">
+          {principles.map(p => (
+            <div class="principle reveal">
+              <h3 class="principle-title">{p.title}</h3>
+              <p class="principle-body">{p.body}</p>
+            </div>
+          ))}
         </div>
-        <h2 class="section-h2 reveal" id="skills-heading">Was ich mitbringe.</h2>
-        <div class="skills-grid">
-          <p class="skills-intro reveal">
-            Ich bin kein Spezialist in einer Nische — ich verstehe das Ganze.
-            Vom Design über den Code bis zur IT-Infrastruktur denke ich vernetzt
-            und liefere Lösungen, die langfristig funktionieren.
-          </p>
-          <div class="skill-bars">
-            {skills.map(s => (
-              <div class="skill-row reveal">
-                <div class="skill-meta">
-                  <span class="skill-name">{s.label}</span>
-                  <span class="skill-pct">{s.level}%</span>
-                </div>
-                <div class="skill-track">
-                  <div
-                    class="skill-fill"
-                    style={`width:${s.level}%;background:${s.color};`}
-                    role="progressbar"
-                    aria-valuenow={s.level}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={s.label}
-                  ></div>
+      </div>
+    </section>
+
+    <!-- Werdegang -->
+    <section class="section-pad" aria-labelledby="tl-heading">
+      <div class="container-site">
+        <div class="tl-grid">
+          <div>
+            <p class="label-mono reveal">Werdegang</p>
+            <h2 class="tl-h2 reveal" id="tl-heading">Wie es dazu kam.</h2>
+            <p class="tl-side-text reveal">
+              Kein Quereinstieg über Nacht: MB-Solutions ist aus mehreren
+              Jahren Projektarbeit für lokale Betriebe gewachsen.
+            </p>
+          </div>
+          <div class="tl-list reveal">
+            {timeline.map(t => (
+              <div class="tl-item">
+                <span class="tl-year">{t.year}</span>
+                <div>
+                  <h3 class="tl-title">{t.title}</h3>
+                  <p class="tl-body">{t.body}</p>
                 </div>
               </div>
             ))}
@@ -400,26 +205,20 @@ const techStack = ['Astro', 'Next.js', 'WordPress', 'Microsoft 365', 'Figma', 'T
       </div>
     </section>
 
-    <!-- Timeline -->
-    <section class="timeline-section" aria-labelledby="timeline-heading">
-      <div class="timeline-inner">
-        <div class="eyebrow reveal">
-          <span class="eyebrow-bar" aria-hidden="true"></span>
-          Werdegang
-        </div>
-        <h2 class="section-h2 reveal" id="timeline-heading">Wie es dazu kam.</h2>
-        <p class="section-sub reveal">Von den ersten Projekten bis zur eigenen Agentur.</p>
-        <div class="timeline">
-          {timeline.map(item => (
-            <div class="tl-item reveal">
-              <div class="tl-year">
-                <span class="tl-dot" aria-hidden="true"></span>
-                {item.year}
-              </div>
-              <div>
-                <p class="tl-title">{item.title}</p>
-                <p class="tl-body">{item.body}</p>
-              </div>
+    <!-- Werkzeuge -->
+    <section class="tools section-pad" aria-labelledby="tools-heading">
+      <div class="container-site">
+        <p class="label-mono reveal">Werkzeuge</p>
+        <h2 class="tools-h2 reveal" id="tools-heading">Womit ich arbeite.</h2>
+        <p class="tools-sub reveal">
+          Du musst davon nichts kennen — aber falls es dich interessiert:
+          Das sind die Werkzeuge hinter meinen Projekten, und wofür ich sie einsetze.
+        </p>
+        <div class="tools-list reveal">
+          {tools.map(t => (
+            <div class="tool-row">
+              <span class="tool-name">{t.name}</span>
+              <span class="tool-use">{t.use}</span>
             </div>
           ))}
         </div>
