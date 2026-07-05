@@ -10,7 +10,7 @@ interface Props {
 const {
   title,
   description = 'MB-Solutions – Webdesign, IT-Services und Branding für KMU und Handwerksbetriebe in Köln.',
-  ogImage,
+  ogImage = 'https://www.mb-solutions.biz/logos/mb-icon-512-eckig.png',
 } = Astro.props;
 
 const canonical = `https://www.mb-solutions.biz${Astro.url.pathname}`;
@@ -36,18 +36,20 @@ const fullTitle = `${title} | MB-Solutions`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content="de_DE" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <meta name="twitter:image" content={ogImage} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <!-- Favicons & App-Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/mb-icon-32-favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/mb-icon-16-favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/mb-icon-180-appicon.png" />
 
     <!-- Page-specific head content (schema, preloads, etc.) -->
     <slot name="head" />

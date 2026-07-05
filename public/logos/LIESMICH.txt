@@ -1,0 +1,26 @@
+MB-Solutions — Logo-Paket
+=========================
+
+Dateien (alle PNG, transparenter Hintergrund):
+
+mb-logo-vertikal-violett.png    Haupt-Logo, für helle Flächen
+mb-logo-vertikal-papier.png     Haupt-Logo, für dunkle Flächen
+mb-logo-horizontal-violett.png  Header/Briefkopf, helle Flächen
+mb-logo-horizontal-papier.png   Header/Briefkopf, dunkle Flächen
+mb-zeichen-violett.png          Nur "mb." ohne Zusatz
+mb-zeichen-papier.png           Nur "mb." für dunkle Flächen
+mb-icon-512-rund.png            App-Icon / Social-Avatar
+mb-icon-512-eckig.png           Quelle für weitere Zuschnitte
+mb-icon-180-appicon.png         apple-touch-icon
+mb-icon-32-favicon.png          Favicon
+mb-icon-16-favicon.png          Favicon klein (vereinfacht: "m.")
+
+Farben:
+Tiefviolett  #352A5E
+Papier       #F7F4EE
+Flieder      #8C7AE6  (der Punkt ist immer Flieder)
+Text hell    #6B6459  ("SOLUTIONS" auf hellem Grund)
+Text dunkel  #B7ACD9  ("SOLUTIONS" auf dunklem Grund)
+
+Schrift: Archivo Bold (Tracking -4%) / Archivo Medium ("SOLUTIONS", Tracking +26%)
+https://fonts.google.com/specimen/Archivo (SIL Open Font License)
