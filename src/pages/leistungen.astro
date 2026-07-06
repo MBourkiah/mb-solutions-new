@@ -79,6 +79,31 @@ const packages = [
     items: ['Website ohne Seitenlimit', 'Komplettes Branding', 'IT-Setup & Cloud', 'E-Mail & Domain', 'Laufende Betreuung mit Priorität'],
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+        { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://www.mb-solutions.biz/leistungen" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Webdesign & Entwicklung",
+      "description": "Webdesign für KMU und Handwerksbetriebe in Köln: mobil optimiert, lokal auffindbar, zum Festpreis.",
+      "provider": { "@id": "https://www.mb-solutions.biz/#business" },
+      "areaServed": "Köln",
+      "offers": [
+        { "@type": "Offer", "name": "Starter", "price": "790", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "Professional", "price": "1490", "priceCurrency": "EUR" },
+        { "@type": "Offer", "name": "All-in-one", "price": "2490", "priceCurrency": "EUR" }
+      ]
+    }
+  ]
+};
 ---
 
 <style>
@@ -195,30 +220,7 @@ const packages = [
   description="Leistungen von MB-Solutions: Webdesign, IT-Services und Branding für KMU in Köln. Transparente Festpreise ab 790 €."
 >
   <Fragment slot="head">
-    <script type="application/ld+json" is:inline>{JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
-            { "@type": "ListItem", "position": 2, "name": "Leistungen", "item": "https://www.mb-solutions.biz/leistungen" }
-          ]
-        },
-        {
-          "@type": "Service",
-          "name": "Webdesign & Entwicklung",
-          "description": "Webdesign für KMU und Handwerksbetriebe in Köln: mobil optimiert, lokal auffindbar, zum Festpreis.",
-          "provider": { "@id": "https://www.mb-solutions.biz/#business" },
-          "areaServed": "Köln",
-          "offers": [
-            { "@type": "Offer", "name": "Starter", "price": "790", "priceCurrency": "EUR" },
-            { "@type": "Offer", "name": "Professional", "price": "1490", "priceCurrency": "EUR" },
-            { "@type": "Offer", "name": "All-in-one", "price": "2490", "priceCurrency": "EUR" }
-          ]
-        }
-      ]
-    })}</script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   </Fragment>
 
   <Navbar />

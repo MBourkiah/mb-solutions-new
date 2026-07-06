@@ -53,6 +53,15 @@ const projects = [
     transfer: 'Studios, Praxen und Kursanbieter mit festen Terminen und begrenzten Plätzen.',
   },
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
+    { "@type": "ListItem", "position": 2, "name": "Arbeiten", "item": "https://www.mb-solutions.biz/portfolio" }
+  ]
+};
 ---
 
 <style>
@@ -130,14 +139,7 @@ const projects = [
   description="Arbeiten von MB-Solutions: die eigene Website als erstes echtes Projekt und Konzeptprojekte, die zeigen, wie ich Webdesign, IT-Setup und Branding angehe."
 >
   <Fragment slot="head">
-    <script type="application/ld+json" is:inline>{JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Startseite", "item": "https://www.mb-solutions.biz" },
-        { "@type": "ListItem", "position": 2, "name": "Arbeiten", "item": "https://www.mb-solutions.biz/portfolio" }
-      ]
-    })}</script>
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   </Fragment>
 
   <Navbar />
