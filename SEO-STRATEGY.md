@@ -5,32 +5,52 @@ Visueller Report: siehe Artifact „SEO-Strategie — MB-Solutions Köln"
 
 ## Kernbefund
 
-**Der Local Pack schlägt in diesem Markt die organische Suche — und es existiert kein
-Google-Unternehmensprofil.**
+**Der Local Pack schlägt in diesem Markt die organische Suche — das Profil ist vorhanden,
+aber ohne Bewertungen wirkungslos.**
 
 Live-SERP „webdesign köln": 6 der ersten 11 Plätze sind Local-Pack-Einträge, das erste
 organische Ergebnis steht auf absoluter Position 5.
 
-Belege, dass Autorität hier weniger zählt als ein Profil:
+Belege, dass Autorität hier weniger zählt als Bewertungen:
 
-| Domain | Verweisdomains | Organisch (ETV) | Local Pack (ETV) |
-|---|---:|---:|---:|
-| go-webstudio.de | 16 | 4,8 | **66,8** |
-| webdesign-agentur-koeln.com | 38 | 4,8 | **95,6** |
-| mb-solutions.biz | 34 | 1,3 | **0** |
+| Domain | Verweisdomains | Bewertungen | Organisch (ETV) | Local Pack (ETV) |
+|---|---:|---:|---:|---:|
+| go-webstudio.de | 16 | 21 | 4,8 | **66,8** |
+| webdesign-agentur-koeln.com | 38 | 37 | 4,8 | **95,6** |
+| mb-solutions.biz | 34 | **0** | 1,3 | **0** |
 
 go-webstudio.de hat **weniger** Verweisdomains als wir und holt 67 Besucher/Monat aus dem
 Local Pack. Bei webdesign-agentur-koeln.com kommen 95 % des Traffics aus dem Local Pack.
 
-Prüfung Unternehmensprofil: `business_data_business_listings_search`, Titel „MB-Solutions",
-Radius 25 km um Köln → 0 Treffer. Gegenprobe für andere Kölner Anbieter → Treffer.
-Zusätzlich: keine Local-Pack-Metrik in der Traffic-Schätzung.
+### Status Google-Unternehmensprofil
+
+Profil **existiert**: „MB-Solutions – Webdesign, IT-Services & Marketing", Kategorie
+„Webdesigner", Service-Area-Business für „Köln und Umgebung", cid 18193281538995383101,
+Telefon und Öffnungszeiten gesetzt. Nachgewiesen über den Knowledge-Graph-Eintrag in der
+SERP zur Markensuche.
+
+**Fehlend: Bewertungen.** Der `google_reviews`-Block der SERP kam ohne Sterne und ohne
+Stimmenzahl zurück; bei allen Local-Pack-Wettbewerbern liegen dort 21–133 Stimmen.
+
+> Hinweis zur Methode: `business_data_business_listings_search` findet dieses Profil **nicht**
+> (0 Treffer bei Radius 25 km und 50 km, auch mit exaktem Profilnamen), weil der Endpoint über
+> Koordinaten sucht und ein Service-Area-Business keine öffentliche Adresse hinterlegt hat.
+> Eine erste Fassung dieses Dokuments schloss daraus fälschlich, es gebe kein Profil.
+> Für SAB-Profile ist die Markensuche-SERP die verlässliche Quelle, nicht die Listings-API.
+
+### Offene Punkte am Profil
+
+- Profilname enthält „Marketing" (nicht im Leistungsangebot der Website), „Branding" fehlt
+- Sekundäre Kategorien „IT-Dienstleister" und „Grafikdesigner" prüfen/ergänzen
+- Gelbe Seiten ist bereits als Verzeichniseintrag vorhanden
+  (`gelbeseiten.de` → „MB-Solutions in 51107 Köln-Rath/Heumar")
 
 ## Ausgangswerte (gemessen)
 
 - 2 Ranking-Keywords (beide Verwechslung mit „MBA Solutions GmbH")
 - 1,3 Besucher/Monat organisch, 0 aus dem Local Pack
-- 34 Verweisdomains, davon **1 echte** (cylex.de); Rest Scraper-Spam
+- 0 Google-Bewertungen (Local-Pack-Schwelle: ~21)
+- 34 Verweisdomains, davon **1 echte** im Backlink-Index (cylex.de); Rest Scraper-Spam
 - Lighthouse: Performance 100, SEO 100, Best Practices 100, Barrierefreiheit 93
 - 7 indexierte Seiten
 
@@ -110,14 +130,16 @@ webdesign köln (880, KD 33) · webdesign agentur köln (260, KD 38)
 ## Roadmap
 
 ### Phase 0 — Diese/nächste Woche · HÖCHSTE PRIORITÄT
-- [ ] Google-Unternehmensprofil anlegen + verifizieren
-      (Kategorien: Webdesigner primär, IT-Dienstleister + Grafikdesigner sekundär)
-- [ ] Erste Bewertungen einsammeln (Local-Pack-Schwelle: ~21)
-- [ ] Verzeichnisse aus der SERP: Gelbe Seiten, Das Örtliche, Das Telefonbuch,
+- [ ] **Bewertungen einsammeln** — der Engpass. Bewertungslink aus der Profilverwaltung
+      holen und an jeden Auftraggeber/Kontakt schicken. Ziel kurzfristig 5, mittelfristig 21
+- [ ] Profil vervollständigen: sekundäre Kategorien, Leistungen einzeln, echte Fotos,
+      Beschreibung mit „Köln" + den drei Leistungen
+- [ ] Profilnamen prüfen: „Marketing" raus bzw. „Branding" rein — Konsistenz zur Website
+- [ ] Verzeichnisse (Gelbe Seiten ✔ vorhanden): Das Örtliche, Das Telefonbuch,
       Kölner Branchen, wlw, Sortlist — identische NAP-Schreibweise überall
 - [ ] IHK-/Handwerkskammer-Eintrag prüfen
 
-**Ziel:** Profil live, 5+ Bewertungen, 8–12 echte Verweisdomains
+**Ziel:** 5+ Bewertungen, vollständiges Profil, 8–12 echte Verweisdomains
 
 ### Phase 1 — Woche 2–6
 - [ ] `/leistungen/webdesign-handwerker`
