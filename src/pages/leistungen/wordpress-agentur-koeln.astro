@@ -1,0 +1,491 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import DecoShapes from '../../components/DecoShapes.astro';
+
+/** Vier Anlässe, mit denen Betriebe zu WordPress-Themen kommen. */
+const cases = [
+  {
+    num: '01',
+    title: 'Neue Website mit WordPress',
+    body: 'Aufgebaut so, dass du Texte, Bilder und Preise selbst ändern kannst — ohne dass beim Speichern das Layout zerfällt.',
+    items: [
+      'Individuelles Design, kein gekauftes Theme von der Stange',
+      'Redaktion so eingerichtet, dass sie erklärbar bleibt',
+      'Nur die Plugins, die wirklich gebraucht werden',
+      'Einweisung per Video-Call, aufgezeichnet zum Nachschauen',
+    ],
+  },
+  {
+    num: '02',
+    title: 'Relaunch einer bestehenden Seite',
+    body: 'Die Inhalte sind gut, der Auftritt ist von 2016. Neues Design auf bestehender Basis — meist günstiger als komplett neu.',
+    items: [
+      'Inhalte und Rankings bleiben erhalten',
+      'Umleitungen sauber gesetzt, kein Sichtbarkeitsverlust',
+      'Mobile Darstellung neu aufgebaut',
+      'Ladezeit messbar verbessert',
+    ],
+  },
+  {
+    num: '03',
+    title: 'Übernahme, wenn niemand mehr betreut',
+    body: 'Der frühere Dienstleister ist nicht mehr erreichbar, Zugänge fehlen, Updates sind seit Jahren offen. Das ist häufiger als man denkt — und lösbar.',
+    items: [
+      'Zugänge zurückholen und dokumentieren',
+      'Bestandsaufnahme: was läuft, was ist Risiko',
+      'Updates und Sicherheitslücken abarbeiten',
+      'Domain und Hosting auf deinen Namen überführen',
+    ],
+  },
+  {
+    num: '04',
+    title: 'Wartung und Sicherheit',
+    body: 'Der Grund, warum WordPress-Seiten gehackt werden, sind fast nie WordPress selbst, sondern veraltete Plugins. Updates sind langweilig — und genau deshalb wichtig.',
+    items: [
+      'Updates für Kern, Themes und Plugins',
+      'Backups, die auch zurückspielbar sind',
+      'Überwachung auf Ausfälle',
+      'Aufräumen von Plugins, die keiner mehr braucht',
+    ],
+  },
+];
+
+/** Die ehrliche Gegenüberstellung — Signatur dieser Seite. */
+const fit = {
+  yes: [
+    'Du willst Inhalte selbst pflegen, regelmäßig und ohne mich zu fragen',
+    'Du hast einen Blog, News oder viele Termine zu pflegen',
+    'Du brauchst einen Shop mit WooCommerce',
+    'Du hast schon WordPress und willst nicht alles wegwerfen',
+    'Mehrere Personen im Team sollen Inhalte einstellen',
+  ],
+  no: [
+    'Die Seite ändert sich zwei Mal im Jahr — dann zahlst du Wartung für nichts',
+    'Ladezeit und Google-Bewertung sind dir wichtiger als Selbst-Pflegen',
+    'Du willst dich nie mit Updates befassen müssen',
+    'Es sind fünf Seiten, die einfach nur da sein sollen',
+  ],
+};
+
+const faqs = [
+  {
+    q: 'Warum läuft deine eigene Website nicht auf WordPress?',
+    a: 'Berechtigte Frage. Diese Seite hier ist mit Astro gebaut, weil ich sie selten ändere und Geschwindigkeit für mich das wichtigste Argument war — sie lädt in unter einer halben Sekunde und braucht keine Updates. Genau diese Abwägung mache ich mit dir auch: WordPress ist stark, wenn regelmäßig Inhalte dazukommen und du selbst dran willst. Wenn nicht, wäre es die falsche Empfehlung, nur weil es die bekanntere ist. Ich baue beides und sage dir vorher, was zu dir passt.',
+  },
+  {
+    q: 'Ist WordPress nicht unsicher?',
+    a: 'WordPress selbst wird laufend gepflegt und ist nicht das Problem. Die überwiegende Mehrheit erfolgreicher Angriffe geht über veraltete Plugins und Themes — also über Software, die jemand vor drei Jahren installiert und danach nie aktualisiert hat. Eine gewartete WordPress-Seite mit wenigen, aktuellen Plugins ist unproblematisch. Eine ungewartete mit dreißig Plugins ist ein Risiko, und zwar unabhängig davon, wer sie gebaut hat.',
+  },
+  {
+    q: 'Ist WordPress langsam?',
+    a: 'Es kann langsam sein, muss aber nicht. Langsam wird es durch überladene Themes, zu viele Plugins und unkomprimierte Bilder — nicht durch WordPress an sich. Ich baue ohne Theme-Baukästen wie Elementor, weil die den größten Teil des Ballasts mitbringen. Damit sind gute Werte erreichbar; die absolute Spitze wie bei einer statischen Seite erreicht WordPress aber nicht. Das ist der Preis für die Bearbeitbarkeit, und ich sage dir das vorher.',
+  },
+  {
+    q: 'Was kostet WordPress-Wartung?',
+    a: 'Ab 39 € im Monat für eine überschaubare Betriebsseite: Updates, Backups, Überwachung, kleine Textänderungen. Ohne Mindestlaufzeit. Du kannst die Wartung auch weglassen und selbst machen — dann zeige ich dir im Erstgespräch, worauf du achten musst, damit die Seite nicht in zwei Jahren zum Problem wird.',
+  },
+  {
+    q: 'Meine alte Agentur ist nicht erreichbar. Kommst du überhaupt an die Seite?',
+    a: 'Meistens ja. Über die Domain lässt sich der Hoster ermitteln, und als Domaininhaber hast du Anspruch auf Zugang — auch wenn die Domain aktuell auf einen Dienstleister eingetragen ist, gibt es Wege, sie zurückzuholen. Ich habe das schon aufgelöst. Falls der Zugang wirklich verloren ist, ist der Neuaufbau auf Basis der bestehenden Inhalte oft schneller als weiter zu suchen. Was in deinem Fall gilt, sehe ich nach einem Blick auf Domain und Seite.',
+  },
+  {
+    q: 'Kann ich nach dem Launch selbst alles ändern?',
+    a: 'Texte, Bilder, Preise, neue Unterseiten: ja, dafür ist es gebaut. Am Layout selbst würde ich dich nicht schrauben lassen wollen — nicht weil ich dich für unfähig halte, sondern weil da die meisten Seiten kaputtgehen. Dafür rufst du an, das sind meistens fünf Minuten.',
+  },
+];
+
+const canonical = 'https://www.mb-solutions.biz/leistungen/wordpress-agentur-koeln/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://www.mb-solutions.biz' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://www.mb-solutions.biz/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'WordPress Köln', item: canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'WordPress-Entwicklung und -Wartung Köln',
+      serviceType: 'WordPress-Agentur Köln',
+      description:
+        'WordPress aus Köln: neue Websites, Relaunch, Übernahme verwaister Seiten und laufende Wartung. Ohne Theme-Baukasten, mit ehrlicher Beratung, ob WordPress überhaupt das richtige System ist.',
+      provider: { '@id': 'https://www.mb-solutions.biz/#business' },
+      areaServed: [
+        { '@type': 'City', name: 'Köln' },
+        { '@type': 'City', name: 'Leverkusen' },
+        { '@type': 'City', name: 'Bergisch Gladbach' },
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'WordPress-Leistungen',
+        itemListElement: cases.map((c) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: c.title },
+        })),
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '790',
+        priceCurrency: 'EUR',
+        description: 'WordPress-Website, Festpreis ab 790 €',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
+---
+
+<style>
+  .page-hero { position: relative; padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem); }
+  .crumb {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 500ms var(--ease-out) 40ms both;
+  }
+  .crumb a { color: var(--ink-3); text-decoration: none; }
+  .crumb a:hover { color: var(--accent); }
+  .crumb span[aria-current] { color: var(--ink); }
+
+  .page-h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+    margin: 0 0 1.5rem; max-width: 20ch;
+    animation: fadeUp 650ms var(--ease-out) 140ms both;
+  }
+  .page-h1 .accent { color: var(--accent); }
+  .page-hero-sub {
+    font-size: 1.125rem; color: var(--ink-2); line-height: 1.7;
+    max-width: 54ch; margin: 0 0 2rem;
+    animation: fadeUp 550ms var(--ease-out) 240ms both;
+  }
+  .page-hero-sub strong { color: var(--ink); font-weight: 600; }
+  .page-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 550ms var(--ease-out) 320ms both; }
+
+  .sec-h2 {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+  }
+  .sec-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
+  .sec-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 42rem; }
+
+  /* Anlässe */
+  .cases { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .case {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
+    display: flex; flex-direction: column;
+  }
+  .case-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 1.5rem; }
+  .case-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.75rem; line-height: 1.2; }
+  .case-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.7; margin: 0 0 1.5rem; }
+  .case-list { list-style: none; margin: 0; padding: 1.25rem 0 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 9px; }
+  .case-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
+  .case-list svg { color: var(--accent); flex-shrink: 0; margin-top: 4px; }
+
+  /* Ehrliche Abwägung (dunkel — Signatur der Seite) */
+  .weigh { position: relative; background: var(--deep); color: var(--on-deep); }
+  .weigh-header { max-width: 44rem; margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+  .weigh-h2 {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    color: var(--on-deep);
+  }
+  .weigh-sub { font-size: 1.0625rem; color: var(--on-deep-2); line-height: 1.7; margin: 0; }
+  .weigh-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); }
+  .weigh-col { display: flex; flex-direction: column; gap: 1rem; }
+  .weigh-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding-bottom: 0.875rem; border-bottom: 1px solid var(--deep-line);
+  }
+  .weigh-label.yes { color: var(--accent-deep); }
+  .weigh-label.no { color: var(--on-deep-3); }
+  .weigh-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+  .weigh-list li { display: grid; grid-template-columns: 18px 1fr; gap: 12px; font-size: 0.9688rem; color: var(--on-deep-2); line-height: 1.6; }
+  .weigh-list svg { margin-top: 5px; flex-shrink: 0; }
+  .weigh-list.yes svg { color: var(--accent-deep); }
+  .weigh-list.no svg { color: var(--on-deep-3); }
+  .weigh-note {
+    margin-top: clamp(2rem, 4vw, 2.75rem); padding-top: 1.5rem;
+    border-top: 1px solid var(--deep-line);
+    font-size: 1rem; color: var(--on-deep-2); line-height: 1.75; max-width: 72ch;
+  }
+  .weigh-note strong { color: var(--on-deep); font-weight: 600; }
+
+  /* Preis */
+  .price { background: var(--paper-dim); }
+  .price-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .price-text { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75; margin: 0 0 1.25rem; max-width: 46ch; }
+  .price-card {
+    background: var(--surface); border: 1.5px solid var(--accent);
+    border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .price-rows { display: flex; flex-direction: column; }
+  .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 13px 0; border-top: 1px solid var(--border); }
+  .price-rows .price-row:first-child { border-top: none; padding-top: 0; }
+  .price-row-name { font-size: 0.9375rem; color: var(--ink); font-weight: 500; }
+  .price-row-val { font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 600; color: var(--accent-strong); white-space: nowrap; }
+  .price-note { font-size: 0.875rem; color: var(--ink-3); line-height: 1.6; margin: 0; }
+
+  /* FAQ */
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-top: 1px solid var(--border-2); }
+  .faq-list .faq-item:last-child { border-bottom: 1px solid var(--border-2); }
+  .faq-summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+    padding: 1.375rem 4px; cursor: pointer; list-style: none;
+    font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.015em; line-height: 1.35;
+    transition: color 150ms var(--ease-out);
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-summary::marker { display: none; }
+  @media (hover: hover) and (pointer: fine) { .faq-summary:hover { color: var(--accent-strong); } }
+  .faq-icon { width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--ink-3); transition: transform 260ms var(--ease-out), color 200ms var(--ease-out); }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); color: var(--accent); }
+  .faq-body { padding: 0 4px 1.5rem; max-width: 62ch; }
+  .faq-item[open] .faq-body { animation: fadeUp 260ms var(--ease-out) both; }
+  .faq-body p { font-size: 0.9688rem; color: var(--ink-2); line-height: 1.75; margin: 0; }
+
+  @media (max-width: 900px) { .cases { grid-template-columns: 1fr; } }
+  @media (max-width: 820px) {
+    .weigh-cols, .price-grid, .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+
+<BaseLayout
+  title="WordPress-Agentur Köln — WordPress vom Entwickler"
+  description="WordPress aus Köln: neue Seiten, Relaunch, Übernahme verwaister Websites und Wartung ab 39 €/Monat. Ohne Theme-Baukasten — und mit ehrlicher Antwort, ob WordPress zu dir passt."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <Navbar />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="page-hero" aria-labelledby="wp-heading">
+      <DecoShapes variant="corner" />
+      <div class="container-site">
+        <nav class="crumb" aria-label="Brotkrumen-Navigation">
+          <a href="/">Start</a>
+          <span aria-hidden="true">/</span>
+          <a href="/leistungen">Leistungen</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">WordPress Köln</span>
+        </nav>
+        <h1 class="page-h1" id="wp-heading">
+          <span class="accent">WordPress</span> aus Köln — von einer Person.
+        </h1>
+        <p class="page-hero-sub">
+          Du hast nach einer WordPress-Agentur in Köln gesucht. Was du hier
+          findest, ist keine: <strong>kein Team, kein Projektleiter, keine
+          Unterauftragnehmer.</strong> Dafür jemand, der die Seite selbst baut,
+          selbst wartet und selbst rangeht, wenn etwas klemmt.
+        </p>
+        <div class="page-hero-ctas">
+          <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
+          <a href="tel:+491718165966" class="btn-ghost">Direkt anrufen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Anlässe -->
+    <section class="section-pad" aria-labelledby="cases-heading">
+      <div class="container-site">
+        <div class="sec-header">
+          <p class="label-mono reveal">Anlässe</p>
+          <h2 class="sec-h2 reveal" id="cases-heading">Vier Situationen, in denen ich helfe.</h2>
+          <p class="sec-sub reveal">
+            Die meisten kommen nicht mit „ich will WordPress", sondern mit einem
+            konkreten Problem. Meistens ist es eines dieser vier.
+          </p>
+        </div>
+        <div class="cases">
+          {cases.map(c => (
+            <article class="case reveal">
+              <span class="case-num" aria-hidden="true">{c.num}</span>
+              <h3 class="case-title">{c.title}</h3>
+              <p class="case-body">{c.body}</p>
+              <ul class="case-list">
+                {c.items.map(i => (
+                  <li>
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Ehrliche Abwägung -->
+    <section class="weigh section-pad on-deep" aria-labelledby="weigh-heading">
+      <DecoShapes variant="deep" />
+      <div class="container-site">
+        <div class="weigh-header">
+          <p class="label-mono">Beratung vorweg</p>
+          <h2 class="weigh-h2" id="weigh-heading">Wann WordPress passt — und wann nicht.</h2>
+          <p class="weigh-sub">
+            WordPress ist das bekannteste System, aber nicht automatisch das
+            richtige. Ein Dienstleister, der nur WordPress baut, empfiehlt dir
+            immer WordPress. Ich baue beides, also kann ich dir die ehrliche
+            Antwort geben.
+          </p>
+        </div>
+        <div class="weigh-cols">
+          <div class="weigh-col">
+            <span class="weigh-label yes">WordPress ist richtig, wenn</span>
+            <ul class="weigh-list yes">
+              {fit.yes.map(i => (
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  {i}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="weigh-col">
+            <span class="weigh-label no">Etwas anderes ist besser, wenn</span>
+            <ul class="weigh-list no">
+              {fit.no.map(i => (
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3.5 7h7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+                  {i}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <p class="weigh-note">
+          <strong>Konkretes Beispiel:</strong> Diese Seite hier läuft nicht auf
+          WordPress, sondern auf einem statischen System — weil ich sie selten
+          ändere und Ladezeit für mich das stärkere Argument war. Sie ist in
+          unter einer halben Sekunde da und braucht keine Updates. Für einen
+          Betrieb, der wöchentlich Angebote und Neuigkeiten einstellt, wäre
+          dieselbe Entscheidung falsch. Genau darum geht es im Erstgespräch.
+        </p>
+      </div>
+    </section>
+
+    <!-- Preis -->
+    <section class="price section-pad" aria-labelledby="price-heading">
+      <div class="container-site">
+        <div class="price-grid">
+          <div>
+            <p class="label-mono reveal">Preis</p>
+            <h2 class="sec-h2 reveal" id="price-heading">Festpreis, Wartung freiwillig.</h2>
+            <p class="price-text reveal">
+              Die Website rechne ich zum Festpreis ab. Wartung ist optional und
+              ohne Mindestlaufzeit — du kannst sie auch selbst machen, dann
+              zeige ich dir, worauf zu achten ist.
+            </p>
+            <div class="reveal">
+              <a href="/webdesign-kosten" class="link-arrow">
+                Was den Preis bewegt — im Detail
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="price-card reveal">
+            <div class="price-rows">
+              <div class="price-row">
+                <span class="price-row-name">Neue WordPress-Website</span>
+                <span class="price-row-val">ab 790 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Relaunch auf bestehender Basis</span>
+                <span class="price-row-val">ab 590 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Übernahme &amp; Bestandsaufnahme</span>
+                <span class="price-row-val">ab 190 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Wartung, monatlich</span>
+                <span class="price-row-val">ab 39 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Mindestlaufzeit</span>
+                <span class="price-row-val">keine</span>
+              </div>
+            </div>
+            <p class="price-note">
+              Richtwerte für überschaubare Betriebsseiten. Bei der Übernahme
+              hängt der Aufwand stark davon ab, in welchem Zustand die Seite
+              ist — deshalb beginnt sie mit einer Bestandsaufnahme, nach der
+              du entscheidest, ob du weitermachst.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-pad" aria-labelledby="faq-heading">
+      <div class="container-site">
+        <div class="faq-grid">
+          <div>
+            <p class="label-mono reveal">Häufige Fragen</p>
+            <h2 class="faq-h2 reveal" id="faq-heading">Fragen zu WordPress.</h2>
+            <p class="faq-side reveal">
+              Auch die naheliegende: Warum meine eigene Seite nicht darauf läuft.
+              Die steht absichtlich ganz oben.
+            </p>
+            <div class="reveal">
+              <a href="/kontakt" class="link-arrow">
+                Eigene Frage stellen
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="faq-list reveal">
+            {faqs.map(item => (
+              <details class="faq-item">
+                <summary class="faq-summary">
+                  <span>{item.q}</span>
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="faq-body"><p>{item.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>

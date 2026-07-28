@@ -145,12 +145,19 @@ webdesign köln (880, KD 33) · webdesign agentur köln (260, KD 38)
 - [x] `/leistungen/webdesign-handwerker` — 720 Suchen, KD 11 (Commit f78dab6)
 - [x] `/webdesign-kosten` — 210 Suchen, KD 9 (Commit f78dab6)
 - [x] `/leistungen/it-service-koeln` — 140 + 50 Suchen, KD 10 / 2 (Commit 5ca4d14)
-- [ ] `/leistungen/wordpress-agentur-koeln` — 140 Suchen, KD 2
-      **offen: nur anlegen, wenn WordPress wirklich angeboten wird**
+- [x] `/leistungen/wordpress-agentur-koeln` — 140 + 90 Suchen, KD 2 / 20
+      (WordPress ist bestätigt im Angebot)
 - [x] Interne Verlinkung von Startseite, /leistungen und Footer
 
 **Ziel:** 15–25 Ranking-Keywords
-**Status:** 3 von 4 Seiten live, Sitemap bei 10 URLs (vorher 7)
+**Status:** ✅ abgeschlossen — 4 von 4 Seiten live, Sitemap bei 11 URLs (vorher 7).
+Adressiertes Suchvolumen: 1.350/Monat bei KD 2–20.
+
+### Nächste Aufgabe: Phase 2
+Reihenfolge nach KD: `webdesign leverkusen` (90 Suchen, KD 3) →
+`/branchen/gastronomie` → `/branchen/praxen-und-kanzleien` →
+`webdesign bergisch gladbach` (70, KD 28) → Branding-Seite
+(`corporate design erstellen lassen`, 90 Suchen)
 
 ### Phase 2 — Monat 2–4
 - [ ] Branchen-Seiten: handwerk, gastronomie, praxen-und-kanzleien

@@ -43,6 +43,7 @@ const PAGE_SOURCES = {
   '/leistungen/': 'src/pages/leistungen.astro',
   '/leistungen/webdesign-handwerker/': 'src/pages/leistungen/webdesign-handwerker.astro',
   '/leistungen/it-service-koeln/': 'src/pages/leistungen/it-service-koeln.astro',
+  '/leistungen/wordpress-agentur-koeln/': 'src/pages/leistungen/wordpress-agentur-koeln.astro',
   '/webdesign-kosten/': 'src/pages/webdesign-kosten.astro',
   '/portfolio/': 'src/pages/portfolio.astro',
   '/ueber-mich/': 'src/pages/ueber-mich.astro',
