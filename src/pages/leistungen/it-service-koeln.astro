@@ -1,0 +1,556 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import CTASection from '../../components/CTASection.astro';
+import Footer from '../../components/Footer.astro';
+import DecoShapes from '../../components/DecoShapes.astro';
+
+/** Leistungsblöcke — gruppiert nach dem, was Betriebe tatsächlich beauftragen. */
+const blocks = [
+  {
+    num: '01',
+    title: 'E-Mail und Domain',
+    body: 'Weg von der Freemail-Adresse. Postfächer mit eigener Domain, für dich und dein Team, mit Kalender und Kontakten auf allen Geräten synchron.',
+    items: [
+      'Microsoft 365 oder Google Workspace eingerichtet',
+      'Bestehende Mails und Kontakte übernommen',
+      'Signaturen einheitlich für alle',
+      'Weiterleitungen, Gruppen, Abwesenheiten',
+    ],
+  },
+  {
+    num: '02',
+    title: 'Daten und Sicherung',
+    body: 'Der häufigste Ernstfall ist kein Hackerangriff, sondern eine defekte Festplatte oder ein verlorenes Notebook. Dagegen hilft eine Sicherung, die läuft, ohne dass jemand daran denken muss.',
+    items: [
+      'Cloud-Speicher mit klarer Ordnerstruktur',
+      'Automatische Backups, täglich',
+      'Wiederherstellung getestet — nicht nur eingerichtet',
+      'Zugriffsrechte pro Mitarbeiter',
+    ],
+  },
+  {
+    num: '03',
+    title: 'Geräte und Zugriff',
+    body: 'Neue Rechner, neue Mitarbeiter, Zugriff von der Baustelle. Einmal ordentlich eingerichtet, statt bei jedem Gerät neu zu improvisieren.',
+    items: [
+      'Rechner und Notebooks einsatzbereit übergeben',
+      'Drucker, Netzwerk und WLAN im Betrieb',
+      'Sicherer Zugriff von unterwegs',
+      'Passwortverwaltung fürs Team',
+    ],
+  },
+  {
+    num: '04',
+    title: 'Laufende Betreuung',
+    body: 'Optional und ohne Mindestlaufzeit. Wenn etwas klemmt, rufst du an — kein Ticketsystem, keine Warteschleife, keine Nummer aus dem Callcenter.',
+    items: [
+      'Updates und Sicherheitspatches',
+      'Ansprechpartner bei Störungen',
+      'Neue Mitarbeiter einrichten',
+      'Beratung vor Anschaffungen',
+    ],
+  },
+];
+
+const faqs = [
+  {
+    q: 'Bist du rund um die Uhr erreichbar, wenn die E-Mail ausfällt?',
+    a: 'Nein — und das ist die wichtigste Antwort auf dieser Seite. Ich bin eine Person, keine Hotline mit Nachtschicht. In der Regel erreichst du mich am selben Tag, oft innerhalb einer Stunde. Wenn dein Betrieb aber eine Infrastruktur hat, bei der jede Stunde Ausfall echtes Geld kostet, brauchst du ein Systemhaus mit Bereitschaftsdienst und nicht mich. Das sage ich dir im Erstgespräch, bevor du beauftragst.',
+  },
+  {
+    q: 'Was kostet die laufende Betreuung?',
+    a: 'Ab 39 € im Monat für kleine Betriebe, abhängig von der Anzahl der Geräte und Postfächer. Ohne Mindestlaufzeit — kündbar zum Monatsende. Viele beauftragen zuerst nur das Setup und entscheiden später, ob sie Betreuung brauchen. Das ist ausdrücklich in Ordnung.',
+  },
+  {
+    q: 'Muss ich alles auf einmal umstellen?',
+    a: 'Nein. Meistens ist E-Mail der sinnvollste Anfang, weil es am sichtbarsten nach außen wirkt und am wenigsten Risiko birgt. Backups und Geräte kommen danach. Eine Migration in einem Rutsch mache ich nur, wenn es dafür einen Grund gibt — etwa einen Anbieterwechsel mit festem Termin.',
+  },
+  {
+    q: 'Was passiert mit meinen alten E-Mails?',
+    a: 'Die kommen mit. Bei einer Umstellung von Freemail oder einem alten Hoster übernehme ich Postfächer, Ordnerstruktur und Kontakte. Der Umstieg passiert im Hintergrund, meist über ein Wochenende, damit im Betrieb niemand vor einem leeren Postfach sitzt.',
+  },
+  {
+    q: 'Bindest du mich an bestimmte Anbieter?',
+    a: 'Ich arbeite mit Microsoft 365 und Google Workspace, weil beides zuverlässig läuft und du bei einem Wechsel nicht erpressbar bist. Die Verträge laufen auf deinen Namen, nicht auf meinen — du kannst mich jederzeit ablösen, ohne deine E-Mail-Adressen zu verlieren. Betriebe, die das anders gelöst haben, wissen, warum das wichtig ist.',
+  },
+  {
+    q: 'Machst du auch Server im Haus?',
+    a: 'Nur wenn es einen echten Grund gibt. Für die meisten kleinen Betriebe ist ein Server im Büro heute unnötiger Aufwand: Strom, Wartung, Ausfallrisiko und niemand, der ihn im Urlaub betreut. Cloud ist in der Regel günstiger und verlässlicher. Wenn du aus Datenschutz- oder Software-Gründen lokal bleiben musst, richte ich das ein — aber ich verkaufe dir keinen Server, den du nicht brauchst.',
+  },
+];
+
+const canonical = 'https://www.mb-solutions.biz/leistungen/it-service-koeln/';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: 'https://www.mb-solutions.biz' },
+        { '@type': 'ListItem', position: 2, name: 'Leistungen', item: 'https://www.mb-solutions.biz/leistungen' },
+        { '@type': 'ListItem', position: 3, name: 'IT-Service Köln', item: canonical },
+      ],
+    },
+    {
+      '@type': 'Service',
+      name: 'IT-Service Köln',
+      serviceType: 'IT-Dienstleistungen für kleine Unternehmen',
+      description:
+        'IT-Service für kleine Unternehmen und Handwerksbetriebe in Köln: E-Mail mit eigener Domain, Microsoft 365 und Google Workspace, Backups, Geräte-Setup und laufende Betreuung ohne Mindestlaufzeit.',
+      provider: { '@id': 'https://www.mb-solutions.biz/#business' },
+      areaServed: [
+        { '@type': 'City', name: 'Köln' },
+        { '@type': 'City', name: 'Leverkusen' },
+        { '@type': 'City', name: 'Bergisch Gladbach' },
+      ],
+      audience: { '@type': 'Audience', audienceType: 'Kleine und mittlere Unternehmen' },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'IT-Leistungen',
+        itemListElement: blocks.map((b) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: b.title },
+        })),
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '390',
+        priceCurrency: 'EUR',
+        description: 'IT-Setup, Festpreis ab 390 €',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
+---
+
+<style>
+  .page-hero { position: relative; padding: clamp(4rem, 9vh, 7rem) 0 clamp(3rem, 6vh, 5rem); }
+  .crumb {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 500ms var(--ease-out) 40ms both;
+  }
+  .crumb a { color: var(--ink-3); text-decoration: none; }
+  .crumb a:hover { color: var(--accent); }
+  .crumb span[aria-current] { color: var(--ink); }
+
+  .page-h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
+    margin: 0 0 1.5rem; max-width: 19ch;
+    animation: fadeUp 650ms var(--ease-out) 140ms both;
+  }
+  .page-h1 .accent { color: var(--accent); }
+  .page-hero-sub {
+    font-size: 1.125rem; color: var(--ink-2); line-height: 1.7;
+    max-width: 52ch; margin: 0 0 2rem;
+    animation: fadeUp 550ms var(--ease-out) 240ms both;
+  }
+  .page-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp 550ms var(--ease-out) 320ms both; }
+
+  /* Ausgangslage (dunkel) */
+  .problem { position: relative; background: var(--deep); color: var(--on-deep); }
+  .problem-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+  }
+  .problem-h2 {
+    font-size: clamp(1.875rem, 3.5vw, 2.75rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.08; margin: 1.25rem 0 0;
+    color: var(--on-deep);
+  }
+  .symptoms { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+  .symptoms li {
+    display: grid; grid-template-columns: 22px 1fr; gap: 14px;
+    padding: 14px 0; border-top: 1px solid var(--deep-line);
+    font-size: 1rem; color: var(--on-deep-2); line-height: 1.6;
+  }
+  .symptoms li:last-child { border-bottom: 1px solid var(--deep-line); }
+  .symptoms svg { color: var(--accent-deep); margin-top: 4px; flex-shrink: 0; }
+  .problem-note {
+    margin-top: 1.5rem; font-size: 1rem; color: var(--on-deep-2); line-height: 1.75;
+  }
+  .problem-note strong { color: var(--on-deep); font-weight: 600; }
+
+  /* Leistungsblöcke */
+  .blocks-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 42rem; }
+  .sec-h2 {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+  }
+  .sec-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
+
+  .blocks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .block {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
+    display: flex; flex-direction: column;
+  }
+  .block-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 1.5rem; }
+  .block-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.75rem; }
+  .block-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.7; margin: 0 0 1.5rem; }
+  .block-list {
+    list-style: none; margin: 0; padding: 1.25rem 0 0;
+    border-top: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .block-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--ink-2); line-height: 1.55; }
+  .block-list svg { color: var(--accent); flex-shrink: 0; margin-top: 4px; }
+
+  /* Abgrenzung Systemhaus */
+  .distinct { background: var(--paper-dim); }
+  .distinct-grid {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+  }
+  .distinct-text { display: flex; flex-direction: column; gap: 1.125rem; }
+  .distinct-text p { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75; max-width: 54ch; }
+  .distinct-text strong { color: var(--ink); font-weight: 600; }
+  .fit-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2rem);
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .fit-group { display: flex; flex-direction: column; gap: 0.75rem; }
+  .fit-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .fit-label.yes { color: var(--accent); }
+  .fit-label.no { color: var(--ink-3); }
+  .fit-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .fit-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9375rem; color: var(--ink-2); line-height: 1.55; }
+  .fit-list svg { flex-shrink: 0; margin-top: 4px; }
+  .fit-list.yes svg { color: var(--accent); }
+  .fit-list.no svg { color: var(--ink-3); }
+  .fit-divider { height: 1px; background: var(--border); }
+
+  /* Preis */
+  .price-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .price-text { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75; margin: 0 0 1.25rem; max-width: 46ch; }
+  .price-card {
+    background: var(--surface); border: 1.5px solid var(--accent);
+    border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
+    display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .price-rows { display: flex; flex-direction: column; }
+  .price-row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: 13px 0; border-top: 1px solid var(--border);
+  }
+  .price-rows .price-row:first-child { border-top: none; padding-top: 0; }
+  .price-row-name { font-size: 0.9375rem; color: var(--ink); font-weight: 500; }
+  .price-row-val { font-family: var(--font-mono); font-size: 0.9375rem; font-weight: 600; color: var(--accent-strong); white-space: nowrap; }
+  .price-note { font-size: 0.875rem; color: var(--ink-3); line-height: 1.6; margin: 0; }
+
+  /* FAQ */
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
+  .faq-list { display: flex; flex-direction: column; }
+  .faq-item { border-top: 1px solid var(--border-2); }
+  .faq-list .faq-item:last-child { border-bottom: 1px solid var(--border-2); }
+  .faq-summary {
+    display: flex; align-items: center; justify-content: space-between; gap: 1.25rem;
+    padding: 1.375rem 4px; cursor: pointer; list-style: none;
+    font-family: var(--font-display); font-size: 1.0625rem; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.015em; line-height: 1.35;
+    transition: color 150ms var(--ease-out);
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-summary::marker { display: none; }
+  @media (hover: hover) and (pointer: fine) { .faq-summary:hover { color: var(--accent-strong); } }
+  .faq-icon { width: 28px; height: 28px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--ink-3); transition: transform 260ms var(--ease-out), color 200ms var(--ease-out); }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); color: var(--accent); }
+  .faq-body { padding: 0 4px 1.5rem; max-width: 62ch; }
+  .faq-item[open] .faq-body { animation: fadeUp 260ms var(--ease-out) both; }
+  .faq-body p { font-size: 0.9688rem; color: var(--ink-2); line-height: 1.75; margin: 0; }
+
+  @media (max-width: 900px) { .blocks { grid-template-columns: 1fr; } }
+  @media (max-width: 820px) {
+    .problem-grid, .distinct-grid, .price-grid, .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+
+<BaseLayout
+  title="IT-Service Köln für kleine Unternehmen"
+  description="IT-Service in Köln für kleine Unternehmen und Handwerksbetriebe: E-Mail mit eigener Domain, Backups, Geräte-Setup und Betreuung ohne Mindestlaufzeit. Festpreis ab 390 €."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
+  </Fragment>
+
+  <Navbar />
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="page-hero" aria-labelledby="it-heading">
+      <DecoShapes variant="corner" />
+      <div class="container-site">
+        <nav class="crumb" aria-label="Brotkrumen-Navigation">
+          <a href="/">Start</a>
+          <span aria-hidden="true">/</span>
+          <a href="/leistungen">Leistungen</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">IT-Service Köln</span>
+        </nav>
+        <h1 class="page-h1" id="it-heading">
+          <span class="accent">IT-Service</span> in Köln für kleine Betriebe.
+        </h1>
+        <p class="page-hero-sub">
+          E-Mail mit eigener Domain, Daten gesichert, Geräte eingerichtet.
+          Einmal ordentlich gemacht statt dauerhaft improvisiert — und mit
+          einer Nummer, unter der jemand abnimmt, der den Betrieb kennt.
+        </p>
+        <div class="page-hero-ctas">
+          <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
+          <a href="tel:+491718165966" class="btn-ghost">Direkt anrufen</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ausgangslage -->
+    <section class="problem section-pad on-deep" aria-labelledby="problem-heading">
+      <DecoShapes variant="deep" />
+      <div class="container-site">
+        <div class="problem-grid">
+          <div>
+            <p class="label-mono">Ausgangslage</p>
+            <h2 class="problem-h2" id="problem-heading">
+              Es läuft. Bis es nicht mehr läuft.
+            </h2>
+            <p class="problem-note">
+              <strong>Kein Vorwurf:</strong> So arbeiten die meisten kleinen
+              Betriebe, weil IT nie das dringendste Thema war. Auffällig wird
+              es erst, wenn eine Festplatte stirbt, ein Notebook wegkommt oder
+              ein Mitarbeiter geht und niemand an sein Postfach kommt.
+            </p>
+          </div>
+          <ul class="symptoms" aria-label="Typische Situation">
+            {[
+              'Geschäftspost läuft über eine gmx- oder web.de-Adresse',
+              'Angebote und Rechnungen liegen auf einem einzigen Rechner',
+              'Die Sicherung ist eine externe Festplatte, zuletzt angesteckt vor Monaten',
+              'Passwörter stehen in einem Notizbuch oder sind überall dieselben',
+              'Jeder im Team hat eine andere Version derselben Datei',
+              'Niemand weiß, wer eigentlich Zugriff auf was hat',
+            ].map(s => (
+              <li>
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <circle cx="10" cy="10" r="8.25" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M10 6v5M10 13.5v.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="section-pad" aria-labelledby="blocks-heading">
+      <div class="container-site">
+        <div class="blocks-header">
+          <p class="label-mono reveal">Was ich mache</p>
+          <h2 class="sec-h2 reveal" id="blocks-heading">Vier Bereiche, in dieser Reihenfolge.</h2>
+          <p class="sec-sub reveal">
+            Du musst nicht alles auf einmal umstellen. Meistens ist E-Mail der
+            sinnvollste Anfang — sichtbar nach außen, geringes Risiko.
+          </p>
+        </div>
+        <div class="blocks">
+          {blocks.map(b => (
+            <article class="block reveal">
+              <span class="block-num" aria-hidden="true">{b.num}</span>
+              <h3 class="block-title">{b.title}</h3>
+              <p class="block-body">{b.body}</p>
+              <ul class="block-list">
+                {b.items.map(i => (
+                  <li>
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Abgrenzung: kein Systemhaus -->
+    <section class="distinct section-pad" aria-labelledby="distinct-heading">
+      <div class="container-site">
+        <div class="distinct-grid">
+          <div>
+            <p class="label-mono reveal">Einordnung</p>
+            <h2 class="sec-h2 reveal" id="distinct-heading">Ich bin kein Systemhaus.</h2>
+            <div class="distinct-text reveal">
+              <p>
+                Ein Systemhaus in Köln lohnt sich ab einer bestimmten Größe:
+                eigener Server, Bereitschaftsdienst, mehrere Standorte,
+                Wartungsvertrag mit garantierten Reaktionszeiten. Das kostet
+                entsprechend und ist bei zwanzig Arbeitsplätzen richtig
+                investiert.
+              </p>
+              <p>
+                Betriebe mit fünf Leuten fallen dabei durchs Raster:
+                <strong>zu klein für ein Systemhaus, aber zu abhängig von
+                funktionierender Technik, um es weiter auszusitzen.</strong>
+                Genau dazwischen arbeite ich.
+              </p>
+              <p>
+                Der Unterschied ist nicht nur der Preis, sondern wer ans
+                Telefon geht: bei mir immer derselbe, der die Einrichtung
+                gemacht hat und weiß, wie dein Betrieb arbeitet.
+              </p>
+            </div>
+          </div>
+          <div class="fit-box reveal">
+            <div class="fit-group">
+              <span class="fit-label yes">Passt zu dir, wenn</span>
+              <ul class="fit-list yes">
+                {[
+                  'dein Betrieb 1 bis etwa 15 Leute hat',
+                  'die IT bisher nebenbei gewachsen ist',
+                  'du einen festen Ansprechpartner willst statt einer Hotline',
+                  'du keinen Wartungsvertrag mit Mindestlaufzeit willst',
+                  'Website, Marke und IT ohnehin zusammen gedacht werden sollen',
+                ].map(i => (
+                  <li>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="fit-divider" aria-hidden="true"></div>
+            <div class="fit-group">
+              <span class="fit-label no">Besser ein Systemhaus, wenn</span>
+              <ul class="fit-list no">
+                {[
+                  'jede Stunde Ausfall echtes Geld kostet',
+                  'du Bereitschaft nachts und am Wochenende brauchst',
+                  'mehrere Standorte verbunden werden müssen',
+                  'branchenspezifische Server-Software im Haus läuft',
+                ].map(i => (
+                  <li>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                    {i}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preis -->
+    <section class="section-pad" aria-labelledby="price-heading">
+      <div class="container-site">
+        <div class="price-grid">
+          <div>
+            <p class="label-mono reveal">Preis</p>
+            <h2 class="sec-h2 reveal" id="price-heading">Setup zum Festpreis, Betreuung freiwillig.</h2>
+            <p class="price-text reveal">
+              Das Setup rechne ich zum Festpreis ab, nicht nach Stunden. Die
+              laufende Betreuung ist optional und ohne Mindestlaufzeit — viele
+              beauftragen erst das Setup und entscheiden später.
+            </p>
+            <div class="reveal">
+              <a href="/webdesign-kosten" class="link-arrow">
+                Preise für Websites
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="price-card reveal">
+            <div class="price-rows">
+              <div class="price-row">
+                <span class="price-row-name">IT-Setup, einmalig</span>
+                <span class="price-row-val">ab 390 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Laufende Betreuung, monatlich</span>
+                <span class="price-row-val">ab 39 €</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">E-Mail-Postfach (Anbieterkosten)</span>
+                <span class="price-row-val">ab 6 € / Monat</span>
+              </div>
+              <div class="price-row">
+                <span class="price-row-name">Mindestlaufzeit</span>
+                <span class="price-row-val">keine</span>
+              </div>
+            </div>
+            <p class="price-note">
+              Richtwerte für einen kleinen Betrieb. Was dein Setup konkret
+              kostet, hängt an der Zahl der Geräte, Postfächer und daran, was
+              aus einem Altsystem übernommen werden muss. Die Anbieterkosten
+              für Postfächer zahlst du direkt an Microsoft oder Google —
+              die Verträge laufen auf deinen Namen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="distinct section-pad" aria-labelledby="faq-heading">
+      <div class="container-site">
+        <div class="faq-grid">
+          <div>
+            <p class="label-mono reveal">Häufige Fragen</p>
+            <h2 class="faq-h2 reveal" id="faq-heading">Was Betriebe vorher wissen wollen.</h2>
+            <p class="faq-side reveal">
+              Inklusive der Frage, wann ich der falsche Ansprechpartner bin —
+              die steht absichtlich ganz oben.
+            </p>
+            <div class="reveal">
+              <a href="/kontakt" class="link-arrow">
+                Eigene Frage stellen
+                <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                  <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="faq-list reveal">
+            {faqs.map(item => (
+              <details class="faq-item">
+                <summary class="faq-summary">
+                  <span>{item.q}</span>
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </summary>
+                <div class="faq-body"><p>{item.a}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>
