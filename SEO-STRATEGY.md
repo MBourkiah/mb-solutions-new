@@ -142,13 +142,15 @@ webdesign köln (880, KD 33) · webdesign agentur köln (260, KD 38)
 **Ziel:** 5+ Bewertungen, vollständiges Profil, 8–12 echte Verweisdomains
 
 ### Phase 1 — Woche 2–6
-- [ ] `/leistungen/webdesign-handwerker`
-- [ ] `/webdesign-kosten` (nutzt den Festpreis-Vorteil)
-- [ ] `/leistungen/wordpress-agentur-koeln` (nur wenn WordPress wirklich angeboten wird)
-- [ ] `/leistungen/it-service-koeln`
-- [ ] Interne Verlinkung von Startseite + /leistungen (nicht nur Navigation)
+- [x] `/leistungen/webdesign-handwerker` — 720 Suchen, KD 11 (Commit f78dab6)
+- [x] `/webdesign-kosten` — 210 Suchen, KD 9 (Commit f78dab6)
+- [x] `/leistungen/it-service-koeln` — 140 + 50 Suchen, KD 10 / 2 (Commit 5ca4d14)
+- [ ] `/leistungen/wordpress-agentur-koeln` — 140 Suchen, KD 2
+      **offen: nur anlegen, wenn WordPress wirklich angeboten wird**
+- [x] Interne Verlinkung von Startseite, /leistungen und Footer
 
 **Ziel:** 15–25 Ranking-Keywords
+**Status:** 3 von 4 Seiten live, Sitemap bei 10 URLs (vorher 7)
 
 ### Phase 2 — Monat 2–4
 - [ ] Branchen-Seiten: handwerk, gastronomie, praxen-und-kanzleien
