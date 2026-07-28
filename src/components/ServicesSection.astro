@@ -111,6 +111,18 @@ const services = [
   }
   .service-more svg { transition: transform 200ms var(--ease-out); flex-shrink: 0; }
 
+  /* Einstiege für konkrete Zielgruppen unter dem Raster */
+  .services-entries {
+    display: flex; flex-wrap: wrap; gap: 1.75rem;
+    margin-top: clamp(1.75rem, 3vw, 2.5rem);
+    padding-top: 1.5rem; border-top: 1px solid var(--border);
+  }
+  .services-entries-label {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+    align-self: center;
+  }
+
   @media (max-width: 980px) { .services-grid { grid-template-columns: 1fr; } }
   @media (min-width: 640px) and (max-width: 980px) {
     .services-grid { grid-template-columns: repeat(2, 1fr); }
@@ -155,6 +167,22 @@ const services = [
           </span>
         </a>
       ))}
+    </div>
+
+    <div class="services-entries reveal">
+      <span class="services-entries-label">Direkt zum Thema</span>
+      <a href="/leistungen/webdesign-handwerker" class="link-arrow">
+        Webdesign für Handwerker
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/webdesign-kosten" class="link-arrow">
+        Was kostet eine Website?
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+          <path d="M2 7.5h11M9 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>

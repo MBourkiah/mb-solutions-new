@@ -41,6 +41,8 @@ const buildDate = new Date();
 const PAGE_SOURCES = {
   '/': 'src/pages/index.astro',
   '/leistungen/': 'src/pages/leistungen.astro',
+  '/leistungen/webdesign-handwerker/': 'src/pages/leistungen/webdesign-handwerker.astro',
+  '/webdesign-kosten/': 'src/pages/webdesign-kosten.astro',
   '/portfolio/': 'src/pages/portfolio.astro',
   '/ueber-mich/': 'src/pages/ueber-mich.astro',
   '/kontakt/': 'src/pages/kontakt.astro',
