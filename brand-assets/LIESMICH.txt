@@ -1,0 +1,47 @@
+MB-Solutions — Bilder für Verzeichnis- und Plattformeinträge
+============================================================
+
+Diese Dateien sind keine Stockfotos und keine KI-Bilder. Es sind die
+Illustrationen aus dem eigenen Corporate Design (Tiefviolett #2A2260,
+Signal-Violett #5B4FD1, Papier #FAF8F4) plus ein echter Screenshot.
+
+
+ZUORDNUNG ZU DEN LEISTUNGEN
+
+webdesign-1200x750.png        Webdesign, Webdesign für Handwerksbetriebe
+website-screenshot-...jpg     Webdesign, WordPress-Website
+                              (echter Screenshot der eigenen Seite —
+                               das stärkste Bild, weil überprüfbar)
+it-service-1200x750.png       IT-Service, Microsoft 365 / Google Workspace
+branding-1200x750.png         Logo-Design, Corporate Design
+
+logo-horizontal.png           Firmenlogo für Profilkopf
+profilbild-512.png            Profilbild / Avatar (quadratisch, 512 px)
+
+
+DATEIFORMATE
+
+*.svg           Vektor, beliebig skalierbar — nimm das, wenn erlaubt
+*-1200x750.png  1200 × 750 px, für Formulare die PNG/JPG verlangen
+
+Brauchst du andere Maße (quadratisch, 16:9, kleiner): sag Bescheid,
+die SVG-Dateien lassen sich in jede Größe rendern.
+
+
+WAS NICHT REINGEHÖRT
+
+Keine Stockfotos von Menschen, Büros oder Teams. Keine generischen
+Tech-Bilder (leuchtende Bildschirme, Code-Tapeten, Laptop auf
+Schreibtisch). Das war eine bewusste Entscheidung beim Redesign und
+gilt auch für externe Profile.
+
+
+HERKUNFT
+
+*.svg           exportiert aus src/components/illustrations/
+                ProjectIllustration.astro — dieselben Illustrationen,
+                die auf der Website die Konzeptprojekte bebildern
+*.png           daraus gerendert (1200 × 750, Papier-Hintergrund)
+logo-*.png      Kopie aus public/logos/
+website-*.jpg   Kopie aus src/assets/real/ — Screenshot der eigenen
+                Startseite aus dem Production-Build
