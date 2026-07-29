@@ -40,10 +40,13 @@ const schema = {
         "longitude": 6.9500
       },
       "areaServed": { "@type": "City", "name": "Köln" },
+      // Einheitlich mit Google-Unternehmensprofil und Verzeichniseinträgen.
+      // Keine festen Bürozeiten — bewusst konkret angegeben statt „nach Vereinbarung“,
+      // weil Google und Verzeichnisse konkrete Zeiten bevorzugen.
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-        "opens": "09:00",
+        "opens": "08:00",
         "closes": "18:00"
       }],
       "priceRange": "€€",
