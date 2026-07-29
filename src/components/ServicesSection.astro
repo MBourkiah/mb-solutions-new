@@ -54,19 +54,45 @@ const services = [
   .services-list { display: flex; flex-direction: column; }
 
   .service-row {
+    position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
     gap: clamp(1.5rem, 5vw, 4.5rem);
     padding: clamp(1.75rem, 3.5vw, 2.75rem) 4px;
-    border-top: 1px solid var(--border-2);
     text-decoration: none; color: inherit;
     transition: padding-left 220ms var(--ease-out);
+  }
+  /* Trennlinie als eigenes Element, damit sie sich zeichnen kann */
+  .service-row::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: var(--border-2);
+    transform-origin: left center;
   }
   .services-list .service-row:last-child { border-bottom: 1px solid var(--border-2); }
   @media (hover: hover) and (pointer: fine) {
     .service-row:hover { padding-left: 14px; }
     .service-row:hover .service-title { color: var(--accent-strong); }
     .service-row:hover .service-more svg { transform: translateX(4px); }
+  }
+
+  /*
+   * Die Linie zeichnet sich, während das Band in den Blick scrollt. Bewegung,
+   * die die Struktur erklärt statt nur zu dekorieren — und der Inhalt selbst
+   * bleibt ruhig, damit pro Band nur eine Sache passiert.
+   */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .service-row::before {
+        animation: serviceRuleIn linear both;
+        animation-timeline: view();
+        animation-range: entry 8% entry 42%;
+      }
+    }
+  }
+  @keyframes serviceRuleIn {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 
   .service-title {
@@ -121,7 +147,7 @@ const services = [
 
     <div class="services-list">
       {services.map(s => (
-        <a href={s.href} class="service-row reveal">
+        <a href={s.href} class="service-row">
           <div>
             <h3 class="service-title">{s.title}</h3>
             <p class="service-desc">{s.desc}</p>
