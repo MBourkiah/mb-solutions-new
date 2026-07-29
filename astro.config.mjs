@@ -63,6 +63,18 @@ const lastmodFor = (url) => {
 export default defineConfig({
   site: 'https://www.mb-solutions.biz',
   adapter: vercel(),
+
+  /**
+   * Dateien, die es früher gab und die Google noch kennt.
+   * Ohne Weiterleitung melden sie 404 in der Search Console — und falls die
+   * alte Logo-URL irgendwo extern eingebunden ist, bleibt sie so nutzbar.
+   */
+  redirects: {
+    '/favicon.svg': '/mb-icon-32-favicon.png',
+    '/logos/mb-solutions-horizontal.svg': '/logos/mb-logo-horizontal-violett.png',
+    '/logos/mb-solutions-horizontal.png': '/logos/mb-logo-horizontal-violett.png',
+  },
+
   integrations: [
     sitemap({
       serialize(item) {
