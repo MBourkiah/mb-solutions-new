@@ -129,17 +129,28 @@ webdesign köln (880, KD 33) · webdesign agentur köln (260, KD 38)
 
 ## Roadmap
 
-### Phase 0 — Diese/nächste Woche · HÖCHSTE PRIORITÄT
-- [ ] **Bewertungen einsammeln** — der Engpass. Bewertungslink aus der Profilverwaltung
-      holen und an jeden Auftraggeber/Kontakt schicken. Ziel kurzfristig 5, mittelfristig 21
-- [ ] Profil vervollständigen: sekundäre Kategorien, Leistungen einzeln, echte Fotos,
-      Beschreibung mit „Köln" + den drei Leistungen
-- [ ] Profilnamen prüfen: „Marketing" raus bzw. „Branding" rein — Konsistenz zur Website
-- [ ] Verzeichnisse (Gelbe Seiten ✔ vorhanden): Das Örtliche, Das Telefonbuch,
-      Kölner Branchen, wlw, Sortlist — identische NAP-Schreibweise überall
-- [ ] IHK-/Handwerkskammer-Eintrag prüfen
+### Phase 0
+- [ ] **Bewertungen einsammeln** — der Engpass, und weiterhin offen: es gibt noch keine
+      Kunden. Auflösung siehe „Akquise" unten. Ziel kurzfristig 5, mittelfristig 21
+- [x] Profilname korrigiert: „Marketing" → „Branding" (Konsistenz zur Website)
+- [x] Öffnungszeiten vereinheitlicht: **Mo–Fr 08:00–18:00** überall
+      (Website-Schema von 09:00 angepasst, Commit e3c6e5a)
+- [x] Verzeichnisse, 7 von 16: Gelbe Seiten, Cylex, wlw, Das Örtliche,
+      Das Telefonbuch, Kölner Branchen, Bing Places
+- [ ] Offen: Apple Business Connect, OpenStreetMap, 11880, meinestadt, golocal,
+      IHK Köln, koeln.de, Sortlist — flacherer Ertrag, keine Eile
+- [x] NAP-Block + Beschreibungstexte + Bildassets vorbereitet (`brand-assets/`)
 
-**Ziel:** 5+ Bewertungen, vollständiges Profil, 8–12 echte Verweisdomains
+**Stand:** Alle Verzeichnisse aus Googles eigenem Ortsblock sind erledigt.
+Verweisdomains: 1 bestätigt, 4–6 erwartet sobald die neuen Einträge freigegeben sind.
+
+### Akquise — Ersatz für den Bewertungs-Engpass
+Der Local Pack hat ein Henne-Ei-Problem: keine Kunden → keine Bewertungen → keine
+Sichtbarkeit. Die ersten Kunden müssen aus aktiver Ansprache kommen.
+- [x] Lead-Liste: 32 Kölner Bauhandwerksbetriebe ohne Website, mit Telefonnummer
+      (`leads-handwerk-koeln.csv`, Script `scripts/leads-osm.mjs`)
+- [ ] Erste Anrufe — Gesprächsleitfaden liegt im Artifact
+- [ ] Erste 2–3 Aufträge: reduzierter Preis gegen Bewertung + öffentliche Referenz
 
 ### Phase 1 — Woche 2–6
 - [x] `/leistungen/webdesign-handwerker` — 720 Suchen, KD 11 (Commit f78dab6)
@@ -153,11 +164,15 @@ webdesign köln (880, KD 33) · webdesign agentur köln (260, KD 38)
 **Status:** ✅ abgeschlossen — 4 von 4 Seiten live, Sitemap bei 11 URLs (vorher 7).
 Adressiertes Suchvolumen: 1.350/Monat bei KD 2–20.
 
-### Nächste Aufgabe: Phase 2
-Reihenfolge nach KD: `webdesign leverkusen` (90 Suchen, KD 3) →
-`/branchen/gastronomie` → `/branchen/praxen-und-kanzleien` →
-`webdesign bergisch gladbach` (70, KD 28) → Branding-Seite
-(`corporate design erstellen lassen`, 90 Suchen)
+### Phase 2 — begonnen
+- [x] `/leistungen/branding-corporate-design` — 90 + 50 + 30 Suchen, KD 5–10
+      (Commit 4ee236e). Damit hat jede der drei Säulen eine eigene Landingpage.
+- [ ] `/regionen/webdesign-leverkusen` — 90 Suchen, **KD 3**
+- [ ] `/branchen/gastronomie`
+- [ ] `/branchen/praxen-und-kanzleien`
+- [ ] `/regionen/webdesign-bergisch-gladbach` — 70 Suchen, KD 28
+
+**Sitemap:** 12 URLs (Start: 7). Adressiertes Suchvolumen: ~1.520/Monat bei KD 2–20.
 
 ### Phase 2 — Monat 2–4
 - [ ] Branchen-Seiten: handwerk, gastronomie, praxen-und-kanzleien
