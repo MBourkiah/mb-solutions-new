@@ -1,89 +1,245 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<BaseLayout title="Datenschutz | MB-Solutions">
-  <Navbar />
+<LegalLayout
+  title="Datenschutzerklärung"
+  description="Datenschutzerklärung von MB-Solutions: welche Daten beim Besuch dieser Website verarbeitet werden, auf welcher Rechtsgrundlage und welche Rechte du hast."
+  heading="Datenschutzerklärung"
+  intro="Diese Website setzt keine Cookies und verwendet kein Tracking. Verarbeitet werden nur die Daten, die technisch beim Aufruf entstehen — und die, die du selbst über das Kontaktformular oder per WhatsApp übermittelst. Unten steht im Einzelnen, was das bedeutet."
+  updated="29. Juli 2026"
+>
+  <section>
+    <h2><span class="n" aria-hidden="true">01</span>Verantwortlicher</h2>
+    <address>
+      Maurice Bourkiah, MB-Solutions<br />
+      Auf der Bitze 18, 51107 Köln, Deutschland<br />
+      E-Mail: <a href="mailto:mbourkiah@mb-solutions.biz">mbourkiah@mb-solutions.biz</a><br />
+      Telefon: <a href="tel:+491718165966">+49 171 8165966</a>
+    </address>
+    <p>
+      Es besteht keine gesetzliche Pflicht zur Benennung eines
+      Datenschutzbeauftragten. Bei Fragen zum Datenschutz wende dich direkt
+      an die oben genannte Adresse.
+    </p>
+  </section>
 
-  <main class="flex-1 py-24">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6">
-
-      <h1 class="text-3xl font-bold text-gray-900 mb-10 pb-6 border-b border-gray-100">
-        Datenschutzerklärung
-      </h1>
-
-      <div class="space-y-10 text-gray-600 leading-relaxed">
-
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            1. Verantwortlicher
-          </h2>
-          <p>
-            Maurice Bourkiah, MB-Solutions<br />
-            Auf der Bitze 18, 51107 Köln<br />
-            E-Mail:&nbsp;
-            <a
-              href="mailto:mbourkiah@mb-solutions.biz"
-              class="text-primary hover:underline"
-            >
-              mbourkiah@mb-solutions.biz
-            </a>
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            2. Erhobene Daten
-          </h2>
-          <p>
-            Diese Website erhebt keine personenbezogenen Daten durch Tracking
-            oder Cookies. Beim Absenden des Kontaktformulars werden Name und
-            E-Mail-Adresse zur Bearbeitung deiner Anfrage verwendet und nicht
-            an Dritte weitergegeben.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            3. Hosting
-          </h2>
-          <p>
-            Diese Website wird gehostet bei Vercel Inc., 440 N Barranca Ave
-            #4133, Covina, CA 91723, USA. Beim Aufruf der Website werden
-            automatisch Verbindungsdaten (IP-Adresse, Zeitstempel) durch
-            Vercel erfasst. Weitere Informationen:&nbsp;
-            <a
-              href="https://vercel.com/legal/privacy-policy"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-primary hover:underline"
-            >
-              vercel.com/legal/privacy-policy
-            </a>
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            4. Deine Rechte
-          </h2>
-          <p>
-            Du hast das Recht auf Auskunft, Berichtigung und Löschung deiner
-            Daten. Kontakt:&nbsp;
-            <a
-              href="mailto:mbourkiah@mb-solutions.biz"
-              class="text-primary hover:underline"
-            >
-              mbourkiah@mb-solutions.biz
-            </a>
-          </p>
-        </section>
-
-      </div>
+  <section>
+    <h2><span class="n" aria-hidden="true">02</span>Was diese Website nicht tut</h2>
+    <div class="note">
+      <p>
+        <strong>Keine Cookies.</strong> Diese Website speichert keine Cookies
+        und greift nicht auf Informationen zu, die auf deinem Gerät gespeichert
+        sind. Es werden auch weder Local Storage noch Session Storage genutzt.
+        Deshalb gibt es hier kein Zustimmungsbanner — es gäbe nichts, dem du
+        zustimmen könntest.
+      </p>
+      <p>
+        <strong>Kein Tracking, keine Analyse.</strong> Es sind keine Dienste
+        wie Google Analytics, Google Tag Manager, Meta-Pixel, Matomo oder
+        vergleichbare Werkzeuge eingebunden. Es findet kein Profiling und keine
+        automatisierte Entscheidungsfindung statt.
+      </p>
+      <p>
+        <strong>Keine externen Schriftarten.</strong> Alle Schriften werden vom
+        eigenen Server geladen. Es findet keine Verbindung zu Google Fonts oder
+        einem anderen Schrift-Netzwerk statt, und damit auch keine Übermittlung
+        deiner IP-Adresse an solche Anbieter.
+      </p>
+      <p>
+        <strong>Keine Werbe- oder Social-Media-Einbettungen.</strong> Es sind
+        keine Videos, Karten, Like-Buttons oder Feeds eingebettet, die beim
+        Seitenaufruf Daten an Dritte senden.
+      </p>
     </div>
-  </main>
+  </section>
 
-  <Footer />
-</BaseLayout>
+  <section>
+    <h2><span class="n" aria-hidden="true">03</span>Hosting und Server-Logfiles</h2>
+    <p>
+      Diese Website wird gehostet bei <strong>Vercel Inc.</strong>, 440 N
+      Barranca Ave #4133, Covina, CA 91723, USA. Beim Aufruf der Website
+      werden technisch notwendige Verbindungsdaten verarbeitet, insbesondere:
+    </p>
+    <ul>
+      <li>IP-Adresse des anfragenden Geräts</li>
+      <li>Datum und Uhrzeit des Zugriffs</li>
+      <li>Name und URL der abgerufenen Datei</li>
+      <li>übertragene Datenmenge und Meldung über den Abruferfolg</li>
+      <li>verwendeter Browser und Betriebssystem</li>
+      <li>gegebenenfalls die zuvor besuchte Seite (Referrer)</li>
+    </ul>
+    <p>
+      <strong>Zweck:</strong> Ausliefern der Website, Gewährleistung der
+      technischen Sicherheit und Stabilität, Abwehr von Angriffen.
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO
+      (berechtigtes Interesse am sicheren und störungsfreien Betrieb).
+      Eine Zusammenführung dieser Daten mit anderen Datenquellen findet nicht
+      statt, und ich werte sie nicht personenbezogen aus.
+    </p>
+    <h3>Übermittlung in die USA</h3>
+    <p>
+      Vercel ist ein US-amerikanisches Unternehmen, betreibt jedoch auch
+      Rechenzentren in der EU. Soweit eine Übermittlung in die USA erfolgt,
+      stützt sie sich auf das EU-US Data Privacy Framework beziehungsweise auf
+      Standardvertragsklauseln der Europäischen Kommission. Mit Vercel besteht
+      ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO. Weitere
+      Informationen findest du in der
+      <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Vercel</a>.
+    </p>
+    <p>
+      <strong>Speicherdauer:</strong> Die Aufbewahrungsdauer der Serverprotokolle
+      richtet sich nach den Vorgaben des Hosters und ist auf das technisch
+      Erforderliche begrenzt.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">04</span>Kontaktformular</h2>
+    <p>
+      Wenn du das Kontaktformular auf der Seite <a href="/kontakt/">Kontakt</a>
+      nutzt, werden die von dir eingegebenen Daten verarbeitet: Name,
+      E-Mail-Adresse, die ausgewählte Leistung und dein Nachrichtentext.
+    </p>
+    <h3>Verarbeitung durch einen Dienstleister</h3>
+    <p>
+      <strong>Die Übermittlung erfolgt über den Dienst Web3Forms.</strong>
+      Wenn du das Formular absendest, werden die eingegebenen Daten zunächst an
+      die Server von Web3Forms übertragen und von dort per E-Mail an mich
+      weitergeleitet. Web3Forms handelt dabei als Auftragsverarbeiter.
+      Einzelheiten zur Datenverarbeitung findest du in der
+      <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Datenschutzerklärung von Web3Forms</a>.
+    </p>
+    <p>
+      Wenn du diese Übermittlung vermeiden möchtest, erreichst du mich
+      jederzeit direkt per <a href="mailto:mbourkiah@mb-solutions.biz">E-Mail</a>
+      oder <a href="tel:+491718165966">telefonisch</a>. Beides ist gleichwertig
+      und führt zum selben Ergebnis.
+    </p>
+    <p>
+      <strong>Zweck:</strong> Bearbeitung deiner Anfrage und Kommunikation im
+      Rahmen einer möglichen Zusammenarbeit.
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO bei
+      Anfragen mit Bezug zu einem Vertrag oder dessen Vorbereitung, im Übrigen
+      Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung
+      von Anfragen).
+    </p>
+    <p>
+      <strong>Speicherdauer:</strong> Anfragen werden gelöscht, sobald sie
+      abschließend bearbeitet sind und keine gesetzlichen Aufbewahrungsfristen
+      entgegenstehen. Kommt es zu einem Auftrag, gelten die handels- und
+      steuerrechtlichen Fristen von bis zu zehn Jahren.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">05</span>Kontakt per E-Mail oder Telefon</h2>
+    <p>
+      Wenn du mich per E-Mail oder telefonisch kontaktierst, verarbeite ich die
+      dabei übermittelten Daten — also mindestens deine E-Mail-Adresse oder
+      Rufnummer sowie den Inhalt deiner Anfrage — zur Bearbeitung.
+      <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b beziehungsweise
+      lit. f DSGVO. Es gelten dieselben Löschfristen wie beim Kontaktformular.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">06</span>WhatsApp-Kontakt</h2>
+    <p>
+      Auf dieser Website befindet sich ein Verweis, über den du mir per
+      WhatsApp schreiben kannst. <strong>Beim reinen Aufruf der Website werden
+      dabei keine Daten an WhatsApp übertragen</strong> — es handelt sich um
+      einen gewöhnlichen Link, nicht um eine Einbettung.
+    </p>
+    <p>
+      Erst wenn du den Verweis anklickst, öffnet sich WhatsApp und es werden
+      Daten an WhatsApp Ireland Limited beziehungsweise die Meta-Unternehmen
+      übertragen. Auf diese Verarbeitung habe ich keinen Einfluss; es gelten
+      die Bedingungen von WhatsApp. Schreibst du mir dort, verarbeite ich die
+      Nachricht zur Beantwortung deiner Anfrage
+      (<strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO).
+      Wenn du das nicht möchtest, nutze E-Mail oder Telefon.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">07</span>Empfänger auf einen Blick</h2>
+    <dl>
+      <dt>Hosting</dt>
+      <dd>Vercel Inc., USA/EU — Auslieferung der Website, Serverprotokolle</dd>
+      <dt>Kontaktformular</dt>
+      <dd>Web3Forms — Übermittlung der Formulardaten per E-Mail</dd>
+      <dt>WhatsApp</dt>
+      <dd>WhatsApp Ireland Limited / Meta — nur bei aktivem Klick auf den Verweis</dd>
+      <dt>Sonst</dt>
+      <dd>Keine weiteren Empfänger. Keine Weitergabe zu Werbezwecken, kein Verkauf von Daten.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">08</span>Deine Rechte</h2>
+    <p>Du hast in Bezug auf deine personenbezogenen Daten folgende Rechte:</p>
+    <ul>
+      <li><strong>Auskunft</strong> darüber, welche Daten ich zu dir verarbeite (Art. 15 DSGVO)</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten (Art. 16 DSGVO)</li>
+      <li><strong>Löschung</strong>, sofern keine Aufbewahrungspflicht entgegensteht (Art. 17 DSGVO)</li>
+      <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+      <li><strong>Datenübertragbarkeit</strong> in einem strukturierten, gängigen Format (Art. 20 DSGVO)</li>
+      <li><strong>Widerspruch</strong> gegen Verarbeitungen, die auf einem berechtigten Interesse beruhen (Art. 21 DSGVO)</li>
+      <li><strong>Widerruf einer Einwilligung</strong> mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>
+      Zur Ausübung genügt eine Nachricht an
+      <a href="mailto:mbourkiah@mb-solutions.biz">mbourkiah@mb-solutions.biz</a>.
+      Es entstehen dir dadurch keine Kosten.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">09</span>Beschwerderecht bei der Aufsichtsbehörde</h2>
+    <p>
+      Unabhängig davon hast du das Recht, sich bei einer
+      Datenschutz-Aufsichtsbehörde über die Verarbeitung deiner Daten zu
+      beschweren (Art. 77 DSGVO). Zuständig für mich ist:
+    </p>
+    <address>
+      Landesbeauftragte für Datenschutz und Informationsfreiheit
+      Nordrhein-Westfalen<br />
+      Kavalleriestraße 2–4, 40213 Düsseldorf<br />
+      <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer">ldi.nrw.de</a>
+    </address>
+    <p>
+      Du kannst dich auch an die Aufsichtsbehörde deines Wohnorts oder
+      Arbeitsplatzes wenden.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">10</span>Pflicht zur Bereitstellung</h2>
+    <p>
+      Die Angabe personenbezogener Daten ist weder gesetzlich noch vertraglich
+      vorgeschrieben. Ohne Kontaktdaten kann ich deine Anfrage allerdings nicht
+      beantworten — mehr als eine Antwortmöglichkeit und deine Nachricht
+      brauche ich dafür nicht.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">11</span>Verschlüsselung</h2>
+    <p>
+      Diese Website wird ausschließlich über eine verschlüsselte
+      HTTPS-Verbindung ausgeliefert. Aufrufe über unverschlüsseltes HTTP werden
+      automatisch auf die verschlüsselte Adresse umgeleitet. Damit sind die
+      Daten, die du überträgst, auf dem Transportweg gegen Mitlesen geschützt.
+    </p>
+  </section>
+
+  <section>
+    <h2><span class="n" aria-hidden="true">12</span>Änderungen dieser Erklärung</h2>
+    <p>
+      Diese Erklärung wird angepasst, wenn sich die Website oder die
+      Rechtslage ändert. Es gilt jeweils die hier veröffentlichte Fassung mit
+      dem oben genannten Stand.
+    </p>
+  </section>
+</LegalLayout>

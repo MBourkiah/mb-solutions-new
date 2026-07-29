@@ -1,71 +1,94 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
 ---
 
-<BaseLayout title="Impressum | MB-Solutions">
-  <Navbar />
+<LegalLayout
+  title="Impressum"
+  description="Impressum von MB-Solutions, Maurice Bourkiah, Köln."
+  heading="Impressum"
+  updated="29. Juli 2026"
+>
+  <section>
+    <h2><span class="n" aria-hidden="true">01</span>Angaben gemäß § 5 DDG</h2>
+    <address>
+      Maurice Bourkiah<br />
+      MB-Solutions<br />
+      Auf der Bitze 18<br />
+      51107 Köln<br />
+      Deutschland
+    </address>
+    <p>Einzelunternehmen, nicht im Handelsregister eingetragen.</p>
+  </section>
 
-  <main class="flex-1 py-24">
-    <div class="max-w-2xl mx-auto px-4 sm:px-6">
+  <section>
+    <h2><span class="n" aria-hidden="true">02</span>Kontakt</h2>
+    <dl>
+      <dt>Telefon</dt>
+      <dd><a href="tel:+491718165966">+49 171 8165966</a></dd>
+      <dt>E-Mail</dt>
+      <dd><a href="mailto:mbourkiah@mb-solutions.biz">mbourkiah@mb-solutions.biz</a></dd>
+    </dl>
+  </section>
 
-      <h1 class="text-3xl font-bold text-gray-900 mb-10 pb-6 border-b border-gray-100">
-        Impressum
-      </h1>
+  <section>
+    <h2><span class="n" aria-hidden="true">03</span>Verantwortlich für den Inhalt</h2>
+    <p>Nach § 18 Abs. 2 Medienstaatsvertrag (MStV):</p>
+    <address>
+      Maurice Bourkiah<br />
+      Auf der Bitze 18<br />
+      51107 Köln
+    </address>
+  </section>
 
-      <div class="space-y-10 text-gray-600 leading-relaxed">
+  <section>
+    <h2><span class="n" aria-hidden="true">04</span>Umsatzsteuer</h2>
+    <p>
+      Als Kleinunternehmer im Sinne von § 19 Umsatzsteuergesetz (UStG) wird
+      keine Umsatzsteuer berechnet und daher auch keine
+      Umsatzsteuer-Identifikationsnummer geführt.
+    </p>
+  </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            Angaben gemäß § 5 TMG
-          </h2>
-          <p>
-            Maurice Bourkiah<br />
-            MB-Solutions<br />
-            Auf der Bitze 18<br />
-            51107 Köln
-          </p>
-        </section>
+  <section>
+    <h2><span class="n" aria-hidden="true">05</span>Verbraucherstreitbeilegung</h2>
+    <p>
+      Ich bin nicht verpflichtet und nicht bereit, an
+      Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+      teilzunehmen (§ 36 Verbraucherstreitbeilegungsgesetz, VSBG).
+    </p>
+  </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            Kontakt
-          </h2>
-          <p>
-            Telefon:&nbsp;
-            <a href="tel:+491718165966" class="text-primary hover:underline">
-              +49 171 816 59 66
-            </a><br />
-            E-Mail:&nbsp;
-            <a
-              href="mailto:mbourkiah@mb-solutions.biz"
-              class="text-primary hover:underline"
-            >
-              mbourkiah@mb-solutions.biz
-            </a>
-          </p>
-        </section>
+  <section>
+    <h2><span class="n" aria-hidden="true">06</span>Haftung für Inhalte und Links</h2>
+    <p>
+      Die Inhalte dieser Seiten werden mit Sorgfalt erstellt. Für die
+      Richtigkeit, Vollständigkeit und Aktualität kann ich jedoch keine
+      Gewähr übernehmen.
+    </p>
+    <p>
+      Diese Website enthält Verweise auf externe Websites Dritter, auf deren
+      Inhalte ich keinen Einfluss habe. Für diese fremden Inhalte ist stets
+      der jeweilige Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung
+      waren keine rechtswidrigen Inhalte erkennbar. Werden mir
+      Rechtsverstöße bekannt, entferne ich den betreffenden Link.
+    </p>
+  </section>
 
-        <section>
-          <h2 class="text-lg font-semibold text-gray-900 mb-3">
-            Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
-          </h2>
-          <p>
-            Maurice Bourkiah<br />
-            Auf der Bitze 18<br />
-            51107 Köln
-          </p>
-        </section>
+  <section>
+    <h2><span class="n" aria-hidden="true">07</span>Urheberrecht</h2>
+    <p>
+      Die auf dieser Website erstellten Inhalte, Texte und Grafiken
+      unterliegen dem deutschen Urheberrecht. Die verwendeten Schriftarten
+      Bricolage Grotesque, Instrument Sans und Spline Sans Mono stehen unter
+      der SIL Open Font License.
+    </p>
+  </section>
 
-        <p class="text-sm text-gray-400 pt-6 border-t border-gray-100">
-          Als Kleinunternehmer im Sinne von § 19 UStG wird keine
-          Umsatzsteuer berechnet.
-        </p>
-
-      </div>
-    </div>
-  </main>
-
-  <Footer />
-</BaseLayout>
+  <section>
+    <h2><span class="n" aria-hidden="true">08</span>Datenschutz</h2>
+    <p>
+      Informationen zur Verarbeitung personenbezogener Daten findest du in
+      der <a href="/datenschutz/">Datenschutzerklärung</a>.
+    </p>
+  </section>
+</LegalLayout>
