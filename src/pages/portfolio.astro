@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
 import ProjectVisual from '../components/ProjectVisual.astro';
-import DecoShapes from '../components/DecoShapes.astro';
 
 const projects = [
   {
@@ -72,7 +71,7 @@ const schema = {
   .page-h1 {
     font-size: clamp(2.75rem, 6.5vw, 5rem);
     font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
-    margin: 1.25rem 0 1.5rem; max-width: 16ch;
+    margin: 0 0 1.5rem; max-width: 16ch;
     animation: fadeUp 650ms var(--ease-out) 140ms both;
   }
   .page-h1 .accent { color: var(--accent); }
@@ -146,9 +145,7 @@ const schema = {
   <main id="main-content">
 
     <section class="page-hero" aria-labelledby="port-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
-        <p class="label-mono page-hero-label">Arbeiten</p>
         <h1 class="page-h1" id="port-heading">
           So gehe ich Projekte <span class="accent">an.</span>
         </h1>

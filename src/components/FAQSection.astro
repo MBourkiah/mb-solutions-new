@@ -39,14 +39,12 @@ const faqs = [
   .faq-h2 {
     font-size: clamp(2.25rem, 4.5vw, 3.5rem);
     font-weight: 800; letter-spacing: -0.025em;
-    line-height: 1.04; margin: 1.25rem 0 1.25rem;
+    line-height: 1.04; margin: 0 0 1.25rem;
   }
   .faq-side-text {
     font-size: 1rem; color: var(--ink-2); line-height: 1.7;
     max-width: 34ch; margin: 0 0 1.75rem;
   }
-  .faq-shapes { display: block; margin-top: 3rem; }
-  @media (max-width: 820px) { .faq-shapes { display: none; } }
 
   .faq-list { display: flex; flex-direction: column; }
 
@@ -89,7 +87,6 @@ const faqs = [
   <div class="container-site">
     <div class="faq-grid">
       <div>
-        <p class="label-mono reveal">Häufige Fragen</p>
         <h2 class="faq-h2 reveal" id="faq-heading">Bevor du fragst.</h2>
         <p class="faq-side-text reveal">
           Kurze, direkte Antworten auf das, was vor einer Beauftragung
@@ -103,14 +100,6 @@ const faqs = [
             </svg>
           </a>
         </div>
-
-        <!-- Dekorative Formenreihe (Motiv aus den Konzept-Illustrationen) -->
-        <svg class="faq-shapes reveal" width="150" height="26" viewBox="0 0 150 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="12" cy="14" r="10" fill="var(--accent)"/>
-          <rect x="38" y="4" width="20" height="20" rx="3" stroke="var(--deep)" stroke-width="2"/>
-          <path d="M72 24l11-20l11 20Z" fill="var(--tint)" stroke="var(--deep)" stroke-width="2" stroke-linejoin="round"/>
-          <circle cx="116" cy="14" r="10" fill="var(--accent)" opacity="0.35"/>
-        </svg>
       </div>
 
       <div class="faq-list reveal">

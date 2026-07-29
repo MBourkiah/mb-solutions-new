@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import DecoShapes from '../components/DecoShapes.astro';
 
 const links = [
   { href: '/',           label: 'Startseite',  desc: 'Der Überblick über alles' },
@@ -113,11 +112,9 @@ const links = [
   <Navbar />
   <main id="main-content">
     <section class="nf" aria-labelledby="nf-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site" style="width:100%;">
         <div class="nf-grid">
           <div>
-            <p class="label-mono nf-label">Fehler 404</p>
             <div class="nf-code" aria-hidden="true">
               404
               <span class="nf-code-offset" aria-hidden="true">404</span>

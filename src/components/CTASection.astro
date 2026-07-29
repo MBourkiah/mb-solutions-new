@@ -1,5 +1,4 @@
 ---
-import DecoShapes from './DecoShapes.astro';
 ---
 
 <style>
@@ -18,7 +17,7 @@ import DecoShapes from './DecoShapes.astro';
   .cta-h2 {
     font-size: clamp(2.5rem, 5.5vw, 4.25rem);
     font-weight: 800; letter-spacing: -0.03em;
-    line-height: 1.0; margin: 1.25rem 0 1.25rem;
+    line-height: 1.0; margin: 0 0 1.25rem;
     color: var(--on-deep);
   }
   .cta-h2 .accent { color: var(--accent-deep); }
@@ -57,11 +56,9 @@ import DecoShapes from './DecoShapes.astro';
 </style>
 
 <section class="cta section-pad on-deep" aria-labelledby="cta-heading">
-  <DecoShapes variant="deep" flip />
   <div class="container-site">
     <div class="cta-inner-grid">
       <div>
-        <p class="label-mono reveal">Kontakt</p>
         <h2 class="cta-h2 reveal" id="cta-heading">
           Lass uns über dein Projekt <span class="accent">sprechen.</span>
         </h2>

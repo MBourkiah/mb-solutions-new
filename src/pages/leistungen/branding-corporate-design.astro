@@ -3,12 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import CTASection from '../../components/CTASection.astro';
 import Footer from '../../components/Footer.astro';
-import DecoShapes from '../../components/DecoShapes.astro';
 
 /** Was am Ende tatsächlich in der Hand liegt — keine abstrakten Versprechen. */
 const deliverables = [
   {
-    num: '01',
     title: 'Logo in allen Formaten',
     body: 'Ein Zeichen, das auf dem Firmenwagen genauso funktioniert wie in einer E-Mail-Signatur — und das auch bei 16 Pixeln noch erkennbar ist.',
     items: [
@@ -19,7 +17,6 @@ const deliverables = [
     ],
   },
   {
-    num: '02',
     title: 'Farben und Schriften',
     body: 'Ein System statt einer Sammlung. Festgelegt, wo welche Farbe hingehört und welche Schrift wofür — damit Entscheidungen später nicht jedes Mal neu getroffen werden müssen.',
     items: [
@@ -30,7 +27,6 @@ const deliverables = [
     ],
   },
   {
-    num: '03',
     title: 'Vorlagen für den Alltag',
     body: 'Das, was täglich rausgeht. Ein Erscheinungsbild wird nicht im Handbuch sichtbar, sondern im Angebot, das der Kunde öffnet.',
     items: [
@@ -41,7 +37,6 @@ const deliverables = [
     ],
   },
   {
-    num: '04',
     title: 'Kompaktes CI-Manual',
     body: 'Wenige Seiten statt sechzig. Genug, dass eine Druckerei oder ein Fahrzeugbeschrifter ohne Rückfragen arbeiten kann.',
     items: [
@@ -160,7 +155,7 @@ const schema = {
 
   .sec-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
   }
   .sec-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
   .sec-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 44rem; }
@@ -173,7 +168,7 @@ const schema = {
   }
   .problem-h2 {
     font-size: clamp(1.875rem, 3.5vw, 2.75rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.08; margin: 1.25rem 0 0; color: var(--on-deep);
+    letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 0; color: var(--on-deep);
   }
   .symptoms { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
   .symptoms li {
@@ -193,7 +188,6 @@ const schema = {
     border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
     display: flex; flex-direction: column;
   }
-  .card-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 1.5rem; }
   .card-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.75rem; line-height: 1.2; }
   .card-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.7; margin: 0 0 1.5rem; }
   .card-list { list-style: none; margin: 0; padding: 1.25rem 0 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 9px; }
@@ -240,7 +234,7 @@ const schema = {
 
   /* FAQ */
   .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
-  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1.25rem; }
   .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-top: 1px solid var(--border-2); }
@@ -281,7 +275,6 @@ const schema = {
 
     <!-- Hero -->
     <section class="page-hero" aria-labelledby="br-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
         <nav class="crumb" aria-label="Brotkrumen-Navigation">
           <a href="/">Start</a>
@@ -307,11 +300,9 @@ const schema = {
 
     <!-- Ausgangslage -->
     <section class="problem section-pad on-deep" aria-labelledby="problem-heading">
-      <DecoShapes variant="deep" />
       <div class="container-site">
         <div class="problem-grid">
           <div>
-            <p class="label-mono">Ausgangslage</p>
             <h2 class="problem-h2" id="problem-heading">
               Drei Handschriften für einen Betrieb.
             </h2>
@@ -348,7 +339,6 @@ const schema = {
     <section class="section-pad" aria-labelledby="deliv-heading">
       <div class="container-site">
         <div class="sec-header">
-          <p class="label-mono reveal">Lieferumfang</p>
           <h2 class="sec-h2 reveal" id="deliv-heading">Was am Ende in deiner Hand liegt.</h2>
           <p class="sec-sub reveal">
             Keine Moodboards und keine Markenwerte-Workshops. Vier Bausteine,
@@ -358,7 +348,6 @@ const schema = {
         <div class="deliv">
           {deliverables.map(d => (
             <article class="card reveal">
-              <span class="card-num" aria-hidden="true">{d.num}</span>
               <h3 class="card-title">{d.title}</h3>
               <p class="card-body">{d.body}</p>
               <ul class="card-list">
@@ -380,7 +369,6 @@ const schema = {
       <div class="container-site">
         <div class="diff-grid">
           <div>
-            <p class="label-mono reveal">Der Unterschied</p>
             <h2 class="sec-h2 reveal" id="diff-heading">Branding, das auf der Website ankommt.</h2>
             <div class="diff-text reveal">
               <p>
@@ -445,7 +433,6 @@ const schema = {
       <div class="container-site">
         <div class="price-grid">
           <div>
-            <p class="label-mono reveal">Preis</p>
             <h2 class="sec-h2 reveal" id="price-heading">Festpreis, zwei Runden inklusive.</h2>
             <p class="price-text reveal">
               Kein Stundensatz und keine Überraschung am Ende. Zwei
@@ -499,7 +486,6 @@ const schema = {
       <div class="container-site">
         <div class="faq-grid">
           <div>
-            <p class="label-mono reveal">Häufige Fragen</p>
             <h2 class="faq-h2 reveal" id="faq-heading">Fragen zu Branding.</h2>
             <p class="faq-side reveal">
               Inklusive der Frage, wann ein Logo allein die schlechtere

@@ -3,12 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import CTASection from '../../components/CTASection.astro';
 import Footer from '../../components/Footer.astro';
-import DecoShapes from '../../components/DecoShapes.astro';
 
 /** Vier Anlässe, mit denen Betriebe zu WordPress-Themen kommen. */
 const cases = [
   {
-    num: '01',
     title: 'Neue Website mit WordPress',
     body: 'Aufgebaut so, dass du Texte, Bilder und Preise selbst ändern kannst — ohne dass beim Speichern das Layout zerfällt.',
     items: [
@@ -19,7 +17,6 @@ const cases = [
     ],
   },
   {
-    num: '02',
     title: 'Relaunch einer bestehenden Seite',
     body: 'Die Inhalte sind gut, der Auftritt ist von 2016. Neues Design auf bestehender Basis — meist günstiger als komplett neu.',
     items: [
@@ -30,7 +27,6 @@ const cases = [
     ],
   },
   {
-    num: '03',
     title: 'Übernahme, wenn niemand mehr betreut',
     body: 'Der frühere Dienstleister ist nicht mehr erreichbar, Zugänge fehlen, Updates sind seit Jahren offen. Das ist häufiger als man denkt — und lösbar.',
     items: [
@@ -41,7 +37,6 @@ const cases = [
     ],
   },
   {
-    num: '04',
     title: 'Wartung und Sicherheit',
     body: 'Der Grund, warum WordPress-Seiten gehackt werden, sind fast nie WordPress selbst, sondern veraltete Plugins. Updates sind langweilig — und genau deshalb wichtig.',
     items: [
@@ -179,7 +174,7 @@ const schema = {
 
   .sec-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
   }
   .sec-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
   .sec-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 42rem; }
@@ -191,7 +186,6 @@ const schema = {
     border-radius: var(--r-lg); padding: clamp(1.75rem, 3vw, 2.25rem);
     display: flex; flex-direction: column;
   }
-  .case-num { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 1.5rem; }
   .case-title { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 0.75rem; line-height: 1.2; }
   .case-body { font-size: 0.9375rem; color: var(--ink-2); line-height: 1.7; margin: 0 0 1.5rem; }
   .case-list { list-style: none; margin: 0; padding: 1.25rem 0 0; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 9px; }
@@ -203,7 +197,7 @@ const schema = {
   .weigh-header { max-width: 44rem; margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
   .weigh-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
     color: var(--on-deep);
   }
   .weigh-sub { font-size: 1.0625rem; color: var(--on-deep-2); line-height: 1.7; margin: 0; }
@@ -246,7 +240,7 @@ const schema = {
 
   /* FAQ */
   .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
-  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1.25rem; }
   .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-top: 1px solid var(--border-2); }
@@ -286,7 +280,6 @@ const schema = {
 
     <!-- Hero -->
     <section class="page-hero" aria-labelledby="wp-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
         <nav class="crumb" aria-label="Brotkrumen-Navigation">
           <a href="/">Start</a>
@@ -315,7 +308,6 @@ const schema = {
     <section class="section-pad" aria-labelledby="cases-heading">
       <div class="container-site">
         <div class="sec-header">
-          <p class="label-mono reveal">Anlässe</p>
           <h2 class="sec-h2 reveal" id="cases-heading">Vier Situationen, in denen ich helfe.</h2>
           <p class="sec-sub reveal">
             Die meisten kommen nicht mit „ich will WordPress", sondern mit einem
@@ -325,7 +317,6 @@ const schema = {
         <div class="cases">
           {cases.map(c => (
             <article class="case reveal">
-              <span class="case-num" aria-hidden="true">{c.num}</span>
               <h3 class="case-title">{c.title}</h3>
               <p class="case-body">{c.body}</p>
               <ul class="case-list">
@@ -344,10 +335,8 @@ const schema = {
 
     <!-- Ehrliche Abwägung -->
     <section class="weigh section-pad on-deep" aria-labelledby="weigh-heading">
-      <DecoShapes variant="deep" />
       <div class="container-site">
         <div class="weigh-header">
-          <p class="label-mono">Beratung vorweg</p>
           <h2 class="weigh-h2" id="weigh-heading">Wann WordPress passt — und wann nicht.</h2>
           <p class="weigh-sub">
             WordPress ist das bekannteste System, aber nicht automatisch das
@@ -396,7 +385,6 @@ const schema = {
       <div class="container-site">
         <div class="price-grid">
           <div>
-            <p class="label-mono reveal">Preis</p>
             <h2 class="sec-h2 reveal" id="price-heading">Festpreis, Wartung freiwillig.</h2>
             <p class="price-text reveal">
               Die Website rechne ich zum Festpreis ab. Wartung ist optional und
@@ -451,7 +439,6 @@ const schema = {
       <div class="container-site">
         <div class="faq-grid">
           <div>
-            <p class="label-mono reveal">Häufige Fragen</p>
             <h2 class="faq-h2 reveal" id="faq-heading">Fragen zu WordPress.</h2>
             <p class="faq-side reveal">
               Auch die naheliegende: Warum meine eigene Seite nicht darauf läuft.

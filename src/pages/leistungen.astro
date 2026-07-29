@@ -3,12 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import CTASection from '../components/CTASection.astro';
 import Footer from '../components/Footer.astro';
-import DecoShapes from '../components/DecoShapes.astro';
 
 const services = [
   {
     id: 'webdesign',
-    num: '01',
     title: 'Webdesign & Entwicklung',
     lead: 'Deine Website ist dein fleißigster Mitarbeiter: Sie ist rund um die Uhr erreichbar, beantwortet die häufigsten Fragen und sammelt Anfragen — wenn sie richtig gebaut ist.',
     outcome: 'Das Ergebnis: Ein Auftritt, der bei Google gefunden wird und aus Besuchern Anfragen macht.',
@@ -25,7 +23,6 @@ const services = [
   },
   {
     id: 'it-services',
-    num: '02',
     title: 'IT-Services & Cloud',
     lead: 'Freemail-Adressen, Daten auf einem einzigen Rechner, Passwörter im Notizbuch — so arbeiten viele Betriebe. Bis etwas schiefgeht. Ich richte deine IT einmal ordentlich ein.',
     outcome: 'Das Ergebnis: Deine Technik läuft im Hintergrund — und wenn etwas klemmt, genügt ein Anruf.',
@@ -41,7 +38,6 @@ const services = [
   },
   {
     id: 'branding',
-    num: '03',
     title: 'Branding & Corporate Identity',
     lead: 'Wenn Angebot, Visitenkarte und Website drei verschiedene Handschriften haben, wirkt der beste Betrieb improvisiert. Ein konsistenter Auftritt schafft Wiedererkennung — und Vertrauen.',
     outcome: 'Das Ergebnis: Ein Erscheinungsbild, das überall gleich aussieht — vom Briefkopf bis zum Firmenwagen.',
@@ -120,7 +116,7 @@ const schema = {
   .page-h1 {
     font-size: clamp(2.75rem, 6.5vw, 5rem);
     font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
-    margin: 1.25rem 0 1.5rem; max-width: 16ch;
+    margin: 0 0 1.5rem; max-width: 16ch;
     animation: fadeUp 650ms var(--ease-out) 140ms both;
   }
   .page-h1 .accent { color: var(--accent); }
@@ -144,10 +140,6 @@ const schema = {
     align-items: start;
   }
   .svc-num-row { display: flex; align-items: center; gap: 12px; }
-  .svc-num {
-    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-    letter-spacing: 0.14em; color: var(--accent);
-  }
   .svc-glyph { display: block; flex-shrink: 0; }
   .svc-h2 {
     font-size: clamp(2rem, 4vw, 3rem);
@@ -177,7 +169,7 @@ const schema = {
   .pkgs-h2 {
     font-size: clamp(2.25rem, 4.5vw, 3.5rem);
     font-weight: 800; letter-spacing: -0.025em; line-height: 1.04;
-    margin: 1.25rem 0 1rem;
+    margin: 0 0 1rem;
   }
   .pkgs-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
 
@@ -232,9 +224,7 @@ const schema = {
 
     <!-- Seiten-Hero -->
     <section class="page-hero" aria-labelledby="ls-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
-        <p class="label-mono page-hero-label">Leistungen</p>
         <h1 class="page-h1" id="ls-heading">
           Was ich für dich <span class="accent">tun kann.</span>
         </h1>
@@ -274,7 +264,6 @@ const schema = {
                     <path d="M3 19l8-15l8 15Z" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
                   </svg>
                 )}
-                <span class="svc-num">{s.num}</span>
               </div>
               <h2 class="svc-h2 reveal" id={`${s.id}-heading`}>{s.title}</h2>
               <p class="svc-lead reveal">{s.lead}</p>
@@ -313,7 +302,6 @@ const schema = {
     <section class="pkgs section-pad" id="pakete" aria-labelledby="pkg-heading">
       <div class="container-site">
         <div class="pkgs-header">
-          <p class="label-mono reveal">Website-Pakete</p>
           <h2 class="pkgs-h2 reveal" id="pkg-heading">Drei Pakete, ein Festpreis.</h2>
           <p class="pkgs-sub reveal">
             Richtwerte für den Einstieg — was dein Projekt konkret kostet,

@@ -52,7 +52,7 @@ const tools = [
   .page-h1 {
     font-size: clamp(2.75rem, 6.5vw, 5rem);
     font-weight: 800; letter-spacing: -0.03em; line-height: 1.0;
-    margin: 1.25rem 0 1.5rem; max-width: 15ch;
+    margin: 0 0 1.5rem; max-width: 15ch;
     animation: fadeUp 650ms var(--ease-out) 140ms both;
   }
   .page-h1 .accent { color: var(--accent); }
@@ -89,7 +89,7 @@ const tools = [
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
     gap: clamp(2rem, 5vw, 5rem); align-items: start;
     }
-  .tl-side-text { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 36ch; margin: 1.25rem 0 0; }
+  .tl-side-text { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 36ch; margin: 0 0 0; }
   .tl-list { display: flex; flex-direction: column; }
   .tl-item {
     display: grid; grid-template-columns: 72px 1fr; gap: 1.5rem;
@@ -138,7 +138,6 @@ const tools = [
       <div class="container-site">
         <div class="page-hero-grid">
           <div>
-            <p class="label-mono page-hero-label">Über mich</p>
             <h1 class="page-h1" id="about-heading">
               Technik mit <span class="accent">Handschlag.</span>
             </h1>
@@ -165,7 +164,6 @@ const tools = [
     <!-- Grundsätze -->
     <section class="principles section-pad" aria-labelledby="principles-heading">
       <div class="container-site">
-        <p class="label-mono reveal">Arbeitsweise</p>
         <h2 class="principles-h2 reveal" id="principles-heading">Drei Grundsätze, die gelten.</h2>
         <div class="principles-grid">
           {principles.map(p => (
@@ -183,7 +181,6 @@ const tools = [
       <div class="container-site">
         <div class="tl-grid">
           <div>
-            <p class="label-mono reveal">Werdegang</p>
             <h2 class="tl-h2 reveal" id="tl-heading">Wie es dazu kam.</h2>
             <p class="tl-side-text reveal">
               Kein Quereinstieg über Nacht: MB-Solutions ist aus mehreren
@@ -208,7 +205,6 @@ const tools = [
     <!-- Werkzeuge -->
     <section class="tools section-pad" aria-labelledby="tools-heading">
       <div class="container-site">
-        <p class="label-mono reveal">Werkzeuge</p>
         <h2 class="tools-h2 reveal" id="tools-heading">Womit ich arbeite.</h2>
         <p class="tools-sub reveal">
           Du musst davon nichts kennen — aber falls es dich interessiert:

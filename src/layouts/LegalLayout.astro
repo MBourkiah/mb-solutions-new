@@ -26,11 +26,11 @@ const { title, description, heading, intro, updated } = Astro.props;
   .legal-h1 {
     font-size: clamp(2.25rem, 5vw, 3.25rem);
     font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
-    margin: 1.25rem 0 0;
+    margin: 0 0 0;
   }
   .legal-intro {
     font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75;
-    margin: 1.25rem 0 0; max-width: 62ch;
+    margin: 0 0 0; max-width: 62ch;
   }
   .legal-updated {
     font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
@@ -116,7 +116,6 @@ const { title, description, heading, intro, updated } = Astro.props;
   <main id="main-content" class="legal">
     <div class="container-site">
       <div class="legal-inner">
-        <p class="label-mono">Rechtliches</p>
         <h1 class="legal-h1">{heading}</h1>
         {intro && <p class="legal-intro">{intro}</p>}
         <span class="legal-updated">Stand: {updated}</span>

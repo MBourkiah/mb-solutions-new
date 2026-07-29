@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import CTASection from '../../components/CTASection.astro';
 import Footer from '../../components/Footer.astro';
-import DecoShapes from '../../components/DecoShapes.astro';
 
 /** Leistungsblöcke — gruppiert nach dem, was Betriebe tatsächlich beauftragen. */
 const blocks = [
@@ -168,7 +167,7 @@ const schema = {
   }
   .problem-h2 {
     font-size: clamp(1.875rem, 3.5vw, 2.75rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.08; margin: 1.25rem 0 0;
+    letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 0;
     color: var(--on-deep);
   }
   .symptoms { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
@@ -188,7 +187,7 @@ const schema = {
   .blocks-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 42rem; }
   .sec-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
   }
   .sec-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
 
@@ -257,7 +256,7 @@ const schema = {
 
   /* FAQ */
   .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
-  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1.25rem; }
   .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-top: 1px solid var(--border-2); }
@@ -297,7 +296,6 @@ const schema = {
 
     <!-- Hero -->
     <section class="page-hero" aria-labelledby="it-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
         <nav class="crumb" aria-label="Brotkrumen-Navigation">
           <a href="/">Start</a>
@@ -323,11 +321,9 @@ const schema = {
 
     <!-- Ausgangslage -->
     <section class="problem section-pad on-deep" aria-labelledby="problem-heading">
-      <DecoShapes variant="deep" />
       <div class="container-site">
         <div class="problem-grid">
           <div>
-            <p class="label-mono">Ausgangslage</p>
             <h2 class="problem-h2" id="problem-heading">
               Es läuft. Bis es nicht mehr läuft.
             </h2>
@@ -364,7 +360,6 @@ const schema = {
     <section class="section-pad" aria-labelledby="blocks-heading">
       <div class="container-site">
         <div class="blocks-header">
-          <p class="label-mono reveal">Was ich mache</p>
           <h2 class="sec-h2 reveal" id="blocks-heading">Vier Bereiche, in dieser Reihenfolge.</h2>
           <p class="sec-sub reveal">
             Du musst nicht alles auf einmal umstellen. Meistens ist E-Mail der
@@ -396,7 +391,6 @@ const schema = {
       <div class="container-site">
         <div class="distinct-grid">
           <div>
-            <p class="label-mono reveal">Einordnung</p>
             <h2 class="sec-h2 reveal" id="distinct-heading">Ich bin kein Systemhaus.</h2>
             <div class="distinct-text reveal">
               <p>
@@ -464,7 +458,6 @@ const schema = {
       <div class="container-site">
         <div class="price-grid">
           <div>
-            <p class="label-mono reveal">Preis</p>
             <h2 class="sec-h2 reveal" id="price-heading">Setup zum Festpreis, Betreuung freiwillig.</h2>
             <p class="price-text reveal">
               Das Setup rechne ich zum Festpreis ab, nicht nach Stunden. Die
@@ -516,7 +509,6 @@ const schema = {
       <div class="container-site">
         <div class="faq-grid">
           <div>
-            <p class="label-mono reveal">Häufige Fragen</p>
             <h2 class="faq-h2 reveal" id="faq-heading">Was Betriebe vorher wissen wollen.</h2>
             <p class="faq-side reveal">
               Inklusive der Frage, wann ich der falsche Ansprechpartner bin —

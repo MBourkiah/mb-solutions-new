@@ -1,5 +1,4 @@
 ---
-import DecoShapes from './DecoShapes.astro';
 
 const steps = [
   {
@@ -46,7 +45,7 @@ const steps = [
   .process-h2 {
     font-size: clamp(2.25rem, 4.5vw, 3.5rem);
     font-weight: 800; letter-spacing: -0.025em;
-    line-height: 1.04; margin: 1.25rem 0 1.25rem;
+    line-height: 1.04; margin: 0 0 1.25rem;
     color: var(--on-deep);
   }
   .process-sub {
@@ -130,10 +129,8 @@ const steps = [
 </style>
 
 <section class="process section-pad on-deep" aria-labelledby="process-heading" id="prozess">
-  <DecoShapes variant="deep" />
   <div class="container-site">
     <div class="process-header">
-      <p class="label-mono reveal">Ablauf</p>
       <h2 class="process-h2 reveal" id="process-heading">
         Eine Linie — vom ersten Gespräch bis zum Launch.
       </h2>

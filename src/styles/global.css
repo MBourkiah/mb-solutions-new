@@ -118,34 +118,12 @@
     max-width: 74rem;
     margin-inline: auto;
     padding-inline: clamp(1.25rem, 5vw, 2.5rem);
-    /* über den DecoShapes-Hintergründen */
     position: relative;
     z-index: 1;
   }
   .section-pad {
     padding-block: clamp(4.5rem, 9vw, 8rem);
   }
-
-  /* Mono-Label — ersetzt das alte Eyebrow-Muster */
-  .label-mono {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 10px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .label-mono::before {
-    content: '';
-    width: 10px; height: 10px;
-    border: 1.5px solid currentColor;
-    align-self: center;
-    flex-shrink: 0;
-  }
-  .on-deep .label-mono { color: var(--accent-deep); }
 
   /* Buttons */
   .btn-primary {

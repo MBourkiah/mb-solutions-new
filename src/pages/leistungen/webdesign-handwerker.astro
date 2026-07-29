@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import CTASection from '../../components/CTASection.astro';
 import Footer from '../../components/Footer.astro';
-import DecoShapes from '../../components/DecoShapes.astro';
 import ProjectVisual from '../../components/ProjectVisual.astro';
 
 /** Was eine Handwerker-Website leisten muss — konkret, nicht generisch. */
@@ -157,7 +156,7 @@ const schema = {
   }
   .problem-h2 {
     font-size: clamp(1.875rem, 3.5vw, 2.75rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.08; margin: 1.25rem 0 0;
+    letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 0;
     color: var(--on-deep);
   }
   .problem-text { display: flex; flex-direction: column; gap: 1.125rem; }
@@ -168,7 +167,7 @@ const schema = {
   .req-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 44rem; }
   .req-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
   }
   .req-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
   .req-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -185,7 +184,7 @@ const schema = {
   .flow-header { margin-bottom: clamp(2.5rem, 5vw, 3.5rem); max-width: 40rem; }
   .flow-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1rem;
   }
   .flow-sub { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.7; margin: 0; }
   .flow-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -201,7 +200,7 @@ const schema = {
   }
   .price-h2 {
     font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
-    letter-spacing: -0.025em; line-height: 1.05; margin: 1.25rem 0 1.25rem;
+    letter-spacing: -0.025em; line-height: 1.05; margin: 0 0 1.25rem;
   }
   .price-text { font-size: 1.0625rem; color: var(--ink-2); line-height: 1.75; margin: 0 0 1.25rem; max-width: 46ch; }
   .price-card {
@@ -223,14 +222,14 @@ const schema = {
     display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: clamp(2rem, 5vw, 4rem); align-items: center;
   }
-  .ref-h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin: 1.25rem 0 1.25rem; }
+  .ref-h2 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin: 0 0 1.25rem; }
   .ref-text { font-size: 1rem; color: var(--ink-2); line-height: 1.75; margin: 0 0 1.25rem; max-width: 46ch; }
   .ref-text strong { color: var(--ink); font-weight: 600; }
 
   /* ── FAQ ── */
   .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
   /* Kleiner als die übrigen H2: steht in der schmalen linken Spalte */
-  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 1.25rem 0 1.25rem; }
+  .faq-h2 { font-size: clamp(1.75rem, 2.8vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 1.25rem; }
   .faq-side { font-size: 1rem; color: var(--ink-2); line-height: 1.7; max-width: 34ch; margin: 0 0 1.75rem; }
   .faq-list { display: flex; flex-direction: column; }
   .faq-item { border-top: 1px solid var(--border-2); }
@@ -275,7 +274,6 @@ const schema = {
 
     <!-- Hero -->
     <section class="page-hero" aria-labelledby="hw-heading">
-      <DecoShapes variant="corner" />
       <div class="container-site">
         <nav class="crumb" aria-label="Brotkrumen-Navigation">
           <a href="/">Start</a>
@@ -301,11 +299,9 @@ const schema = {
 
     <!-- Ausgangslage -->
     <section class="problem section-pad on-deep" aria-labelledby="problem-heading">
-      <DecoShapes variant="deep" />
       <div class="container-site">
         <div class="problem-grid">
           <div>
-            <p class="label-mono">Ausgangslage</p>
             <h2 class="problem-h2" id="problem-heading">
               Der Kunde sucht am Straßenrand. Nicht am Schreibtisch.
             </h2>
@@ -336,7 +332,6 @@ const schema = {
     <section class="section-pad" aria-labelledby="req-heading">
       <div class="container-site">
         <div class="req-header">
-          <p class="label-mono reveal">Was zählt</p>
           <h2 class="req-h2 reveal" id="req-heading">Sechs Dinge, die eine Handwerker-Website können muss.</h2>
           <p class="req-sub reveal">
             Nicht Animationen und nicht „digitale Erlebnisse". Sondern das,
@@ -358,7 +353,6 @@ const schema = {
     <section class="flow section-pad" aria-labelledby="flow-heading">
       <div class="container-site">
         <div class="flow-header">
-          <p class="label-mono reveal">Ablauf</p>
           <h2 class="flow-h2 reveal" id="flow-heading">Dein Aufwand: rund zwei Stunden.</h2>
           <p class="flow-sub reveal">
             Du bist tagsüber auf der Baustelle. Der Ablauf ist darauf ausgelegt,
@@ -382,7 +376,6 @@ const schema = {
       <div class="container-site">
         <div class="price-grid">
           <div>
-            <p class="label-mono reveal">Preis</p>
             <h2 class="price-h2 reveal" id="price-heading">Festpreis, vor dem Start.</h2>
             <p class="price-text reveal">
               Kein Stundensatz, bei dem am Ende eine Überraschung steht. Nach
@@ -433,7 +426,6 @@ const schema = {
       <div class="container-site">
         <div class="ref-grid">
           <div>
-            <p class="label-mono reveal">Arbeitsweise</p>
             <h2 class="ref-h2 reveal" id="ref-heading">So gehe ich einen Handwerksbetrieb an.</h2>
             <p class="ref-text reveal">
               <strong>Offen gesagt:</strong> MB-Solutions ist frisch gestartet,
@@ -467,7 +459,6 @@ const schema = {
       <div class="container-site">
         <div class="faq-grid">
           <div>
-            <p class="label-mono reveal">Häufige Fragen</p>
             <h2 class="faq-h2 reveal" id="faq-heading">Was Handwerker meistens fragen.</h2>
             <p class="faq-side reveal">
               Die fünf Einwände, die im Erstgespräch am häufigsten kommen —

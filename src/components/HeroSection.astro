@@ -1,34 +1,26 @@
 ---
-import DecoShapes from './DecoShapes.astro';
-
 const index = [
-  { num: '01', label: 'Webdesign',   desc: 'Websites, die Anfragen bringen',        href: '/leistungen#webdesign' },
-  { num: '02', label: 'IT-Services', desc: 'E-Mail, Cloud & Geräte im Griff',       href: '/leistungen#it-services' },
-  { num: '03', label: 'Branding',    desc: 'Ein Auftritt, den man wiedererkennt',   href: '/leistungen#branding' },
+  { label: 'Webdesign',   desc: 'Websites, die Anfragen bringen',      href: '/leistungen#webdesign' },
+  { label: 'IT-Services', desc: 'E-Mail, Cloud & Geräte im Griff',     href: '/leistungen/it-service-koeln' },
+  { label: 'Branding',    desc: 'Ein Auftritt, den man wiedererkennt', href: '/leistungen/branding-corporate-design' },
 ];
 ---
 
 <style>
   .hero {
-    position: relative;
     min-height: calc(100svh - 77px);
     display: flex; flex-direction: column; justify-content: center;
     padding-block: clamp(3rem, 8vh, 6rem) clamp(2rem, 5vh, 3.5rem);
   }
-  .hero :global(.deco) {
-    animation: fadeUp 900ms var(--ease-out) 420ms both;
-  }
-
-  .hero-label { animation: fadeUp 500ms var(--ease-out) 60ms both; }
 
   .hero-h1 {
     font-size: clamp(3rem, 8.5vw, 6.75rem);
     font-weight: 800;
     letter-spacing: -0.03em;
     line-height: 0.98;
-    margin: 1.5rem 0 0;
+    margin: 0;
     max-width: 13ch;
-    animation: fadeUp 650ms var(--ease-out) 140ms both;
+    animation: fadeUp 650ms var(--ease-out) 80ms both;
   }
   .hero-h1 .accent { color: var(--accent); }
 
@@ -41,14 +33,21 @@ const index = [
   }
 
   .hero-sub {
-    font-size: 1.125rem; color: var(--ink-2);
+    font-size: 1.1875rem; color: var(--ink);
+    line-height: 1.65; max-width: 46ch;
+    margin: 0 0 1.125rem;
+    animation: fadeUp 550ms var(--ease-out) 200ms both;
+  }
+  /* Die drei Zusagen als Satz, nicht als Vertrauens-Abzeichen */
+  .hero-facts {
+    font-size: 1rem; color: var(--ink-2);
     line-height: 1.7; max-width: 44ch;
     margin: 0 0 2rem;
-    animation: fadeUp 550ms var(--ease-out) 260ms both;
+    animation: fadeUp 550ms var(--ease-out) 280ms both;
   }
   .hero-ctas {
     display: flex; gap: 12px; flex-wrap: wrap;
-    animation: fadeUp 550ms var(--ease-out) 340ms both;
+    animation: fadeUp 550ms var(--ease-out) 360ms both;
   }
 
   /* Leistungs-Index rechts */
@@ -58,7 +57,7 @@ const index = [
   }
   .hero-index-item {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     gap: 18px; align-items: baseline;
     padding: 16px 4px;
     border-top: 1px solid var(--border);
@@ -66,10 +65,6 @@ const index = [
     transition: background 160ms var(--ease-out), padding-left 200ms var(--ease-out);
   }
   .hero-index-item:last-child { border-bottom: 1px solid var(--border); }
-  .hi-num {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.1em; color: var(--ink-3);
-  }
   .hi-main { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
   .hi-label {
     font-family: var(--font-display); font-size: 1.125rem; font-weight: 700;
@@ -86,34 +81,15 @@ const index = [
     .hero-index-item:hover .hi-label { color: var(--accent-strong); }
   }
 
-  /* Versprechen-Zeile unten */
-  .hero-promises {
-    display: flex; gap: clamp(1.5rem, 4vw, 3rem); flex-wrap: wrap;
-    margin-top: clamp(3rem, 7vh, 5rem);
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    animation: fadeUp 600ms var(--ease-out) 520ms both;
-  }
-  .hero-promise {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-family: var(--font-mono); font-size: 12px; font-weight: 500;
-    letter-spacing: 0.06em; color: var(--ink-2); text-transform: uppercase;
-  }
-  .hero-promise svg { color: var(--accent); flex-shrink: 0; }
-
   @media (max-width: 820px) {
     .hero { min-height: 0; }
     .hero-row { grid-template-columns: 1fr; align-items: start; gap: 2.5rem; }
     .hero-h1 { font-size: clamp(2.75rem, 12vw, 4.5rem); }
-    .hero-promises { gap: 0.875rem; flex-direction: column; margin-top: 3rem; }
   }
 </style>
 
 <section class="hero" id="main-content" aria-label="Startseite Hero">
-  <DecoShapes variant="hero" />
   <div class="container-site">
-    <p class="label-mono hero-label">Webdesign · IT-Services · Branding — Köln</p>
-
     <h1 class="hero-h1">
       Webseiten, die für deinen Betrieb <span class="accent">arbeiten.</span>
     </h1>
@@ -121,9 +97,13 @@ const index = [
     <div class="hero-row">
       <div>
         <p class="hero-sub">
-          Ich plane, gestalte und betreue den digitalen Auftritt deines
-          Unternehmens — als eine Person, die alles aus einer Hand liefert.
-          Ohne Agentur-Overhead, ohne Umwege.
+          Ich bin Maurice Bourkiah und mache Webdesign, IT und Branding für
+          Betriebe in Köln. Alleine — was bedeutet, dass du mit dem sprichst,
+          der die Arbeit auch macht.
+        </p>
+        <p class="hero-facts">
+          Antwort in 48 Stunden. Festpreis vor dem Start, keine Stundensätze.
+          Ein Ansprechpartner für alles.
         </p>
         <div class="hero-ctas">
           <a href="/kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
@@ -134,7 +114,6 @@ const index = [
       <nav class="hero-index" aria-label="Leistungen im Überblick">
         {index.map(item => (
           <a href={item.href} class="hero-index-item">
-            <span class="hi-num">{item.num}</span>
             <span class="hi-main">
               <span class="hi-label">{item.label}</span>
               <span class="hi-desc">{item.desc}</span>
@@ -145,21 +124,6 @@ const index = [
           </a>
         ))}
       </nav>
-    </div>
-
-    <div class="hero-promises" aria-label="Arbeitsweise">
-      <span class="hero-promise">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Antwort innerhalb von 48 h
-      </span>
-      <span class="hero-promise">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Festpreis statt Stundensätze
-      </span>
-      <span class="hero-promise">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6.5L4.5 9L10 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Ein Ansprechpartner für alles
-      </span>
     </div>
   </div>
 </section>
