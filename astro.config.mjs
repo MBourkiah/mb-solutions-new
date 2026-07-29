@@ -70,9 +70,16 @@ export default defineConfig({
    * alte Logo-URL irgendwo extern eingebunden ist, bleibt sie so nutzbar.
    */
   redirects: {
+    // Von mir entfernte Dateien
     '/favicon.svg': '/mb-icon-32-favicon.png',
     '/logos/mb-solutions-horizontal.svg': '/logos/mb-logo-horizontal-violett.png',
     '/logos/mb-solutions-horizontal.png': '/logos/mb-logo-horizontal-violett.png',
+
+    // URLs der Vorgänger-Website, die Google noch kennt (aus der Search Console).
+    // Nur weiterleiten, wo es eine echte inhaltliche Entsprechung gibt — sonst
+    // ist 404 die richtige Antwort und Google räumt die URL von allein weg.
+    '/about': '/ueber-mich/',
+    '/webdesign-koeln': '/leistungen/#webdesign',
   },
 
   integrations: [
