@@ -31,3 +31,7 @@ pnpm-debug.log*
 .agents/
 .playwright-mcp/
 skills-lock.json
+
+# Lead-Listen (Geschäftskontaktdaten — nicht ins Repo)
+leads-handwerk-koeln.csv
+leads-handwerk-koeln.json
