@@ -1,6 +1,7 @@
 # SEO-Strategie MB-Solutions
 
-Stand: 28.07.2026 · Datenbasis: DataForSEO API (Deutschland/de)
+Stand: 20.08.2026 · Datenbasis: DataForSEO API (Deutschland/de) +
+Search-Console-Export 12 Monate (`searchconsole/`, Stand 18.08.2026)
 Visueller Report: siehe Artifact „SEO-Strategie — MB-Solutions Köln"
 
 ## Kernbefund
@@ -21,6 +22,63 @@ Belege, dass Autorität hier weniger zählt als Bewertungen:
 
 go-webstudio.de hat **weniger** Verweisdomains als wir und holt 67 Besucher/Monat aus dem
 Local Pack. Bei webdesign-agentur-koeln.com kommen 95 % des Traffics aus dem Local Pack.
+
+### Erfolgsmessung nach 12 Monaten (Search Console, 19.08.2025–18.08.2026)
+
+Die erste Messung mit echten Google-Daten statt Schätzwerten. Sie bestätigt den
+Kernbefund und widerlegt eine Annahme dieses Dokuments.
+
+| Kennzahl | Wert |
+|---|---:|
+| Klicks, 12 Monate | **25** |
+| Impressionen | 2.273 |
+| CTR | 1,1 % |
+| Klicks aus ausgewiesenen Nicht-Brand-Suchen | **0** (bei 619 Impressionen) |
+
+Von den 17 Klicks, die Google nach Suchanfrage ausweist, sind **alle 17 Brand-Suchen**.
+Die restlichen 8 der insgesamt 25 Klicks liegen in Anfragen, die Google als zu selten
+nicht ausweist — über deren Art ist keine Aussage möglich.
+
+**Widerlegte Annahme: niedrige Keyword-Difficulty ≠ erreichbares Ranking.**
+`wordpress agentur köln` war mit KD 2 als leichtes Ziel eingeplant. Tatsächliches
+Ergebnis nach drei Wochen live:
+
+| | Wert |
+|---|---:|
+| `/leistungen/wordpress-agentur-koeln/` | 528 Impressionen, **0 Klicks**, Position **48,8** |
+| WordPress-Cluster gesamt (25 Suchanfragen) | 547 Impressionen, 0 Klicks, gewichtete Position **50,3** |
+| Anteil an allen Nicht-Brand-Impressionen | 88 % |
+
+Der Impressionssprung ab 30.07. (5,0 → 31,3 Impressionen/Tag) sieht nach Fortschritt aus,
+brachte in 20 Tagen aber **2 Klicks** und verschlechterte die Durchschnittsposition von
+12,4 auf 31,8. Position 50 ist Seite 5. KD misst die Konkurrenz, nicht die eigene
+Autorität — mit einer echten Verweisdomain rankt auch ein leichtes Keyword auf Seite 5.
+
+**Die Brand-Suche ist nicht gewonnen.** `mb solutions`: 608 Impressionen, Position **9,25**,
+13 Klicks. Beim eigenen Namen. Die Suchanfragenliste zeigt die Ursache — Namensvettern:
+`mb solutions gmbh`, `mba solutions`, `mb solutions a/s`, `mb digital solutions`,
+`mb solutions eschwege`. 982 Brand-Impressionen ergaben 17 Klicks. Das ist ein
+Entity-Problem, kein Ranking-Problem, und über Profil + konsistente Citations lösbar.
+
+**Kern-Geldkeywords sind nicht platziert, sondern abwesend:**
+`webdesign köln` Position 132,5 · `webdesigner köln` 111,0 · `seo agentur köln` 165,2 ·
+`corporate design köln` 62,0.
+
+Weitere Befunde: Mobil 1,95 % CTR bei Position 11,3 gegen Desktop 0,67 % bei Position 25,9
+(die Desktop-Impressionen sind fast alle die tief rankende WordPress-Seite) · 326 der 2.273
+Impressionen (14 %) kommen aus Ländern außerhalb DACH auf Position ~48, generische
+WordPress-Anfragen — Rauschen.
+
+Geprüft und unbedenklich: `mb-solutions.biz` → `www` leitet per 308 weiter; `/leistungen`
+und `/leistungen/` liefern beide 200, zeigen aber konsistent dasselbe Canonical. Die
+www/non-www-Aufteilung im Export ist historisch (die Domain-Property aggregiert beides).
+Offen und bewusst so gelassen: `/marketing-agentur-koeln/content-marketing-koeln` (22
+Impressionen) und `.../seo-agentur-koeln` (18) geben 404 zurück. Ein Redirect auf
+`/leistungen/` wäre eine Themenlüge — beide Leistungen werden nicht angeboten.
+
+**Konsequenz für die Roadmap:** Phase 2 wird ausgesetzt. Weitere Landingpages erzeugen
+weitere Seiten auf Position 50. Was Position 50 auf Position 10 hebt, ist Autorität —
+Bewertungen und echte Verweisdomains. Beides beginnt beim ersten Kunden.
 
 ### Status Google-Unternehmensprofil
 
@@ -147,7 +205,10 @@ Verweisdomains: 1 bestätigt, 4–6 erwartet sobald die neuen Einträge freigege
 ### Akquise — Ersatz für den Bewertungs-Engpass
 Der Local Pack hat ein Henne-Ei-Problem: keine Kunden → keine Bewertungen → keine
 Sichtbarkeit. Die ersten Kunden müssen aus aktiver Ansprache kommen.
-- [x] Lead-Liste: 32 Kölner Bauhandwerksbetriebe ohne Website, mit Telefonnummer
+- [x] Lead-Liste: **63 anrufbare Betriebe** ohne Website, alle mit Telefonnummer
+      (39 Prio A + 24 Prio B in `leads-handwerk-koeln.csv`; 250 weitere Prio C ohne
+      Nummer). Eine frühere Fassung nannte hier 32 — diese Zahl lässt sich aus keinem
+      Filter der Datei reproduzieren und war falsch.
       (`leads-handwerk-koeln.csv`, Script `scripts/leads-osm.mjs`)
 - [ ] Erste Anrufe — Gesprächsleitfaden liegt im Artifact
 - [ ] Erste 2–3 Aufträge: reduzierter Preis gegen Bewertung + öffentliche Referenz
@@ -164,7 +225,9 @@ Sichtbarkeit. Die ersten Kunden müssen aus aktiver Ansprache kommen.
 **Status:** ✅ abgeschlossen — 4 von 4 Seiten live, Sitemap bei 11 URLs (vorher 7).
 Adressiertes Suchvolumen: 1.350/Monat bei KD 2–20.
 
-### Phase 2 — begonnen
+### Phase 2 — AUSGESETZT (siehe Erfolgsmessung)
+
+Begründung: Seiten ranken, aber auf Position ~50. Erst Autorität, dann mehr Seiten.
 - [x] `/leistungen/branding-corporate-design` — 90 + 50 + 30 Suchen, KD 5–10
       (Commit 4ee236e). Damit hat jede der drei Säulen eine eigene Landingpage.
 - [ ] `/regionen/webdesign-leverkusen` — 90 Suchen, **KD 3**
