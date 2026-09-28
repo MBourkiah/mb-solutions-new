@@ -39,3 +39,7 @@ leads-handwerk-koeln.json
 
 # Search-Console-Exporte (eigene Leistungsdaten — Repo ist öffentlich)
 searchconsole/
+
+# Produktkontext (enthält Kapazitäts- und Geschäftszahlen — Repo ist öffentlich)
+PRODUCT.md
+.impeccable/
