@@ -1,0 +1,445 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-20T00:00:00Z",
+  "title": "Design System: MB-Solutions",
+  "extensions": {
+    "colorMeta": {
+      "signatur": {
+        "role": "primary",
+        "displayName": "Signatur-Violett",
+        "canonical": "#5B4FD1",
+        "tonalRamp": [
+          "#14103A",
+          "#211A5C",
+          "#2E247E",
+          "#3B2FA0",
+          "#4A3EC2",
+          "#5B4FD1",
+          "#8479E0",
+          "#ECE9FB"
+        ]
+      },
+      "signatur-kraeftig": {
+        "role": "primary",
+        "displayName": "Signatur kräftig",
+        "canonical": "#4A3EC2",
+        "tonalRamp": [
+          "#110D30",
+          "#1C1650",
+          "#271F70",
+          "#332890",
+          "#4A3EC2",
+          "#6558D6",
+          "#9B92E8",
+          "#E4E1F9"
+        ]
+      },
+      "signatur-hell": {
+        "role": "primary",
+        "displayName": "Signatur hell (auf Dunkel)",
+        "canonical": "#A99EF5",
+        "tonalRamp": [
+          "#1B1745",
+          "#2B2468",
+          "#3C338C",
+          "#5347B4",
+          "#7166D6",
+          "#A99EF5",
+          "#C8C1FA",
+          "#EFEDFD"
+        ]
+      },
+      "signatur-lasur": {
+        "role": "primary",
+        "displayName": "Signatur-Lasur",
+        "canonical": "#ECE9FB",
+        "tonalRamp": [
+          "#2A2260",
+          "#3B3187",
+          "#5348B0",
+          "#7468CE",
+          "#9A90E4",
+          "#C3BCF2",
+          "#ECE9FB",
+          "#F8F7FE"
+        ]
+      },
+      "tiefviolett": {
+        "role": "secondary",
+        "displayName": "Tiefviolett",
+        "canonical": "#2A2260",
+        "tonalRamp": [
+          "#0E0B22",
+          "#171238",
+          "#221B52",
+          "#2A2260",
+          "#3A3084",
+          "#5044AE",
+          "#8579D8",
+          "#D9D4F4"
+        ]
+      },
+      "tiefviolett-2": {
+        "role": "secondary",
+        "displayName": "Tiefviolett-2",
+        "canonical": "#221B52",
+        "tonalRamp": [
+          "#0B0919",
+          "#120F2E",
+          "#1A1540",
+          "#221B52",
+          "#312778",
+          "#453AA4",
+          "#7A6ED0",
+          "#D3CDF2"
+        ]
+      },
+      "auf-tiefviolett": {
+        "role": "secondary",
+        "displayName": "Auf Tiefviolett",
+        "canonical": "#F5F3FC",
+        "tonalRamp": [
+          "#2A2260",
+          "#3E3583",
+          "#564BA8",
+          "#7468C6",
+          "#9A90DD",
+          "#C4BDEE",
+          "#E4E0F8",
+          "#F5F3FC"
+        ]
+      },
+      "papier": {
+        "role": "neutral",
+        "displayName": "Papier",
+        "canonical": "#FAF8F4",
+        "tonalRamp": [
+          "#211F1A",
+          "#3A3730",
+          "#565248",
+          "#787264",
+          "#9E9888",
+          "#C4BFB0",
+          "#E6E1D6",
+          "#FAF8F4"
+        ]
+      },
+      "papier-alt": {
+        "role": "neutral",
+        "displayName": "Papier-Alt",
+        "canonical": "#F2EFE8",
+        "tonalRamp": [
+          "#1E1C17",
+          "#35322B",
+          "#4F4B40",
+          "#6F6A5B",
+          "#948E7C",
+          "#BAB4A2",
+          "#DCD7C9",
+          "#F2EFE8"
+        ]
+      },
+      "blatt": {
+        "role": "neutral",
+        "displayName": "Blatt",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#1E1B2E",
+          "#38344A",
+          "#535066",
+          "#706C83",
+          "#918DA3",
+          "#B5B2C3",
+          "#DAD8E2",
+          "#FFFFFF"
+        ]
+      },
+      "tinte": {
+        "role": "neutral",
+        "displayName": "Tinte",
+        "canonical": "#1E1B2E",
+        "tonalRamp": [
+          "#0A0910",
+          "#12101C",
+          "#1E1B2E",
+          "#332E4C",
+          "#4C466C",
+          "#6B6490",
+          "#A39DBC",
+          "#DDDAE7"
+        ]
+      },
+      "tinte-2": {
+        "role": "neutral",
+        "displayName": "Tinte-2",
+        "canonical": "#524E66",
+        "tonalRamp": [
+          "#14131A",
+          "#232130",
+          "#332F44",
+          "#423E58",
+          "#524E66",
+          "#77728E",
+          "#A7A3B8",
+          "#DEDCE6"
+        ]
+      },
+      "tinte-3": {
+        "role": "neutral",
+        "displayName": "Tinte-3",
+        "canonical": "#767093",
+        "tonalRamp": [
+          "#1A1822",
+          "#2C2939",
+          "#413D54",
+          "#585270",
+          "#6F688A",
+          "#767093",
+          "#A9A4BE",
+          "#E0DEE9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nur die H1 im Hero. Auf 13 Zeichen Breite begrenzt."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section-Überschriften (H2), max. ~15 Zeichen pro Zeile."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "H3 in Leistungsbändern und Karten."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Fließtext in Tinte-2, Zeilenlänge 50–68 Zeichen."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Mono-Beschriftung für Daten: Tabellenköpfe, Felder, Stände. Nie als Eyebrow."
+      }
+    },
+    "shadows": [
+      {
+        "name": "aufliegend",
+        "value": "0 1px 2px rgba(30,27,46,0.06), 0 2px 8px rgba(30,27,46,0.05)",
+        "purpose": "Ruhezustand von Karten und Formularflächen — ein Blatt, das auf dem Papier liegt. NOCH NICHT IMPLEMENTIERT."
+      },
+      {
+        "name": "angehoben",
+        "value": "0 2px 4px rgba(30,27,46,0.07), 0 8px 20px rgba(30,27,46,0.08)",
+        "purpose": "Hover auf anfassbaren Karten. NOCH NICHT IMPLEMENTIERT."
+      },
+      {
+        "name": "schwebend",
+        "value": "0 10px 30px rgba(30,27,46,0.14)",
+        "purpose": "Nur echte Overlays: Dialoge, WhatsApp-Knopf. Das Einzige, was den Papierstapel verlässt."
+      },
+      {
+        "name": "fokus-ring",
+        "value": "0 0 0 3px rgba(91,79,209,0.14)",
+        "purpose": "Fokuszustand in Formularfeldern. Implementiert."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Einziges Easing im System. Für alle Zustandswechsel."
+      },
+      {
+        "name": "dauer-zustand",
+        "value": "180ms",
+        "purpose": "Buttons und Hover-Zustände."
+      },
+      {
+        "name": "dauer-eingabe",
+        "value": "150ms",
+        "purpose": "Formularfelder: Rahmen und Fokusring."
+      },
+      {
+        "name": "dauer-navigation",
+        "value": "200ms",
+        "purpose": "Navigations-Unterstreichung (scaleX)."
+      },
+      {
+        "name": "dauer-overlay",
+        "value": "260ms",
+        "purpose": "Mobiles Menü, Ein- und Ausblenden."
+      },
+      {
+        "name": "reveal-range",
+        "value": "entry 5% entry 60%",
+        "purpose": "Scroll-getriebenes Erscheinen über animation-timeline: view()."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobil",
+        "value": "820px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Der einzige gefüllte Akzent im Blickfeld. Hebt sich bei Hover um 1px, staucht beim Druck.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Kostenloses Erstgespräch</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--accent,#5B4FD1);color:#fff;padding:15px 28px;border-radius:8px;font-family:var(--font-display,'Bricolage Grotesque Variable',system-ui,sans-serif);font-size:15px;font-weight:600;letter-spacing:-0.01em;text-decoration:none;border:none;transition:background 180ms cubic-bezier(0.16,1,0.3,1),transform 180ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-primary:hover{background:var(--accent-strong,#4A3EC2);transform:translateY(-1px)}.ds-btn-primary:active{transform:scale(0.98)}.ds-btn-primary:focus-visible{outline:2px solid var(--accent,#5B4FD1);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Sekundäre Handlung auf Papier. Rahmen verdichtet sich bei Hover, Fläche wird zu Blatt.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Arbeiten ansehen</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--ink,#1E1B2E);padding:14px 28px;border-radius:8px;border:1.5px solid rgba(30,27,46,0.22);font-family:var(--font-display,'Bricolage Grotesque Variable',system-ui,sans-serif);font-size:15px;font-weight:600;letter-spacing:-0.01em;text-decoration:none;transition:border-color 180ms cubic-bezier(0.16,1,0.3,1),background 180ms cubic-bezier(0.16,1,0.3,1),transform 180ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-ghost:hover{border-color:var(--ink,#1E1B2E);background:#fff}.ds-btn-ghost:active{transform:scale(0.98)}"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Dieselbe Handlung innerhalb der Tiefviolett-Sections.",
+      "html": "<div style=\"background:#2A2260;padding:28px;border-radius:14px\"><a class=\"ds-btn-light\" href=\"#\">Kostenloses Erstgespräch</a></div>",
+      "css": ".ds-btn-light{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:#F5F3FC;color:#2A2260;padding:15px 28px;border-radius:8px;font-family:var(--font-display,'Bricolage Grotesque Variable',system-ui,sans-serif);font-size:15px;font-weight:600;letter-spacing:-0.01em;text-decoration:none;border:none;transition:transform 180ms cubic-bezier(0.16,1,0.3,1),background 180ms cubic-bezier(0.16,1,0.3,1)}.ds-btn-light:hover{background:#fff;transform:translateY(-1px)}.ds-btn-light:active{transform:scale(0.98)}"
+    },
+    {
+      "name": "Link mit Pfeil",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Textlink in Signaturfarbe; der Pfeil wandert bei Hover 4px nach rechts.",
+      "html": "<a class=\"ds-link-arrow\" href=\"#\">Mehr über mich<svg width=\"14\" height=\"14\" viewBox=\"0 0 15 15\" fill=\"none\" aria-hidden=\"true\"><path d=\"M2 7.5h11M9 3.5l4 4-4 4\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-link-arrow{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-display,'Bricolage Grotesque Variable',system-ui,sans-serif);font-size:15px;font-weight:600;color:var(--accent,#5B4FD1);text-decoration:none;letter-spacing:-0.01em}.ds-link-arrow svg{transition:transform 160ms cubic-bezier(0.16,1,0.3,1);flex-shrink:0}.ds-link-arrow:hover svg{transform:translateX(4px)}"
+    },
+    {
+      "name": "Karte",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Blatt auf Papier. Zeigt die beschlossene Erhebung „aufliegend“ — im Code noch flach.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-top\"><h3>Website</h3><span class=\"ds-price\">ab 790 €</span></div><p>Der professionelle Auftritt für deinen Betrieb — von der Struktur bis zum Live-Gang.</p></div>",
+      "css": ".ds-card{background:#fff;border:1px solid rgba(30,27,46,0.12);border-radius:14px;padding:2rem;box-shadow:0 1px 2px rgba(30,27,46,0.06),0 2px 8px rgba(30,27,46,0.05);transition:box-shadow 180ms cubic-bezier(0.16,1,0.3,1),transform 180ms cubic-bezier(0.16,1,0.3,1);max-width:340px}.ds-card:hover{box-shadow:0 2px 4px rgba(30,27,46,0.07),0 8px 20px rgba(30,27,46,0.08);transform:translateY(-2px)}.ds-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}.ds-card h3{font-family:'Bricolage Grotesque Variable',system-ui,sans-serif;font-size:1.375rem;font-weight:700;letter-spacing:-0.02em;margin:0;color:#1E1B2E}.ds-price{font-family:'Bricolage Grotesque Variable',system-ui,sans-serif;font-size:15px;font-weight:600;color:#5B4FD1;white-space:nowrap}.ds-card p{font-family:'Instrument Sans Variable',system-ui,sans-serif;font-size:0.9375rem;line-height:1.7;color:#524E66;margin:0}"
+    },
+    {
+      "name": "Eingabefeld",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Papierfläche mit sichtbarer Beschriftung. Fokus setzt Rahmen und 3px-Ring in Signaturfarbe.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-label\">E-Mail</span><input class=\"ds-input\" type=\"email\" placeholder=\"name@betrieb.de\"></label>",
+      "css": ".ds-field{display:flex;flex-direction:column;gap:7px;max-width:320px}.ds-label{font-family:'Instrument Sans Variable',system-ui,sans-serif;font-size:14px;font-weight:600;color:#1E1B2E}.ds-input{width:100%;background:#FAF8F4;border:1.5px solid rgba(30,27,46,0.22);border-radius:8px;padding:12px 14px;font-size:0.9375rem;color:#1E1B2E;font-family:'Instrument Sans Variable',system-ui,sans-serif;transition:border-color 150ms cubic-bezier(0.16,1,0.3,1),box-shadow 150ms cubic-bezier(0.16,1,0.3,1);outline:none;-webkit-appearance:none}.ds-input::placeholder{color:#767093}.ds-input:focus{border-color:#5B4FD1;box-shadow:0 0 0 3px rgba(91,79,209,0.14)}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Aktiver Eintrag trägt eine 2px-Unterstreichung in Signaturfarbe; Hover deutet sie auf 40 % an.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"#\">Leistungen</a><a class=\"ds-nav-link\" href=\"#\">Arbeiten</a><a class=\"ds-nav-link\" href=\"#\">Über mich</a><a class=\"ds-nav-cta\" href=\"#\">Kostenloses Erstgespräch</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:26px;background:rgba(250,248,244,0.85);backdrop-filter:blur(14px);padding:18px 24px;border-bottom:1px solid rgba(30,27,46,0.12)}.ds-nav-link{position:relative;font-family:'Instrument Sans Variable',system-ui,sans-serif;font-size:14.5px;font-weight:500;color:#524E66;text-decoration:none;padding:4px 0;transition:color 140ms cubic-bezier(0.16,1,0.3,1)}.ds-nav-link::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:2px;background:#5B4FD1;transform:scaleX(0);transform-origin:left center;transition:transform 200ms cubic-bezier(0.16,1,0.3,1)}.ds-nav-link.ds-active{color:#1E1B2E}.ds-nav-link.ds-active::after{transform:scaleX(1)}.ds-nav-link:not(.ds-active):hover{color:#1E1B2E}.ds-nav-link:not(.ds-active):hover::after{transform:scaleX(0.4)}.ds-nav-cta{margin-left:auto;background:#1E1B2E;color:#FAF8F4;padding:10px 20px;border-radius:8px;font-family:'Bricolage Grotesque Variable',system-ui,sans-serif;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:-0.01em;transition:background 160ms cubic-bezier(0.16,1,0.3,1)}.ds-nav-cta:hover{background:#5B4FD1}"
+    },
+    {
+      "name": "Leistungsband",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signatur-Layout: liegendes Band statt Karte. Die Trennlinie zeichnet sich beim Hereinscrollen; Hover schiebt den Inhalt 14px ein.",
+      "html": "<a class=\"ds-band\" href=\"#\"><div><h3>Webdesign &amp; Entwicklung</h3><p>Eine Website, die Anfragen bringt — nicht nur gut aussieht.</p></div><ul><li><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" aria-hidden=\"true\"><path d=\"M2 6.5L4.5 9L10 3.5\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Auf dem Handy genauso gut bedienbar wie am PC</li><li><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" aria-hidden=\"true\"><path d=\"M2 6.5L4.5 9L10 3.5\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>Bei Google findbar — lokales SEO inklusive</li></ul></a>",
+      "css": ".ds-band{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:3rem;padding:2.25rem 4px;text-decoration:none;color:inherit;transition:padding-left 220ms cubic-bezier(0.16,1,0.3,1)}.ds-band::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:rgba(30,27,46,0.22);transform-origin:left center}.ds-band:hover{padding-left:14px}.ds-band h3{font-family:'Bricolage Grotesque Variable',system-ui,sans-serif;font-size:1.625rem;font-weight:700;letter-spacing:-0.02em;line-height:1.12;margin:0 0 0.75rem;color:#1E1B2E;transition:color 180ms cubic-bezier(0.16,1,0.3,1)}.ds-band:hover h3{color:#4A3EC2}.ds-band p{font-family:'Instrument Sans Variable',system-ui,sans-serif;font-size:1rem;color:#524E66;line-height:1.7;margin:0;max-width:40ch}.ds-band ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px}.ds-band li{display:grid;grid-template-columns:14px 1fr;gap:12px;font-family:'Instrument Sans Variable',system-ui,sans-serif;font-size:0.9375rem;color:#524E66;line-height:1.6}.ds-band li svg{color:#5B4FD1;margin-top:6px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Das Angebot auf Papier",
+    "overview": "Das Dokument, das ein Handwerksbetrieb ernst nimmt: gesetzt, präzise, unterschrieben. Kein Bildschirm, der so tut, als wäre er ein Bildschirm — eine Fläche, die so tut, als läge sie auf dem Tresen. Papier trägt, Tinte schreibt, und genau eine Farbe unterschreibt. Das ist keine Stilübung: Die Positionierung des Produkts ist „Festpreis vor Projektstart, eine Person, kein Agentursprech\". Ein gedrucktes Angebot ist die physische Form derselben Aussage.\n\nDie Dichte ist ruhig, aber nicht leer. Text führt, Linien gliedern, Flächen wechseln nur dort, wo ein Abschnitt wirklich einen anderen Charakter hat. Die dunklen Tiefviolett-Sections sind keine Dekoration, sondern Taktwechsel. Bewegung hängt an der Scroll-Position statt an Timern.\n\nBewusst abgelehnt: die generische Agentur-Vorlage — keine Eyebrow-Labels, keine 01/02/03 als Zierrat, keine Häkchen-Badge-Reihen, keine schwebenden Deko-Formen, keine Stock-Fotos. Diese Elemente wurden entfernt, nicht vergessen.",
+    "keyCharacteristics": [
+      "Papier als Grund, nicht Weiß — #FAF8F4 mit kaum wahrnehmbarem Korn (Opazität 0,035)",
+      "Genau ein Akzent, sparsam wie ein Stempel",
+      "Dünne Linien statt Karten, wo immer eine Liste ausreicht",
+      "Enge Radien (4/8/14px) — nichts wirkt weich oder verspielt",
+      "Selbst gehostete Schriften, kein CDN — Ladezeit ist Teil der Arbeitsprobe"
+    ],
+    "rules": [
+      {
+        "name": "Die Stempel-Regel",
+        "body": "Der Akzent erscheint auf höchstens 10 % einer Ansicht. Ein Primärbutton pro Blickfeld, sonst nur Linien, Häkchen und Pfeile.",
+        "section": "colors"
+      },
+      {
+        "name": "Die Papier-Regel",
+        "body": "#FFFFFF ist kein Hintergrund. Wo Weiß erscheint, liegt etwas auf dem Papier — und was aufliegt, wirft Schatten.",
+        "section": "colors"
+      },
+      {
+        "name": "Die Ein-Stimme-Regel",
+        "body": "Es gibt keine zweite Akzentfarbe.",
+        "section": "colors"
+      },
+      {
+        "name": "Die Kein-Eyebrow-Regel",
+        "body": "Mono-Labels beschriften Daten. Sie stehen nie als Kategorie-Etikett über einer Überschrift.",
+        "section": "typography"
+      },
+      {
+        "name": "Die Zahlen-haben-Bedeutung-Regel",
+        "body": "Sichtbare Nummerierung erscheint nur, wo eine echte Reihenfolge besteht.",
+        "section": "typography"
+      },
+      {
+        "name": "Die Ein-Breakpoint-Regel",
+        "body": "Neue Komponenten brechen bei 820px.",
+        "section": "layout"
+      },
+      {
+        "name": "Die Tintenschatten-Regel",
+        "body": "Jeder Schatten ist in Tinte getönt (rgba(30,27,46, …)), nie in Schwarz oder Neutralgrau.",
+        "section": "elevation"
+      },
+      {
+        "name": "Die Kurzer-Wurf-Regel",
+        "body": "Vertikaler Versatz bleibt unter der Unschärfe, und die Unschärfe unter 30px. Papier schwebt nicht.",
+        "section": "elevation"
+      },
+      {
+        "name": "Die Erhebung-bedeutet-Anfassbar-Regel",
+        "body": "Erhebung zeigt an, dass etwas aufliegt oder bedienbar ist. Ein reiner Textabschnitt bekommt keinen Schatten.",
+        "section": "elevation"
+      },
+      {
+        "name": "Die Linie-vor-Rahmen-Regel",
+        "body": "Eine Liste bekommt Trennlinien, keine Kartenrahmen.",
+        "section": "shapes"
+      },
+      {
+        "name": "Die Bewegung-erklärt-Struktur-Regel",
+        "body": "Eine Animation zeigt einen Zusammenhang oder sie entfällt. Pro Blickfeld höchstens ein bis zwei bewegte Elemente.",
+        "section": "components"
+      },
+      {
+        "name": "Die Hover-ist-ein-Bonus-Regel",
+        "body": "Jeder Hover-Zustand steht in @media (hover: hover) and (pointer: fine). Keine Information existiert nur im Hover.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do Papier (#FAF8F4) als Grund verwenden und Weiß für aufliegende Objekte reservieren.",
+      "Do den Akzent auf höchstens 10 % einer Ansicht begrenzen — ein gefüllter Button pro Blickfeld.",
+      "Do Listen mit 1px-Linien gliedern, bevor du zu Karten greifst.",
+      "Do Schatten in Tinte tönen (rgba(30,27,46, …)), kurz werfen und unter 30px Unschärfe halten.",
+      "Do bei 820px umbrechen.",
+      "Do jede Bewegung an die Scroll-Position hängen statt an einen Timer, und prefers-reduced-motion respektieren.",
+      "Do Mono ausschließlich für Datenbeschriftungen einsetzen.",
+      "Do Schriften selbst hosten — kein CDN."
+    ],
+    "donts": [
+      "Don't Mono-Labels als Eyebrow über Überschriften setzen.",
+      "Don't 01/02/03 als Zierrat verwenden, wo keine echte Reihenfolge besteht.",
+      "Don't eine zweite Akzentfarbe einführen.",
+      "Don't Stock-Fotos von Personen, Büros oder Teams verwenden — auch nicht als Platzhalter.",
+      "Don't Illustrationen in einem anderen Stil als die bestehenden drei ergänzen.",
+      "Don't Google Fonts oder andere externe Ressourcen einbinden.",
+      "Don't Häkchen-Badge-Reihen, schwebende Deko-Formen oder Dreier-Kartenraster wiedereinführen.",
+      "Don't reines Schwarz oder Neutralgrau als Schattenfarbe verwenden."
+    ]
+  }
+}

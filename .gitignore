@@ -43,3 +43,5 @@ searchconsole/
 # Produktkontext (enthält Kapazitäts- und Geschäftszahlen — Repo ist öffentlich)
 PRODUCT.md
 .impeccable/
+# ...aber das Design-System selbst ist kein Geschäftsgeheimnis
+!.impeccable/design.json
