@@ -29,6 +29,7 @@ pnpm-debug.log*
 # local tooling
 .claude/
 .agents/
+.codex/
 .playwright-mcp/
 skills-lock.json
 
